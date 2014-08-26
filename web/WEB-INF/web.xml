@@ -9,6 +9,34 @@
         <servlet-class>servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RemoveLineItem</servlet-name>
+        <servlet-class>servlet.RemoveLineItem</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowOrder</servlet-name>
+        <servlet-class>servlet.ShowOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ToOrder</servlet-name>
+        <servlet-class>servlet.ToOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCart</servlet-name>
+        <servlet-class>servlet.ViewCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>servlet.AddToCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmCart</servlet-name>
+        <servlet-class>servlet.ConfirmCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SwitchOrder</servlet-name>
+        <servlet-class>servlet.SwitchOrder</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Logout</servlet-name>
         <servlet-class>servlet.Logout</servlet-class>
     </servlet>
@@ -55,6 +83,34 @@
     <servlet-mapping>
         <servlet-name>showProduct</servlet-name>
         <url-pattern>/showProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmCart</servlet-name>
+        <url-pattern>/ConfirmCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveLineItem</servlet-name>
+        <url-pattern>/RemoveLineItem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowOrder</servlet-name>
+        <url-pattern>/ShowOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SwitchOrder</servlet-name>
+        <url-pattern>/SwitchOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToOrder</servlet-name>
+        <url-pattern>/ToOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCart</servlet-name>
+        <url-pattern>/ViewCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ShowDetailServlet</servlet-name>
