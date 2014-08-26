@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class Product {
+
     private int productNO;
     private int acctID;
     private int category_ID;
@@ -126,9 +127,9 @@ public class Product {
     public String toString() {
         return "Product{" + "productNO=" + productNO + ", acctID=" + acctID + ", category_ID=" + category_ID + ", name=" + name + ", price=" + price + ", offerStart=" + offerStart + ", offerEnd=" + offerEnd + ", createOn=" + createOn + ", description=" + description + ", available=" + available + ", brandID=" + brandID + '}';
     }
-    
-     public static int addProducts(String AcctID, int Category_ID, String Name, Double Price,
-            String CreateOn,String Description,String Available,String Brand) {
+
+    public static int addProducts(String AcctID, int Category_ID, String Name, Double Price,
+            String CreateOn, String Description, String Available, String Brand) {
         int row = 0;
         int newMemberID = 0;
         try {
@@ -158,7 +159,8 @@ public class Product {
         }
         return row;
     }
-     public static List<Product> showProduct() {
+
+    public static List<Product> showProduct() {
         String sqlCmd = "SELECT * FROM PRODUCT";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
@@ -176,13 +178,34 @@ public class Product {
         }
         return pa;
     }
-     public static Product showDetail(int id) {
+
+    public static List<Product> showSell(int id) {
+        String sqlCmd = "SELECT * FROM PRODUCT WHERE ACCTID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Product> pa = new ArrayList<Product>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+                pa.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pa;
+    }
+
+    public static Product showDetail(int id) {
         String sqlCmd = "SELECT * FROM PRODUCT WHERE PRODUCTNO = ?";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 p = new Product();
@@ -194,21 +217,23 @@ public class Product {
         }
         return null;
     }
-         public static int lastid(){
-                Connection con = ConnectionAgent.getConnection();
-                int id=0;
+
+    public static int lastid() {
+        Connection con = ConnectionAgent.getConnection();
+        int id = 0;
         try {
             PreparedStatement ps1 = con.prepareStatement("SELECT MAX(PRODUCTNO) FROM PRODUCT");
             ResultSet rs = ps1.executeQuery();
-            if(rs.next()){
-               id= rs.getInt(1);
+            if (rs.next()) {
+                id = rs.getInt(1);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
+
     private static void rToO(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productno"));
@@ -222,7 +247,7 @@ public class Product {
             p.setDescription(rs.getString("description"));
             p.setAvailable(rs.getString("available"));
             p.setBrandID(rs.getInt("brandid"));
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }

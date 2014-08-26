@@ -47,8 +47,8 @@
                             <li><a href="#fakelink">Edit</a></li>
                             <li><a href="#fakelink">Change Password</a></li>
                             <li><a href="#fakelink">Buy List</a></li>
-                            <li><a href="#fakelink">Sell List</a></li>
-                            <li><a href="#fakelink">Profile</a></li>
+                            <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
+                            <li><a href="address.jsp">Profile</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>

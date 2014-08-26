@@ -41,8 +41,8 @@
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 700px;background: #FFFFFF">
                     <div class="row">
-                        <a href="#"><button type="button" class="btn btn-default col-lg-6">Address</button></a>
-                        <a href="#"><button type="button" class="btn btn-default col-lg-6">Bank Account</button></a>
+                        <a href="address.jsp"><button type="button" class="btn btn-default col-lg-6">Address</button></a>
+                        <a href="bankacc.jsp"><button type="button" class="btn btn-default col-lg-6">Bank Account</button></a>
                     </div>
                     <div class="form-horizontal">
                         <h3 class="col-md-12">My Address</h3>
