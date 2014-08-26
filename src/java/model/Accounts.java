@@ -252,6 +252,27 @@ public class Accounts {
         }
         return row;
     }
+    
+    public boolean login(String username, String password) {
+        String sql = "select password from account where username = ?";
+        String pass = "";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                pass = rs.getString("password");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (password.equals(pass)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public static List<Accounts> find(String str) {
         String sqlCmd = "SELECT * FROM ACCOUNT WHERE user_id like ? ORDER BY ACCOUNT_ID ASC";
         Connection con = ConnectionAgent.getConnection();

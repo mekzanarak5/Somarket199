@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
            throws ServletException, IOException {
-        HttpSession s = request.getSession();
+        /*HttpSession s = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String msg = "";
@@ -50,7 +50,41 @@ public class LoginServlet extends HttpServlet {
         }
 
         request.setAttribute("msg", msg);
-        getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response); */
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String msg = null;
+        Accounts m1 = new Accounts();
+        //Admin a1 = new Admin();
+
+        // if(from.equalsIgnoreCase("/viewCart.jsp")){
+        // }
+
+        /*if (a1.login(username, password)) {
+            HttpSession s1 = request.getSession();
+            s1.setAttribute("username", username);
+            s1.setAttribute("admin", a1.findByUsername(username));
+//            request.setAttribute("username", username);
+            getServletContext().getRequestDispatcher("/AdminView.jsp").forward(request, response);
+            return;
+        } else { */
+            if (m1.login(username, password)) {
+                HttpSession s1 = request.getSession();
+                s1.setAttribute("username", username);
+                s1.setAttribute("user", m1.findById(username));
+                request.setAttribute("username", username);
+            } else {
+                msg = "Login Failed";
+                request.setAttribute("msg", msg);
+                getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+                return;
+            }
+
+            if (request.getParameter("url")!=null) {
+                getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
+                return;
+            }
+            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
