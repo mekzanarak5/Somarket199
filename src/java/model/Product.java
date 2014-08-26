@@ -233,6 +233,24 @@ public class Product {
         }
         return id;
     }
+    
+    public static Product findByName(String name) {
+        String sqlCmd = "SELECT * FROM product p WHERE product_name LIKE '%?%' ORDER BY product_id desc";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
 
     private static void rToO(Product p, ResultSet rs) {
         try {

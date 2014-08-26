@@ -44,7 +44,7 @@ public class LineItem {
 
     @Override
     public String toString() {
-        return "LineItem{" + "product=" + product.getProductId()+","+product.getProductName() +","+product.getDescription() + "(unit = " + unit + " )" + '}';
+        return "LineItem{" + "product=" + product.getProductNO()+","+product.getName() +","+product.getDescription() + "(unit = " + unit + " )" + '}';
     }
 
     @Override
@@ -69,6 +69,6 @@ public class LineItem {
     }
     
     public double getTotal(){
-        return unit * (product.getProductCost());
+        return unit * (product.getPrice());
     }
 }

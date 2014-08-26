@@ -35,9 +35,9 @@ public class Cart {
     }
 
     public void add(LineItem li) {
-        LineItem tmp = items.get(li.getProduct().getProductId());
+        LineItem tmp = items.get(li.getProduct().getProductNO());
         if (tmp == null) {
-            items.put(li.getProduct().getProductId(), li);
+            items.put(li.getProduct().getProductNO(), li);
         } else {
             tmp.setUnit(li.getUnit() + tmp.getUnit());
         }
@@ -47,7 +47,7 @@ public class Cart {
         double total = 0;
         List<LineItem> items = getLineItems();
         for (LineItem lt : items) {
-            total = total + lt.getUnit() * (lt.getProduct().getProductCost());
+            total = total + lt.getUnit() * (lt.getProduct().getPrice());
         }
         return total;
     }
@@ -78,8 +78,8 @@ public class Cart {
             System.out.println(a);
             for (LineItem li : a) {
                 ps.setInt(2, li.getUnit());
-                ps.setString(3, li.getProduct().getProductName());
-                ps.setDouble(4, li.getProduct().getProductCost());
+                ps.setString(3, li.getProduct().getName());
+                ps.setDouble(4, li.getProduct().getPrice());
                 ps.setDouble(5, li.getTotal());
                 ps.executeUpdate();
             }
