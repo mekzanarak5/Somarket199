@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class Accounts {
 
-    private String Account_Id;
+    private int Account_Id;
     private String Username;
     private String Password;
     private String Email;
@@ -29,11 +29,11 @@ public class Accounts {
     private String Phone;
     private String Created;
 
-    public String getAccount_Id() {
+    public int getAccount_Id() {
         return Account_Id;
     }
 
-    public void setAccount_Id(String Account_Id) {
+    public void setAccount_Id(int Account_Id) {
         this.Account_Id = Account_Id;
     }
 
@@ -183,7 +183,7 @@ public class Accounts {
 
     private static void rToO(Accounts a, ResultSet rs) {
         try {
-            a.setAccount_Id(rs.getString("ACCOUNT_ID"));
+            a.setAccount_Id(rs.getInt("ACCOUNT_ID"));
             a.setUsername(rs.getString("USERNAME"));
             a.setPassword(rs.getString("PASSWORD"));
             a.setEmail(rs.getString("EMAIL"));

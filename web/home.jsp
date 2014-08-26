@@ -320,17 +320,17 @@
         <script src="js/flatui-radio.js"></script>
         <script src="js/jquery.tagsinput.js"></script>
         <script src="js/jquery.placeholder.js"></script>
-        
+
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script>
-            $(function() {
-                $('.demo.menu .item')
-  .tab('deactivate all')
-  .tab('activate tab', 'third')
-  .tab('activate navigation', 'third')
-;
-            });
+                        $(function() {
+                            $('.demo.menu .item')
+                                    .tab('deactivate all')
+                                    .tab('activate tab', 'third')
+                                    .tab('activate navigation', 'third')
+                                    ;
+                        });
         </script>
     </body>
 </html>

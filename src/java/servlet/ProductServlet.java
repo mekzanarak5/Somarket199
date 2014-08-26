@@ -35,7 +35,7 @@ public class ProductServlet extends HttpServlet {
         String Description = request.getParameter("des");
         String desthai = new String(Description.getBytes("ISO8859_1"), "UTF-8");
         String Available = request.getParameter("available");
-        String Category_ID = request.getParameter("cata");
+        int Category_ID = Integer.parseInt(request.getParameter("cata"));
         String CreateOn = request.getParameter("create");
         Double Price = Double.parseDouble(request.getParameter("price"));
         String Brand = request.getParameter("brand");

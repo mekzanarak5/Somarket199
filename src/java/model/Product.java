@@ -127,7 +127,7 @@ public class Product {
         return "Product{" + "productNO=" + productNO + ", acctID=" + acctID + ", category_ID=" + category_ID + ", name=" + name + ", price=" + price + ", offerStart=" + offerStart + ", offerEnd=" + offerEnd + ", createOn=" + createOn + ", description=" + description + ", available=" + available + ", brandID=" + brandID + '}';
     }
     
-     public static int addProducts(String AcctID, String Category_ID, String Name, Double Price,
+     public static int addProducts(String AcctID, int Category_ID, String Name, Double Price,
             String CreateOn,String Description,String Available,String Brand) {
         int row = 0;
         int newMemberID = 0;
@@ -145,7 +145,7 @@ public class Product {
             PreparedStatement ps = con.prepareStatement("INSERT INTO PRODUCT (productNO,AcctID,Category_ID,Name,Price,CreateOn,Description,Available,BrandID) VALUES (?,?,?,?,?,current_timestamp,?,?,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, AcctID);
-            ps.setString(3, Category_ID);
+            ps.setInt(3, Category_ID);
             ps.setString(4, Name);
             ps.setDouble(5, Price);
             ps.setString(6, Description);

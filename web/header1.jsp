@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<a href="profile.jsp">${user.username}</a>
+
 <c:set var="usernae" value="" />
 <c:set var="loginAndOut" value="" />
 <nav class="navbar navbar-default" role="navigation">
@@ -17,8 +17,10 @@
                     <c:otherwise>
                         <c:set var="username" value="${user.username}"/>
                         <c:set var="loginAndOut" value="Logout"/>
+                        <a href="profile.jsp">${user.username}</a>
+                        <a href="seachcata" class="btn btn-warning" >Post</a>
                         <a href="profile.jsp"><img src="img/face.png" width="30" height="30" style="size:" /></a>
-                        <a href="${loginAndOut}" class="btn btn-info" style="margin-top:20px">Logout</a>
+                        <a href="${loginAndOut}" class="btn btn-info" >Logout</a>
                     </c:otherwise>
                 </c:choose>
             </form>

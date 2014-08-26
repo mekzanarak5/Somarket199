@@ -48,7 +48,7 @@
                                 <label for="inputPassword3" class="col-sm-3">Product</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Name of product" name="name" required>
-                                    <input type="hidden" class="form-control" value="${user.username}" name="acctid" required>
+                                    <input type="hidden" class="form-control" value="${user.getAccount_Id()}" name="acctid" required>
                                 </div>
                             </div>
                             <div class="form-group">
