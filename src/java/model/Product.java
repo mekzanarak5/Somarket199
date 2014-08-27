@@ -159,6 +159,24 @@ public class Product {
         }
         return row;
     }
+    
+    public static Product findById(int id) {
+        String sqlCmd = "SELECT * FROM product p WHERE product_id = ? ORDER BY product_id desc";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
 
     public static List<Product> showProduct() {
         String sqlCmd = "SELECT * FROM PRODUCT";

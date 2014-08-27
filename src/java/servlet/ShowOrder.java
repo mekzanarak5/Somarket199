@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.ConnectionAgent;
 import model.order;
-import model.Member;
+import model.Accounts;
 
 /**
  *
@@ -35,7 +35,7 @@ public class ShowOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession s = request.getSession();
-        Member username = (Member) s.getAttribute("user");
+        Accounts username = (Accounts) s.getAttribute("user");
         System.out.println(username.getUsername());
         ArrayList<order> arr = order.getOrderList(username.getUsername());   
         System.out.println(arr);

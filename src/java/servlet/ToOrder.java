@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cart;
 import model.LineItem;
-import model.Member;
+import model.Accounts;
 import model.Product;
 import model.order;
 
@@ -36,7 +36,7 @@ public class ToOrder extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Member cus = (Member) request.getSession().getAttribute("user");
+        Accounts cus = (Accounts) request.getSession().getAttribute("user");
         String address = request.getParameter("address");
         int value = 0;
         if (cus != null) {

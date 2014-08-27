@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Cart;
 import model.LineItem;
-import model.Member;
+import model.Accounts;
 import model.Product;
 
 /**
@@ -53,7 +53,7 @@ public class AddToCart extends HttpServlet {
             li = new LineItem(tmp);
             cart.add(li);
             //}
-        request.setAttribute("msg","Add " + tmp.getProductName() + " Complete");
+        request.setAttribute("msg","Add " + tmp.getName() + " Complete");
         String key = request.getParameter("keySearch");
 
         getServletContext().getRequestDispatcher("/SearchProduct?keySearch="+key).forward(request, response);
