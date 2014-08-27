@@ -44,7 +44,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-01">
                         <ul class="nav navbar-nav navbar-left">           
-                            <li><a href="#fakelink">Edit</a></li>
+                            <li><a href="editProfile.jsp">Edit</a></li>
                             <li><a href="#fakelink">Change Password</a></li>
                             <li><a href="#fakelink">Buy List</a></li>
                             <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>

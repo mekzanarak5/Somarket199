@@ -106,8 +106,8 @@ public class Accounts {
         return "Accounts{" + "Account_Id=" + Account_Id + ", Username=" + Username + ", Password=" + Password + ", Email=" + Email + ", dispName=" + dispName + ", FirstName=" + FirstName + ", LastName=" + LastName + ", Phone=" + Phone + ", Created=" + Created + '}';
     }
 
-    public static int addAccount(String Username, String Password, String Email,String dispName,
-            String FirstName,String LastName,String Phone,String Created) {
+    public static int addAccount(String Username, String Password, String Email, String dispName,
+            String FirstName, String LastName, String Phone, String Created) {
         int row = 0;
         int newMemberID = 0;
         try {
@@ -163,6 +163,7 @@ public class Accounts {
         }
         return a;
     }
+
     public static Accounts findById2(String id) {
         String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
         Connection con = ConnectionAgent.getConnection();
@@ -181,6 +182,26 @@ public class Accounts {
         return a;
     }
 
+    public static int editProfile(String dispname, String firstname, String lastname, String phone, int acctid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE ACCOUNT SET dispname=?,FIRSTNAME=?,LASTNAME=?,phone=?  WHERE account_ID=?");
+            ps.setString(1, dispname);
+            ps.setString(2, firstname);
+            ps.setString(3, lastname);
+            ps.setString(4, phone);
+            ps.setInt(5, acctid);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
+
     private static void rToO(Accounts a, ResultSet rs) {
         try {
             a.setAccount_Id(rs.getInt("ACCOUNT_ID"));
@@ -197,46 +218,28 @@ public class Accounts {
         }
 
     }
-    public static int checkDuplicatedUser(String Username) { 
-        int count = 0; 
-        try { 
-  
-            Connection con = ConnectionAgent.getConnection(); 
-            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) AS Count FROM ACCOUNT WHERE USERNAME = ?"); 
-            ps.setString(1, Username); 
-            ResultSet rs = ps.executeQuery(); 
-            if (rs.next()) { 
-                count = rs.getInt(1); 
-            } else { 
-                count = 0; 
-            } 
-  
-        } catch (SQLException ex) { 
-            return 999; 
-        } 
-        return count; 
-    } 
-    public static int editProfile(String password,String email,String firstname,String lastname,String userid) {
-        int row = 0;
+
+    public static int checkDuplicatedUser(String Username) {
+        int count = 0;
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE ACCOUNT SET PASSWORD=?,EMAIL=?,FIRSTNAME=?,LASTNAME=?  WHERE USER_ID=?");
-            ps.setString(1, password);
-            ps.setString(2, email);
-            ps.setString(3, firstname);
-            ps.setString(4, lastname);
-            ps.setString(5, userid);
-            
-            row = ps.executeUpdate();
+            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) AS Count FROM ACCOUNT WHERE USERNAME = ?");
+            ps.setString(1, Username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            } else {
+                count = 0;
+            }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
-            row=-1;
+            return 999;
         }
-        return row;
+        return count;
     }
-    public static int addPic(String accountid ,String pic) {
+
+    public static int addPic(String accountid, String pic) {
         int row = 0;
         try {
 
@@ -252,7 +255,7 @@ public class Accounts {
         }
         return row;
     }
-    
+
     public boolean login(String username, String password) {
         String sql = "select password from account where username = ?";
         String pass = "";
@@ -272,7 +275,7 @@ public class Accounts {
             return false;
         }
     }
-    
+
     public static List<Accounts> find(String str) {
         String sqlCmd = "SELECT * FROM ACCOUNT WHERE user_id like ? ORDER BY ACCOUNT_ID ASC";
         Connection con = ConnectionAgent.getConnection();
@@ -292,6 +295,7 @@ public class Accounts {
         }
         return cs;
     }
+
     public static int deleteAccount(String accountid) {
         int row = 0;
         try {

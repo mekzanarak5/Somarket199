@@ -60,6 +60,10 @@
         <servlet-name>ShowSellServlet</servlet-name>
         <servlet-class>servlet.ShowSellServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>servlet.EditProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>ShowSellServlet</servlet-name>
         <url-pattern>/ShowSellServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <url-pattern>/EditProfileServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

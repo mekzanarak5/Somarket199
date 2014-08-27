@@ -273,7 +273,7 @@
                         <!-- Arrow Navigator Skin End -->
                         <a style="display: none" href="http://www.jssor.com">slideshow</a>
                     </div>
-                </div>
+                </div>                
                 <div class="col-xs-12" style="margin:auto;padding-top: 50px">
                     <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
                         <div class="row">
