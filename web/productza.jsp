@@ -47,7 +47,7 @@
                     <a href="#" class="list-group-item active">
                         <h6 class="list-group-item-heading">Price ${showDetail.price}</h6>
                     </a>
-                    <a href="#" class="list-group-item">
+                    <a href="ShowAccount?acctid=${showName.account_Id}" class="list-group-item">
                         <h6 class="list-group-item-heading">${showName.username} ( 999<span class="glyphicon glyphicon-star"></span> )</h6>
                     </a>
                     <a href="#" class="list-group-item">
@@ -62,7 +62,7 @@
                     <br />
                 </div>
                 <div class="col-md-1">
-                    <a href=""><button type="button" class="btn btn-danger">Report</button></a>
+                    <a href="#"><button type="button" class="btn btn-danger">Report</button></a>
                 </div>
             </div>
             <form class="form-horizontal" role="form">

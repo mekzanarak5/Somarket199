@@ -64,6 +64,10 @@
         <servlet-name>EditProfileServlet</servlet-name>
         <servlet-class>servlet.EditProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowAccount</servlet-name>
+        <servlet-class>servlet.ShowAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>EditProfileServlet</servlet-name>
         <url-pattern>/EditProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowAccount</servlet-name>
+        <url-pattern>/ShowAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
