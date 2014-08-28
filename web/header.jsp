@@ -15,6 +15,6 @@
         </select>
     </div>
     <div class="col-xs-2">
-        <a href="#fakelink" class="btn btn-block btn-lg btn-info">Search</a>
+        <a href="showProduct" class="btn btn-block btn-lg btn-info">Search</a>
     </div>
 </div>

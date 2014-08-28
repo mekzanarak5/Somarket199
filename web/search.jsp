@@ -51,8 +51,8 @@
                                     <div class="thumbnail">
                                         <img data-src="holder.js/300x300" alt="...">
                                         <div class="caption">
-                                            <p>${a.name}</p>
-                                            <p><a href="#" class="btn btn-primary" role="button">Add to cart</a> <a href="ShowDetailServlet?productid=${a.productNO}" class="btn btn-default" role="button">Detail</a></p>
+                                            <a href="ShowDetailServlet?productid=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p></a>
+                                            <p><a href="#" class="btn btn-primary" role="button">Add to cart</a> <a href="ShowDetailServlet?productid=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
                                         </div>
                                     </div>
                                 </div>

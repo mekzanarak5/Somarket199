@@ -24,7 +24,7 @@
         <link href="bootstrap/css/drop.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/favicon.ico">
         <!--<link href="css/flat-ui.css" rel="stylesheet">-->
-
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
@@ -108,11 +108,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-8">
-                                    <jsp:include page="upload/uploadpic.jsp"/>
-                                </div>
-                            </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-8">
                                     <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
@@ -123,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

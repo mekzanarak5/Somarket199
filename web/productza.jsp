@@ -48,7 +48,7 @@
                         <h6 class="list-group-item-heading">Price ${showDetail.price}</h6>
                     </a>
                     <a href="#" class="list-group-item">
-                        <h6 class="list-group-item-heading">Sitproject@st.sit.ac.th ( 999<span class="glyphicon glyphicon-star"></span> )</h6>
+                        <h6 class="list-group-item-heading">${showName.username} ( 999<span class="glyphicon glyphicon-star"></span> )</h6>
                     </a>
                     <a href="#" class="list-group-item">
                         <h6 class="list-group-item-heading">Phone No. 081-111-1111</h6>
