@@ -4,6 +4,8 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -40,26 +42,32 @@
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
                     <div class="row">
-                        <h3 class="col-md-12">PM</h3>
+                        <h3 class="col-md-2">PM</h3>
+                        <div class="col-md-1" style="margin-top: 30px">
+                                <button class="btn btn-default">Inbox</button>
+                            </div>
+                            <div class="col-md-3" style="margin-top: 30px">
+                                <button class="btn btn-default">Sent</button>
+                            </div>
                         <div class="col-md-12">
                             <table class="table table-striped" style="text-align: center">
                                 <tr bgColor="#ffffff">
                                     <td></td>
                                     <td>Sender</td>
-                                    <td>Receiver</td>
                                     <td>Private Message</td>
                                     <td>Time</td>
                                     <td>Delete</td>
                                     <td>Reply</td>
                                 </tr>
+                                <c:forEach items="${pm}" var="a">
+                                    <c:forEach items="${sender}" var="b">
                                 <tr>
                                     <td>
                                         <label class="radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio"></label>
                                     </td>
-                                    <td><a href="#">Sitproject</a></td>
-                                    <td><a href="#">boss451</a></td>
-                                    <td><a href="feedback.html">Please Feedback for Sitproject !</a></td>
-                                    <td>10:50 AM</td>
+                                    <td><a href="#">${b.dispName}</a></td>
+                                    <td><a href="#">${a.pm}</a></td>
+                                    <td>${a.time}</td>
                                 <form action="deletePM" method="post">
                                     <input type="hidden" name="pmid">
                                     <input type="hidden" name="userid">
@@ -67,6 +75,8 @@
                                 </form>
                                 <td><a href="#"><input type="button" class="btn btn-default" value="Reply !"></a></td>
                                 </tr>
+                                </c:forEach>
+                                </c:forEach>
                             </table>
                         </div>
                     </div>

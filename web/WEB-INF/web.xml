@@ -68,6 +68,18 @@
         <servlet-name>ShowAccount</servlet-name>
         <servlet-class>servlet.ShowAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SendPmServlet</servlet-name>
+        <servlet-class>servlet.SendPmServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetReceiverServlet</servlet-name>
+        <servlet-class>servlet.GetReceiverServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowPmServlet</servlet-name>
+        <servlet-class>servlet.ShowPmServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -135,6 +147,18 @@
     <servlet-mapping>
         <servlet-name>ShowAccount</servlet-name>
         <url-pattern>/ShowAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendPmServlet</servlet-name>
+        <url-pattern>/SendPmServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetReceiverServlet</servlet-name>
+        <url-pattern>/GetReceiverServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowPmServlet</servlet-name>
+        <url-pattern>/ShowPmServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

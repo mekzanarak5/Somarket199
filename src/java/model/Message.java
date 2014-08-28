@@ -23,20 +23,20 @@ public class Message {
     private int MsgID;
     private String Subject;
     private int Sender;
-    private int Receiever;
+    private int Receiver;
     private String pm;
     private String time;
 
-    public Message(int MsgID, String Subject, int Sender, int Receiever, String pm, String time) {
+    public Message(int MsgID, String Subject, int Sender, int Receiver, String pm, String time) {
         this.MsgID = MsgID;
         this.Subject = Subject;
         this.Sender = Sender;
-        this.Receiever = Receiever;
+        this.Receiver = Receiver;
         this.pm = pm;
         this.time = time;
     }
 
-    private Message() {
+    public Message() {
         
     }
 
@@ -64,12 +64,12 @@ public class Message {
         this.Sender = Sender;
     }
 
-    public int getReceiever() {
-        return Receiever;
+    public int getReceiver() {
+        return Receiver;
     }
 
-    public void setReceiever(int Receiever) {
-        this.Receiever = Receiever;
+    public void setReceiver(int Receiver) {
+        this.Receiver = Receiver;
     }
 
     public String getPm() {
@@ -92,7 +92,7 @@ public class Message {
     
     @Override
     public String toString() {
-        return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", Sender=" + Sender + ", Receiever=" + Receiever + ", pm=" + pm + '}';
+        return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", Sender=" + Sender + ", Receiver=" + Receiver + ", pm=" + pm + '}';
     }
     
     public static int insertPM(String subject, int sender, int receiver,String pm,String time) {
@@ -122,14 +122,33 @@ public class Message {
         }
         return row;
     }
-     public static List<Message> find(String str) {
-        String sqlCmd = "SELECT * FROM Message WHERE Receiever like ?";
+     public static List<Message> findReceiver(int str) {
+        String sqlCmd = "SELECT * FROM Message WHERE Receiver = ?";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
-            ps.setString(1, str);
+            ps.setInt(1, str);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Message();
+                rToO(c, rs);
+                cs.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
+      public static List<Message> findSender(int str) {
+        String sqlCmd = "SELECT * FROM Message WHERE Sender = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Message c = null;
+        List<Message> cs = new ArrayList<Message>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, str);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 c = new Message();
@@ -146,7 +165,7 @@ public class Message {
             m.setMsgID(rs.getInt("msgid"));
             m.setSubject(rs.getString("subject"));
             m.setSender(rs.getInt("sender"));
-            m.setReceiever(rs.getInt("receiever"));
+            m.setReceiver(rs.getInt("receiver"));
             m.setPm(rs.getString("pm"));
             m.setTime(rs.getString("time"));
             

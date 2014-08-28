@@ -41,53 +41,51 @@
                     <a onclick="ChangeImage('img/ip1.jpeg')"><img src="img/ip1.jpeg" width="50" height="50"></a> 
                     <a onclick="ChangeImage('img/ip2.jpeg')"><img src="img/ip2.jpeg" width="50" height="50"></a> 
                     <a onclick="ChangeImage('img/ip3.jpeg')"><img src="img/ip3.jpeg" width="50" height="50"></a> 
-
                 </div>
                 <div class="col-md-6">
                     <a href="#" class="list-group-item active">
-                        <h6 class="list-group-item-heading">Price ${showDetail.price}</h6>
+                        Price ${showDetail.price}
                     </a>
                     <a href="ShowAccount?acctid=${showName.account_Id}" class="list-group-item">
                         <h6 class="list-group-item-heading">${showName.username} ( 999<span class="glyphicon glyphicon-star"></span> )</h6>
                     </a>
-                    <a href="#" class="list-group-item">
-                        <h6 class="list-group-item-heading">Phone No. 081-111-1111</h6>
-                    </a>
-                    <a href="#" class="list-group-item">
+                    <div class="list-group-item">
+                        <h6 class="list-group-item-heading">Phone No. ${showName.phone}</h6>
+                    </div>
+                    <a href="GetReceiverServlet?acctid=${showName.account_Id}" class="list-group-item">
                         <h6 class="list-group-item-heading">Send Private Message</h6>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <h6 class="list-group-item-heading"><img src="img/Facebook_Button_short.png" width="50em"><img src="img/twitter share button.png" width="50em"><img src="img/index_followme.png" width="50em"></h6>
                     </a>
                     <br />
                 </div>
                 <div class="col-md-1">
-                    <a href="#"><button type="button" class="btn btn-danger">Report</button></a>
+                    <a href=""><button type="button" class="btn btn-danger">Report</button></a>
                 </div>
             </div>
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Product</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" placeholder="Name of product" name="name" value="${showDetail.name}" disabled="disabled">
+                    <div class="col-md-12" style="margin-top: 50px">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Product</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" placeholder="Name of product" name="name" value="${showDetail.name}" disabled="disabled">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
-                    <div class="col-sm-7">
-                        <textarea class="form-control" name="des" rows="3" disabled>${showDetail.description}</textarea> 
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" name="des" rows="3" disabled>${showDetail.description}</textarea> 
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Quatity</label>
-                    <div class="col-sm-3">
-                        <input type="number" class="form-control" placeholder="Quatity" value="1" required>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Quatity</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" placeholder="Quatity" value="1" required>
+                        </div>
                     </div>
-                </div>
-                <div class="well col-md-6" style="margin: auto;float: none">
-                    <a href="cart.html"><button type="button" class="btn btn-primary btn-lg btn-block">Add To Cart</button></a>
-                </div>
-            </form>
+                    <div class="well col-md-6" style="margin: auto;float: none">
+                        <a href="cart.html"><button type="button" class="btn btn-primary btn-lg btn-block">Add To Cart</button></a>
+                    </div>
+                </form>
+            </div>
         </div>
         <script language="JavaScript">
             function ChangeImage(image) {

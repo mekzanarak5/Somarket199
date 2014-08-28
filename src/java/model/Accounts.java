@@ -163,7 +163,25 @@ public class Accounts {
         }
         return a;
     }
-
+public static List<Accounts> findByIdSender(int id) {
+        String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Accounts a = null;
+        List<Accounts> cs = new ArrayList<Accounts>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                a = new Accounts();
+                rToO(a, rs);
+                cs.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
     public static Accounts findById2(int id) {
         String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
         Connection con = ConnectionAgent.getConnection();

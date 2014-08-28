@@ -50,7 +50,7 @@
                 </nav>
                 <div class="col-md-2" align="center">   
                     <img src="pic/Pikachu.png" alt="..." class="img-thumbnail">
-                    <a href="#"><button type="button" class="btn btn-danger btn-xs">PM</button></a>
+                    <a href="GetReceiverServlet?acctid=${showName.account_Id}"><button type="button" class="btn btn-danger btn-xs">PM</button></a>
                 </div>
                 <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 300px;background: #FFFFFF">
                     <h5>Personal Info</h5>
