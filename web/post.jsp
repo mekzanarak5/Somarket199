@@ -20,7 +20,7 @@
 
         <!-- Loading Flat UI -->
         <link href="css/flat-ui.css" rel="stylesheet">
-        <!--<link href="css/demo.css" rel="stylesheet">-->
+        <link href="css/demo.css" rel="stylesheet">
         <link href="bootstrap/css/drop.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/favicon.ico">
         <!--<link href="css/flat-ui.css" rel="stylesheet">-->
@@ -99,13 +99,18 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="form-group">
+                            <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-3">Brand</label>
                                 <div class="col-sm-3">
                                     <select value="Yes" class="form-control" name="brand" >
                                         <option value="1">Yes</option>
                                         <option value="0">No</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <jsp:include page="upload/uploadpic.jsp"/>
                                 </div>
                             </div>
                             <div class="form-group">
