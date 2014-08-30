@@ -17,7 +17,7 @@
                     <c:otherwise>
                         <c:set var="username" value="${user.username}"/>
                         <c:set var="loginAndOut" value="Logout"/>
-                        <a href="profile.jsp">${user.dispName}</a>
+                        <a href="profile.jsp">${user.dispName} <span class="fui-user"></span></a>
                         <a href="ShowPmServlet?id=${user.account_Id}"><img src="pic/Mail2.png" width="40" height="40" style="size:" /></a>
                         <a href="#"><img src="pic/cart.png" width="30" height="30" style="size:" /></a>
                         <a href="seachcata" class="btn btn-warning" >Post</a>

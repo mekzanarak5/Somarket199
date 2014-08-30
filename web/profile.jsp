@@ -44,17 +44,50 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-01">
                         <ul class="nav navbar-nav navbar-left">           
-                            <li><a href="editProfile.jsp">Edit</a></li>
-                            <li><a href="#fakelink">Change Password</a></li>
-                            <li><a href="#fakelink">Buy List</a></li>
-                            <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
-                            <li><a href="address.jsp">Profile</a></li>
+                            <li><a href="editProfile.jsp">Edit <span class="fui-gear"></span></a></li>
+                            <li data-toggle="modal" data-target=".bs-example-modal-lg"><a href="#fakelink">Change Password <span class="fui-lock"></span></a></li>
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="form-horizontal">
+                                            <h3 class="col-md-12"  >Change Password</h3>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Old Password</label>
+                                                <div class="col-sm-4">
+                                                    <input type="hidden" name="acctid" value="${user.account_Id}">
+                                                    <input type="password" class="form-control" placeholder="Display Name" name="dispname" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">New Password</label>
+                                                <div class="col-sm-4">
+                                                    <input type="password" class="form-control" placeholder="First Name" name="firstname" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label">Confirm New Password</label>
+                                                <div class="col-sm-4">
+                                                    <input type="password" class="form-control" placeholder="Last Name" name="lastname" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li><a href="#fakelink">Buy List <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                            <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List <span class="glyphicon glyphicon-home"></span></a></li>
+                            <li><a href="address.jsp">Profile <span class="glyphicon glyphicon-folder-open"></a></li>
+                            <li><a href="#">Wish List <span class="glyphicon glyphicon-heart-empty"></a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
                 <div class="col-md-2" align="center">   
                     <img src="pic/Pikachu.png" alt="..." class="img-thumbnail">
-                    <a href="Address.html"><button type="button" class="btn btn-danger btn-xs">Report</button></a>
                 </div>
                 <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 300px;background: #FFFFFF">
                     <h5>Personal Info</h5>
