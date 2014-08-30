@@ -1,4 +1,4 @@
-<img src="pic/logooo.png" class="img-responsive"/>
+<a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
                 <div style=" border: 1px solid #ffffff;border-radius: 15px;height: 800px;background: #ffffff">
                     <h6 class="col-md-3">Catagory</h6>
                     <div class="col-md-12">

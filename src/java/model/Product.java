@@ -159,7 +159,7 @@ public class Product {
         }
         return row;
     }
-    
+
     public static Product findById(int id) {
         String sqlCmd = "SELECT * FROM product p WHERE product_id = ? ORDER BY product_id desc";
         Connection con = ConnectionAgent.getConnection();
@@ -251,7 +251,7 @@ public class Product {
         }
         return id;
     }
-    
+
     public static Product findByName(String name) {
         String sqlCmd = "SELECT * FROM product p WHERE product_name LIKE '%?%' ORDER BY product_id desc";
         Connection con = ConnectionAgent.getConnection();
@@ -270,6 +270,47 @@ public class Product {
         return p;
     }
 
+    public static List<Product> search(String str, String id) {
+        String sqlCmd = "SELECT * FROM PRODUCT WHERE Description like ? OR name like ? and Category_ID like ? ORDER BY CreateOn DESC";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Product> cs = new ArrayList<Product>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, "%" + str + "%");
+            ps.setString(2, str + "%");
+            ps.setString(3, id + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+                cs.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
+public static List<Product> searchnotcat(String str) {
+        String sqlCmd = "SELECT * FROM PRODUCT WHERE Description like ? OR name like ? ORDER BY CreateOn DESC";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Product> cs = new ArrayList<Product>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, "%" + str + "%");
+            ps.setString(2, str + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+                cs.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
     private static void rToO(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productno"));

@@ -13,14 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Accounts;
-import model.Message;
+import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class ShowPmServlet extends HttpServlet {
+public class SearchProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,11 +32,19 @@ public class ShowPmServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        List<Message> p = Message.findReceiver(id);       
-        request.setAttribute("pm", p);
-        getServletContext().getRequestDispatcher("/pm.jsp").forward(request, response);
+        String sid = request.getParameter("id");
+        String cat = request.getParameter("herolist");
+        String cat0 = "0";
+        request.setAttribute("msg", "");
+        if (sid != null) {
+            List<Product> cs = Product.search(sid,cat);
+            request.setAttribute("cs", cs);
+            if (cs.size() == 0) {
+                request.setAttribute("msg", "Seller/Price/Product: " + sid + " does not exist !!!");
+            }
+            request.setAttribute("productNO", cs);
+        }
+        getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
