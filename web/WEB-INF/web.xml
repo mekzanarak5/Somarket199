@@ -37,6 +37,10 @@
         <servlet-class>servlet.ConfirmCart</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdateCart</servlet-name>
+        <servlet-class>servlet.UpdateCart</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SwitchOrder</servlet-name>
         <servlet-class>servlet.SwitchOrder</servlet-class>
     </servlet>
@@ -123,6 +127,10 @@
     <servlet-mapping>
         <servlet-name>ConfirmCart</servlet-name>
         <url-pattern>/ConfirmCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCart</servlet-name>
+        <url-pattern>/UpdateCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RemoveLineItem</servlet-name>

@@ -39,7 +39,7 @@ public class RemoveLineItem extends HttpServlet {
 
         Cart cart = (Cart) s.getAttribute("cart");
         cart.getItems().remove(Integer.parseInt(pid));
-        getServletContext().getRequestDispatcher("/ViewCart.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
 
         //        
     }
