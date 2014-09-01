@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Cart;
+import model.LineItem;
+import model.Product;
 
 /**
  *
- * @author INT303
+ * @author S๐l2n
  */
-public class ViewCart extends HttpServlet {
+public class UpdateCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -31,14 +33,31 @@ public class ViewCart extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession s = request.getSession(false);
-        if (s == null || s.getAttribute("cart") == null || ((Cart) s.getAttribute("cart")).getUnitItem() == 0) {
-            request.setAttribute("msg", "Empty Cart ... Please add product to cart !!!");
-            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
+        String[] pid = request.getParameterValues("productId");
+        String[] unit = request.getParameterValues("unit");
+        HttpSession s = request.getSession(true);
+        if (s.getAttribute("cart") == null) {
+            s.setAttribute("cart", new Cart());
+        }else{
+            s.removeAttribute("cart");
         }
+        Cart cart = new Cart();
+        Product p = null;
+        LineItem li = null ;
+        if(pid.length==unit.length){
+           for (int i = 0; i < pid.length; i++) {
+               p = p.findById(Integer.parseInt(pid[i]));
+            li =new LineItem(p);
+            li.setUnit(Integer.parseInt(unit[i]));
+            cart.add(li);
+           }
+       }
+        s.setAttribute("cart", cart);
+        getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
+        
+        
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP

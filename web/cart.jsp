@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 
 <html>
@@ -50,42 +52,48 @@
                                     <td>Unit Price</td>
                                     <td>Quantity</td>
                                     <td>Total</td>
+                                    <td></td>
                                 </tr>
-                                <tr >
-                                    <td><a href="#">Sitproject</a></td>
-                                    <td><a href="productza.html"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
-                                    <td>
-                                        <a href="">
-                                            Iphone5S</a></td>
-                                    <td>19999</td>
-                                    <td><select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select></td>
-                                    <td>19999</td>
-                                </tr>
+                                <c:set var="no" value="1"/>
+                                <c:forEach items="${cart.lineItems}" var="line">
+                                    <tr >
+                                        <td><a href="ShowAccount?acctid=${line.product.acctID}">${line.product.acctID}</a></td>
+                                        <td><a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
+                                        <td>
+                                            <a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}">
+                                                ${line.product.name}</a></td>
+                                        <td>${line.product.price}</td>
+                                        <td><select class="form-control">
+                                                <option>${line.unit}</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select></td>
+                                        <td>${line.total}</td>
+                                        <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
+                                    </tr>
+                                </c:forEach>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td>TOTAL</td>
-                                    <td>19999</td>
+                                    <td>${line.total}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><button type="submit" class="btn btn-primary" id="update" >Update</button></td>
+                                    <td></td>
                                 </tr>
                             </table>
-                                <div><h3>Payment Methond</h3><hr></div>
-                                <div class="radio" style="margin-left:100px">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                            Bank Tranfer
-                                    </label>
-                                </div>
-                                <div style="margin-left:300px">
-                                    <a href="orderin.html"><input type="button" class="btn btn-danger" value="Check out"></a> 
-                                </div>
+                            <div><h3>Payment Methond</h3><hr></div>
+                            <div class="radio" style="margin-left:100px">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                    Bank Tranfer
+                                </label>
+                            </div>
+                            <div style="margin-left:300px">
+                                <a href="orderin.html"><input type="button" class="btn btn-danger" value="Check out"></a> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,5 +112,9 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <script>$("#update").click(function() {
+                window.location.href = 'UpdateCart';
+                });
+        </script>
     </body>
 </html>
