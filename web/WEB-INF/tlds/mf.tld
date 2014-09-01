@@ -20,4 +20,9 @@
           <listener-class>com.mycompany.TagLibListener</listener-class> 
       </listener>
     -->
+  <function>
+      <name>getAccountById</name>
+      <function-class>model.Accounts</function-class>
+      <function-signature>model.Accounts getAccountById(int)</function-signature>
+  </function>
 </taglib>
