@@ -88,6 +88,10 @@
         <servlet-name>SearchProductServlet</servlet-name>
         <servlet-class>servlet.SearchProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowSentServlet</servlet-name>
+        <servlet-class>servlet.ShowSentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowSentServlet</servlet-name>
+        <url-pattern>/ShowSentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -26,14 +26,16 @@ public class Message {
     private int Receiver;
     private String pm;
     private String time;
+    private String username;
 
-    public Message(int MsgID, String Subject, int Sender, int Receiver, String pm, String time) {
+    public Message(int MsgID, String Subject, int Sender, int Receiver, String pm, String time,String username) {
         this.MsgID = MsgID;
         this.Subject = Subject;
         this.Sender = Sender;
         this.Receiver = Receiver;
         this.pm = pm;
         this.time = time;
+        this.username = username;
     }
 
     public Message() {
@@ -88,6 +90,14 @@ public class Message {
         this.time = time;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     
     
     @Override
@@ -123,8 +133,9 @@ public class Message {
         return row;
     }
      public static List<Message> findReceiver(int str) {
-        String sqlCmd = "SELECT * FROM Message WHERE Receiver = ?";
+        String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.Receiver = ? ";
         Connection con = ConnectionAgent.getConnection();
+        
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
         try {
@@ -142,7 +153,7 @@ public class Message {
         return cs;
     }
       public static List<Message> findSender(int str) {
-        String sqlCmd = "SELECT * FROM Message WHERE Sender = ?";
+        String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.sender = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -168,7 +179,7 @@ public class Message {
             m.setReceiver(rs.getInt("receiver"));
             m.setPm(rs.getString("pm"));
             m.setTime(rs.getString("time"));
-            
+            m.setUsername(rs.getString("username"));
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }
