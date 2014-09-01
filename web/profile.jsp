@@ -101,6 +101,14 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="col-md-5" style="color: #2980b9">
+                                Display name
+                            </td>
+                            <td class="col-md-6">
+                                ${user.dispName}
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="col-md-3" style="color: #2980b9">
                                 First name
                             </td>

@@ -3,24 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Product;
-import model.Category;
+import model.Message;
 
 /**
  *
  * @author Admin
  */
-public class ShowProductServlet extends HttpServlet {
+public class DeleteMessageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,11 +31,11 @@ public class ShowProductServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> p = Product.showProduct();
-        request.setAttribute("productNO", p);
-        HttpSession s1 = request.getSession();
-        s1.setAttribute("price", p);
-        getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
+        String id = request.getParameter("pmid");
+        Message c = new Message();
+        c.deletePm(id);
+        request.setAttribute("pm", c);
+        getServletContext().getRequestDispatcher("/ShowPmServlet?id="+id).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
