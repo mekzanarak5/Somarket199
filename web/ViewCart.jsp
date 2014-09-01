@@ -13,7 +13,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:include page="WEB-INF/headerLogout2.jsp"/>
+        <jsp:include page="header1.jsp"/>
     </head>
     <body>
         <div class="container" style="padding-top: 150px;">
@@ -46,14 +46,14 @@
                                     <img src="${line.product.productImg}" width="70" height="100">
                                 </td>
                                 <td style="vertical-align: middle">
-                                    ${line.product.productName}       
+                                    ${line.product.name}       
                                 </td >
                                 <td style="vertical-align: middle">
-                                    <input type="hidden" value="${line.product.productId}" name="productId" >
+                                    <input type="hidden" value="${line.product.productNO}" name="productId" >
                     <input style="text-align:right" type="number" name="unit" size='4' value="${line.unit}" required>
                                 </td>
                                 <td style="vertical-align: middle">
-                                    <fmt:formatNumber pattern ="#,###.##" value="${line.product.productCost}" />
+                                    <fmt:formatNumber pattern ="#,###.##" value="${line.product.price}" />
                                 </td>
                                 <td style="vertical-align: middle">
                                     <fmt:formatNumber pattern="#,###.##" value="${line.total}" />
@@ -62,7 +62,7 @@
                                     &nbsp;&nbsp;&nbsp; <input type="text" name="units" style="width: 30px; margin-bottom: 20px;" value="${line.unit}">
                                 </td>--%>
                                 <td style="vertical-align: middle">
-                                    <a href="RemoveLineItem?productId=${line.product.productId}"> <div class="btn btn-warning">Remove</div></a>
+                                    <a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a>
                                 </td>
                                 <c:set var="no" value="${no+1}"/>
                             </tr>

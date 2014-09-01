@@ -34,7 +34,7 @@ public class ViewCart extends HttpServlet {
        HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("cart") == null || ((Cart) s.getAttribute("cart")).getUnitItem() == 0) {
             request.setAttribute("msg", "Empty Cart ... Please add product to cart !!!");
-            getServletContext().getRequestDispatcher("/welcomefile.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/ViewCart.jsp").forward(request, response);
         }

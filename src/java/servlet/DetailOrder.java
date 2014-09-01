@@ -10,17 +10,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Cart;
-import model.LineItem;
-import model.Accounts;
-import model.Product;
 
 /**
  *
- * @author INT303
+ * @author S๐l2n
  */
-public class AddToCart extends HttpServlet {
+public class DetailOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -34,30 +30,12 @@ public class AddToCart extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String products="";
-        /*HttpSession ss = request.getSession();
-        Member m = (Member)ss.getAttribute("user");
-        if ( m == null) {
-            request.setAttribute("msg", "Please Sign-In before add product !");
-        } else {*/
-            products = request.getParameter("productId");
-            HttpSession s = request.getSession(true);
-            if (s.getAttribute("cart") == null) {
-                s.setAttribute("cart", new Cart());
-            }
-            Cart cart = (Cart) s.getAttribute("cart");
-            Product tmp = null;
-            LineItem li = null;
-            //for(String pidStr : products){
-            tmp = Product.findById(Integer.parseInt(products));
-            li = new LineItem(tmp);
-            cart.add(li);
-            //}
-        request.setAttribute("msg","Add " + tmp.getName() + " Complete");
-        //String key = request.getParameter("keySearch");
-        String key = request.getParameter("productid");
-
-        getServletContext().getRequestDispatcher("/ShowDetailServlet?productid="+key).forward(request, response);
+        int orderid = Integer.parseInt(request.getParameter("orderid"));
+        Cart cart = new Cart();
+        cart = Cart.getDetailList(orderid);
+        request.setAttribute("detail", cart);
+        request.setAttribute("total", request.getParameter("total"));
+        getServletContext().getRequestDispatcher("/OrderDetail.jsp").forward(request, response);
 
     }
 

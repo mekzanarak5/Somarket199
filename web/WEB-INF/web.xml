@@ -21,6 +21,10 @@
         <servlet-class>servlet.ToOrder</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DetailOrder</servlet-name>
+        <servlet-class>servlet.DetailOrder</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ViewCart</servlet-name>
         <servlet-class>servlet.ViewCart</servlet-class>
     </servlet>
@@ -99,6 +103,10 @@
     <servlet-mapping>
         <servlet-name>product</servlet-name>
         <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailOrder</servlet-name>
+        <url-pattern>/DetailOrder</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>seachcata</servlet-name>
