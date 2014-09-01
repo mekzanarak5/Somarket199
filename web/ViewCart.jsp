@@ -43,7 +43,7 @@
                                     ${no}
                                 </td>
                                 <td>
-                                    <img src="${line.product.productImg}" width="70" height="100">
+                                    <img src="#"<%--"${line.product.productImg}"--%> width="70" height="100">
                                 </td>
                                 <td style="vertical-align: middle">
                                     ${line.product.name}       
