@@ -313,6 +313,30 @@ public static List<Accounts> findByIdSender(int id) {
         }
         return cs;
     }
+    
+    public static Accounts getAccountById(int str) {
+        String sqlCmd = "SELECT * from Account a where a.account_id = ? ";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        Accounts cs = new Accounts();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, str);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cs.setAccount_Id(rs.getInt("account_id"));
+                cs.setUsername(rs.getString("username")); 
+                cs.setDispName(rs.getString("dispname"));
+                cs.setFirstName(rs.getString("firstname"));
+                cs.setLastName(rs.getString("lastname"));
+                cs.setPhone(rs.getString("phone"));
+                cs.setCreated(rs.getString("Created"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
 
     public static int deleteAccount(String accountid) {
         int row = 0;

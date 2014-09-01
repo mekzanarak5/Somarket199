@@ -291,7 +291,8 @@ public class Product {
         }
         return cs;
     }
-public static List<Product> searchnotcat(String str) {
+
+    public static List<Product> searchnotcat(String str) {
         String sqlCmd = "SELECT * FROM PRODUCT WHERE Description like ? OR name like ? ORDER BY CreateOn DESC";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
@@ -311,6 +312,7 @@ public static List<Product> searchnotcat(String str) {
         }
         return cs;
     }
+
     private static void rToO(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productno"));

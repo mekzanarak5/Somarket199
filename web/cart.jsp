@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <!DOCTYPE html>
 
 <html>
@@ -56,8 +57,9 @@
                                 </tr>
                                 <c:set var="no" value="1"/>
                                 <c:forEach items="${cart.lineItems}" var="line">
+                                    <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
                                     <tr >
-                                        <td><a href="ShowAccount?acctid=${line.product.acctID}">${line.product.acctID}</a></td>
+                                        <td><a href="ShowAccount?acctid=${line.product.acctID}">${n.dispName}</a></td>
                                         <td><a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
                                         <td>
                                             <a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}">
