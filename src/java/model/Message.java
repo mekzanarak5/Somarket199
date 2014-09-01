@@ -171,6 +171,20 @@ public class Message {
         }
         return cs;
     }
+      public static int deletePm(String pmid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM MESSAGE WHERE msgID=?");
+            ps.setString(1, pmid);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
     private static void rToO(Message m, ResultSet rs) {
         try {
             m.setMsgID(rs.getInt("msgid"));

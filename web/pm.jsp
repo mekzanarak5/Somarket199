@@ -68,11 +68,7 @@
                                     <td><a href="#">${a.username}</a></td>
                                     <td><a href="#">${a.pm}</a></td>
                                     <td>${a.time}</td>
-                                <form action="deletePM" method="post">
-                                    <input type="hidden" name="pmid">
-                                    <input type="hidden" name="userid">
-                                    <td><input type="submit" class="btn btn-default" value="Delete !"></td>
-                                </form>
+                                    <td><a href="DeleteMessageServlet?pmid=${a.msgID}"><button class="btn btn-default">Delete !</button></a></td>
                                 <td><a href="#"><input type="button" class="btn btn-default" value="Reply !"></a></td>
                                 </tr>
  

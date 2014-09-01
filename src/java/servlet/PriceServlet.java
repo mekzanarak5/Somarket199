@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
@@ -12,15 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Product;
-import model.Category;
 
 /**
  *
  * @author Admin
  */
-public class ShowProductServlet extends HttpServlet {
+public class PriceServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +32,9 @@ public class ShowProductServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> p = Product.showProduct();
-        request.setAttribute("productNO", p);
-        HttpSession s1 = request.getSession();
-        s1.setAttribute("price", p);
+        double str = Double.parseDouble(request.getParameter("price1"));
+        double st = Double.parseDouble(request.getParameter("price2"));
+        List<Product> p = Product.findPrice(str, st);
         getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
     }
 

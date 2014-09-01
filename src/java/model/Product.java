@@ -291,7 +291,29 @@ public class Product {
         }
         return cs;
     }
-public static List<Product> searchnotcat(String str) {
+
+    public static List<Product> findPrice(double str, double st) {
+        String sqlCmd = "SELECT * FROM PRODUCT WHERE PRICE between ? and ? ORDER BY CreateOn DESC";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Product> cs = new ArrayList<Product>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setDouble(1, str);
+            ps.setDouble(2, st);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+                cs.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
+
+    public static List<Product> searchnotcat(String str) {
         String sqlCmd = "SELECT * FROM PRODUCT WHERE Description like ? OR name like ? ORDER BY CreateOn DESC";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
@@ -311,6 +333,7 @@ public static List<Product> searchnotcat(String str) {
         }
         return cs;
     }
+
     private static void rToO(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productno"));
