@@ -163,7 +163,8 @@ public class Accounts {
         }
         return a;
     }
-public static List<Accounts> findByIdSender(int id) {
+
+    public static List<Accounts> findByIdSender(int id) {
         String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
         Connection con = ConnectionAgent.getConnection();
         Accounts a = null;
@@ -182,6 +183,7 @@ public static List<Accounts> findByIdSender(int id) {
         }
         return cs;
     }
+
     public static Accounts findById2(int id) {
         String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
         Connection con = ConnectionAgent.getConnection();
@@ -211,6 +213,23 @@ public static List<Accounts> findByIdSender(int id) {
             ps.setString(3, lastname);
             ps.setString(4, phone);
             ps.setInt(5, acctid);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
+
+    public static int changePassword(String password, int acctid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE ACCOUNT SET password=? WHERE account_ID=?");
+            ps.setString(1, password);
+            ps.setInt(2, acctid);
             row = ps.executeUpdate();
 
         } catch (SQLException ex) {

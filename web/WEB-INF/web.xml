@@ -104,6 +104,10 @@
         <servlet-name>DeleteMessageServlet</servlet-name>
         <servlet-class>servlet.DeleteMessageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>servlet.ChangePasswordServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>DeleteMessageServlet</servlet-name>
         <url-pattern>/DeleteMessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/ChangePasswordServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

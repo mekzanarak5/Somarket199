@@ -44,7 +44,7 @@
                     <div class="row">
                         <h3 class="col-md-2">PM</h3>
                         <div class="col-md-1" style="margin-top: 30px">
-                            <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-default">Inbox</button></a>
+                            <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-primary">Inbox</button></a>
                             </div>
                             <div class="col-md-3" style="margin-top: 30px">
                                 <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-default">Sent</button></a>

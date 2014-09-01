@@ -43,9 +43,10 @@
                         </button>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-01">
-                        <ul class="nav navbar-nav navbar-left">           
+                        <ul class="nav navbar-nav navbar-form">           
                             <li><a href="editProfile.jsp">Edit <span class="fui-gear"></span></a></li>
                             <li data-toggle="modal" data-target=".bs-example-modal-lg"><a href="#fakelink">Change Password <span class="fui-lock"></span></a></li>
+                            <form action="ChangePasswordServlet" method="get">
                             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -55,19 +56,19 @@
                                                 <label for="inputEmail3" class="col-sm-3 control-label">Old Password</label>
                                                 <div class="col-sm-4">
                                                     <input type="hidden" name="acctid" value="${user.account_Id}">
-                                                    <input type="password" class="form-control" placeholder="Display Name" name="dispname" required>
+                                                    <input type="password" class="form-control" placeholder="Display Name" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-3 control-label">New Password</label>
                                                 <div class="col-sm-4">
-                                                    <input type="password" class="form-control" placeholder="First Name" name="firstname" required>
+                                                    <input type="password" class="form-control" placeholder="First Name" name="password" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-3 control-label">Confirm New Password</label>
                                                 <div class="col-sm-4">
-                                                    <input type="password" class="form-control" placeholder="Last Name" name="lastname" required>
+                                                    <input type="password" class="form-control" placeholder="Last Name" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -79,6 +80,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </form>
                             <li><a href="#fakelink">Buy List <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                             <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List <span class="glyphicon glyphicon-home"></span></a></li>
                             <li><a href="address.jsp">Profile <span class="glyphicon glyphicon-folder-open"></a></li>
