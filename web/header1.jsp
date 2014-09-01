@@ -19,7 +19,10 @@
                         <c:set var="loginAndOut" value="Logout"/>
                         <a href="profile.jsp">${user.dispName} <span class="fui-user"></span></a>
                         <a href="ShowPmServlet?id=${user.account_Id}"><img src="pic/Mail2.png" width="40" height="40" style="size:" /></a>
-                        <a href="#"><img src="pic/cart.png" width="30" height="30" style="size:" /></a>
+                        <a href="ViewCart"><img src="pic/cart.png" width="30" height="30" style="size:" />
+                                        ${cart!=null?" ( ":""}
+                                        ${cart!= null? cart.unitItem:""}
+                                        ${cart!=null?" ) ":""}</a>
                         <a href="seachcata" class="btn btn-warning" >Post</a>
                         <a href="${loginAndOut}" class="btn btn-danger" >Logout</a>
                     </c:otherwise>

@@ -161,7 +161,7 @@ public class Product {
     }
 
     public static Product findById(int id) {
-        String sqlCmd = "SELECT * FROM product p WHERE product_id = ? ORDER BY product_id desc";
+        String sqlCmd = "SELECT * FROM product p WHERE productNO = ? ORDER BY productNO desc";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         try {

@@ -32,7 +32,7 @@ public class ShowDetailServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("productid"));
+        int id = Integer.parseInt(request.getParameter("productId"));
         int acctid = Integer.parseInt(request.getParameter("acctid"));
         Product p = Product.showDetail(id);
         Accounts a = Accounts.findById2(acctid);
