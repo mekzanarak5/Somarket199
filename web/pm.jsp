@@ -45,36 +45,34 @@
                         <h3 class="col-md-2">PM</h3>
                         <div class="col-md-1" style="margin-top: 30px">
                             <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-primary">Inbox</button></a>
-                            </div>
-                            <div class="col-md-3" style="margin-top: 30px">
-                                <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-default">Sent</button></a>
-                            </div>
-                        <div class="col-md-12">
-                            <table class="table table-striped" style="text-align: center">
-                                <tr bgColor="#ffffff">
-                                    <td></td>
+                        </div>
+                        <div class="col-md-3" style="margin-top: 30px">
+                            <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-default">Sent</button></a>
+                        </div>
+                        <form action="DeleteMessageServlet" method="get">
+                            <div class="col-md-12">
+                                <table class="table table-striped" style="text-align: center">
+                                    <tr bgColor="#ffffff">
+                                    <input type="hidden" name="acctid" value="${user.account_Id}">
                                     <td>Sender</td>
                                     <td>Private Message</td>
                                     <td>Time</td>
-                                    <td>Delete</td>
-                                    <td>Reply</td>
-                                </tr>
-                                <c:forEach items="${pm}" var="a">
-
-                                <tr>
-                                    <td>
-                                        <label class="radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio"></label>
-                                    </td>
-                                    <td><a href="#">${a.username}</a></td>
-                                    <td><a href="#">${a.pm}</a></td>
-                                    <td>${a.time}</td>
-                                    <td><a href="DeleteMessageServlet?pmid=${a.msgID}"><button class="btn btn-default">Delete !</button></a></td>
-                                <td><a href="#"><input type="button" class="btn btn-default" value="Reply !"></a></td>
-                                </tr>
- 
-                                </c:forEach>
-                            </table>
-                        </div>
+                                    <td><button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
+                                    </tr>
+                                    <c:forEach items="${pm}" var="a">
+                                        <tr>
+                                            <td><a href="#">${a.username}</a></td>
+                                            <td><a href="#">${a.pm}</a></td>
+                                            <td>${a.time}</td>
+                                            <td><botton  class="checkbox"  for="checkbox1">
+                                                    <input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox">
+                                                    </botton>
+                                                       </td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

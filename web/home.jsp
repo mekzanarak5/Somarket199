@@ -18,24 +18,75 @@
         <!-- Loading Flat UI -->
         <link href="css/flat-ui.css" rel="stylesheet">
         <link href="css/demo.css" rel="stylesheet">
+        <link href="css/cat.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/favicon.ico">
+        <script type="text/javascript" src="js1/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="js1/jssor.core.js"></script>
+        <script type="text/javascript" src="js1/jssor.utils.js"></script>
+        <script type="text/javascript" src="js1/jssor.slider.js"></script>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
         <div class="row">
             <div class="col-md-3">
                 <jsp:include page="logo.jsp"/>
+                <div id='cssmenu'>
+                    <ul>
+                        <li class='active has-sub'><a href='#'><span>Products</span></a>
+                            <ul>
+                                <li class='has-sub'><a href='#'><span>Product 1</span></a>
+                                    <ul>
+                                        <li><a href='#'><span>Sub Product</span></a></li>
+                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'><a href='#'><span>Product 2</span></a>
+                                    <ul>
+                                        <li><a href='#'><span>Sub Product</span></a></li>
+                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class='active has-sub'><a href='#'><span>Products</span></a>
+                            <ul>
+                                <li class='has-sub'><a href='#'><span>Product 1</span></a>
+                                    <ul>
+                                        <li><a href='#'><span>Sub Product</span></a></li>
+                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'><a href='#'><span>Product 2</span></a>
+                                    <ul>
+                                        <li><a href='#'><span>Sub Product</span></a></li>
+                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class='active has-sub'><a href='#'><span>Products</span></a>
+                            <ul>
+                                <li class='has-sub'><a href='#'><span>Product 1</span></a>
+                                    <ul>
+                                        <li><a href='#'><span>Sub Product</span></a></li>
+                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'><a href='#'><span>Product 2</span></a>
+                                    <ul>
+                                        <li><a href='#'><span>Sub Product</span></a></li>
+                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
             <div class="col-md-9">
                 <jsp:include page="header.jsp"/>
-            </div>
-            <div class="col-md-12">   
-                <script type="text/javascript" src="js1/jquery-2.1.0.min.js"></script>
-                <script type="text/javascript" src="js1/jssor.core.js"></script>
-                <script type="text/javascript" src="js1/jssor.utils.js"></script>
-                <script type="text/javascript" src="js1/jssor.slider.js"></script>
-
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <style> 
                         .captionOrange, .captionBlack
                         {
@@ -273,7 +324,11 @@
                         <!-- Arrow Navigator Skin End -->
                         <a style="display: none" href="http://www.jssor.com">slideshow</a>
                     </div>
-                </div>                
+                </div>  
+            </div>
+            <div class="col-md-12">   
+
+
                 <div class="col-xs-12" style="margin:auto;padding-top: 50px">
                     <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
                         <div class="row">

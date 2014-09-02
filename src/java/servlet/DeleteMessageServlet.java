@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Message;
 
 /**
@@ -31,11 +32,13 @@ public class DeleteMessageServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("pmid");
-        Message c = new Message();
-        c.deletePm(id);
-        request.setAttribute("pm", c);
-        getServletContext().getRequestDispatcher("/ShowPmServlet?id="+id).forward(request, response);
+        String[] ids = request.getParameterValues("pmid");
+        String acctid = request.getParameter("acctid");
+        for (String id : ids) {
+            Message.deletePm(id);
+        }
+        request.setAttribute("pm", ids);
+        getServletContext().getRequestDispatcher("/ShowPmServlet?id="+acctid).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
