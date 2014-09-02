@@ -108,6 +108,14 @@
         <servlet-name>ChangePasswordServlet</servlet-name>
         <servlet-class>servlet.ChangePasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReplayServlet</servlet-name>
+        <servlet-class>servlet.ReplayServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SendReplyServlet</servlet-name>
+        <servlet-class>servlet.SendReplyServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -215,6 +223,14 @@
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/ChangePasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReplayServlet</servlet-name>
+        <url-pattern>/ReplayServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendReplyServlet</servlet-name>
+        <url-pattern>/SendReplyServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

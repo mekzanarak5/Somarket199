@@ -43,35 +43,27 @@
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
                     <div class="row">
                         <h3 class="col-md-2">PM</h3>
-                        <div class="col-md-1" style="margin-top: 30px">
-                            <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-primary">Inbox</button></a>
-                        </div>
-                        <div class="col-md-3" style="margin-top: 30px">
-                            <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-default">Sent</button></a>
-                        </div>
-                        <form action="DeleteMessageServlet" method="get">
+                        <form action="SendReplyServlet" method="get">
                             <div class="col-md-12">
-                                <table class="table table-striped" style="text-align: center">
-                                    <tr bgColor="#ffffff">
-                                    <input type="hidden" name="acctid" value="${user.account_Id}">
-                                    <td>Sender</td>
-                                    <td>Subject</td>
-                                    <td>Time</td>
-                                    <td><button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
-                                    </tr>
-                                    <c:forEach items="${pm}" var="a">
-                                        <tr>
-                                            <td><a href="#">${a.username}</a></td>
-                                            <td><a href="ReplayServlet?id=${a.msgID}">${a.subject}</a></td>
-                                            <td>${a.time}</td>
-                                            <td><botton  class="checkbox"  for="checkbox1">
-                                                    <input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox">
-                                                    </botton>
-                                                       </td>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
+
+                                    Sender : ${pm.username}
+                                    Subject : ${pm.subject}
+                                    Message : ${pm.pm}
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        <div class="col-sm-6">
+                                            <textarea class="form-control" name="pm1" rows="3" placeholder="Reply" required></textarea> 
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="sender"  value="${user.account_Id}" />
+                                    <input type="hidden" name="pm2" value="${pm.pm}"/>
+                                    <input type="hidden" name="subject" value="Re: ${pm.subject}"/>
+                                    <input type="hidden" name="receiver" value="${pm.sender}"/>
+                                    <button type="submit" class="btn btn-default">Reply</button>
+                                </div>
                         </form>
                     </div>
                 </div>

@@ -171,6 +171,23 @@ public class Message {
         }
         return cs;
     }
+      public static Message findSender2(int str) {
+        String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.msgid = ? ";
+        Connection con = ConnectionAgent.getConnection();
+        Message c = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, str);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                c = new Message();
+                rToO(c, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+    }
       public static int deletePm(String pmid) {
         int row = 0;
         try {
