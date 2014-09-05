@@ -45,47 +45,44 @@
                     <div class="row">
                         <h3 class="col-md-3">Cart</h3>
                         <div class="col-xs-12">
-                            <table class="table table-striped" style="text-align: center">
-                                <tr bgColor="#ffffff">
-                                    <td>Seller</td>
-                                    <td>Pic</td>
-                                    <td>Name</td>
-                                    <td>Unit Price</td>
-                                    <td>Quantity</td>
-                                    <td>Total</td>
-                                    <td></td>
-                                </tr>
-                                <c:set var="no" value="1"/>
-                                <c:forEach items="${cart.lineItems}" var="line">
-                                    <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
-                                    <tr >
-                                        <td><a href="ShowAccount?acctid=${line.product.acctID}">${n.dispName}</a></td>
-                                        <td><a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
-                                        <td>
-                                            <a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}">
-                                                ${line.product.name}</a></td>
-                                        <td>${line.product.price}</td>
-                                        <td><select class="form-control">
-                                                <option>${line.unit}</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                            </select></td>
-                                        <td>${line.total}</td>
-                                        <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
+                            <form action="UpdateCart" method="get">
+                                <table class="table table-striped" style="text-align: center">
+                                    <tr bgColor="#ffffff">
+                                        <td>Seller</td>
+                                        <td>Pic</td>
+                                        <td>Name</td>
+                                        <td>Unit Price</td>
+                                        <td>Quantity</td>
+                                        <td>Total</td>
+                                        <td></td>
                                     </tr>
-                                </c:forEach>
-                                <tr>
-                                    <td>TOTAL</td>
-                                    <td>${line.total}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button type="submit" class="btn btn-primary" id="update" >Update</button></td>
-                                    <td></td>
-                                </tr>
-                            </table>
+                                    <c:set var="no" value="1"/>
+                                    <c:forEach items="${cart.lineItems}" var="line">
+                                        <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
+                                        <tr >
+                                            <td><a href="ShowAccount?acctid=${line.product.acctID}">${n.dispName}</a></td>
+                                            <td><a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
+                                            <td>
+                                                <a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}">
+                                                    ${line.product.name}</a></td>
+                                            <td>${line.product.price}</td>
+                                            <td><input type="hidden" value="${line.product.productNO}" name="productId" >
+                                                <input style="text-align:right" type="number" name="unit" size='4' value="${line.unit}" required></td>
+                                            <td>${line.total}</td>
+                                            <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td>TOTAL</td>
+                                        <td>${cart.total}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><button type="submit" class="btn btn-primary" >Update</button></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </form>
                             <div><h3>Payment Methond</h3><hr></div>
                             <div class="radio" style="margin-left:100px">
                                 <label>
@@ -114,9 +111,9 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
-        <script>$("#update").click(function() {
+        <!--<script>$("#update").click(function() {
                 window.location.href = 'UpdateCart';
-                });
-        </script>
+            });
+        </script>-->
     </body>
 </html>
