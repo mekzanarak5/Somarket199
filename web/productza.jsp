@@ -61,7 +61,7 @@
                     <a href=""><button type="button" class="btn btn-danger">Report</button></a>
                 </div>
             </div>
-                    <div class="col-md-12" style="margin-top: 50px">
+            <div class="col-md-12" style="margin-top: 50px">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">Product</label>
@@ -87,6 +87,7 @@
                 </form>
             </div>
         </div>
+                    <div class="fb-share-button" data-href="http://www.google.co.th"></div>
         <script language="JavaScript">
             function ChangeImage(image) {
                 document.Image.src = image;
@@ -106,5 +107,15 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
     </body>
 </html>
