@@ -120,6 +120,10 @@
         <servlet-name>DeleteSentServlet</servlet-name>
         <servlet-class>servlet.DeleteSentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>servlet.DeleteProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>DeleteSentServlet</servlet-name>
         <url-pattern>/DeleteSentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

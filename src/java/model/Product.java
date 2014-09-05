@@ -334,6 +334,21 @@ public class Product {
         return cs;
     }
 
+    public static int deleteProduct(String productid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM PRODUCT WHERE PRODUCTNO=?");
+            ps.setString(1, productid);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+
     private static void rToO(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productno"));

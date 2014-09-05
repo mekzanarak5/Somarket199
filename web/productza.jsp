@@ -55,6 +55,9 @@
                     <a href="GetReceiverServlet?acctid=${showName.account_Id}" class="list-group-item">
                         <h6 class="list-group-item-heading">Send Private Message</h6>
                     </a>
+                        <div class="list-group-item">
+                        <div class="fb-share-button" data-href="http://www.google.co.th"></div>
+                        </div>
                     <br />
                 </div>
                 <div class="col-md-1">
@@ -87,7 +90,6 @@
                 </form>
             </div>
         </div>
-                    <div class="fb-share-button" data-href="http://www.google.co.th"></div>
         <script language="JavaScript">
             function ChangeImage(image) {
                 document.Image.src = image;

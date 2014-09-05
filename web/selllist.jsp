@@ -74,8 +74,6 @@
                                         <a href="">
                                             ${a.name}</a></td>
                                     <td>${a.price}</td>
-                                <form action="deleteProfile" method="post">
-                                    <input type="hidden" name="id" value="">
                                     <td width="20%"><div class="btn-group">
                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                                 Manage Post <span class="caret"></span>
@@ -83,10 +81,9 @@
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="#">Edit</a></li>
                                                 <li><a href="#">Increase</a></li>
-                                                <li><a href="#">Delete</a></li>
+                                                <li><a href="DeleteProductServlet?id=${a.productNO}">Delete</a></li>
                                             </ul>
                                         </div></td>
-                                </form>
                                 </tr>
                                 </c:forEach>
                             </table>
