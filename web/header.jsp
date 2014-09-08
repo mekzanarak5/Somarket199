@@ -7,7 +7,7 @@
     </div>
     <div class="col-xs-3">
         <select name="herolist" class="select-block">
-            <option value="0" selected>Choose Category</option>
+            <option value="" selected>Choose Category</option>
             <option value="1">Computer</option>
             <option value="2">Mobile & Tablet</option>
             <option value="3">Camera</option>

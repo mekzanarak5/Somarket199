@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlet;
 
 import java.io.IOException;
@@ -35,20 +34,29 @@ public class SearchProductServlet extends HttpServlet {
             throws ServletException, IOException {
         String sid = request.getParameter("id");
         String cat = request.getParameter("herolist");
-        String cat0 = "0";
         request.setAttribute("msg", "");
-        if (sid != null) {
-            HttpSession s1 = request.getSession();
-            List<Product> cs = Product.search(sid,cat);
-            s1.setAttribute("pro", sid);
-            request.setAttribute("cs", cs);
-            if (cs.size() == 0) {
-                request.setAttribute("msg", "Seller/Price/Product: " + sid + " does not exist !!!");
-            }
-            request.setAttribute("productNO", cs);
-            System.out.println(s1.getAttribute("pro"));
+        String xx = request.getParameter("x");
+        int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
+        int y = Integer.parseInt(request.getParameter("y"));
+        int totalPage = (int) Math.ceil((Product.countRow(sid) * 1.0) / y);
+        request.setAttribute("x", x);
+        request.setAttribute("y", y);
+        request.setAttribute("id", sid);
+        request.setAttribute("totalPage", totalPage);
+        request.setAttribute("products", Product.page(sid, x, y));
+        request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
+        System.out.println(Product.page(sid, x, y));
+        String url = request.getParameter("url");                        
+        HttpSession s1 = request.getSession();
+        List<Product> cs = Product.search(sid, cat);
+        s1.setAttribute("pro", sid);
+        request.setAttribute("cs", cs);
+        if (cs.size() == 0) {
+            request.setAttribute("msg", "Seller/Price/Product: " + sid + " does not exist !!!");
         }
-        
+        request.setAttribute("productNO", cs);
+        System.out.println(s1.getAttribute("pro"));
+
         getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
     }
 

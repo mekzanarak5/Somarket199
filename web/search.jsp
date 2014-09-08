@@ -40,7 +40,17 @@
                     <li><a href="#">Home</a></li>
                     <li class="active">Search</li>
                 </ol>
-                 
+                 <form action="PageServlet" method="get" style="text-align: right">
+                    <input type="hidden" name="id" value="${pro}">
+                    <input type="hidden" name="x" value="${x}">
+                    <select name="y">
+                        <option value="3" ${y==3?"selected":""}>3</option>
+                        <option value="5" ${y==5?"selected":""}>5</option>
+                        <option value="10" ${y==10?"selected":""}>10</option>
+                        <option value="15" ${y==15?"selected":""}>15</option>
+                    </select>
+                    <input type="submit" value="Go" >
+                </form>
             </div>      
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 900px;background: #FFFFFF">
@@ -69,7 +79,49 @@
                     </div>
                 </div>
             </div>
-           
+           <table style="width: 30%" align="center">
+                <tr>
+                    <c:choose>
+                        <c:when test="${x-y>=0}">
+                            <td style="width: 50px;height: 20px;text-align: center ">
+                                <a href="PageServlet?id=${pro}&x=${x-y}&y=${y}">Prev</a></td> 
+                            </c:when>
+                            <c:otherwise>
+                            <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
+                                Prev</td> 
+                            </c:otherwise>
+                        </c:choose>
+
+                    <c:set var="i" value="1"/>
+                    <c:forEach begin="1" end="${totalPage}">
+                        <c:choose>
+                            <c:when test="${y*(i-1)==x}">
+                                <td style="background-color: #02639d;width: 50px;height: 20px;text-align: center ">
+                                    ${i} 
+                                </td>
+                            </c:when>
+
+                            <c:otherwise>
+                                <td style="width: 50px;height: 20px;text-align: center ">
+                                    <a href="PageServlet?id=${pro}&x=${y*(i-1)}&y=${y}">${i}</a>
+                                </td>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:set var="i" value="${i+1}"/>
+                    </c:forEach>
+
+                    <c:choose>
+                        <c:when test="${currentPage<totalPage}">
+                            <td style="width: 50px;height: 20px;text-align: center ">
+                                <a href="PageServlet?id=${id}&x=${x+y}&y=${y}">Next</a></td> 
+                            </c:when>
+                            <c:otherwise>
+                            <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
+                                Next</td> 
+                            </c:otherwise>
+                        </c:choose> 
+                </tr>
+            </table>
         </div>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/accordion.js"></script>
