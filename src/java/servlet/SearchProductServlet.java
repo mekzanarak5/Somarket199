@@ -48,8 +48,10 @@ public class SearchProductServlet extends HttpServlet {
         System.out.println(Product.page(sid, x, y));
         String url = request.getParameter("url");                        
         HttpSession s1 = request.getSession();
+        HttpSession s2 = request.getSession();
         List<Product> cs = Product.search(sid, cat);
         s1.setAttribute("pro", sid);
+        s2.setAttribute("cat", cat);
         request.setAttribute("cs", cs);
         if (cs.size() == 0) {
             request.setAttribute("msg", "Seller/Price/Product: " + sid + " does not exist !!!");

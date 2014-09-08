@@ -40,8 +40,9 @@
                     <li><a href="#">Home</a></li>
                     <li class="active">Search</li>
                 </ol>
-                 <form action="PageServlet" method="get" style="text-align: right">
+                 <form action="SearchProductServlet" method="get" style="text-align: right">
                     <input type="hidden" name="id" value="${pro}">
+                    <input type="hidden" name="herolist" value="${cat}">
                     <input type="hidden" name="x" value="${x}">
                     <select name="y">
                         <option value="3" ${y==3?"selected":""}>3</option>
@@ -84,7 +85,7 @@
                     <c:choose>
                         <c:when test="${x-y>=0}">
                             <td style="width: 50px;height: 20px;text-align: center ">
-                                <a href="PageServlet?id=${pro}&x=${x-y}&y=${y}">Prev</a></td> 
+                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x-y}&y=${y}">Prev</a></td> 
                             </c:when>
                             <c:otherwise>
                             <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
@@ -103,7 +104,7 @@
 
                             <c:otherwise>
                                 <td style="width: 50px;height: 20px;text-align: center ">
-                                    <a href="PageServlet?id=${pro}&x=${y*(i-1)}&y=${y}">${i}</a>
+                                    <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${y*(i-1)}&y=${y}">${i}</a>
                                 </td>
                             </c:otherwise>
                         </c:choose>
@@ -113,7 +114,7 @@
                     <c:choose>
                         <c:when test="${currentPage<totalPage}">
                             <td style="width: 50px;height: 20px;text-align: center ">
-                                <a href="PageServlet?id=${id}&x=${x+y}&y=${y}">Next</a></td> 
+                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x+y}&y=${y}">Next</a></td> 
                             </c:when>
                             <c:otherwise>
                             <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
