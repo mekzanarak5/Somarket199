@@ -6,12 +6,18 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Cart;
+import model.LineItem;
+import model.Product;
 
 /**
  *
@@ -36,6 +42,27 @@ public class ViewCart extends HttpServlet {
             request.setAttribute("msg", "Empty Cart ... Please add product to cart !!!");
             getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
         } else {
+            //TreeMap<Integer, LineItem> items = request.getParameterValues("productId"); // สินค้าทั้งหมดที่เลือกมา
+            Cart cart = (Cart) s.getAttribute("cart");
+            Set<Integer> ownerIds = new HashSet<Integer>();
+
+            for (LineItem li : cart.getLineItems()) {
+                ownerIds.add(li.getProduct().getAcctID()); // ไหนคือเจ้าของ
+            }
+
+            TreeMap<Integer, ArrayList<Product>> map = new TreeMap<Integer, ArrayList<Product>>();
+            for (int o : ownerIds) {
+                ArrayList<Product> p = new ArrayList<Product>();
+                // ตรงนี้ก็วนลูป items ทั้งหมด แล้วดึงเฉพาะตัวที้มี ownerId เป็น o (o = ownerId ในรอบปัจจุบันของลูป แล้วสั่ง p.add(productชิ้นนั้น); // ปิดลูป
+                for (LineItem li : cart.getLineItems()) {
+                        p.add(li.getProduct());
+                }
+                
+                map.put(o, p);
+            }
+            request.setAttribute("map", map);
+
+            
             getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
         }
     }

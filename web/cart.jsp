@@ -98,6 +98,17 @@
                 </div>
             </div>
         </div>
+        
+                                        <c:forEach items="${map}" var="entry">
+                                            เจ้าของ : ${entry.key}<br />
+                                            <ul>
+                                                <c:forEach items="${entry.value}" var="product">
+                                                    <li>${product}</li>
+                                                </c:forEach>
+                                            </ul>
+                                            <hr />
+                                        </c:forEach>
+                                        
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
