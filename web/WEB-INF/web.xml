@@ -124,6 +124,10 @@
         <servlet-name>DeleteProductServlet</servlet-name>
         <servlet-class>servlet.DeleteProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PageServlet</servlet-name>
+        <servlet-class>servlet.PageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -247,6 +251,10 @@
     <servlet-mapping>
         <servlet-name>DeleteProductServlet</servlet-name>
         <url-pattern>/DeleteProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PageServlet</servlet-name>
+        <url-pattern>/PageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

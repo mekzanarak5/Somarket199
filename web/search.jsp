@@ -34,33 +34,42 @@
         </div>
         <div class="col-xs-9">
             <jsp:include page="header.jsp"/>
+            <% String url = request.getRequestURI();%>
             <div class="col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
                     <li class="active">Search</li>
                 </ol>
+                 
             </div>      
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 900px;background: #FFFFFF">
                     <div class="row">
                         <h3 class="col-md-12">Search</h3>
                         <div class="row">
-                 
-                            <c:forEach items="${productNO}" var="a"> 
+                            <c:forEach items="${productNO}" var="a">
+                            <form action="AddToCart" method="get"> 
                                 <div class="col-sm-4">
                                     <div class="thumbnail">
                                         <img data-src="holder.js/300x300" alt="...">
                                         <div class="caption">
                                             <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p></a>
-                                            <p><a href="#" class="btn btn-primary" role="button">Add to cart</a> <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
+                                            <input type="hidden" name="url" />
+                                            <input type="hidden" name="productId" value="${a.productNO}" />
+                                            <input type="hidden" name="acctid" value="${a.acctID}" />
+                                            
+                                            <p><button class="btn btn-primary" role="button">Add to cart</button> <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
                                         </div>
                                     </div>
                                 </div>
+                            </form>
                             </c:forEach>
+                            <%-- out.print(url); --%>
                         </div>
                     </div>
                 </div>
             </div>
+           
         </div>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/accordion.js"></script>
@@ -81,6 +90,9 @@
         <script>
             $(function() {
                 $('.ui.accordion').accordion();
+            });
+            $(document).ready(function(){
+               $('input[name=url]').val((window.location.href.toString())); 
             });
         </script>
     </body>

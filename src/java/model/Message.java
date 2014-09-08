@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.sql.Connection;
@@ -20,6 +19,7 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class Message {
+
     private int MsgID;
     private String Subject;
     private int Sender;
@@ -27,8 +27,9 @@ public class Message {
     private String pm;
     private String time;
     private String username;
+    private int Read;
 
-    public Message(int MsgID, String Subject, int Sender, int Receiver, String pm, String time,String username) {
+    public Message(int MsgID, String Subject, int Sender, int Receiver, String pm, String time, String username) {
         this.MsgID = MsgID;
         this.Subject = Subject;
         this.Sender = Sender;
@@ -39,7 +40,7 @@ public class Message {
     }
 
     public Message() {
-        
+
     }
 
     public int getMsgID() {
@@ -98,16 +99,23 @@ public class Message {
         this.username = username;
     }
 
-    
+    public int getRead() {
+        return Read;
+    }
+
+    public void setRead(int Read) {
+        this.Read = Read;
+    }
     
     @Override
     public String toString() {
         return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", Sender=" + Sender + ", Receiver=" + Receiver + ", pm=" + pm + '}';
     }
-    
-    public static int insertPM(String subject, int sender, int receiver,String pm,String time) {
+
+    public static int insertPM(String subject, int sender, int receiver, String pm, String time) {
         int row = 0;
         int newMemberID = 0;
+        int read = 1;
         try {
 
             Connection con = ConnectionAgent.getConnection();
@@ -118,13 +126,14 @@ public class Message {
             } else {
                 newMemberID = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO MESSAGE VALUES (?,?,?,?,?,current_timestamp)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO MESSAGE VALUES (?,?,?,?,?,current_timestamp,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, subject);
             ps.setInt(3, sender);
             ps.setInt(4, receiver);
             ps.setString(5, pm);
-           
+            ps.setInt(6, read);
+
             row = ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -132,10 +141,11 @@ public class Message {
         }
         return row;
     }
-     public static List<Message> findReceiver(int str) {
+
+    public static List<Message> findReceiver(int str) {
         String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.Receiver = ? ";
         Connection con = ConnectionAgent.getConnection();
-        
+
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
         try {
@@ -152,7 +162,8 @@ public class Message {
         }
         return cs;
     }
-      public static List<Message> findSender(int str) {
+
+    public static List<Message> findSender(int str) {
         String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.sender = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
@@ -171,7 +182,8 @@ public class Message {
         }
         return cs;
     }
-      public static Message findSender2(int str) {
+
+    public static Message findSender2(int str) {
         String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.msgid = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
@@ -188,7 +200,8 @@ public class Message {
         }
         return c;
     }
-      public static int deletePm(String pmid) {
+
+    public static int deletePm(String pmid) {
         int row = 0;
         try {
 
@@ -202,6 +215,40 @@ public class Message {
         }
         return row;
     }
+
+    public static int findCount(int str) {
+        String sqlCmd = "SELECT count(*) FROM MESSAGE WHERE receiver = ? and isread = 1";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Message> cs = new ArrayList<Message>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, str + "%");
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public static int updateRead(int msg) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE MESSAGE SET isread=0  WHERE msgID=?");
+            ps.setInt(1, msg);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
+
     private static void rToO(Message m, ResultSet rs) {
         try {
             m.setMsgID(rs.getInt("msgid"));
@@ -211,6 +258,7 @@ public class Message {
             m.setPm(rs.getString("pm"));
             m.setTime(rs.getString("time"));
             m.setUsername(rs.getString("username"));
+            m.setRead(rs.getInt("isread"));
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }

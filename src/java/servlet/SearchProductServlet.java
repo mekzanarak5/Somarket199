@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Product;
 
 /**
@@ -37,13 +38,17 @@ public class SearchProductServlet extends HttpServlet {
         String cat0 = "0";
         request.setAttribute("msg", "");
         if (sid != null) {
+            HttpSession s1 = request.getSession();
             List<Product> cs = Product.search(sid,cat);
+            s1.setAttribute("pro", sid);
             request.setAttribute("cs", cs);
             if (cs.size() == 0) {
                 request.setAttribute("msg", "Seller/Price/Product: " + sid + " does not exist !!!");
             }
             request.setAttribute("productNO", cs);
+            System.out.println(s1.getAttribute("pro"));
         }
+        
         getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
     }
 

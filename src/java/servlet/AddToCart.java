@@ -41,6 +41,7 @@ public class AddToCart extends HttpServlet {
             request.setAttribute("msg", "Please Sign-In before add product !");
         } else {*/
             products = request.getParameter("productId");
+            String url = request.getParameter("url");
             HttpSession s = request.getSession(true);
             if (s.getAttribute("cart") == null) {
                 s.setAttribute("cart", new Cart());
@@ -56,8 +57,8 @@ public class AddToCart extends HttpServlet {
         request.setAttribute("msg","Add " + tmp.getName() + " Complete");
         //String key = request.getParameter("keySearch");
         String key = request.getParameter("productId");
-
-        getServletContext().getRequestDispatcher("/ShowDetailServlet?productId="+key).forward(request, response);
+        response.sendRedirect(url);
+        //getServletContext().getRequestDispatcher(url)/*("/ShowDetailServlet?productId="+key)*/.forward(request, response);
 
     }
 

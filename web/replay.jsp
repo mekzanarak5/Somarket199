@@ -40,30 +40,57 @@
                 </ol>
             </div>      
             <div class="col-xs-12" style="margin:auto;">
-                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
+                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 550px;background: #FFFFFF">
                     <div class="row">
                         <h3 class="col-md-2">PM</h3>
                         <form action="SendReplyServlet" method="get">
+
                             <div class="col-md-12">
-
-                                    Sender : ${pm.username}
-                                    Subject : ${pm.subject}
-                                    Message : ${pm.pm}
-
+                                <hr>
+                                <div class="col-md-4">
+                                    <ul class="media-list">
+                                        <li class="media">
+                                            <a class="pull-left" href="#">
+                                                <img class="media-object" src="pic/Pikachu.png" alt="..." width="80px" height="100px">
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Sender</h4>
+                                                ${pm.username}
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-
-                                        <div class="col-sm-6">
-                                            <textarea class="form-control" name="pm1" rows="3" placeholder="Reply" required></textarea> 
+                                <div class="col-md-8">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">Subject</div>
+                                        <div class="panel-body">
+                                            ${pm.subject}
                                         </div>
                                     </div>
-                                    <input type="hidden" name="sender"  value="${user.account_Id}" />
-                                    <input type="hidden" name="pm2" value="${pm.pm}"/>
-                                    <input type="hidden" name="subject" value="Re: ${pm.subject}"/>
-                                    <input type="hidden" name="receiver" value="${pm.sender}"/>
-                                    <button type="submit" class="btn btn-default">Reply</button>
                                 </div>
+                               
+                            </div>
+                                         <div class="col-md-12">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">Message</div>
+                                        <div class="panel-body">
+                                            ${pm.pm}
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="pm1" rows="3" placeholder="Reply" required></textarea> 
+                                    </div>
+                                </div>
+                                <input type="hidden" name="sender"  value="${user.account_Id}" />
+                                <input type="hidden" name="pm2" value="${pm.pm}"/>
+                                <input type="hidden" name="subject" value="Re: ${pm.subject}"/>
+                                <input type="hidden" name="receiver" value="${pm.sender}"/>
+                                <button type="submit" class="btn btn-info">Reply</button>
+                            </div>
+                                
                         </form>
                     </div>
                 </div>

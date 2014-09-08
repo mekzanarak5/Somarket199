@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-xs-7">
         <div class="form-group">
-            <input type="text" value="" name="id" placeholder="Inactive" class="form-control" />        
+            <input type="text" value="" name="id" placeholder="Inactive" class="form-control" />
         </div>
     </div>
     <div class="col-xs-3">

@@ -18,8 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class Product {
-
+public class Product implements Comparable {
     private int productNO;
     private int acctID;
     private int category_ID;
@@ -349,6 +348,41 @@ public class Product {
         return row;
     }
 
+    public static ArrayList<Product> page(String key, int x, int y) {
+        ArrayList<Product> ar = new ArrayList<Product>();
+        try {
+            String sql = "select * from product where name like ? ORDER BY CreateON DESC offset ? rows fetch next ? rows only";
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + key.trim() + "%");
+            ps.setInt(2, x);
+            ps.setInt(3, y);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                rToO(p, rs);
+                ar.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return ar;
+    }
+
+    public static int countRow(String key) {
+        try {
+            String sql = "select count(productno) from product where name like ?";
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + key.trim() + "%");
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
     private static void rToO(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productno"));
@@ -367,4 +401,34 @@ public class Product {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + this.productNO;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        if (this.productNO != other.productNO) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if(!(o instanceof Product))return 0;
+        Product n=(Product)o;
+        return acctID-n.getAcctID();
+    }
+    
 }
