@@ -14,7 +14,7 @@
         </select>
     </div>
     <div class="col-xs-2">
-        <input type="hidden" name="x" value="10">
+        <input type="hidden" name="x" value="5">
         <input type="hidden" name="y" value="5">
         <button type="submit" class="btn btn-block btn-lg btn-info">Search</button>
     </div>

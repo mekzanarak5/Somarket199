@@ -43,7 +43,7 @@
                  <form action="SearchProductServlet" method="get" style="text-align: right">
                     <input type="hidden" name="id" value="${pro}">
                     <input type="hidden" name="herolist" value="${cat}">
-                    <input type="hidden" name="x" value="${x}">
+                    <input type="hidden" name="x" value="0">
                     <select name="y">
                         <option value="3" ${y==3?"selected":""}>3</option>
                         <option value="5" ${y==5?"selected":""}>5</option>
@@ -58,7 +58,7 @@
                     <div class="row">
                         <h3 class="col-md-12">Search</h3>
                         <div class="row">
-                            <c:forEach items="${productNO}" var="a">
+                            <c:forEach items="${products}" var="a">
                             <form action="AddToCart" method="get"> 
                                 <div class="col-sm-4">
                                     <div class="thumbnail">

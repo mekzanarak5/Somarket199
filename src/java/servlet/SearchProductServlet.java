@@ -34,7 +34,6 @@ public class SearchProductServlet extends HttpServlet {
             throws ServletException, IOException {
         String sid = request.getParameter("id");
         String cat = request.getParameter("herolist");
-        request.setAttribute("msg", "");
         String xx = request.getParameter("x");
         int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
         int y = Integer.parseInt(request.getParameter("y"));
@@ -43,9 +42,8 @@ public class SearchProductServlet extends HttpServlet {
         request.setAttribute("y", y);
         request.setAttribute("id", sid);
         request.setAttribute("totalPage", totalPage);
-        request.setAttribute("products", Product.page(sid, x, y));
+        request.setAttribute("products", Product.page(sid,cat, x, y));
         request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
-        System.out.println(Product.page(sid, x, y));
         String url = request.getParameter("url");                        
         HttpSession s1 = request.getSession();
         HttpSession s2 = request.getSession();
