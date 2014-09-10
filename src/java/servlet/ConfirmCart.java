@@ -25,9 +25,8 @@ import model.order;
 public class ConfirmCart extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -37,17 +36,46 @@ public class ConfirmCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Accounts cus = (Accounts) request.getSession().getAttribute("user");
+        String address = request.getParameter("address");
+        int value = 0;
         if (cus != null) {
             /*Cart c = (Cart) (request.getSession().getAttribute("cart"));
+             int order_id = Cart.idGenerator();
+             System.out.println(order_id);
+             double total = c.getTotal();
+             request.setAttribute("orderId", order_id);
+             request.setAttribute("cus", cus); */
+            /*order.add(o);
+             c.addDetail(order_id);
+             request.getSession().removeAttribute("cart");
+             response.sendRedirect("ShowOrder");*/
+
+            order o = new order();
+            Cart c = (Cart) (request.getSession().getAttribute("cart"));
             int order_id = Cart.idGenerator();
             System.out.println(order_id);
-            double total = c.getTotal();
-            request.setAttribute("orderId", order_id);
-            request.setAttribute("cus", cus); */
-            /*order.add(o);
-            c.addDetail(order_id);
-            request.getSession().removeAttribute("cart");
-            response.sendRedirect("ShowOrder");*/
+            //double total = c.getTotal();
+            double total =(Double) request.getAttribute("price");
+            o.setOrderId(order_id);
+            o.setUsername(cus.getUsername());
+            o.setAddress(address);
+            o.setTotal(total);
+            System.out.println(o);
+            //order.add(o);
+            //c.addDetail(order_id);
+            if (!address.equals("null")) {
+                value = o.add(o);
+                c.addDetail(o.getOrderId());
+            }
+            /*if (value > 0) {
+             request.setAttribute("msg", "Confirm Order Complete Please do your payment with in 3 days");
+             request.getSession().removeAttribute("cart");
+             response.sendRedirect("ShowOrder");
+             } else {
+             request.setAttribute("msg", "Confirm Order Failed Please Chose Address");
+             getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
+             }*/
+
             getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
             return;
         } else {
@@ -59,8 +87,7 @@ public class ConfirmCart extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -74,8 +101,7 @@ public class ConfirmCart extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

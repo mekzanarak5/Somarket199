@@ -97,7 +97,7 @@
                                 </label>
                             </div>
                             <div style="margin-left:300px">
-                                <a href="orderin.html"><input type="button" class="btn btn-danger" value="Check out"></a> 
+                                <a href="ConfirmCart"><input type="button" class="btn btn-danger" value="Check out"></a> 
                             </div>
                         </div>
                     </div>
