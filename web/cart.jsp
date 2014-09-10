@@ -57,30 +57,36 @@
                                         <td></td>
                                     </tr>
                                     <c:set var="no" value="1"/>
-                                    <c:forEach items="${cart.lineItems}" var="line">
-                                        <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
-                                        <tr >
-                                            <td><a href="ShowAccount?acctid=${line.product.acctID}">${n.dispName}</a></td>
-                                            <td><a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
-                                            <td>
-                                                <a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}">
-                                                    ${line.product.name}</a></td>
-                                            <td>${line.product.price}</td>
-                                            <td><input type="hidden" value="${line.product.productNO}" name="productId" >
-                                                <input style="text-align:right" type="number" name="unit" size='4' value="${line.unit}" required></td>
-                                            <td>${line.total}</td>
-                                            <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
+                                    <c:forEach items="${map}" var="entry">
+                                        <c:forEach items="${cart.lineItems}" var="line">
+                                            <c:choose>
+                                                <c:when test="${entry.key==line.product.acctID}">
+                                                    <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
+                                                    <tr >
+                                                        <td><a href="ShowAccount?acctid=${line.product.acctID}">${n.dispName}</a></td>
+                                                        <td><a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
+                                                        <td>
+                                                            <a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}">
+                                                                ${line.product.name}</a></td>
+                                                        <td>${line.product.price}</td>
+                                                        <td><input type="hidden" value="${line.product.productNO}" name="productId" >
+                                                            <input style="text-align:right" type="number" name="unit" size='4' value="${line.unit}" required></td>
+                                                        <td>${line.total}</td>
+                                                        <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
+                                                    </tr>
+                                                </c:when>
+                                            </c:choose>
+                                        </c:forEach>
+                                        <tr>
+                                            <td>TOTAL</td>
+                                            <td>${cart.total}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><button type="submit" class="btn btn-primary" >Update</button></td>
+                                            <td></td>
                                         </tr>
                                     </c:forEach>
-                                    <tr>
-                                        <td>TOTAL</td>
-                                        <td>${cart.total}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><button type="submit" class="btn btn-primary" >Update</button></td>
-                                        <td></td>
-                                    </tr>
                                 </table>
                             </form>
                             <div><h3>Payment Methond</h3><hr></div>
@@ -98,17 +104,21 @@
                 </div>
             </div>
         </div>
-        
-                                        <c:forEach items="${map}" var="entry">
-                                            เจ้าของ : ${entry.key}<br />
-                                            <ul>
-                                                <c:forEach items="${entry.value}" var="product">
-                                                    <li>${product}</li>
-                                                </c:forEach>
-                                            </ul>
-                                            <hr />
-                                        </c:forEach>
-                                        
+
+        <%--<c:forEach items="${map}" var="entry">
+            เจ้าของ : ${entry.key}<br />
+            <ul>
+                <c:forEach items="${entry.value}" var="product">
+                    <c:choose>
+                        <c:when test="${entry.key==product.acctID}">
+                            <li>${product}</li>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+            </ul>
+            <hr />
+        </c:forEach> --%>
+
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
