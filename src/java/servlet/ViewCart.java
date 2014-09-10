@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.servlet.ServletException;
@@ -55,13 +56,22 @@ public class ViewCart extends HttpServlet {
                 ArrayList<Product> p = new ArrayList<Product>();
                 // ตรงนี้ก็วนลูป items ทั้งหมด แล้วดึงเฉพาะตัวที้มี ownerId เป็น o (o = ownerId ในรอบปัจจุบันของลูป แล้วสั่ง p.add(productชิ้นนั้น); // ปิดลูป
                 for (LineItem li : cart.getLineItems()) {
+                    if(li.getProduct().getAcctID()==o){
                         p.add(li.getProduct());
+                    }
+                        
                 }
                 
                 map.put(o, p);
             }
             request.setAttribute("map", map);
-
+            Map<Integer,Double>price=new TreeMap<Integer,Double>();
+            for(int o:map.keySet()){
+                double sum=0;
+                for(Product p:map.get(o)){
+                    sum+=p.getPrice();
+                }price.put(o,sum);
+            }request.setAttribute("price", price);
             
             getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
         }

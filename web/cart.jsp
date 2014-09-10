@@ -79,7 +79,7 @@
                                         </c:forEach>
                                         <tr>
                                             <td>TOTAL</td>
-                                            <td>${cart.total}</td>
+                                            <td>${price[entry.key]}</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
