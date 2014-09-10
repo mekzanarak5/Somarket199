@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Category;
 import model.Message;
 
@@ -33,18 +34,15 @@ public class ShowCategoryServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession s1 = request.getSession();
         List<Category> c = Category.findBigAll();
-        request.setAttribute("cateID", c);
-        System.out.println(c);
+        s1.setAttribute("cateID", c);
+        
+        HttpSession s2 = request.getSession();
         List<Category> c1 = Category.findByParent(1);
-        request.setAttribute("childCateID1", c1);
-        
-        List<Category> c2 = Category.findByParent(2);
-        request.setAttribute("childCateID2", c2);
-        
-        List<Category> c3 = Category.findByParent(3);
-        request.setAttribute("childCateID3", c3);
-        getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
+        s2.setAttribute("cateID1", c1);
+
+        response.sendRedirect("home.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

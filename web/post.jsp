@@ -111,7 +111,7 @@
                             
                             <div class="form-group">
                                 <div class="col-md-8">
-                                    <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                    <button type="submit" class="btn btn-info" onclick="return confirm('Submit?')">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
                                 </div>
                             </div>
                         </form>

@@ -4,20 +4,22 @@
     <h6 class="col-md-3">Catagory</h6>
     <div class="col-md-12">
         <c:forEach items="${cateID}" var="a">
-        <div class="ui accordion">
-            <div class="active title">
-                <i class="dropdown icon"></i>
-                ${a.cateName}
-            </div>
-            <div class="active content">                                    
-                <div class="accordion">
-                    <div class="active content">
-                        <i class="dropdown icon"></i>
-                        Level 1A
-                    </div>
+            <div class="ui accordion">
+                <div class="active title">
+                    <i class="dropdown icon"></i>
+                    ${a.cateName}
                 </div>
-            </div>   
-        </div>
+                <%--<c:forEach items="${cateID}" var="a">--%>
+                    <div class="active content">                                    
+                        <div class="accordion">
+                            <div class="active content">
+                                <i class="dropdown icon"></i>
+                                Level 1A
+                            </div>
+                        </div>
+                    </div>   
+                <%--</c:forEach>--%>
+            </div>
         </c:forEach>
     </div>
     <form action="PriceServlet" method="get">

@@ -89,6 +89,7 @@ public class Category {
         }
         return ca;
     }
+
      public static List<Category> findByParent(int id) {
         String sqlCmd = "SELECT * FROM CATEGORY where parentCateID = ?";
         Connection con = ConnectionAgent.getConnection();
