@@ -1,54 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
 <div style=" border: 1px solid #ffffff;border-radius: 15px;height: 800px;background: #ffffff">
     <h6 class="col-md-3">Catagory</h6>
     <div class="col-md-12">
+        <c:forEach items="${cateID}" var="a">
         <div class="ui accordion">
             <div class="active title">
                 <i class="dropdown icon"></i>
-                Level 1
+                ${a.cateName}
             </div>
             <div class="active content">                                    
                 <div class="accordion">
-                    <div class="active title">
+                    <div class="active content">
                         <i class="dropdown icon"></i>
                         Level 1A
-                    </div>
-                    <div class="active content">
-                        <p>Level 1A Contents</p>
-                        <div class="accordion">
-                            <div class="title">
-                                <i class="dropdown icon"></i>
-                                Level 1A-A
-                            </div>
-                            <div class="content">
-                                Level 1A-A Contents
-                            </div>
-                            <div class="title">
-                                <i class="dropdown icon"></i>
-                                Level 1A-B
-                            </div>
-                            <div class="content">
-                                Level 1A-B Contents
-                            </div>
-                        </div>
-                    </div>
-                    <div class="title">
-                        <i class="dropdown icon"></i>
-                        Level 1B
-                    </div>
-                    <div class="content">
-                        Level 1B Contents
-                    </div>
-                    <div class="title">
-                        <i class="dropdown icon"></i>
-                        Level 1C
-                    </div>
-                    <div class="content">
-                        Level 1C Contents
                     </div>
                 </div>
             </div>   
         </div>
+        </c:forEach>
     </div>
     <form action="PriceServlet" method="get">
 
@@ -59,8 +29,8 @@
                 <input type="hidden" name="herolist" value="${cat}">
                 <input type="hidden" name="x" value="${x}">
                 <input type="hidden" name="y" value="${y}">
-                <div class="col-md-6"><input class="form-control col-xs-5 pull-left" type="text" name="price1"></div>
-                <div class="col-md-6"><input class="form-control col-xs-5 pull-right" type="text" name="price2"></div>
+                <div class="col-md-6"><input class="form-control col-xs-5 pull-left" type="number" name="price1" size="7"></div>
+                <div class="col-md-6"><input class="form-control col-xs-5 pull-right" type="number" name="price2" size="7"></div>
             </div>
         </div>
         <div class="col-xs-7">

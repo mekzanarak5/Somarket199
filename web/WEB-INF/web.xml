@@ -128,6 +128,10 @@
         <servlet-name>PageServlet</servlet-name>
         <servlet-class>servlet.PageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowCategoryServlet</servlet-name>
+        <servlet-class>servlet.ShowCategoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -255,6 +259,10 @@
     <servlet-mapping>
         <servlet-name>PageServlet</servlet-name>
         <url-pattern>/PageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowCategoryServlet</servlet-name>
+        <url-pattern>/ShowCategoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

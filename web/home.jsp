@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -31,57 +32,20 @@
             <div class="col-md-3">
                 <jsp:include page="logo.jsp"/>
                 <div id='cssmenu'>
-                    <ul>
-                        <li class='active has-sub'><a href='#'><span>Products</span></a>
-                            <ul>
-                                <li class='has-sub'><a href='#'><span>Product 1</span></a>
-                                    <ul>
-                                        <li><a href='#'><span>Sub Product</span></a></li>
-                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class='has-sub'><a href='#'><span>Product 2</span></a>
-                                    <ul>
-                                        <li><a href='#'><span>Sub Product</span></a></li>
-                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class='active has-sub'><a href='#'><span>Products</span></a>
-                            <ul>
-                                <li class='has-sub'><a href='#'><span>Product 1</span></a>
-                                    <ul>
-                                        <li><a href='#'><span>Sub Product</span></a></li>
-                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class='has-sub'><a href='#'><span>Product 2</span></a>
-                                    <ul>
-                                        <li><a href='#'><span>Sub Product</span></a></li>
-                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class='active has-sub'><a href='#'><span>Products</span></a>
-                            <ul>
-                                <li class='has-sub'><a href='#'><span>Product 1</span></a>
-                                    <ul>
-                                        <li><a href='#'><span>Sub Product</span></a></li>
-                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
-                                    </ul>
-                                </li>
-                                <li class='has-sub'><a href='#'><span>Product 2</span></a>
-                                    <ul>
-                                        <li><a href='#'><span>Sub Product</span></a></li>
-                                        <li class='last'><a href='#'><span>Sub Product</span></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
+                    <c:forEach items="${cateID}" var="a">
+                        <ul>
+                            <li class='active has-sub'><a href='#'><span>${a.cateName}</span></a>
+                                <ul>
+                                    <li class='has-sub'><a href='#'><span>Product 1</span></a>
+                                        <ul>
+                                            <li><a href='#'><span>Sub Product</span></a></li>
+                                            <li class='last'><a href='#'><span>Sub Product</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </c:forEach>
                 </div>
             </div>
             <div class="col-md-9">

@@ -47,7 +47,7 @@
                         <div id="cbp-vm" class="cbp-vm-switcher">
                             <div class="btn-group btn-group-justified">
                                 <div class="btn-group">
-                                    <a href="mypost.html"><button type="button" class="btn btn-default">Now Sell</button></a>
+                                    <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Now Sell</button></a>
                                 </div>
                                 <div class="btn-group">
                                     <a href="ongoing.html"><button type="button" class="btn btn-default">Ongoing</button></a>
@@ -80,8 +80,7 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="#">Edit</a></li>
-                                                <li><a href="#">Increase</a></li>
-                                                <li><a href="DeleteProductServlet?id=${a.productNO}">Delete</a></li>
+                                                <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete</a></li>
                                             </ul>
                                         </div></td>
                                 </tr>

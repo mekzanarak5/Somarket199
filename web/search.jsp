@@ -40,7 +40,7 @@
                     <li><a href="#">Home</a></li>
                     <li class="active">Search</li>
                 </ol>
-                 <form action="SearchProductServlet" method="get" style="text-align: right">
+                <form action="SearchProductServlet" method="get" style="text-align: right">
                     <input type="hidden" name="id" value="${pro}">
                     <input type="hidden" name="herolist" value="${cat}">
                     <input type="hidden" name="x" value="0">
@@ -52,35 +52,37 @@
                     </select>
                     <input type="submit" value="Go" >
                 </form>
-            </div>      
-            <div class="col-xs-12" style="margin:auto;">
-                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 900px;background: #FFFFFF">
-                    <div class="row">
-                        <h3 class="col-md-12">Search</h3>
+            </div>
+            <center>
+                <div class="col-xs-12" style="margin:auto;" >
+                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 900px;background: #FFFFFF">
                         <div class="row">
-                            <c:forEach items="${products}" var="a">
-                            <form action="AddToCart" method="get"> 
-                                <div class="col-sm-4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x300" alt="...">
-                                        <div class="caption">
-                                            <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p></a>
-                                            <input type="hidden" name="url" />
-                                            <input type="hidden" name="productId" value="${a.productNO}" />
-                                            <input type="hidden" name="acctid" value="${a.acctID}" />
-                                            
-                                            <p><button class="btn btn-primary" role="button">Add to cart</button> <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
+                            <h3 class="col-md-12">Search</h3>
+                            <div class="row">
+                                <c:forEach items="${products}" var="a">
+                                    <form action="AddToCart" method="get"> 
+                                        <div class="col-sm-4">
+                                            <div class="thumbnail">
+                                                <img data-src="holder.js/300x300" alt="...">
+                                                <div class="caption" >
+                                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p><p>${a.price}0฿</p></a>                                      
+                                                    <input type="hidden" name="url" />
+                                                    <input type="hidden" name="productId" value="${a.productNO}" />
+                                                    <input type="hidden" name="acctid" value="${a.acctID}" />
+
+                                                    <p><button class="btn btn-primary" role="button">Add to cart</button> <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </form>
-                            </c:forEach>
-                            <%-- out.print(url); --%>
+                                    </form>
+                                </c:forEach>
+                                <%-- out.print(url); --%>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-           <table style="width: 30%" align="center">
+            </center>
+            <table style="width: 30%" align="center">
                 <tr>
                     <c:choose>
                         <c:when test="${x-y>=0}">
@@ -118,7 +120,7 @@
                             </c:when>
                             <c:otherwise>
                             <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
-                                Next</td> 
+                                Next</td>
                             </c:otherwise>
                         </c:choose> 
                 </tr>
@@ -144,8 +146,8 @@
             $(function() {
                 $('.ui.accordion').accordion();
             });
-            $(document).ready(function(){
-               $('input[name=url]').val((window.location.href.toString())); 
+            $(document).ready(function() {
+                $('input[name=url]').val((window.location.href.toString()));
             });
         </script>
     </body>
