@@ -50,25 +50,22 @@
             </div>   
         </div>
     </div>
-    <form>
-    <div class="col-xs-12">
-        <select name="herolist" class="select-block">
-            <option value="0" selected>Choose Category</option>
-            <option value="1">Computer</option>
-            <option value="2">Mobile & Tablet</option>
-            <option value="3">Camera</option>
-        </select>
-    </div>
-    <h6 class="col-md-12">Price Range</h6>
-    <div class="col-xs-12">
-        <div class="row">
-            <div class="col-md-6"><input class="form-control col-xs-5 pull-left" type="text" name="price1"></div>
-            <div class="col-md-6"><input class="form-control col-xs-5 pull-right" type="text" name="price2"></div>
+    <form action="PriceServlet" method="get">
+
+        <h6 class="col-md-12">Price Range</h6>
+        <div class="col-xs-12">
+            <div class="row">
+                <input type="hidden" name="id" value="${pro}">
+                <input type="hidden" name="herolist" value="${cat}">
+                <input type="hidden" name="x" value="${x}">
+                <input type="hidden" name="y" value="${y}">
+                <div class="col-md-6"><input class="form-control col-xs-5 pull-left" type="text" name="price1"></div>
+                <div class="col-md-6"><input class="form-control col-xs-5 pull-right" type="text" name="price2"></div>
+            </div>
         </div>
-    </div>
-    <div class="col-xs-7">
-        <br>
-        <button type="submit" class="btn btn-block btn-lg btn-info">Search</button>
-    </div>
+        <div class="col-xs-7">
+            <br>
+            <input type="submit" class="btn btn-block btn-lg btn-info" value="Search">
+        </div>
     </form>
 </div>

@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Product;
 
 /**
@@ -32,9 +33,27 @@ public class PriceServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String sid = request.getParameter("id");
+        String cat = request.getParameter("herolist");
         double str = Double.parseDouble(request.getParameter("price1"));
         double st = Double.parseDouble(request.getParameter("price2"));
-        List<Product> p = Product.findPrice(str, st);
+        String xx = request.getParameter("x");
+        int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
+        int y = Integer.parseInt(request.getParameter("y"));
+        int totalPage = (int) Math.ceil((Product.countRowp(sid,str,st) * 1.0) / y);
+        request.setAttribute("totalPage", totalPage);
+        request.setAttribute("products", Product.findPrice(sid, cat, x, y, str, st));
+        request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
+        HttpSession s1 = request.getSession();
+        HttpSession s2 = request.getSession();
+        HttpSession s3 = request.getSession();
+        HttpSession s4 = request.getSession();
+        s1.setAttribute("pro", sid);
+        s2.setAttribute("cat", cat);
+        s3.setAttribute("x", x);
+        s4.setAttribute("y", y);
+        
         getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
     }
 

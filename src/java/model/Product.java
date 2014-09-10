@@ -291,15 +291,20 @@ public class Product implements Comparable {
         return cs;
     }
 
-    public static List<Product> findPrice(double str, double st) {
-        String sqlCmd = "SELECT * FROM PRODUCT WHERE PRICE between ? and ? ORDER BY CreateOn DESC";
+    public static List<Product> findPrice(String key,String id, int x, int y,double str, double st) {
+        String sqlCmd = "SELECT * FROM PRODUCT WHERE Description like ? and name like ? and Category_ID like ? and PRICE between ? and ? ORDER BY CreateOn DESC limit ?,?";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> cs = new ArrayList<Product>();
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
-            ps.setDouble(1, str);
-            ps.setDouble(2, st);
+            ps.setString(1, "%" + key + "%");
+            ps.setString(2, key + "%");
+            ps.setString(3, id + "%");
+            ps.setDouble(4, str);
+            ps.setDouble(5, st);
+            ps.setInt(6, x);
+            ps.setInt(7, y);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 p = new Product();
@@ -377,6 +382,22 @@ public class Product implements Comparable {
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key.trim() + "%");
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+    public static int countRowp(String key,double str, double st) {
+        try {
+            String sql = "select count(productno) from product where name like ? and PRICE between ? and ?";
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + key.trim() + "%");
+            ps.setDouble(2, str);
+            ps.setDouble(3, st);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
