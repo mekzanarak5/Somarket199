@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class Category {
+
     private int cateID;
     private String cateName;
     private String ParentCateID;
@@ -70,8 +72,8 @@ public class Category {
     public String toString() {
         return "catagory{" + "cateID=" + cateID + ", cateName=" + cateName + ", ParentCateID=" + ParentCateID + ", Value=" + Value + '}';
     }
-    
-     public static List<Category> findBigAll() {
+
+    public static List<Category> findBigAll() {
         String sqlCmd = "SELECT * FROM CATEGORY where parentCateID is null";
         Connection con = ConnectionAgent.getConnection();
         Category c = null;
@@ -90,14 +92,13 @@ public class Category {
         return ca;
     }
 
-     public static List<Category> findByParent(int id) {
-        String sqlCmd = "SELECT * FROM CATEGORY where parentCateID = ?";
+    public static List<Category> findBigP() {
+        String sqlCmd = "SELECT cateID FROM CATEGORY where parentCateID is null";
         Connection con = ConnectionAgent.getConnection();
         Category c = null;
         List<Category> ca = new ArrayList<Category>();
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
-            ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 c = new Category();
@@ -109,8 +110,78 @@ public class Category {
         }
         return ca;
     }
-     
-     private static void rToO(Category c, ResultSet rs) {
+
+    public static List<Category> findByParent1(List<Category> ids) {
+        int currentId = 0;
+        //String sqlCmd = "SELECT * FROM CATEGORY where parentCateID IN ( ? )";
+        Connection con = ConnectionAgent.getConnection();
+        List<Category> ca = new ArrayList<Category>();
+        Category c = null;
+
+        for (Category category : ids) {
+            currentId = category.getCateID();
+            String sqlCmd = "SELECT * FROM CATEGORY where parentCateID IN ( " + currentId + " )";
+            try {
+                PreparedStatement ps = con.prepareStatement(sqlCmd);
+//            ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    c = new Category();
+                    rToO(c, rs);
+                    ca.add(c);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(sqlCmd);
+        }
+        return ca;
+    }
+
+    public static List<Category> findByParent(int id) {
+
+        String sqlCmd = "SELECT * FROM CATEGORY where parentCateID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Category c = null;
+        List<Category> ca = new ArrayList<Category>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Category();
+                rToO(c, rs);
+                ca.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ca;
+    }
+
+    public static List<Category> findByParent2(List<Category> ids) {
+        int currentId = 0;
+        String sqlCmd = "SELECT * FROM CATEGORY where parentCateID IN ( ? )";
+        Connection con = ConnectionAgent.getConnection();
+        List<Category> ca = new ArrayList<Category>();
+        Category c = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+//            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Category();
+                rToO(c, rs);
+                ca.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(sqlCmd);
+        return ca;
+    }
+
+    private static void rToO(Category c, ResultSet rs) {
         try {
             c.setCateID(rs.getInt("CATEID"));
             c.setCateName(rs.getString("CATENAME"));

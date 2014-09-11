@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,12 +37,21 @@ public class ShowCategoryServlet extends HttpServlet {
         HttpSession s1 = request.getSession();
         List<Category> c = Category.findBigAll();
         s1.setAttribute("cateID", c);
-        
         HttpSession s2 = request.getSession();
-        List<Category> c1 = Category.findByParent(1);
-        s2.setAttribute("cateID1", c1);
-
+        List<Category> cc = Category.findBigP();
+        int currentId=0;
+        
+        List<Category> c2 = new ArrayList<Category>();
+        List<Category> c3 = new ArrayList<Category>();
+        for (Category category : cc) {
+            currentId = category.getCateID();   
+            c2 = Category.findByParent(currentId);
+            System.out.println(currentId);
+            c3.addAll(c2);
+        }
+        s2.setAttribute("cateID1", c3);
         response.sendRedirect("home.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

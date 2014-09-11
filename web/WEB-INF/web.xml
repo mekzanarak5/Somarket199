@@ -132,6 +132,10 @@
         <servlet-name>ShowCategoryServlet</servlet-name>
         <servlet-class>servlet.ShowCategoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>upload_form</servlet-name>
+        <servlet-class>servlet.upload_form</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -263,6 +267,10 @@
     <servlet-mapping>
         <servlet-name>ShowCategoryServlet</servlet-name>
         <url-pattern>/ShowCategoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>upload_form</servlet-name>
+        <url-pattern>/upload_form</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

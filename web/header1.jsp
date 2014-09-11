@@ -9,8 +9,7 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header pull-right">
-            <form class="navbar-form navbar-left" role="search">
+        <div class="navbar-header pull-right" style="margin-top: 5px">
                 <c:choose>
                     <c:when test="${user == null}">
                         <c:set var="username" value="Guest"/>
@@ -27,11 +26,10 @@
                             ${cart!=null?" ( ":""}
                             ${cart!= null? cart.unitItem:""}
                             ${cart!=null?" ) ":""}</a>
-                        <a href="seachcata" class="btn btn-warning" >Post</a>
+                        <a href="seachcata" class="btn btn-warning"  >Post</a>
                         <a href="${loginAndOut}" class="btn btn-danger" >Logout</a>
                     </c:otherwise>
                 </c:choose>
-            </form>
         </div>
     </div>
 </nav>

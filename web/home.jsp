@@ -36,12 +36,9 @@
                         <ul>
                             <li class='active has-sub'><a href='#'><span>${a.cateName}</span></a>
                                 <ul>
-                                    <li class='has-sub'><a href='#'><span>Product 1</span></a>
-                                        <ul>
-                                            <li><a href='#'><span>Sub Product</span></a></li>
-                                            <li class='last'><a href='#'><span>Sub Product</span></a></li>
-                                        </ul>
-                                    </li>
+                                    <c:forEach items="${cateID1}" var="b">
+                                        <li class='has-sub'><a href='#'><span>${b.cateName}</span></a></li>
+                                    </c:forEach>
                                 </ul>
                             </li>
                         </ul>
