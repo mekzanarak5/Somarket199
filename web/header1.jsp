@@ -6,16 +6,16 @@
 %>
 <c:set var="usernae" value="" />
 <c:set var="loginAndOut" value="" />
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header pull-right" style="margin-top: 5px">
+        <div class="navbar-header navbar-right" style="margin-top: 7px">
                 <c:choose>
                     <c:when test="${user == null}">
                         <c:set var="username" value="Guest"/>
                         <c:set var="loginAndOut" value="Login.jsp"/>
-                        <a href="${loginAndOut}" class="btn btn-info">Login</a>
-                        <a href="Register.jsp" class="btn btn-warning">Register</a>
+                        <a href="${loginAndOut}" class="btn btn-sm btn-info">Login</a>
+                        <a href="Register.jsp" class="btn btn-sm btn-warning">Register</a>
                     </c:when>
                     <c:otherwise>
                         <c:set var="username" value="${user.username}"/>
@@ -26,8 +26,8 @@
                             ${cart!=null?" ( ":""}
                             ${cart!= null? cart.unitItem:""}
                             ${cart!=null?" ) ":""}</a>
-                        <a href="seachcata" class="btn btn-warning"  >Post</a>
-                        <a href="${loginAndOut}" class="btn btn-danger" >Logout</a>
+                        <a href="seachcata" class="btn btn-sm btn-warning"  >Post</a>
+                        <a href="${loginAndOut}" class="btn btn-sm btn-danger" >Logout</a>
                     </c:otherwise>
                 </c:choose>
         </div>

@@ -17,25 +17,17 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <!-- Loading Bootstrap -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="bootstrap/css/accordion.css" rel="stylesheet">
-        <link href="bootstrap/css/semantic.css" rel="stylesheet">
-
-        <!-- Loading Flat UI -->
-        <link href="css/flat-ui.css" rel="stylesheet">
-        <link href="css/demo.css" rel="stylesheet">
-
-        <link rel="shortcut icon" href="images/favicon.ico">
+        <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
         <div class="col-md-3">
             <jsp:include page="sidecat.jsp"/>
         </div>
-        <div class="col-xs-9">
+        <div class="col-md-9">
             <jsp:include page="header.jsp"/>
             <% String url = request.getRequestURI();%>
-            <div class="col-xs-12">
+            <div class="col-md-12">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
                     <li class="active">Search</li>
@@ -126,7 +118,6 @@
                 </tr>
             </table>
         </div>
-        <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/accordion.js"></script>
         <script src="js/semantic.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>

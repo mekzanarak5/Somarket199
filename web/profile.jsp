@@ -10,14 +10,7 @@
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
-        <!-- Loading Bootstrap -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-
-        <!-- Loading Flat UI -->
-        <link href="css/flat-ui.css" rel="stylesheet">
-        <link href="css/demo.css" rel="stylesheet">
-
-        <link rel="shortcut icon" href="images/favicon.ico">
+        <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
@@ -48,32 +41,35 @@
                             <li data-toggle="modal" data-target=".bs-example-modal-lg"><a href="#fakelink">Change Password <span class="fui-lock"></span></a></li>
                             <form action="ChangePasswordServlet" method="get">
                             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="form-horizontal">
                                             <h3 class="col-md-12"  >Change Password</h3>
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-3 control-label">Old Password</label>
-                                                <div class="col-sm-4">
+                                            <div class="form-group col-md-12">
+                                                <label for="inputEmail3" class="col-sm-5 control-label">Old Password</label>
+                                                <div class="col-sm-7">
                                                     <input type="hidden" name="acctid" value="${user.account_Id}">
                                                     <input type="password" class="form-control" placeholder="Display Name" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-3 control-label">New Password</label>
+                                            <div class="form-group col-md-12">
+                                                <label for="inputEmail3" class="col-sm-5 control-label">New Password</label>
                                                 <div class="col-sm-4">
                                                     <input type="password" class="form-control" placeholder="First Name" name="password" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-3 control-label">Confirm New Password</label>
+                                            <div class="form-group col-md-12">
+                                                <label for="inputEmail3" class="col-sm-5 control-label">Confirm New Password</label>
                                                 <div class="col-sm-4">
                                                     <input type="password" class="form-control" placeholder="Last Name" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                                    <div class="form-group" style="margin-left: 235px">
+                                                <div class="col-md-5">
+                                                    <button type="submit" class="btn btn-info">Submit</button>
+                                                </div>
+                                                <div class="col-md-5">
+                                                <button type="reset" class="btn btn-primary">Reset</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,7 +87,7 @@
                 <div class="col-md-2" align="center">   
                     <img src="pic/Pikachu.png" alt="..." class="img-thumbnail">
                 </div>
-                <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 300px;background: #FFFFFF">
+                <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
                     <h5>Personal Info</h5>
                     <table>
                         <tr>

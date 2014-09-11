@@ -15,16 +15,7 @@
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
-        <!-- Loading Bootstrap -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-
-        <!-- Loading Flat UI -->
-        <link href="css/flat-ui.css" rel="stylesheet">
-        <link href="css/demo.css" rel="stylesheet">
-        <link href="bootstrap/css/drop.css" rel="stylesheet">
-        <link rel="shortcut icon" href="images/favicon.ico">
-        <!--<link href="css/flat-ui.css" rel="stylesheet">-->
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
