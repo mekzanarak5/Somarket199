@@ -79,7 +79,7 @@
                             </form>
                             <li><a href="#fakelink">Buy List <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                             <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List <span class="glyphicon glyphicon-home"></span></a></li>
-                            <li><a href="address.jsp">Profile <span class="glyphicon glyphicon-folder-open"></a></li>
+                            <li><a href="ShowAddressServlet?id=${user.account_Id}">Profile <span class="glyphicon glyphicon-folder-open"></a></li>
                             <li><a href="#">Wish List <span class="glyphicon glyphicon-heart-empty"></a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->

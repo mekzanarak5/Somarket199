@@ -28,22 +28,37 @@
             <jsp:include page="header.jsp"/>
             <% String url = request.getRequestURI();%>
             <div class="col-md-12">
-                <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Search</li>
-                </ol>
-                <form action="SearchProductServlet" method="get" style="text-align: right">
-                    <input type="hidden" name="id" value="${pro}">
-                    <input type="hidden" name="herolist" value="${cat}">
-                    <input type="hidden" name="x" value="0">
-                    <select name="y">
-                        <option value="3" ${y==3?"selected":""}>3</option>
-                        <option value="5" ${y==5?"selected":""}>5</option>
-                        <option value="10" ${y==10?"selected":""}>10</option>
-                        <option value="15" ${y==15?"selected":""}>15</option>
-                    </select>
-                    <input type="submit" value="Go" >
-                </form>
+                <div class="col-md-8">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Search</li>
+                    </ol>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Sort By <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=5&s=a">New Arrival</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=5&s=h">High Price</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=5&s=l">Low Price</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Choose Size <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=3&s=${s}">3</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=5&s=${s}">5</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=10&s=${s}">10</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=15&s=${s}">15</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <center>
                 <div class="col-xs-12" style="margin:auto;" >

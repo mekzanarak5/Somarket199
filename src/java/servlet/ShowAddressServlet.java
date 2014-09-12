@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
@@ -12,15 +13,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Category;
+import model.Address;
 import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class SearchProductServlet extends HttpServlet {
+public class ShowAddressServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,43 +33,10 @@ public class SearchProductServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String sid = request.getParameter("id");
-        String cat = request.getParameter("herolist");
-        String xx = request.getParameter("x");
-        int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
-        int y = Integer.parseInt(request.getParameter("y"));
-        int totalPage = (int) Math.ceil((Product.countRow(sid) * 1.0) / y);
-        String sort = request.getParameter("s");
-        request.setAttribute("x", x);
-        request.setAttribute("y", y);
-        request.setAttribute("id", sid);
-        request.setAttribute("totalPage", totalPage);
-        if(sort.equalsIgnoreCase("a")){
-        request.setAttribute("products", Product.page(sid,cat, x, y));
-        }
-        if(sort.equalsIgnoreCase("h")){
-            request.setAttribute("products", Product.highPrice(sid,cat, x, y));
-        }
-        if(sort.equalsIgnoreCase("l")){
-            request.setAttribute("products", Product.LowPrice(sid,cat, x, y));
-        }
-        request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
-        String url = request.getParameter("url");                        
-        HttpSession s1 = request.getSession();
-        HttpSession s2 = request.getSession();
-        HttpSession s3 = request.getSession();
-        List<Product> cs = Product.search(sid, cat);
-        s1.setAttribute("pro", sid);
-        s2.setAttribute("cat", cat);
-        s3.setAttribute("s", sort);
-        request.setAttribute("cs", cs);
-        if (cs.size() == 0) {
-            request.setAttribute("msg", "Seller/Price/Product: " + sid + " does not exist !!!");
-        }
-        request.setAttribute("productNO", cs);
-        System.out.println(s1.getAttribute("pro"));
-
-        getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<Address> a = Address.showAddress(id);
+        request.setAttribute("add", a);
+        getServletContext().getRequestDispatcher("/address.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

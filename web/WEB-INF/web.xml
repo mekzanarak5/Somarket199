@@ -136,6 +136,14 @@
         <servlet-name>upload_form</servlet-name>
         <servlet-class>servlet.upload_form</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddAddress</servlet-name>
+        <servlet-class>servlet.AddAddress</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowAddressServlet</servlet-name>
+        <servlet-class>servlet.ShowAddressServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -271,6 +279,14 @@
     <servlet-mapping>
         <servlet-name>upload_form</servlet-name>
         <url-pattern>/upload_form</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAddress</servlet-name>
+        <url-pattern>/AddAddress</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowAddressServlet</servlet-name>
+        <url-pattern>/ShowAddressServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -3,24 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Category;
-import model.Product;
-
+import model.Address;
 /**
  *
  * @author Admin
  */
-public class SearchProductServlet extends HttpServlet {
+public class AddAddress extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,43 +30,36 @@ public class SearchProductServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String sid = request.getParameter("id");
-        String cat = request.getParameter("herolist");
-        String xx = request.getParameter("x");
-        int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
-        int y = Integer.parseInt(request.getParameter("y"));
-        int totalPage = (int) Math.ceil((Product.countRow(sid) * 1.0) / y);
-        String sort = request.getParameter("s");
-        request.setAttribute("x", x);
-        request.setAttribute("y", y);
-        request.setAttribute("id", sid);
-        request.setAttribute("totalPage", totalPage);
-        if(sort.equalsIgnoreCase("a")){
-        request.setAttribute("products", Product.page(sid,cat, x, y));
-        }
-        if(sort.equalsIgnoreCase("h")){
-            request.setAttribute("products", Product.highPrice(sid,cat, x, y));
-        }
-        if(sort.equalsIgnoreCase("l")){
-            request.setAttribute("products", Product.LowPrice(sid,cat, x, y));
-        }
-        request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
-        String url = request.getParameter("url");                        
-        HttpSession s1 = request.getSession();
-        HttpSession s2 = request.getSession();
-        HttpSession s3 = request.getSession();
-        List<Product> cs = Product.search(sid, cat);
-        s1.setAttribute("pro", sid);
-        s2.setAttribute("cat", cat);
-        s3.setAttribute("s", sort);
-        request.setAttribute("cs", cs);
-        if (cs.size() == 0) {
-            request.setAttribute("msg", "Seller/Price/Product: " + sid + " does not exist !!!");
-        }
-        request.setAttribute("productNO", cs);
-        System.out.println(s1.getAttribute("pro"));
+        int AcctID = Integer.parseInt(request.getParameter("acctid"));
+        String Address = request.getParameter("address");
+        String addressthai = new String(Address.getBytes("ISO8859_1"), "UTF-8");
+        String Provice = request.getParameter("provice");
+        String provicethai = new String(Provice.getBytes("ISO8859_1"), "UTF-8");
+        int Post = Integer.parseInt(request.getParameter("post"));
+        String Canton = request.getParameter("canton");
+        String cantonthai = new String(Canton.getBytes("ISO8859_1"), "UTF-8");
+        String msg = "";
+        Boolean complete = false;
+        model.Address a = new model.Address();
 
-        getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
+        int row =  a.addAdress(AcctID, addressthai, provicethai, Post, cantonthai);
+        if (row == 1) {
+            msg = "Congratulations, GoToTheSell!";
+            request.setAttribute("msg", msg);
+            complete = true;
+
+        } else {
+            msg = "Database is not updated, please contact administrator.";
+            request.setAttribute("msg", msg);
+            complete = false;
+        }
+
+        if (complete) {
+            request.setAttribute("lastid", a.lastid());
+            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/address.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

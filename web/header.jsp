@@ -17,6 +17,7 @@
                     <span class="input-group-btn">
                         <input type="hidden" name="x" value="0">
                         <input type="hidden" name="y" value="5">
+                        <input type="hidden" name="s" value="a">
                         <button type="submit" class="btn"><span class="fui-search"></span></button>
                     </span>
                 </div>
