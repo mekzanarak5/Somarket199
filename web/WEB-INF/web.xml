@@ -152,6 +152,22 @@
         <servlet-name>ShowBankServlet</servlet-name>
         <servlet-class>servlet.ShowBankServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditAddressServlet</servlet-name>
+        <servlet-class>servlet.EditAddressServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditShowAddress</servlet-name>
+        <servlet-class>servlet.EditShowAddress</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditBankServlet</servlet-name>
+        <servlet-class>servlet.EditBankServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditShowBank</servlet-name>
+        <servlet-class>servlet.EditShowBank</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -303,6 +319,22 @@
     <servlet-mapping>
         <servlet-name>ShowBankServlet</servlet-name>
         <url-pattern>/ShowBankServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAddressServlet</servlet-name>
+        <url-pattern>/EditAddressServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditShowAddress</servlet-name>
+        <url-pattern>/EditShowAddress</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditBankServlet</servlet-name>
+        <url-pattern>/EditBankServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditShowBank</servlet-name>
+        <url-pattern>/EditShowBank</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

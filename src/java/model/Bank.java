@@ -123,6 +123,23 @@ public class Bank {
         }
         return row;
     }
+    public static Bank findBank(int id) {
+        String sqlCmd = "SELECT * FROM Bankaccount WHERE Bank_ID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Bank a = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                a = new Bank();
+                rToO(a, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
     public static List<Bank> showBank(int id) {
         String sqlCmd = "SELECT * FROM BANKACCOUNT WHERE AcctNo = ?";
         Connection con = ConnectionAgent.getConnection();

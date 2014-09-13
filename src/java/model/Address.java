@@ -155,6 +155,24 @@ public class Address {
         }
         return pa;
     }
+     public static Address findAddress(int id) {
+        String sqlCmd = "SELECT * FROM Address WHERE Address_ID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Address a = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                a = new Address();
+                rToO(a, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
+     
     public static int lastid() {
         Connection con = ConnectionAgent.getConnection();
         int id = 0;

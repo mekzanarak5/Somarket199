@@ -103,7 +103,7 @@
                                                         Manage Post <span class="caret"></span>
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="#">Edit</a></li>
+                                                        <li><a href="EditShowBank?bankid=${a.bank_Id}">Edit</a></li>
                                                         <li><a href="#">Delete</a></li>
                                                     </ul>
                                                 </div></td>
