@@ -12,12 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Address;
+
 /**
  *
  * @author Admin
  */
-public class AddAddress extends HttpServlet {
+public class AddBank extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,18 +31,15 @@ public class AddAddress extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int AcctID = Integer.parseInt(request.getParameter("acctid"));
-        String Address = request.getParameter("address");
-        String addressthai = new String(Address.getBytes("ISO8859_1"), "UTF-8");
-        String Provice = request.getParameter("provice");
-        String provicethai = new String(Provice.getBytes("ISO8859_1"), "UTF-8");
-        int Post = Integer.parseInt(request.getParameter("post"));
-        String Canton = request.getParameter("canton");
-        String cantonthai = new String(Canton.getBytes("ISO8859_1"), "UTF-8");
+        String bankname = request.getParameter("bankname");
+        String banknamethai = new String(bankname.getBytes("ISO8859_1"), "UTF-8");
+        String no = request.getParameter("no");
+        String name = request.getParameter("name");
+        String namethai = new String(name.getBytes("ISO8859_1"), "UTF-8");
         String msg = "";
         Boolean complete = false;
-        model.Address a = new model.Address();
-
-        int row =  a.addAdress(AcctID, addressthai, provicethai, Post, cantonthai);
+        model.Bank a = new model.Bank();
+        int row =  a.addBank(AcctID, banknamethai,no,namethai);
         if (row == 1) {
             msg = "Congratulations, GoToTheSell!";
             request.setAttribute("msg", msg);
@@ -56,9 +53,9 @@ public class AddAddress extends HttpServlet {
 
         if (complete) {
             request.setAttribute("lastid", a.lastid());
-            getServletContext().getRequestDispatcher("/ShowAddressServlet?id="+AcctID).forward(request, response);
+            getServletContext().getRequestDispatcher("/ShowBankServlet?id="+AcctID).forward(request, response);
         } else {
-            getServletContext().getRequestDispatcher("/address.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/bankacc.jsp").forward(request, response);
         }
     }
 

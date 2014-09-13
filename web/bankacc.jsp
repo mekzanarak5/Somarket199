@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -32,50 +33,83 @@
                 </ol>
             </div>      
             <div class="col-xs-12" style="margin:auto;">
-                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 650px;background: #FFFFFF">
-                     <div class="row">
-                        <a href="address.jsp"><button type="button" class="btn btn-default col-lg-6">Address</button></a>
-                        <a href="bankacc.jsp"><button type="button" class="btn btn-default col-lg-6">Bank Account</button></a>
+                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 700px;background: #FFFFFF">
+                    <div class="row">
+                        <a href="ShowAddressServlet?id=${user.account_Id}"><button type="button" class="btn btn-default col-lg-6">Address</button></a>
+                        <a href="ShowBankServlet?id=${user.account_Id}"><button type="button" class="btn btn-default col-lg-6">Bank Account</button></a>
                     </div>
-                    <div class="row form-horizontal">
-                        <h3 class="col-md-12">My Bank Account</h3>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                
-                                <label class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio">
-                                    SCB 999-99-9999 SIT KMUTT
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="button" class="btn btn-primary">Edit</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary">Delete</button>
-                            </div>
-                        </div>
-                        <h3 class="col-md-12">Add Bank Account</h3>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Bank Name</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="Address" name="userid" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Bank Account No.</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="Address" name="userid" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Bank Account Name</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="Address" name="userid" required>
-                            </div>
-                        </div>
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div id="cbp-vm" class="cbp-vm-switcher">
+                                <div class="col-md-12">
+                                    <div class="col-md-5">
+                                        <h4>My Bank Account</h4>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-xs btn-primary" style="margin-left: -40px;margin-top: 20px" data-toggle="modal" data-target=".bs-example-modal-lg">+</button>
+                                        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <form action="AddBank" method="get">
+                                                        <div class="form-horizontal" style="text-align: center">                               
+                                                            <h4 class="col-md-12">Add New Bank Account</h4>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-3 control-label">Bank Name</label>
+                                                                <div class="col-sm-3">
+                                                                    <input type="hidden" name="acctid" value="${user.account_Id}">
+                                                                    <input type="text" class="form-control" placeholder="Bank name" name="bankname" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-3 control-label">Bank Account No.</label>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" class="form-control" placeholder="Bank Account No." name="no" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-3 control-label">Bank Account Name</label>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" class="form-control" placeholder="Bank Account Name" name="name" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-2 col-sm-10">
 
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="button" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary">Reset</button>
+                                                                    <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <table class="table table-striped" style="text-align: center">
+                                    <tr bgColor="#ffffff">
+                                        <td>Bank Name</td>
+                                        <td>Bank Account No.</td>
+                                        <td>Bank Account Name</td>
+                                        <td>Manage Post</td>
+                                    </tr>
+                                    <c:forEach items="${bank}" var="a">
+                                        <tr>
+                                            <td>${a.bankName}</td>
+                                            <td>${a.bankAccNo}</td>
+                                            <td>${a.bankAccName}</td>
+                                            <td width="20%"><div class="btn-group">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                        Manage Post <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="#">Edit</a></li>
+                                                        <li><a href="#">Delete</a></li>
+                                                    </ul>
+                                                </div></td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
                             </div>
                         </div>
                     </div>

@@ -8,16 +8,19 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Address;
+import model.Bank;
+
 /**
  *
  * @author Admin
  */
-public class AddAddress extends HttpServlet {
+public class ShowBankServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,36 +33,10 @@ public class AddAddress extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int AcctID = Integer.parseInt(request.getParameter("acctid"));
-        String Address = request.getParameter("address");
-        String addressthai = new String(Address.getBytes("ISO8859_1"), "UTF-8");
-        String Provice = request.getParameter("provice");
-        String provicethai = new String(Provice.getBytes("ISO8859_1"), "UTF-8");
-        int Post = Integer.parseInt(request.getParameter("post"));
-        String Canton = request.getParameter("canton");
-        String cantonthai = new String(Canton.getBytes("ISO8859_1"), "UTF-8");
-        String msg = "";
-        Boolean complete = false;
-        model.Address a = new model.Address();
-
-        int row =  a.addAdress(AcctID, addressthai, provicethai, Post, cantonthai);
-        if (row == 1) {
-            msg = "Congratulations, GoToTheSell!";
-            request.setAttribute("msg", msg);
-            complete = true;
-
-        } else {
-            msg = "Database is not updated, please contact administrator.";
-            request.setAttribute("msg", msg);
-            complete = false;
-        }
-
-        if (complete) {
-            request.setAttribute("lastid", a.lastid());
-            getServletContext().getRequestDispatcher("/ShowAddressServlet?id="+AcctID).forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/address.jsp").forward(request, response);
-        }
+         int id = Integer.parseInt(request.getParameter("id"));
+        List<Bank> a = Bank.showBank(id);
+        request.setAttribute("bank", a);
+        getServletContext().getRequestDispatcher("/bankacc.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

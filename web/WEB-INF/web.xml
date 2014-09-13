@@ -144,6 +144,14 @@
         <servlet-name>ShowAddressServlet</servlet-name>
         <servlet-class>servlet.ShowAddressServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddBank</servlet-name>
+        <servlet-class>servlet.AddBank</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowBankServlet</servlet-name>
+        <servlet-class>servlet.ShowBankServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -287,6 +295,14 @@
     <servlet-mapping>
         <servlet-name>ShowAddressServlet</servlet-name>
         <url-pattern>/ShowAddressServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBank</servlet-name>
+        <url-pattern>/AddBank</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowBankServlet</servlet-name>
+        <url-pattern>/ShowBankServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

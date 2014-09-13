@@ -40,25 +40,25 @@
                                 <label for="inputEmail3" class="col-sm-3 control-label">Display Name</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" name="acctid" value="${user.account_Id}">
-                                    <input type="text" class="form-control" placeholder="Display Name" name="dispname" required>
+                                    <input type="text" class="form-control" value="${user.dispName}" name="dispname" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">First Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="First Name" name="firstname" required>
+                                    <input type="text" class="form-control" value="${user.firstName}" name="firstname" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="Last Name" name="lastname" required>
+                                    <input type="text" class="form-control" value="${user.lastName}" name="lastname" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Phone</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="Phone" name="phone" required>
+                                    <input type="text" class="form-control" value="${user.phone}" name="phone" required>
                                 </div>
                             </div>
 

@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="bootstrap/css/jasny-bootstrap.min.css"/>
 <link href="bootstrap/css/semantic.css" rel="stylesheet">
+<!--<link href="bootstrap/css/style.css" rel="stylesheet">-->
+
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.css" rel="stylesheet">
 <link href="css/demo.css" rel="stylesheet">
@@ -11,3 +13,6 @@
 <script type="text/javascript" src="js1/jssor.core.js"></script>
 <script type="text/javascript" src="js1/jssor.utils.js"></script>
 <script type="text/javascript" src="js1/jssor.slider.js"></script>
+<script type="text/javascript" src="js/uilang.js"></script>
+<!--<script type="text/javascript" src="js/bootstrap.js"></script>-->
+<script type="text/javascript" src="js/Chart.js"></script>

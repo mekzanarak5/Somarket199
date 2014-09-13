@@ -27,7 +27,6 @@
                 </ol>
 
             </div>       
-
             <div class="col-md-12">
                 <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
                     <div class="navbar-header">
@@ -40,42 +39,42 @@
                             <li><a href="editProfile.jsp">Edit <span class="fui-gear"></span></a></li>
                             <li data-toggle="modal" data-target=".bs-example-modal-lg"><a href="#fakelink">Change Password <span class="fui-lock"></span></a></li>
                             <form action="ChangePasswordServlet" method="get">
-                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="form-horizontal">
-                                            <h3 class="col-md-12"  >Change Password</h3>
-                                            <div class="form-group col-md-12">
-                                                <label for="inputEmail3" class="col-sm-5 control-label">Old Password</label>
-                                                <div class="col-sm-7">
-                                                    <input type="hidden" name="acctid" value="${user.account_Id}">
-                                                    <input type="password" class="form-control" placeholder="Display Name" required>
+                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="form-horizontal">
+                                                <h3 class="col-md-12"  >Change Password</h3>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail3" class="col-sm-5 control-label">Old Password</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="hidden" name="acctid" value="${user.account_Id}">
+                                                        <input type="password" class="form-control" placeholder="Display Name" required>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label for="inputEmail3" class="col-sm-5 control-label">New Password</label>
-                                                <div class="col-sm-4">
-                                                    <input type="password" class="form-control" placeholder="First Name" name="password" required>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail3" class="col-sm-5 control-label">New Password</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="password" class="form-control" placeholder="First Name" name="password" required>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label for="inputEmail3" class="col-sm-5 control-label">Confirm New Password</label>
-                                                <div class="col-sm-4">
-                                                    <input type="password" class="form-control" placeholder="Last Name" required>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail3" class="col-sm-5 control-label">Confirm New Password</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="password" class="form-control" placeholder="Last Name" required>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                                    <div class="form-group" style="margin-left: 235px">
-                                                <div class="col-md-5">
-                                                    <button type="submit" class="btn btn-info">Submit</button>
-                                                </div>
-                                                <div class="col-md-5">
-                                                <button type="reset" class="btn btn-primary">Reset</button>
+                                                <div class="form-group" style="margin-left: 235px">
+                                                    <div class="col-md-5">
+                                                        <button type="submit" class="btn btn-info">Submit</button>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <button type="reset" class="btn btn-primary">Reset</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </form>
                             <li><a href="#fakelink">Buy List <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                             <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List <span class="glyphicon glyphicon-home"></span></a></li>

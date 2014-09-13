@@ -181,6 +181,60 @@ public class Category {
         return ca;
     }
 
+    public static int addCatBig(String cateName, String ParentCateID, String Value) {
+        int row = 0;
+        int newMemberID = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateid) AS LastMemberID FROM category where ParentCateID is null");
+            ResultSet rs = ps1.executeQuery();
+            if (rs.next()) {
+                newMemberID = rs.getInt(1) + 1;
+            } else {
+                newMemberID = 0;
+            }
+            ParentCateID = null;
+            PreparedStatement ps = con.prepareStatement("INSERT INTO ADDRESS VALUES (?,?,?,current_timestamp)");
+            ps.setInt(1, newMemberID);
+            ps.setString(2, cateName);
+            ps.setString(3, ParentCateID);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+
+    public static int addCatSmall(String cateName, String ParentCateID, String Value) {
+        int row = 0;
+        int newMemberID = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateid) AS LastMemberID FROM category where ParentCateID=?");
+            ps1.setString(1, ParentCateID);
+            row = ps1.executeUpdate();
+            ResultSet rs = ps1.executeQuery();
+            if (rs.next()) {
+                newMemberID = rs.getInt(1) + 1;
+            } else {
+                newMemberID = 0;
+            }
+
+            PreparedStatement ps = con.prepareStatement("INSERT INTO ADDRESS VALUES (?,?,?,current_timestamp)");
+            ps.setInt(1, newMemberID);
+            ps.setString(2, cateName);
+            ps.setString(3, ParentCateID);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+
     private static void rToO(Category c, ResultSet rs) {
         try {
             c.setCateID(rs.getInt("CATEID"));

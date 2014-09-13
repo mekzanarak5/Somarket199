@@ -61,7 +61,7 @@
                                 <div class="carousel-caption">
                                 </div>
                             </div>
-                             <div class="item">
+                            <div class="item">
                                 <img src="pic/Pikachu.png" width="200px" alt="...">
                                 <div class="carousel-caption">
                                 </div>
@@ -78,40 +78,53 @@
                     </div>
                 </div>  
             </div>
-            <div class="col-md-12">   
-
-
-                <div class="col-xs-12" style="margin:auto;padding-top: 50px">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
-                        <div class="row">
-                            <h3 class="col-md-12">Hot Items of Smartphone</h3>
-                            <div class="col-xs-12">
-                                <hr>
-                            </div>
+            <div class="col-md-12" style="margin-top: 50px">   
+                <ul class="nav nav-tabs" style="text-align: center" role="tablist">
+                    <li class="active col-md-3"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
+                    <li class="col-md-3"><a href="#product" role="tab" data-toggle="tab">Product</a></li>
+                    <li class="col-md-3"><a href="#order" role="tab" data-toggle="tab">Order</a></li>
+                    <li class="col-md-3"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" style="margin-top: 50px" id="account">
+                        <p> Register
+                        <div style="width:50%">
                             <div>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
+                                <canvas id="canvas" height="450" width="600"></canvas>
                             </div>
                         </div>
+                        <script>
+                            var randomScalingFactor = function() {
+                                return Math.round(Math.random() * 100)
+                            };
+                            var lineChartData = {
+                                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                                datasets: [
+                                    {
+                                        label: "My Second dataset",
+                                        fillColor: "rgba(151,187,205,0.2)",
+                                        strokeColor: "rgba(151,187,205,1)",
+                                        pointColor: "rgba(151,187,205,1)",
+                                        pointStrokeColor: "#fff",
+                                        pointHighlightFill: "#fff",
+                                        pointHighlightStroke: "rgba(151,187,205,1)",
+                                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                                    }
+                                ]
+
+                            }
+
+                            window.onload = function() {
+                                var ctx = document.getElementById("canvas").getContext("2d");
+                                window.myLine = new Chart(ctx).Line(lineChartData, {
+                                    responsive: true
+                                });
+                            }
+                        </script>
                     </div>
-                </div>
-                <div class="col-xs-12" style="padding-top: 20px">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
-                        <div class="row">
-                            <h3 class="col-md-12">Hot Items of Tablet</h3>
-                            <div class="col-xs-12">
-                                <hr>
-                            </div>
-                            <div>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="tab-pane" id="product">...</div>
+                    <div class="tab-pane" id="order">...</div>
+                    <div class="tab-pane" id="settings">...</div>
                 </div>
             </div>  
         </div>
@@ -131,13 +144,13 @@
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script>
-            $(function() {
-                $('.demo.menu .item')
-                        .tab('deactivate all')
-                        .tab('activate tab', 'third')
-                        .tab('activate navigation', 'third')
-                        ;
-            });
+                            $(function() {
+                                $('.demo.menu .item')
+                                        .tab('deactivate all')
+                                        .tab('activate tab', 'third')
+                                        .tab('activate navigation', 'third')
+                                        ;
+                            });
         </script>
     </body>
 </html>
