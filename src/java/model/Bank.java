@@ -174,6 +174,20 @@ public class Bank {
         }
         return id;
     }
+     public static int deleteBank(String bankid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM bankaccount WHERE bank_Id=?");
+            ps.setString(1, bankid);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
     private static void rToO(Bank a, ResultSet rs) {
         try {
             a.setBank_Id(rs.getInt("Bank_Id"));

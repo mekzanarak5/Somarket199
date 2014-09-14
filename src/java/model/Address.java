@@ -188,6 +188,20 @@ public class Address {
         }
         return id;
     }
+    public static int deleteAddress(String addid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM address WHERE Address_Id=?");
+            ps.setString(1, addid);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
     private static void rToO(Address a, ResultSet rs) {
         try {
             a.setAddress_Id(rs.getInt("Address_Id"));

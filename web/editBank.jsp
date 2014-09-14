@@ -60,7 +60,6 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-8">
-
                                         <button type="submit" class="btn btn-primary">Edit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
                                     </div>
                                 </div>

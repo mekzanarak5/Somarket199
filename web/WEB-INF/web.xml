@@ -168,6 +168,26 @@
         <servlet-name>EditShowBank</servlet-name>
         <servlet-class>servlet.EditShowBank</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddWishList</servlet-name>
+        <servlet-class>servlet.AddWishList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowWishlistServlet</servlet-name>
+        <servlet-class>servlet.ShowWishlistServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteWishlistServlet</servlet-name>
+        <servlet-class>servlet.DeleteWishlistServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAddressServlet</servlet-name>
+        <servlet-class>servlet.DeleteAddressServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBankServlet</servlet-name>
+        <servlet-class>servlet.DeleteBankServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -335,6 +355,26 @@
     <servlet-mapping>
         <servlet-name>EditShowBank</servlet-name>
         <url-pattern>/EditShowBank</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddWishList</servlet-name>
+        <url-pattern>/AddWishList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowWishlistServlet</servlet-name>
+        <url-pattern>/ShowWishlistServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteWishlistServlet</servlet-name>
+        <url-pattern>/DeleteWishlistServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAddressServlet</servlet-name>
+        <url-pattern>/DeleteAddressServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBankServlet</servlet-name>
+        <url-pattern>/DeleteBankServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

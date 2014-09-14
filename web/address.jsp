@@ -155,7 +155,7 @@
                                                             <div class="form-group">
                                                                 <label for="inputPassword3" class="col-sm-2 control-label">Post</label>
                                                                 <div class="col-sm-3">
-                                                                    <input type="text" class="form-control" placeholder="Post" name="post" required>
+                                                                    <input type="number" class="form-control" placeholder="Post" name="post" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -193,7 +193,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li><a href="EditShowAddress?addid=${a.address_Id}">Edit</a></li>
-                                                        <li><a href="#">Delete</a></li>
+                                                        <li><a href="DeleteAddressServlet?id=${a.address_Id}&acctid=${user.account_Id}">Delete</a></li>
                                                     </ul>
                                                 </div>
                                             </td>

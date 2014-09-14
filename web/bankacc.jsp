@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Login</title>
+        <title>Social Market | Bank Account</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
@@ -104,7 +104,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li><a href="EditShowBank?bankid=${a.bank_Id}">Edit</a></li>
-                                                        <li><a href="#">Delete</a></li>
+                                                        <li><a href="DeleteBankServlet?id=${a.bank_Id}&acctid=${user.account_Id}">Delete</a></li>
                                                     </ul>
                                                 </div></td>
                                         </tr>
