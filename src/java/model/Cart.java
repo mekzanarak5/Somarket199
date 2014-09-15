@@ -20,17 +20,17 @@ import java.util.logging.Logger;
 public class Cart {
 
     private TreeMap<Integer, LineItem> items;
-    private String orderId;
+    private int orderId;
 
     public Cart() {
         items = new TreeMap<Integer, LineItem>();
     }
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
@@ -68,27 +68,29 @@ public class Cart {
     public void setItems(TreeMap<Integer, LineItem> items) {
         this.items = items;
     }
-    
-    public void addDetail(int orderId){
-       String sql = "insert into gadget_order2 values(?,?,?,?,?)";
-       try {
+
+    public void addDetail(int key) {
+        String sql = "insert into gadget_order2 values(?,?,?,?,?)";
+        try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
-            ps.setInt(1, orderId);
+            ps.setInt(1, getOrderId());
             List<LineItem> a = getLineItems();
             System.out.println(a);
             for (LineItem li : a) {
-                ps.setInt(2, li.getUnit());
-                ps.setString(3, li.getProduct().getName());
-                ps.setDouble(4, li.getProduct().getPrice());
-                ps.setDouble(5, li.getTotal());
-                ps.executeUpdate();
+                if (key == li.getProduct().getAcctID()) {
+                    ps.setInt(2, li.getUnit());
+                    ps.setString(3, li.getProduct().getName());
+                    ps.setDouble(4, li.getProduct().getPrice());
+                    ps.setDouble(5, li.getTotal());
+                    ps.executeUpdate();
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Cart.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
-    
+
     public static Cart getDetailList(int oid) {
         Cart c = new Cart();
         String sql = "select * from gadget_order2 where order_id = ? ";
@@ -106,20 +108,20 @@ public class Cart {
         }
         return c;
     }
-     
-     public static int idGenerator() {
+
+    public static int idGenerator() {
         String sql = "select max(ORDER_ID) from gadget_order";
-        int result=0;
+        int result = 0;
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                result= rs.getInt(1) + 1;
+                result = rs.getInt(1) + 1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Cart.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
-    
+
 }
