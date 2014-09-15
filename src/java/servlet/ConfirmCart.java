@@ -65,6 +65,7 @@ public class ConfirmCart extends HttpServlet {
                 o.setUsername(cus.getUsername());
                 o.setTotal(entry.getValue());
                 System.out.println(o);
+                value += o.add(o);
                 c.setOrderId(order_id);
                 c.addDetail(entry.getKey());
             }
