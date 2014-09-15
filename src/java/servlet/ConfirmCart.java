@@ -7,14 +7,18 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Accounts;
 import model.Cart;
 import model.LineItem;
-import model.Accounts;
 import model.Product;
 import model.order;
 
@@ -36,11 +40,15 @@ public class ConfirmCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Accounts cus = (Accounts) request.getSession().getAttribute("user");
-        String address = request.getParameter("address");
+       // TreeMap<Integer, ArrayList<Product>> map = (TreeMap) request.getAttribute("map");
+        Map<Integer, Double> price = (TreeMap) request.getAttribute("price");
+        //String address = request.getParameter("address");
         int value = 0;
         if (cus != null) {
-            /*Cart c = (Cart) (request.getSession().getAttribute("cart"));
-             int order_id = Cart.idGenerator();
+            //Set<Map.Entry<Integer, ArrayList<Product>>> entrySeto = map.entrySet();
+            Set<Map.Entry<Integer, Double>> entrySetp = price.entrySet();
+            Cart c = (Cart) (request.getSession().getAttribute("cart"));
+            /* int order_id = Cart.idGenerator();
              System.out.println(order_id);
              double total = c.getTotal();
              request.setAttribute("orderId", order_id);
@@ -49,32 +57,39 @@ public class ConfirmCart extends HttpServlet {
              c.addDetail(order_id);
              request.getSession().removeAttribute("cart");
              response.sendRedirect("ShowOrder");*/
-
-            order o = new order();
-            Cart c = (Cart) (request.getSession().getAttribute("cart"));
-            int order_id = Cart.idGenerator();
-            System.out.println(order_id);
+            for (Map.Entry<Integer, Double> entry : entrySetp){
+                order o = new order();
+                int order_id = Cart.idGenerator();
+                System.out.println(order_id);
+                o.setOrderId(order_id);
+                o.setUsername(cus.getUsername());
+                o.setTotal(entry.getValue());
+                System.out.println(o);
+                c.setOrderId(order_id);
+                c.addDetail(entry.getKey());
+            }
+            //order o = new order();
+            //Cart c = (Cart) (request.getSession().getAttribute("cart"));
+            //int order_id = Cart.idGenerator();
+            //System.out.println(order_id);
             //double total = c.getTotal();
-            double total =(Double) request.getAttribute("price");
-            o.setOrderId(order_id);
-            o.setUsername(cus.getUsername());
-            o.setAddress(address);
-            o.setTotal(total);
-            System.out.println(o);
+            //double total = (Double) request.getAttribute("price");
+            //o.setAddress(address);
+            
             //order.add(o);
             //c.addDetail(order_id);
-            if (!address.equals("null")) {
-                value = o.add(o);
-                c.addDetail(o.getOrderId());
-            }
-            /*if (value > 0) {
-             request.setAttribute("msg", "Confirm Order Complete Please do your payment with in 3 days");
-             request.getSession().removeAttribute("cart");
-             response.sendRedirect("ShowOrder");
-             } else {
-             request.setAttribute("msg", "Confirm Order Failed Please Chose Address");
-             getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
+            /*if (!address.equals("null")) {
+             value = o.add(o);
+             c.addDetail(o.getOrderId());
              }*/
+            if (value > 0) {
+                request.setAttribute("msg", "Confirm Order Complete Please do your payment with in 3 days");
+                request.getSession().removeAttribute("cart");
+                response.sendRedirect("ShowOrder");
+            } else {
+                request.setAttribute("msg", "Confirm Order Failed Please Chose Address");
+                getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
+            }
 
             getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
             return;
