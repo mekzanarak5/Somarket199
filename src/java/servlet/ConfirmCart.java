@@ -41,7 +41,7 @@ public class ConfirmCart extends HttpServlet {
             throws ServletException, IOException {
         Accounts cus = (Accounts) request.getSession().getAttribute("user");
        // TreeMap<Integer, ArrayList<Product>> map = (TreeMap) request.getAttribute("map");
-        Map<Integer, Double> price = (TreeMap) request.getAttribute("price");
+        Map<Integer, Double> price = (TreeMap) request.getSession().getAttribute("price");
         //String address = request.getParameter("address");
         int value = 0;
         if (cus != null) {
@@ -62,7 +62,7 @@ public class ConfirmCart extends HttpServlet {
                 int order_id = Cart.idGenerator();
                 System.out.println(order_id);
                 o.setOrderId(order_id);
-                o.setUsername(cus.getUsername());
+                o.setAcctno(cus.getAccount_Id());
                 o.setTotal(entry.getValue());
                 System.out.println(o);
                 value += o.add(o);
@@ -85,15 +85,17 @@ public class ConfirmCart extends HttpServlet {
              }*/
             if (value > 0) {
                 request.setAttribute("msg", "Confirm Order Complete Please do your payment with in 3 days");
-                request.getSession().removeAttribute("cart");
-                response.sendRedirect("ShowOrder");
+                //request.getSession().removeAttribute("cart");
+                //response.sendRedirect("ShowOrder");
+                getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
+                return;
             } else {
                 request.setAttribute("msg", "Confirm Order Failed Please Chose Address");
-                getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/ViewCart").forward(request, response);
             }
 
-            getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
-            return;
+            /*getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
+            return;*/
         } else {
             String check = "no";
             request.setAttribute("sas", check);

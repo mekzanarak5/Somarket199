@@ -70,7 +70,7 @@ public class Cart {
     }
 
     public void addDetail(int key) {
-        String sql = "insert into gadget_order2 values(?,?,?,?,?)";
+        String sql = "insert into order_product values(?,?,?,?)";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, getOrderId());
@@ -78,10 +78,10 @@ public class Cart {
             System.out.println(a);
             for (LineItem li : a) {
                 if (key == li.getProduct().getAcctID()) {
-                    ps.setInt(2, li.getUnit());
-                    ps.setString(3, li.getProduct().getName());
-                    ps.setDouble(4, li.getProduct().getPrice());
-                    ps.setDouble(5, li.getTotal());
+                    //ps.setInt(2, li.getUnit());
+                    ps.setInt(2, li.getProduct().getProductNO());
+                    ps.setDouble(3, li.getUnit());
+                    ps.setDouble(4, li.getTotal());
                     ps.executeUpdate();
                 }
             }
@@ -110,7 +110,7 @@ public class Cart {
     }
 
     public static int idGenerator() {
-        String sql = "select max(ORDER_ID) from gadget_order";
+        String sql = "SELECT MAX(ORDERNO) FROM ORDER_SUM";
         int result = 0;
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);

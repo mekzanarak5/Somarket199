@@ -27,9 +27,8 @@ import model.Product;
 public class ViewCart extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -38,7 +37,7 @@ public class ViewCart extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession s = request.getSession(false);
+        HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("cart") == null || ((Cart) s.getAttribute("cart")).getUnitItem() == 0) {
             request.setAttribute("msg", "Empty Cart ... Please add product to cart !!!");
             getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
@@ -56,30 +55,33 @@ public class ViewCart extends HttpServlet {
                 ArrayList<Product> p = new ArrayList<Product>();
                 // ตรงนี้ก็วนลูป items ทั้งหมด แล้วดึงเฉพาะตัวที้มี ownerId เป็น o (o = ownerId ในรอบปัจจุบันของลูป แล้วสั่ง p.add(productชิ้นนั้น); // ปิดลูป
                 for (LineItem li : cart.getLineItems()) {
-                    if(li.getProduct().getAcctID()==o){
+                    if (li.getProduct().getAcctID() == o) {
                         p.add(li.getProduct());
                     }
-                        
+
                 }
-                
+
                 map.put(o, p);
             }
             request.setAttribute("map", map);
-            Map<Integer,Double>price=new TreeMap<Integer,Double>();
-            for(int o:map.keySet()){
-                double sum=0;
-                for(Product p:map.get(o)){
-                    sum+=p.getPrice();
-                }price.put(o,sum);
-            }request.setAttribute("price", price);
-            
+            Map<Integer, Double> price = new TreeMap<Integer, Double>();
+            for (int o : map.keySet()) {
+                double sum = 0;
+                for (Product p : map.get(o)) {
+                    sum += p.getPrice();
+                }
+                price.put(o, sum);
+            }
+            s.setAttribute("price", price);
+
             getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -93,8 +95,7 @@ public class ViewCart extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

@@ -24,9 +24,11 @@ public class order {
    private double total;
    private String address;
    private Timestamp time;
+   private String payment;
    private String slip;
    private String status;
    private String ems;
+   private int acctno;
 
     public order() {
     }
@@ -42,6 +44,14 @@ public class order {
         this.ems = ems;
     }
 
+    public int getAcctno() {
+        return acctno;
+    }
+
+    public void setAcctno(int acctno) {
+        this.acctno = acctno;
+    }
+
     public Timestamp getTime() {
         return time;
     }
@@ -50,6 +60,14 @@ public class order {
         this.time = time;
     }
 
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+    
     public String getAddress() {
         return address;
     }
@@ -113,14 +131,19 @@ public class order {
     
     public int add(order o){
        int value = 0;
-       String sql = "insert into gadget_order values(?,?,?,CURRENT_TIMESTAMP,?,?,?,?)";
+       String sql = "insert into order_sum(OrderNo,AccountID,TotalPrice,Created,Detail,payment,slip,TrackingNo) values(?,?,?,CURRENT_TIMESTAMP,?,?,?,?)";
        try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, o.getOrderId());
-            ps.setString(2, o.getUsername());
-            ps.setString(3, o.getAddress());
-            ps.setDouble(4, o.getTotal());
-            ps.setString(5, "Not Paid");
+            ps.setInt(2, o.getAcctno());
+            //ps.setString(3, o.getAddress());
+            ps.setDouble(3, o.getTotal());
+            ps.setString(4, "Not Paid");
+            if (payment == null) {
+                ps.setNull(5, java.sql.Types.VARCHAR);
+            } else {
+                ps.setString(5, payment);
+            }
             if (slip == null) {
                 ps.setNull(6, java.sql.Types.VARCHAR);
             } else {
