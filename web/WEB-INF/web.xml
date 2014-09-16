@@ -188,6 +188,10 @@
         <servlet-name>DeleteBankServlet</servlet-name>
         <servlet-class>servlet.DeleteBankServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>servlet.UploadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -375,6 +379,10 @@
     <servlet-mapping>
         <servlet-name>DeleteBankServlet</servlet-name>
         <url-pattern>/DeleteBankServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
