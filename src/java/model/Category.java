@@ -32,7 +32,7 @@ public class Category {
         this.Value = Value;
     }
 
-    private Category() {
+    public Category() {
 
     }
 
@@ -195,10 +195,11 @@ public class Category {
                 newMemberID = 0;
             }
             ParentCateID = null;
-            PreparedStatement ps = con.prepareStatement("INSERT INTO ADDRESS VALUES (?,?,?,current_timestamp)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO category VALUES (?,?,?,current_timestamp,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, cateName);
             ps.setString(3, ParentCateID);
+            ps.setString(4, Value);
             row = ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -223,7 +224,7 @@ public class Category {
                 newMemberID = 0;
             }
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO ADDRESS VALUES (?,?,?,current_timestamp)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO category VALUES (?,?,?,current_timestamp,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, cateName);
             ps.setString(3, ParentCateID);
@@ -234,7 +235,21 @@ public class Category {
         }
         return row;
     }
+public static int lastid() {
+        Connection con = ConnectionAgent.getConnection();
+        int id = 0;
+        try {
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateid) FROM category where ParentCateID is null");
+            ResultSet rs = ps1.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
     private static void rToO(Category c, ResultSet rs) {
         try {
             c.setCateID(rs.getInt("CATEID"));

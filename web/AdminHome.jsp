@@ -124,7 +124,23 @@
                     </div>
                     <div class="tab-pane" id="product">...</div>
                     <div class="tab-pane" id="order">...</div>
-                    <div class="tab-pane" id="settings">...</div>
+                    <div class="tab-pane" id="settings">
+                        <form action="AddCategory" method="get" class="form-horizontal" style="margin-top: 50px">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">Category Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Category Name" name="cateName" required>
+                                    <input type="hidden" name="parentid" value="NULL">
+                                    <input type="hidden" name="value" value="NULL">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-info">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>  
         </div>
