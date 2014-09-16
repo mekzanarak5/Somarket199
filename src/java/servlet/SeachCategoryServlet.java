@@ -46,7 +46,7 @@ public class SeachCategoryServlet extends HttpServlet {
         List<Category> c3 = Category.findByParent(3);
         request.setAttribute("childCateID3", c3);
         
-        getServletContext().getRequestDispatcher("/post.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/postandpic.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

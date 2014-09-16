@@ -39,9 +39,9 @@ public class PageServlet extends HttpServlet {
         request.setAttribute("y", y);
         request.setAttribute("id", key);
         request.setAttribute("totalPage", totalPage);
-        request.setAttribute("products", Product.page(key, x, y));
+//        request.setAttribute("products", Product.page(key, x, y));
         request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
-        System.out.println(Product.page(key, x, y));
+//        System.out.println(Product.page(key, x, y));
         String url = request.getParameter("url");
         if (url == null) {
             getServletContext().getRequestDispatcher("/seach.jsp").forward(request, response);
