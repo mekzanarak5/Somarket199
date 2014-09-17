@@ -132,10 +132,8 @@ public class UploadServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(UploadServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            
             writer.write(json.toString());
             writer.close();
-            
         }
         
     }

@@ -94,7 +94,7 @@
                     <c:choose>
                         <c:when test="${x-y>=0}">
                             <td style="width: 50px;height: 20px;text-align: center ">
-                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x-y}&y=${y}">Prev</a></td> 
+                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x-y}&y=${y}&s=${s}">Prev</a></td> 
                             </c:when>
                             <c:otherwise>
                             <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
@@ -113,7 +113,7 @@
 
                             <c:otherwise>
                                 <td style="width: 50px;height: 20px;text-align: center ">
-                                    <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${y*(i-1)}&y=${y}">${i}</a>
+                                    <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${y*(i-1)}&y=${y}&s=${s}">${i}</a>
                                 </td>
                             </c:otherwise>
                         </c:choose>
@@ -123,7 +123,7 @@
                     <c:choose>
                         <c:when test="${currentPage<totalPage}">
                             <td style="width: 50px;height: 20px;text-align: center ">
-                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x+y}&y=${y}">Next</a></td> 
+                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x+y}&y=${y}&s=${s}">Next</a></td> 
                             </c:when>
                             <c:otherwise>
                             <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">

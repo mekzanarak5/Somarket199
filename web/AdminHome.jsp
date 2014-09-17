@@ -80,10 +80,11 @@
             </div>
             <div class="col-md-12" style="margin-top: 50px">   
                 <ul class="nav nav-tabs" style="text-align: center" role="tablist">
-                    <li class="active col-md-3"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
-                    <li class="col-md-3"><a href="#product" role="tab" data-toggle="tab">Product</a></li>
-                    <li class="col-md-3"><a href="#order" role="tab" data-toggle="tab">Order</a></li>
-                    <li class="col-md-3"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+                    <li class="active col-md-2"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
+                    <li class="col-md-2"><a href="#product" role="tab" data-toggle="tab">Product</a></li>
+                    <li class="col-md-2"><a href="#order" role="tab" data-toggle="tab">Order</a></li>
+                    <li class="col-md-2"><a href="#report" role="tab" data-toggle="tab">Report</a></li>
+                    <li class="col-md-2"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" style="margin-top: 50px" id="account">
@@ -124,6 +125,41 @@
                     </div>
                     <div class="tab-pane" id="product">...</div>
                     <div class="tab-pane" id="order">...</div>
+                    <div class="tab-pane" id="order">
+                        <div class="row">
+                            <h3 class="col-md-2">PM</h3>
+                            <div class="col-md-1" style="margin-top: 30px">
+                                <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-primary">Inbox</button></a>
+                            </div>
+                            <div class="col-md-3" style="margin-top: 30px">
+                                <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-default">Sent</button></a>
+                            </div>
+                            <form action="DeleteMessageServlet" method="get">
+                                <div class="col-md-12">
+                                    <table class="table table-striped" style="text-align: center">
+                                        <tr bgColor="#ffffff">
+                                        <input type="hidden" name="acctid" value="${user.account_Id}">
+                                        <td>Sender</td>
+                                        <td>Subject</td>
+                                        <td>Time</td>
+                                        <td><button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
+                                        </tr>
+                                        <c:forEach items="${pm}" var="a">
+                                            <tr>
+                                                <td><a href="#">${a.username}</a></td>
+                                                <td><a href="ReplayServlet?id=${a.msgID}">${a.subject}</a></td>
+                                                <td>${a.time}</td>
+                                                <td><botton  class="checkbox"  for="checkbox1">
+                                                <input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox">
+                                            </botton>
+                                            </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="tab-pane" id="settings">
                         <form action="AddCategory" method="get" class="form-horizontal" style="margin-top: 50px">
                             <div class="form-group">
@@ -135,10 +171,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-info">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-info">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                </div>
                             </div>
-                        </div>
                         </form>
                     </div>
                 </div>
