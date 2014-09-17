@@ -123,17 +123,49 @@
                             }
                         </script>
                     </div>
-                    <div class="tab-pane" id="product">...</div>
+                    <div class="tab-pane" id="product">
+                    <div class="row">
+                            <h3 class="col-md-2">Product</h3>
+                            <form action="DeleteMessageServlet" method="get">
+                                <div class="col-md-12">
+                                    <table class="table table-striped" style="text-align: center">
+                                    <tr bgColor="#ffffff">
+                                        <td>Account ID</td>
+                                        <td>Category</td>
+                                        <td>Name</td>
+                                        <td>Price</td>
+                                        <td>CreateOn</td>
+                                        <td>Manage Post</td>
+                                    </tr>
+                                    <c:forEach items="${pro}" var="a">
+                                        <tr>
+                                            <td>${a.acctID}</td>
+                                            <td>${a.category_ID}</td>
+                                            <td>${a.name}</td>
+                                            <td>${a.price}</td>
+                                            <td>${a.createOn}</td>
+                                            <td width="20%">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                        Manage Post <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="EditShowAddress?addid=">Edit</a></li>
+                                                        <li><a href="DeleteAddressServlet?id=&acctid=">Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="tab-pane" id="order">...</div>
-                    <div class="tab-pane" id="order">
+                    <div class="tab-pane" id="report">
                         <div class="row">
-                            <h3 class="col-md-2">PM</h3>
-                            <div class="col-md-1" style="margin-top: 30px">
-                                <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-primary">Inbox</button></a>
-                            </div>
-                            <div class="col-md-3" style="margin-top: 30px">
-                                <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-default">Sent</button></a>
-                            </div>
+                            <h3 class="col-md-2">Report</h3>
                             <form action="DeleteMessageServlet" method="get">
                                 <div class="col-md-12">
                                     <table class="table table-striped" style="text-align: center">

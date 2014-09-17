@@ -119,14 +119,14 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MSGID) AS LastMemberID FROM MESSAGE");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MSGID) AS LastMemberID FROM PM");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
             } else {
                 newMemberID = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO MESSAGE VALUES (?,?,?,?,?,current_timestamp,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO PM VALUES (?,?,?,?,?,current_timestamp,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, subject);
             ps.setInt(3, sender);
@@ -143,7 +143,7 @@ public class Message {
     }
 
     public static List<Message> findReceiver(int str) {
-        String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.Receiver = ? ";
+        String sqlCmd = "SELECT * from Account a , PM m where m.sender = a.Account_Id AND m.Receiver = ? ";
         Connection con = ConnectionAgent.getConnection();
 
         Message c = null;
@@ -164,7 +164,7 @@ public class Message {
     }
 
     public static List<Message> findSender(int str) {
-        String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.sender = ? ";
+        String sqlCmd = "SELECT * from Account a , PM m where m.sender = a.Account_Id AND m.sender = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -184,7 +184,7 @@ public class Message {
     }
 
     public static Message findSender2(int str) {
-        String sqlCmd = "SELECT * from Account a , Message m where m.sender = a.Account_Id AND m.msgid = ? ";
+        String sqlCmd = "SELECT * from Account a , PM m where m.sender = a.Account_Id AND m.msgid = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         try {
@@ -206,7 +206,7 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM MESSAGE WHERE msgID=?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM PM WHERE msgID=?");
             ps.setString(1, pmid);
             row = ps.executeUpdate();
 
@@ -217,7 +217,7 @@ public class Message {
     }
 
     public static int findCount(int str) {
-        String sqlCmd = "SELECT count(*) FROM MESSAGE WHERE receiver = ? and isread = 1";
+        String sqlCmd = "SELECT count(*) FROM PM WHERE receiver = ? and isread = 1";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Message> cs = new ArrayList<Message>();
@@ -238,7 +238,7 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE MESSAGE SET isread=0  WHERE msgID=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE PM SET isread=0  WHERE msgID=?");
             ps.setInt(1, msg);
             row = ps.executeUpdate();
 

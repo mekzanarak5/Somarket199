@@ -52,7 +52,7 @@
                     <br />
                 </div>
                 <div class="col-md-1">
-                    <a href=""><button type="button" class="btn btn-danger">Report</button></a>
+                    <a href="AdminGetProId?proid=${showDetail.productNO}"><button type="button" class="btn btn-danger">Report</button></a>
                     <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-warning" style="margin-top: 5px">Add to WishList<span class="fui-heart"></button></a>
                 </div>
             </div>
