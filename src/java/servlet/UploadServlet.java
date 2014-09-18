@@ -30,7 +30,7 @@ public class UploadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (request.getParameter("getfile") != null && !request.getParameter("getfile").isEmpty()) {
-            File file = new File("/Users/Admin/Downloads/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/" + request.getParameter("getfile"));
+            File file = new File(request.getServletContext().getRealPath("/")+"pic/upload" + request.getParameter("getfile"));
             if (file.exists()) {
                 int bytes = 0;
                 ServletOutputStream op = response.getOutputStream();
@@ -51,12 +51,12 @@ public class UploadServlet extends HttpServlet {
                 op.close();
             }
         } else if (request.getParameter("delfile") != null && !request.getParameter("delfile").isEmpty()) {
-            File file = new File("/Users/Admin/Downloads/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/" + request.getParameter("delfile"));
+            File file = new File(request.getServletContext().getRealPath("/")+"pic/upload" + request.getParameter("delfile"));
             if (file.exists()) {
                 file.delete(); // TODO:check and report success
             }
         } else if (request.getParameter("getthumb") != null && !request.getParameter("getthumb").isEmpty()) {
-            File file = new File("/Users/Admin/Downloads/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/" + request.getParameter("getthumb"));
+            File file = new File(request.getServletContext().getRealPath("/")+"pic/upload" + request.getParameter("getthumb"));
             if (file.exists()) {
                 System.out.println(file.getAbsolutePath());
                 String mimetype = getMimeType(file);
@@ -114,7 +114,7 @@ public class UploadServlet extends HttpServlet {
             List<FileItem> items = uploadHandler.parseRequest(request);
             for (FileItem item : items) {
                 if (!item.isFormField()) {
-                    File file = new File("/Users/Admin/Downloads/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/", item.getName());
+                    File file = new File(request.getServletContext().getRealPath("/")+"pic/upload", item.getName());
                     item.write(file);
                     JSONObject jsono = new JSONObject();
                     jsono.put("name", item.getName());
@@ -123,7 +123,7 @@ public class UploadServlet extends HttpServlet {
                     jsono.put("thumbnail_url", "UploadServlet?getthumb=" + item.getName());
                     jsono.put("delete_url", "UploadServlet?delfile=" + item.getName());
                     jsono.put("delete_type", "GET");
-                    json.put(jsono);
+                    json.put(jsono);                    
                     System.out.println(json.toString());
                 }
             }
@@ -135,7 +135,6 @@ public class UploadServlet extends HttpServlet {
             writer.write(json.toString());
             writer.close();
         }
-        
     }
 
     private String getMimeType(File file) {

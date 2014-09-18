@@ -12,12 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
+
 /**
  *
  * @author Admin
  */
-public class AddCategory extends HttpServlet {
+public class AdminAddCategorySmall extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,14 +30,14 @@ public class AddCategory extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String cateName = request.getParameter("cateName");
+        String cateName = request.getParameter("cateName");
        String parentid = request.getParameter("parentid");
        String value = request.getParameter("value");
        String msg = "";
         Boolean complete = false;
        model.Category a = new model.Category();
 
-        int row =  a.addCatBig(cateName, parentid, value);
+        int row =  a.addCatSmall(cateName, parentid, value);
         if (row == 1) {
             msg = "Congratulations, GoToTheSell!";
             request.setAttribute("msg", msg);
@@ -53,7 +53,7 @@ public class AddCategory extends HttpServlet {
             request.setAttribute("lastid", a.lastid());
             getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
         } else {
-            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/AdminHome.jsp").forward(request, response);
         }
     }
 

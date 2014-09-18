@@ -220,6 +220,14 @@
         <servlet-name>AdminShowCategory</servlet-name>
         <servlet-class>servlet.AdminShowCategory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteProduct</servlet-name>
+        <servlet-class>servlet.AdminDeleteProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddCategorySmall</servlet-name>
+        <servlet-class>servlet.AdminAddCategorySmall</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -439,6 +447,14 @@
     <servlet-mapping>
         <servlet-name>AdminShowCategory</servlet-name>
         <url-pattern>/AdminShowCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteProduct</servlet-name>
+        <url-pattern>/AdminDeleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddCategorySmall</servlet-name>
+        <url-pattern>/AdminAddCategorySmall</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

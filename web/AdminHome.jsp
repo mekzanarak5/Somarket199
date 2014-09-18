@@ -147,6 +147,7 @@
                                                 <td width="20%">
                                                     <div class="btn-group">                                              
                                                         <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-primary">Edit</button></a>
+                                                        <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-danger">Delete</button></a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -188,10 +189,30 @@
                     <div class="tab-pane" id="settings">
                         <form action="AddCategory" method="get" class="form-horizontal" style="margin-top: 50px">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Category Name</label>
+                                <label for="inputEmail3" class="col-sm-3 control-label">Big Category Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Category Name" name="cateName" required>
                                     <input type="hidden" name="parentid" value="NULL">
+                                    <input type="hidden" name="value" value="NULL">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-info">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="AdminAddCategorySmall" method="get" class="form-horizontal" style="margin-top: 50px">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">Small Category Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Category Name" name="cateName" required>
+                                    <select name="parentid" class="form-control">
+                                    <option value="">--</option>
+                                    <c:forEach items="${cateID}" var="a">
+                                        <option value="${a.cateID}">${a.cateName}</option>
+                                    </c:forEach>
+                                </select>
                                     <input type="hidden" name="value" value="NULL">
                                 </div>
                             </div>

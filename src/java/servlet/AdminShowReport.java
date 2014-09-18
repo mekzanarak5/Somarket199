@@ -39,6 +39,8 @@ public class AdminShowReport extends HttpServlet {
         List<Message> p1 = Message.findReceiver(0);
         request.setAttribute("pm", p1);
         
+        List<Category> c = Category.findBigAll();
+        request.setAttribute("cateID", c);
         getServletContext().getRequestDispatcher("/AdminHome.jsp").forward(request, response);
     }
 

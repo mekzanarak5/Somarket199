@@ -12,12 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
+import model.Address;
+import model.Product;
+
 /**
  *
  * @author Admin
  */
-public class AddCategory extends HttpServlet {
+public class AdminDeleteProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,31 +32,12 @@ public class AddCategory extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String cateName = request.getParameter("cateName");
-       String parentid = request.getParameter("parentid");
-       String value = request.getParameter("value");
-       String msg = "";
-        Boolean complete = false;
-       model.Category a = new model.Category();
-
-        int row =  a.addCatBig(cateName, parentid, value);
-        if (row == 1) {
-            msg = "Congratulations, GoToTheSell!";
-            request.setAttribute("msg", msg);
-            complete = true;
-
-        } else {
-            msg = "Database is not updated, please contact administrator.";
-            request.setAttribute("msg", msg);
-            complete = false;
-        }
-
-        if (complete) {
-            request.setAttribute("lastid", a.lastid());
-            getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-        }
+        String id = request.getParameter("id");
+        String acctid = request.getParameter("acctid");
+        Product c = new Product();
+        c.deleteProduct(id);
+        request.setAttribute("add", c);
+        getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
