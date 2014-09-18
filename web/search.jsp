@@ -26,7 +26,7 @@
         </div>
         <div class="col-md-9">
             <jsp:include page="header.jsp"/>
-            <% String url = request.getRequestURI();%>
+            <%-- String url = request.getRequestURI();--%>
             <div class="col-md-12">
                 <div class="col-md-8">
                     <ol class="breadcrumb">
@@ -67,7 +67,7 @@
                             <h3 class="col-md-12">Search</h3>
                             <div class="row">
                                 <c:forEach items="${products}" var="a">
-                                    <form action="AddToCart" method="get"> 
+                                    <form action="AddToCart" method="get">
                                         <div class="col-sm-4">
                                             <div class="thumbnail">
                                                 <img data-src="holder.js/300x300" alt="...">

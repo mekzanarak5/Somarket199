@@ -162,7 +162,7 @@ public class order {
     }
     
     public static void update(String kind, String key) {
-        String sql= "update gadget_order set" + kind + " = ?";
+        String sql= "update order_sum set" + kind + " = ?";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, key);
@@ -172,7 +172,7 @@ public class order {
     }
     
     public static void delete(int id) {
-        String sql = "delete from gadget_order where order_id = ?";
+        String sql = "delete from order_sum where orderno = ?";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, id);
@@ -182,13 +182,13 @@ public class order {
         }
     }
      
-    public static ArrayList<order> getOrderList(String user) {
+    public static ArrayList<order> getOrderList(int acctno) {
         ArrayList<order> arr = new ArrayList<order>();
-        String sql = "select * from gadget_order where username like ? order by order_id";
+        String sql = "select * from order_sum where accountid like ? order by orderno";
         PreparedStatement ps;
        try {
            ps = ConnectionAgent.getConnection().prepareStatement(sql);
-           ps.setString(1, user);
+           ps.setInt(1, acctno);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 order o = new order();
@@ -204,17 +204,17 @@ public class order {
        }
         return arr;
     }
-    public static double getTotalPriceOrder(String username) {
-        String sql = "select sum(o.total_price)\n"
-                + "from gadget_order2 o\n"
-                + "join gadget_order c on o.ORDER_ID = c.ORDER_ID \n"
-                + "where username= ?";
+    public static double getTotalPriceOrder(int acctno) {
+        String sql = "select sum(o.total)\n"
+                + "from order_product o\n"
+                + "join order_sum c on o.ORDER_id = c.ORDERno \n"
+                + "where accountid = ?";
               
         double result = 0;
         PreparedStatement ps;
         try {
             ps = ConnectionAgent.getConnection().prepareStatement(sql);
-            ps.setString(1, username);
+            ps.setInt(1, acctno);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 result = rs.getDouble(1);
@@ -226,7 +226,7 @@ public class order {
     }
     
     public static int getLastedID() {
-        String sqlCmd = "select MAX(order_id) from gadget_order";
+        String sqlCmd = "select MAX(orderno) from order_sum";
         int value = 1;
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sqlCmd);
@@ -242,7 +242,7 @@ public class order {
     
     public static ArrayList<order> search(String key, String kind) {
         ArrayList<order> o = new ArrayList<order>();
-        String sql = "select * from gadget_order where " + kind + "=? order by time";
+        String sql = "select * from order_sum where " + kind + "=? order by created";
         try {
            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, key);
@@ -258,7 +258,7 @@ public class order {
     
     public static order searchByID(int id){
         order o = null;
-        String sql = "select * from gadget_order where order_id= ?";
+        String sql = "select * from order_sum where orderno = ?";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, id);
@@ -293,7 +293,7 @@ public class order {
     }
      
      public static void addSlip(int order_id, String slip){
-         String sql = "update gadget_order set slip=?, ems = ? where order_id = ?";
+         String sql = "update order_sum set slip=? where orderno = ?";
        try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, slip);
@@ -304,12 +304,12 @@ public class order {
         }
    }
      
-      public static void addEms(int order_id,String status,String slip){
-          String sql = "update gadget_order set status=?, ems = ? where order_id = ?";
+      public static void addEms(int order_id,String status,String ems){
+          String sql = "update order_sum set detail = ?, trackingno = ? where orderno = ?";
        try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, status);
-            ps.setString(2, slip);
+            ps.setString(2, ems);
             ps.setInt(3, order_id);
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -320,7 +320,7 @@ public class order {
       public static List<order> showAll() {
         order o = null;
         List<order> cs = new ArrayList<order>();
-        String sql = "select * from gadget_order order by time desc";
+        String sql = "select * from order_sum order by created desc";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

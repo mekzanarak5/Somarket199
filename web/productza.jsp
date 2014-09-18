@@ -46,9 +46,9 @@
                     <a href="GetReceiverServlet?acctid=${showName.account_Id}" class="list-group-item">
                         <h6 class="list-group-item-heading">Send Private Message</h6>
                     </a>
-                        <div class="list-group-item">
+                    <div class="list-group-item">
                         <div class="fb-share-button" data-href="http://www.google.co.th"></div>
-                        </div>
+                    </div>
                     <br />
                 </div>
                 <div class="col-md-1">
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-md-12" style="margin-top: 50px">
-                <form class="form-horizontal" role="form">
+                <form action="AddToCart" method="get" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">Product</label>
                         <div class="col-sm-7">
@@ -77,7 +77,13 @@
                         </div>
                     </div>
                     <div class="well col-md-6" style="margin: auto;float: none">
-                        <a href="AddToCart?productId=${showDetail.productNO}&acctid=${showName.account_Id}"><button type="button" class="btn btn-primary btn-lg btn-block">Add To Cart</button></a>
+                        <!--<form action="AddToCart" method="get"> -->
+                        <input type="hidden" name="url" />
+                        <input type="hidden" name="productId" value="${showDetail.productNO}" />
+                        <input type="hidden" name="acctid" value="${showName.account_Id}" />
+                        <button role="button" class="btn btn-primary btn-lg btn-block">Add To Cart</button>
+                        <%--<a href="AddToCart?productId=${showDetail.productNO}&acctid=${showName.account_Id}">--%><!--</a>-->
+                        <!--</form>-->
                     </div>
                 </form>
             </div>
@@ -102,6 +108,14 @@
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <div id="fb-root"></div>
+        <script>
+            $(function() {
+                $('.ui.accordion').accordion();
+            });
+            $(document).ready(function() {
+                $('input[name=url]').val((window.location.href.toString()));
+            });
+        </script>
         <script>(function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id))
