@@ -216,6 +216,10 @@
         <servlet-name>AdminEditCategory</servlet-name>
         <servlet-class>servlet.AdminEditCategory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminShowCategory</servlet-name>
+        <servlet-class>servlet.AdminShowCategory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -431,6 +435,10 @@
     <servlet-mapping>
         <servlet-name>AdminEditCategory</servlet-name>
         <url-pattern>/AdminEditCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminShowCategory</servlet-name>
+        <url-pattern>/AdminShowCategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

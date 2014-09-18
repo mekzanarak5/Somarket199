@@ -8,18 +8,20 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Address;
+import javax.servlet.http.HttpSession;
+import model.Category;
 import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class AdminEditCategory extends HttpServlet {
+public class AdminShowCategory extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,11 +35,23 @@ public class AdminEditCategory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int proid = Integer.parseInt(request.getParameter("proid"));
-        int cat = Integer.parseInt(request.getParameter("cata"));
-        Product c = new Product();
-        c.editCategory(proid, cat);
-        request.setAttribute("edit", c);
-        getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
+        Product p = new Product();
+        p.showDetail(proid);
+        HttpSession s1 = request.getSession();
+        s1.setAttribute("pro", proid);
+        
+        List<Category> c = Category.findBigAll();
+        request.setAttribute("cateID", c);
+        
+        List<Category> c1 = Category.findByParent(1);
+        request.setAttribute("childCateID1", c1);
+        
+        List<Category> c2 = Category.findByParent(2);
+        request.setAttribute("childCateID2", c2);
+        
+        List<Category> c3 = Category.findByParent(3);
+        request.setAttribute("childCateID3", c3);
+        getServletContext().getRequestDispatcher("/AdminEditCategory.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

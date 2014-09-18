@@ -455,8 +455,9 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE product SET category=? WHERE productNO=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE product SET Category_ID=? WHERE productNO=?");
             ps.setInt(1, cat);
+            ps.setInt(2, proid);
             row = ps.executeUpdate();
 
         } catch (SQLException ex) {

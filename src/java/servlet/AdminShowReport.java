@@ -38,17 +38,7 @@ public class AdminShowReport extends HttpServlet {
         request.setAttribute("pro", p);
         List<Message> p1 = Message.findReceiver(0);
         request.setAttribute("pm", p1);
-        List<Category> c = Category.findBigAll();
-        request.setAttribute("cateID", c);
         
-        List<Category> c1 = Category.findByParent(1);
-        request.setAttribute("childCateID1", c1);
-        
-        List<Category> c2 = Category.findByParent(2);
-        request.setAttribute("childCateID2", c2);
-        
-        List<Category> c3 = Category.findByParent(3);
-        request.setAttribute("childCateID3", c3);
         getServletContext().getRequestDispatcher("/AdminHome.jsp").forward(request, response);
     }
 

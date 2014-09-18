@@ -56,7 +56,7 @@ public class AddToCart extends HttpServlet {
             //}
         request.setAttribute("msg","Add " + tmp.getName() + " Complete");
         //String key = request.getParameter("keySearch");
-        String key = request.getParameter("productId");
+//        String key = request.getParameter("productId");
         response.sendRedirect(url);
         //getServletContext().getRequestDispatcher(url)/*("/ShowDetailServlet?productId="+key)*/.forward(request, response);
 
