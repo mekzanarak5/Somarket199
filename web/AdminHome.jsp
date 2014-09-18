@@ -124,11 +124,10 @@
                         </script>
                     </div>
                     <div class="tab-pane" id="product">
-                    <div class="row">
+                        <div class="row">
                             <h3 class="col-md-2">Product</h3>
-                            <form action="DeleteMessageServlet" method="get">
-                                <div class="col-md-12">
-                                    <table class="table table-striped" style="text-align: center">
+                            <div class="col-md-12">
+                                <table class="table table-striped" style="text-align: center">
                                     <tr bgColor="#ffffff">
                                         <td>Account ID</td>
                                         <td>Category</td>
@@ -146,20 +145,55 @@
                                             <td>${a.createOn}</td>
                                             <td width="20%">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                        Manage Post <span class="caret"></span>
-                                                    </button>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="EditShowAddress?addid=">Edit</a></li>
-                                                        <li><a href="DeleteAddressServlet?id=&acctid=">Delete</a></li>
-                                                    </ul>
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Edit</button>
+
                                                 </div>
                                             </td>
                                         </tr>
                                     </c:forEach>
+                                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-12"><h4>Category</h4></label>
+                                                    <form action="AdminEditCategory" method="get">
+                                                        <c:forEach items="${pro}" var="a">
+                                                        <input type="hidden" name="proid" value="${a.productNO}">
+                                                        </c:forEach>
+                                                        <div class="row">
+                                                            <div class="col-sm-offset-1 col-md-3">
+                                                                <select id="mark" class="form-control">
+                                                                    <option value="">--</option>
+                                                                    <c:forEach items="${cateID}" var="a">
+                                                                        <option value="${a.cateID}">${a.cateName}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-3" >
+                                                                <select id="series" class="form-control" name="cata">
+                                                                    <option value="">--</option>
+                                                                    <c:forEach items="${childCateID1}" var="a">
+                                                                        <option value="${a.cateID}" class="1">${a.cateName}</option>
+                                                                    </c:forEach>
+                                                                    <c:forEach items="${childCateID2}" var="a">
+                                                                        <option value="${a.cateID}" class="2">${a.cateName}</option>
+                                                                    </c:forEach>
+                                                                    <c:forEach items="${childCateID3}" var="a">
+                                                                        <option value="${a.cateID}" class="3">${a.cateName}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-3" >
+                                                                <button class="btn btn-primary">Change</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </table>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="order">...</div>
@@ -213,7 +247,7 @@
             </div>  
         </div>
 
-        <script src="js/jasny-bootstrap.min.js"></script>
+        <!--<script src="js/jasny-bootstrap.min.js"></script>-->
         <script src="js/dropdown.js"></script>
         <script src="js/semantic.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -235,6 +269,11 @@
                                         .tab('activate navigation', 'third')
                                         ;
                             });
+        </script>
+        <script>
+            $(function() {
+                $("#series").chainedTo("#mark");
+            });
         </script>
     </body>
 </html>

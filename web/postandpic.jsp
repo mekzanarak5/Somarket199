@@ -228,9 +228,9 @@
         <script src="js/application.js"></script>
         <script src="js/chained.js"></script>
         <script>
-$(function() {
-    $("#series").chainedTo("#mark");
-});
+            $(function() {
+                $("#series").chainedTo("#mark");
+            });
         </script>
     </body> 
 </html>

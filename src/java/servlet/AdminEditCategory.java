@@ -8,20 +8,18 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
-import model.Message;
+import model.Address;
 import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class AdminShowReport extends HttpServlet {
+public class AdminEditCategory extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,22 +32,12 @@ public class AdminShowReport extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> p = Product.showProduct();
-        request.setAttribute("pro", p);
-        List<Message> p1 = Message.findReceiver(0);
-        request.setAttribute("pm", p1);
-        List<Category> c = Category.findBigAll();
-        request.setAttribute("cateID", c);
-        
-        List<Category> c1 = Category.findByParent(1);
-        request.setAttribute("childCateID1", c1);
-        
-        List<Category> c2 = Category.findByParent(2);
-        request.setAttribute("childCateID2", c2);
-        
-        List<Category> c3 = Category.findByParent(3);
-        request.setAttribute("childCateID3", c3);
-        getServletContext().getRequestDispatcher("/AdminHome.jsp").forward(request, response);
+        int proid = Integer.parseInt(request.getParameter("proid"));
+        int cat = Integer.parseInt(request.getParameter("cate"));
+        Product c = new Product();
+        c.editCategory(proid, cat);
+        request.setAttribute("edit", c);
+        getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

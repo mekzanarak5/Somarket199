@@ -450,6 +450,21 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
         return 0;
     }
 
+      public static int editCategory(int proid,int cat) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE product SET category=? WHERE productNO=?");
+            ps.setInt(1, cat);
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
     private static void rToO(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productno"));

@@ -212,6 +212,10 @@
         <servlet-name>AdminShowReport</servlet-name>
         <servlet-class>servlet.AdminShowReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminEditCategory</servlet-name>
+        <servlet-class>servlet.AdminEditCategory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -423,6 +427,10 @@
     <servlet-mapping>
         <servlet-name>AdminShowReport</servlet-name>
         <url-pattern>/AdminShowReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditCategory</servlet-name>
+        <url-pattern>/AdminEditCategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
