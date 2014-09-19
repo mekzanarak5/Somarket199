@@ -28,10 +28,10 @@
             </div>  
             <div class="col-md-12" align="center">
                 <div class="col-md-5">
-                    <img name="Image" src="img/ip1.jpeg" width="250" height="250"><br /><br /> 
-                    <a onclick="ChangeImage('img/ip1.jpeg')"><img src="img/ip1.jpeg" width="50" height="50"></a> 
-                    <a onclick="ChangeImage('img/ip2.jpeg')"><img src="img/ip2.jpeg" width="50" height="50"></a> 
-                    <a onclick="ChangeImage('img/ip3.jpeg')"><img src="img/ip3.jpeg" width="50" height="50"></a> 
+                    <img name="Image" src="${pic1.pathFile}" width="250" height="250"><br /><br /> 
+                    <c:forEach items="${pic}" var="a">
+                    <a onclick="ChangeImage('${a.pathFile}')"><img src="${a.pathFile}" width="50" height="50"></a> 
+                    </c:forEach>
                 </div>
                 <div class="col-md-6">
                     <a href="#" class="list-group-item active">

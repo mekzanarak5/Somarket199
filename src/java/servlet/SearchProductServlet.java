@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Category;
 import model.Product;
+import model.ProductPic;
 
 /**
  *
@@ -36,22 +37,23 @@ public class SearchProductServlet extends HttpServlet {
         String sid = request.getParameter("id");
         String cat = request.getParameter("herolist");
         String xx = request.getParameter("x");
+        Product pp = new Product();
         int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
         int y = Integer.parseInt(request.getParameter("y"));
-        int totalPage = (int) Math.ceil((Product.countRow(sid) * 1.0) / y);
+        int totalPage = (int) Math.ceil((pp.countRow(sid) * 1.0) / y);
         String sort = request.getParameter("s");
         request.setAttribute("x", x);
         request.setAttribute("y", y);
         request.setAttribute("id", sid);
         request.setAttribute("totalPage", totalPage);
         if(sort.equalsIgnoreCase("a")){
-        request.setAttribute("products", Product.page(sid,cat, x, y));
+        request.setAttribute("products", pp.page(sid,cat, x, y));
         }
         if(sort.equalsIgnoreCase("h")){
-            request.setAttribute("products", Product.highPrice(sid,cat, x, y));
+            request.setAttribute("products", pp.highPrice(sid,cat, x, y));
         }
         if(sort.equalsIgnoreCase("l")){
-            request.setAttribute("products", Product.LowPrice(sid,cat, x, y));
+            request.setAttribute("products", pp.LowPrice(sid,cat, x, y));
         }
         request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
         String url = request.getParameter("url");                        

@@ -228,6 +228,14 @@
         <servlet-name>AdminAddCategorySmall</servlet-name>
         <servlet-class>servlet.AdminAddCategorySmall</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProfilePic</servlet-name>
+        <servlet-class>servlet.AddProfilePic</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductPic</servlet-name>
+        <servlet-class>servlet.AddProductPic</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -456,9 +464,24 @@
         <servlet-name>AdminAddCategorySmall</servlet-name>
         <url-pattern>/AdminAddCategorySmall</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProfilePic</servlet-name>
+        <url-pattern>/AddProfilePic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductPic</servlet-name>
+        <url-pattern>/AddProductPic</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+         /Users/Admin/Downloads/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/
+     </param-value>
+    </context-param>
 </web-app>

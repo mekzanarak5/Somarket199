@@ -66,11 +66,14 @@
                         <div class="row">
                             <h3 class="col-md-12">Search</h3>
                             <div class="row">
-                                <c:forEach items="${products}" var="a">
+                                
                                     <form action="AddToCart" method="get">
                                         <div class="col-sm-4">
                                             <div class="thumbnail">
-                                                <img data-src="holder.js/300x300" alt="...">
+                                                <c:forEach items="${pic}" var="a">
+                                                <img src="${a.pathFile}" alt="...">
+                                                </c:forEach>
+                                                <c:forEach items="${products}" var="a">
                                                 <div class="caption" >
                                                     <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p><p>${a.price}0฿</p></a>                                      
                                                     <input type="hidden" name="url" />
@@ -79,10 +82,11 @@
 
                                                     <p><button class="btn btn-primary" role="button">Add to cart</button> <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
                                                 </div>
+                                                </c:forEach>
                                             </div>
                                         </div>
                                     </form>
-                                </c:forEach>
+                                
                                 <%-- out.print(url); --%>
                             </div>
                         </div>

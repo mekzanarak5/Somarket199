@@ -28,7 +28,24 @@ public class Accounts {
     private String LastName;
     private String Phone;
     private String Created;
+    private String Pic;
 
+    public Accounts() {
+    }
+
+    public Accounts(int Account_Id, String Username, String Password, String Email, String dispName, String FirstName, String LastName, String Phone, String Created, String Pic) {
+        this.Account_Id = Account_Id;
+        this.Username = Username;
+        this.Password = Password;
+        this.Email = Email;
+        this.dispName = dispName;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.Phone = Phone;
+        this.Created = Created;
+        this.Pic = Pic;
+    }
+    
     public int getAccount_Id() {
         return Account_Id;
     }
@@ -101,10 +118,14 @@ public class Accounts {
         this.Created = Created;
     }
 
-    @Override
-    public String toString() {
-        return "Accounts{" + "Account_Id=" + Account_Id + ", Username=" + Username + ", Password=" + Password + ", Email=" + Email + ", dispName=" + dispName + ", FirstName=" + FirstName + ", LastName=" + LastName + ", Phone=" + Phone + ", Created=" + Created + '}';
+    public String getPic() {
+        return Pic;
     }
+
+    public void setPic(String Pic) {
+        this.Pic = Pic;
+    }
+    
 
     public static int addAccount(String Username, String Password, String Email, String dispName,
             String FirstName, String LastName, String Phone, String Created) {
@@ -201,6 +222,40 @@ public class Accounts {
         }
         return a;
     }
+    public static Accounts findById3(String id) {
+        String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Accounts a = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                a = new Accounts();
+                rToO(a, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
+    public static Accounts findPic(int id) {
+        String sqlCmd = "SELECT pic FROM ACCOUNT WHERE account_ID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Accounts a = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                a = new Accounts();
+                rToO(a, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
 
     public static int editProfile(String dispname, String firstname, String lastname, String phone, int acctid) {
         int row = 0;
@@ -250,6 +305,7 @@ public class Accounts {
             a.setLastName(rs.getString("LASTNAME"));
             a.setPhone(rs.getString("PHONE"));
             a.setCreated(rs.getString("CREATED"));
+            a.setPic(rs.getString("PIC"));
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -292,6 +348,7 @@ public class Accounts {
         }
         return row;
     }
+    
 
     public boolean login(String username, String password) {
         String sql = "select password from account where username = ?";

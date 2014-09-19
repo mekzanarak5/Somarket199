@@ -29,6 +29,7 @@
         <!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
         <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <jsp:include page="cssup.jsp"/>
+        <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
@@ -214,6 +215,7 @@
         <script src="js1/jquery.fileupload-ui.js"></script>
         <script src="js1/locale.js"></script>
         <script src="js1/main.js"></script>
+        <script src="js1/fileinput.js" type="text/javascript"></script>
 
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
@@ -227,9 +229,37 @@
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script src="js/chained.js"></script>
+
         <script>
             $(function() {
                 $("#series").chainedTo("#mark");
+            });
+        </script>
+        <form action="AddProfilePic" method="post"
+              enctype="multipart/form-data">
+         <div class="form-group">            
+                    <input id="file-3" type="file" name="file" multiple=true>
+                    <input type="hidden" name="id" value="${user.account_Id}"/>
+                </div>
+                </form>
+        <script>
+            $("#file-1").fileinput({
+                initialPreview: ["<img src='Desert.jpg' class='file-preview-image'>", "<img src='Jellyfish.jpg' class='file-preview-image'>"],
+                overwriteInitial: false,
+                maxFileSize: 100,
+                maxFilesNum: 10
+            });
+            $("#file-3").fileinput({
+                showCaption: false,
+                browseClass: "btn btn-primary btn-lg",
+                fileType: "any"
+            });
+            $(".btn-warning").on('click', function() {
+                if ($('#file-4').attr('disabled')) {
+                    $('#file-4').fileinput('enable');
+                } else {
+                    $('#file-4').fileinput('disable');
+                }
             });
         </script>
     </body> 

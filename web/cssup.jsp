@@ -13,3 +13,5 @@
 <script type="text/javascript" src="js/uilang.js"></script>
 <!--<script type="text/javascript" src="js/bootstrap.js"></script>-->
 <script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
+

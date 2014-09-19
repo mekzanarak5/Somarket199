@@ -1,3 +1,4 @@
+<%@page import="model.Accounts"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
@@ -37,45 +39,7 @@
                     <div class="collapse navbar-collapse" id="navbar-collapse-01">
                         <ul class="nav navbar-nav navbar-form">           
                             <li><a href="editProfile.jsp">Edit <span class="fui-gear"></span></a></li>
-                            <li data-toggle="modal" data-target=".bs-example-modal-lg"><a href="#fakelink">Change Password <span class="fui-lock"></span></a></li>
-                            <form action="ChangePasswordServlet" method="get">
-                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="form-horizontal">
-                                                <h3 class="col-md-12"  >Change Password</h3>
-                                                <div class="form-group col-md-12">
-                                                    <label for="inputEmail3" class="col-sm-5 control-label">Old Password</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="hidden" name="acctid" value="${user.account_Id}">
-                                                        <input type="password" class="form-control" placeholder="Display Name" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-12">
-                                                    <label for="inputEmail3" class="col-sm-5 control-label">New Password</label>
-                                                    <div class="col-sm-4">
-                                                        <input type="password" class="form-control" placeholder="First Name" name="password" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-12">
-                                                    <label for="inputEmail3" class="col-sm-5 control-label">Confirm New Password</label>
-                                                    <div class="col-sm-4">
-                                                        <input type="password" class="form-control" placeholder="Last Name" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group" style="margin-left: 235px">
-                                                    <div class="col-md-5">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                    </div>
-                                                    <div class="col-md-5">
-                                                        <button type="reset" class="btn btn-primary">Reset</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            <li><a href="changePassword.jsp">Change Password <span class="fui-lock"></span></a></li>                           
                             <li><a href="#fakelink">Buy List <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                             <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List <span class="glyphicon glyphicon-home"></span></a></li>
                             <li><a href="ShowAddressServlet?id=${user.account_Id}">Profile <span class="glyphicon glyphicon-folder-open"></a></li>
@@ -83,8 +47,18 @@
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
-                <div class="col-md-2" align="center">   
-                    <img src="pic/Pikachu.png" alt="..." class="img-thumbnail">
+                <div class="col-md-4" align="center">
+                    <form action="AddProfilePic" method="post"
+                          enctype="multipart/form-data">
+                        <img src="${user.pic}" alt="..." width="100%" class="img-thumbnail">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">+</span><span class="fileinput-exists">Change</span><input type="file" name="file" accept="image/*" multiple=""></span>
+                            <span class="fileinput-filename"></span>
+                            <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                        </div>
+                        <input type="hidden" name="id" value="${user.account_Id}"/>
+                        <input type="submit" class="btn btn-default" value="Change Profile" />
+                    </form>
                 </div>
                 <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
                     <h5>Personal Info</h5>
@@ -157,6 +131,19 @@
                 </table>
             </div> 
         </div>
+        <script src="js1/vendor/jquery.ui.widget.js"></script>
+        <script src="js1/tmpl.min.js"></script>
+        <script src="js1/load-image.min.js"></script>
+        <script src="js1/canvas-to-blob.min.js"></script>
+        <script src="js1/bootstrap.min.js"></script>
+        <script src="js1/bootstrap-image-gallery.min.js"></script>
+        <script src="js1/jquery.iframe-transport.js"></script>
+        <script src="js1/jquery.fileupload.js"></script>
+        <script src="js1/jquery.fileupload-fp.js"></script>
+        <script src="js1/jquery.fileupload-ui.js"></script>
+        <script src="js1/locale.js"></script>
+        <script src="js1/main.js"></script>
+
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
@@ -170,5 +157,10 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <script>
+            $(function() {
+                $('.fileinput').fileinput()
+            });
+        </script>
     </body>
 </html>

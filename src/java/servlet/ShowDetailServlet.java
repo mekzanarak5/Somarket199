@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Accounts;
 import model.Product;
+import model.ProductPic;
 
 /**
  *
@@ -34,10 +35,15 @@ public class ShowDetailServlet extends HttpServlet {
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("productId"));
         int acctid = Integer.parseInt(request.getParameter("acctid"));
+        List<ProductPic> pp = ProductPic.find(id);
+        ProductPic p1 = ProductPic.findf(id);
         Product p = Product.showDetail(id);
         Accounts a = Accounts.findById2(acctid);
         request.setAttribute("showDetail", p);
         request.setAttribute("showName", a);
+        request.setAttribute("pic", pp);
+        request.setAttribute("pic1", p1);
+        System.out.println(p1);
         getServletContext().getRequestDispatcher("/productza.jsp").forward(request, response);
     }
 

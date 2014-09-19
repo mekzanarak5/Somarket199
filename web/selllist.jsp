@@ -34,7 +34,7 @@
                 </ol>
             </div>
             <div class="col-xs-12" style="margin:auto;">
-                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 500px;background: #FFFFFF">
+                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
                         <h6 class="col-md-3"  >Sell List</h6>
                         <div id="cbp-vm" class="cbp-vm-switcher">
@@ -64,7 +64,7 @@
                                     <td>${a.createOn}</td>
                                     <td><a href="productza.html"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
                                     <td>
-                                        <a href="">
+                                        <a href="#">
                                             ${a.name}</a></td>
                                     <td>${a.price}</td>
                                     <td width="20%"><div class="btn-group">
