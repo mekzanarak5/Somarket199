@@ -123,5 +123,20 @@ public class Cart {
         }
         return result;
     }
+    
+    public static int LastByOrder() {
+        String sql = "SELECT MAX(PRODUCT_ID) FROM ORDER_PRODUCT";
+        int result = 0;
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                result = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cart.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
 
 }

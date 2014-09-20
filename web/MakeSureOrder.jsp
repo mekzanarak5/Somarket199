@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <!DOCTYPE html>
 <html>
     <%--<head>
@@ -72,55 +75,60 @@
             </div>
         </div>
     </body> --%>
-   
-<%--@page contentType="text/html" pageEncoding="UTF-8" --%>
-<!DOCTYPE html>
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Login</title>
-        <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
+    <%--@page contentType="text/html" pageEncoding="UTF-8" --%>
+    <!DOCTYPE html>
 
-        <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>Social Market | Login</title>
+            <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
-        <!-- Loading Bootstrap -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+            <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
-        <!-- Loading Flat UI -->
-        <link href="css/flat-ui.css" rel="stylesheet">
-        <link href="css/demo.css" rel="stylesheet">
+            <!-- Loading Bootstrap -->
+            <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 
-        <link rel="shortcut icon" href="images/favicon.ico">
-    </head>
-    <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
-        <div class="col-md-3">
-            <jsp:include page="logo.jsp"/>
-        </div>
-        <div class="col-md-9">
-            <jsp:include page="header.jsp"/>
-            <div class="col-md-12">
-                <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Login</li>
-                </ol>
+            <!-- Loading Flat UI -->
+            <link href="css/flat-ui.css" rel="stylesheet">
+            <link href="css/demo.css" rel="stylesheet">
+
+            <link rel="shortcut icon" href="images/favicon.ico">
+        </head>
+        <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
+            <jsp:include page="header1.jsp"/>
+            <div class="col-md-3">
+                <jsp:include page="logo.jsp"/>
             </div>
-            <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+            <div class="col-md-9">
+                <jsp:include page="header.jsp"/>
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Login</li>
+                    </ol>
+                </div>
+                <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
                     <div style="padding-left: 100px " ><h2>Order Information</h2><hr></div>
-                    <table class="table table-striped" style="text-align: center">
-                        <tr bgColor="#ffffff">
-                            <td>Order ID</td>
-                            <td>Order Date</td>
-                            <td>Total Price</td>
-                        </tr>
-                        <tr >
-                            <td>999</td>
-                            <td>10/05/2014</td>
-                            <td>19999</td>
-                        </tr>
-
+                        <c:forEach items="${arr}" var="entry">
+                            <c:set value="${entry.value}" var="order" />
+                            <c:set value="${wtf:getAccountById(entry.key)}" var="n" />
                         <table class="table table-striped" style="text-align: center">
+                            <tr bgColor="#ffffff">
+                                <td>Order ID</td>
+                                <td>Seller</td>
+                                <td>Order Date</td>
+                                <td>Total Price</td>
+                            </tr>
+                            <tr >
+                                <td>${order.orderId}</td>
+                                <td>${n.dispName}</td>
+                                <td>${order.time}</td>
+                                <td>${order.total}</td>
+                            </tr>
+                        </table>
+                        <!--<table class="table table-striped" style="text-align: center">
                             <tr bgColor="#ffffff">
                                 <td>Seller</td>
                                 <td>Pic</td>
@@ -147,7 +155,7 @@
                                 <td>TOTAL</td>
                                 <td>19999</td>
                             </tr>
-                        </table>
+                        </table> -->
                         <div style="padding-left: 100px " ><h2>Payment Methond</h2><hr></div>
                         <label style="margin-left: 200px">
                             <table class="table" width="50%">
@@ -172,20 +180,21 @@
                         <div style="margin-left:550px">
                             <a href="tranfer.html"><input type="button" class="btn btn-primary" value="Tranfer"></a> 
                         </div>
-        </div>
-        <script src="js/jquery-1.8.3.min.js"></script>
-        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script src="js/jquery.ui.touch-punch.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-select.js"></script>
-        <script src="js/bootstrap-switch.js"></script>
-        <script src="js/flatui-checkbox.js"></script>
-        <script src="js/flatui-radio.js"></script>
-        <script src="js/jquery.tagsinput.js"></script>
-        <script src="js/jquery.placeholder.js"></script>
-        <script src="js/jquery.stacktable.js"></script>
-        <script src="http://vjs.zencdn.net/4.3/video.js"></script>
-        <script src="js/application.js"></script>
-    </body>
-</html>
+                    </c:forEach>
+                </div>
+                <script src="js/jquery-1.8.3.min.js"></script>
+                <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+                <script src="js/jquery.ui.touch-punch.min.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                <script src="js/bootstrap-select.js"></script>
+                <script src="js/bootstrap-switch.js"></script>
+                <script src="js/flatui-checkbox.js"></script>
+                <script src="js/flatui-radio.js"></script>
+                <script src="js/jquery.tagsinput.js"></script>
+                <script src="js/jquery.placeholder.js"></script>
+                <script src="js/jquery.stacktable.js"></script>
+                <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+                <script src="js/application.js"></script>
+        </body>
+    </html>
 

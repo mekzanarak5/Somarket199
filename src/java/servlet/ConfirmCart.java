@@ -48,6 +48,8 @@ public class ConfirmCart extends HttpServlet {
             //Set<Map.Entry<Integer, ArrayList<Product>>> entrySeto = map.entrySet();
             Set<Map.Entry<Integer, Double>> entrySetp = price.entrySet();
             Cart c = (Cart) (request.getSession().getAttribute("cart"));
+            //ArrayList<order> arr = new ArrayList<order>() ;
+            Map<Integer, order> arr = new TreeMap<Integer, order>();
             /* int order_id = Cart.idGenerator();
              System.out.println(order_id);
              double total = c.getTotal();
@@ -68,6 +70,7 @@ public class ConfirmCart extends HttpServlet {
                 value += o.add(o);
                 c.setOrderId(order_id);
                 c.addDetail(entry.getKey());
+                arr.put(entry.getKey(), order.searchByID(order_id));
             }
             //order o = new order();
             //Cart c = (Cart) (request.getSession().getAttribute("cart"));
@@ -85,7 +88,9 @@ public class ConfirmCart extends HttpServlet {
              }*/
             if (value > 0) {
                 request.setAttribute("msg", "Confirm Order Complete Please do your payment with in 3 days");
-                //request.getSession().removeAttribute("cart");
+                request.getSession().removeAttribute("cart");
+                request.getSession().removeAttribute("price");
+                request.setAttribute("arr", arr);
                 //response.sendRedirect("ShowOrder");
                 getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
                 return;
