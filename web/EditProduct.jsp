@@ -3,6 +3,8 @@
     Created on : Nov 3, 2012, 12:31:16 PM
     Author     : Amila
 --%>
+<%@page import="model.Product"%>
+<%@page import="model.Category"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,6 +33,9 @@
         <jsp:include page="cssup.jsp"/>
         <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
     </head>
+    <%
+        Product c = (Product) request.getAttribute("pro");
+    %>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
         <div class="col-md-3">
@@ -48,30 +53,32 @@
                 <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
                         <h3 class="col-md-12">Post</h3>
-                        <form action="AddProductPic" method="post" enctype="multipart/form-data">
-                            <div class="form-horizontal" align="center">
+
+                        <div class="form-horizontal" align="center">
+                            <form action="EditProduct" method="get">
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-3">Product</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Name of product" name="name" required>                               
+                                        <input type="hidden" value="${pro.productNO}" name="proid">  
+                                        <input type="text" class="form-control" value="${pro.name}" name="name" required>                               
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-3">Price</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Price" name="price" required>
+                                        <input type="text" class="form-control" value="${pro.price}" name="price" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-3">Description</label>
                                     <div class="col-sm-6">
-                                        <textarea class="form-control" name="des" rows="3" required></textarea> 
+                                        <textarea class="form-control" name="des" rows="3" required>${pro.description}</textarea> 
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-3">Available</label>
                                     <div class="col-sm-3">
-                                        <select value="Yes" class="form-control" name="available" >
+                                        <select value="${pro.available}" class="form-control" name="available" >
                                             <option value="yes">Yes</option>
                                             <option value="no">No</option>
                                         </select>
@@ -80,7 +87,7 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-3">Category</label>
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <select id="mark" class="form-control">
                                                 <option value="">--</option>
                                                 <c:forEach items="${cateID}" var="a">
@@ -88,9 +95,9 @@
                                                 </c:forEach>
                                             </select>
                                         </div>
-                                        <div class="col-md-2" >
+                                        <div class="col-md-3" >
                                             <select id="series" class="form-control" name="cata">
-                                                <option value="">--</option>
+                                                <option value="<%=Category.findBySmall(c.getCategory_ID()).getCateID()%>"><%=Category.findBySmall(c.getCategory_ID()).getCateName()%></option>
                                                 <c:forEach items="${childCateID1}" var="a">
                                                     <option value="${a.cateID}" class="1">${a.cateName}</option>
                                                 </c:forEach>
@@ -113,10 +120,39 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-12">            
-                                <input id="file-3" type="file" name="file" multiple=true>
-                                <input type="hidden" name="acctid" value="${user.account_Id}"/>
-                            </div>
+                                <div class="form-group">
+                                    <div class="col-sm-10" style="margin: auto;float:none">
+                                        <button type="submit" class="btn btn-info btn-lg btn-block">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <form action="EditProductPic" method="post" enctype="multipart/form-data">
+                                <div class="form-group col-md-12" >   
+                                    <input id="file-3" type="file" name="file" multiple=true>
+                                    <input type="hidden" name="id" value="${pro.productNO}"/>
+                                </div>
+                            </form>
+                        </div>   
+
+                        <form action="DeleteProductPic" method="get">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <c:forEach items="${pic}" var="a">
+                                        <div class="col-md-1">
+                                            <botton  class="checkbox"  for="checkbox1">
+                                                <input type="checkbox" name="picid" value="${a.pNO}" id="checkbox1" data-toggle="checkbox">
+                                            </botton>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <img src="${a.pathFile}" width="150px" height="120px">
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="hidden" name="acctid" value="${pro.productNO}">
+                                    <button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button>
+                                </div>
                             </div>
                         </form>
                     </div>

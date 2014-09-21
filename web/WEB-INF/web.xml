@@ -236,6 +236,22 @@
         <servlet-name>AddProductPic</servlet-name>
         <servlet-class>servlet.AddProductPic</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowEditProduct</servlet-name>
+        <servlet-class>servlet.ShowEditProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductPic</servlet-name>
+        <servlet-class>servlet.DeleteProductPic</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProduct</servlet-name>
+        <servlet-class>servlet.EditProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProductPic</servlet-name>
+        <servlet-class>servlet.EditProductPic</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -471,6 +487,22 @@
     <servlet-mapping>
         <servlet-name>AddProductPic</servlet-name>
         <url-pattern>/AddProductPic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowEditProduct</servlet-name>
+        <url-pattern>/ShowEditProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductPic</servlet-name>
+        <url-pattern>/DeleteProductPic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProduct</servlet-name>
+        <url-pattern>/EditProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductPic</servlet-name>
+        <url-pattern>/EditProductPic</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

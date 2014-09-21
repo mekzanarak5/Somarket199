@@ -466,6 +466,28 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
         }
         return row;
     }
+      public static int editProduct(String name, double price, String des,String available, int cate, String brand,int productid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE PRODUCT SET name=?,price=?,Description=?,Available=?,Category_ID=?,BrandID=?  WHERE PRODUCTNO=?");
+            ps.setString(1, name);
+            ps.setDouble(2, price);
+            ps.setString(3, des);
+            ps.setString(4, available);
+            ps.setInt(5, cate);
+            ps.setString(6, brand);
+            ps.setInt(7, productid);
+            
+            row = ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
     private static void rToO(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productno"));

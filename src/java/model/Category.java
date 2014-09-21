@@ -137,7 +137,24 @@ public class Category {
         }
         return ca;
     }
+public static Category findBySmall(int id) {
 
+        String sqlCmd = "SELECT * FROM CATEGORY where CateID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Category c = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Category();
+                rToO(c, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+    }
     public static List<Category> findByParent(int id) {
 
         String sqlCmd = "SELECT * FROM CATEGORY where parentCateID = ?";

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.sql.Connection;
@@ -20,6 +19,7 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class ProductPic {
+
     private int pNO;
     private int Product_Id;
     private String pathFile;
@@ -66,7 +66,7 @@ public class ProductPic {
     public void setCreateOn(String CreateOn) {
         this.CreateOn = CreateOn;
     }
-    
+
     public static int insertPic(List<String> path) {
         int row = 0;
         int newMemberID = 0;
@@ -74,7 +74,7 @@ public class ProductPic {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            
+
             PreparedStatement ps2 = con.prepareStatement("SELECT MAX(PRODUCTNO) AS LastMemberID FROM PRODUCT");
             ResultSet rs1 = ps2.executeQuery();
             if (rs1.next()) {
@@ -83,7 +83,34 @@ public class ProductPic {
                 newMemberID1 = 0;
             }
             for (String pa : path) {
-                
+
+                PreparedStatement ps1 = con.prepareStatement("SELECT MAX(pNO) AS LastMemberID FROM product_img");
+                ResultSet rs = ps1.executeQuery();
+                if (rs.next()) {
+                    newMemberID = rs.getInt(1) + 1;
+                } else {
+                    newMemberID = 0;
+                }
+                PreparedStatement ps = con.prepareStatement("INSERT INTO product_img VALUES (?,?,?,current_timestamp)");
+                ps.setInt(1, newMemberID);
+                ps.setInt(2, newMemberID1);
+                ps.setString(3, pa);
+
+                row = ps.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductPic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+
+    public static int EditPic(String productid, List<String> path) {
+        int row = 0;
+        int newMemberID = 0;
+        try {
+
+            for (String pa : path) {
+                Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps1 = con.prepareStatement("SELECT MAX(pNO) AS LastMemberID FROM product_img");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
@@ -91,18 +118,19 @@ public class ProductPic {
             } else {
                 newMemberID = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO product_img VALUES (?,?,?,current_timestamp)");
-            ps.setInt(1, newMemberID);
-            ps.setInt(2, newMemberID1);
-            ps.setString(3, pa);
-            
-            row = ps.executeUpdate();
+                PreparedStatement ps = con.prepareStatement("INSERT INTO product_img VALUES (?,?,?,current_timestamp)");
+                ps.setInt(1, newMemberID);
+                ps.setString(2, productid);
+                ps.setString(3, pa);
+
+                row = ps.executeUpdate();
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductPic.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
+
     public static List<ProductPic> find(int str) {
         String sqlCmd = "SELECT * FROM product_img WHERE product_id like ?";
         Connection con = ConnectionAgent.getConnection();
@@ -122,7 +150,7 @@ public class ProductPic {
         }
         return cs;
     }
-    
+
     public static ProductPic findf(int str) {
         String sqlCmd = "SELECT * FROM product_img WHERE pNo = (SELECT MIN(pNo) FROM product_img where product_id=?)";
         Connection con = ConnectionAgent.getConnection();
@@ -141,21 +169,42 @@ public class ProductPic {
         }
         return null;
     }
+
+    public static ProductPic findf1(int str) {
+        String sqlCmd = "SELECT pathfile FROM product_img WHERE pNo = (SELECT MIN(pNo) FROM product_img where product_id=?)";
+        Connection con = ConnectionAgent.getConnection();
+        ProductPic p = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, str);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                p = new ProductPic();
+                rToO(p, rs);
+                return p;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductPic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     private static void rToO(ProductPic p, ResultSet rs) {
         try {
             p.setpNO(rs.getInt("pno"));
             p.setProduct_Id(rs.getInt("product_id"));
             p.setPathFile(rs.getString("pathfile"));
             p.setCreateOn(rs.getString("createon"));
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ProductPic.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public static int deletePic(String picid) {
+
+    public static int deletePic(String picid) {
         int row = 0;
         try {
-            
+
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement("DELETE FROM product_img WHERE pNo=?");
             ps.setString(1, picid);

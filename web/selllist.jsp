@@ -4,6 +4,9 @@
     Author     : Admin
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.Product"%>
+<%@page import="model.ProductPic"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,6 +22,7 @@
 
         <jsp:include page="cssup.jsp"/>
     </head>
+
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
         <div class="col-md-3">
@@ -62,9 +66,9 @@
                                 <c:forEach items="${sell}" var="a">
                                 <tr>
                                     <td>${a.createOn}</td>
-                                    <td><a href="productza.html"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
+                                    <td><a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
                                     <td>
-                                        <a href="#">
+                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">
                                             ${a.name}</a></td>
                                     <td>${a.price}</td>
                                     <td width="20%"><div class="btn-group">
@@ -72,7 +76,7 @@
                                                 Manage Post <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Edit</a></li>
+                                                <li><a href="ShowEditProduct?id=${a.productNO}">Edit</a></li>
                                                 <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete</a></li>
                                             </ul>
                                         </div></td>
