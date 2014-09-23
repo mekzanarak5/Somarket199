@@ -36,12 +36,12 @@
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
                     <div class="row">
-                        <div class="col-md-12"><h2>Feedback</h2><hr></div>
+                        <div class="col-md-12"><h4>Recent Feedback</h4><hr></div>
                         <table class="table" >
                             <tr bgColor="#ececea">
                                 <td></td>
                                 <td></td>
-                                <td><select class="form-control">
+                                <td><select class="form-control ">
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>

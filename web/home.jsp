@@ -18,19 +18,6 @@
         <div class="row">
             <div class="col-md-3">
                 <jsp:include page="logo.jsp"/>
-                <div id='cssmenu'>
-                    <c:forEach items="${cateID}" var="a">
-                        <ul>
-                            <li class='active has-sub'><a href='#'><span>${a.cateName}</span></a>
-                                <ul>
-                                    <c:forEach items="${cateID1}" var="b">
-                                        <li class='has-sub'><a href='#'><span>${b.cateName}</span></a></li>
-                                                </c:forEach>
-                                </ul>
-                            </li>
-                        </ul>
-                    </c:forEach>
-                </div>
             </div>
             <div class="col-md-9">
                 <jsp:include page="header.jsp"/>
@@ -61,7 +48,7 @@
                                 <div class="carousel-caption">
                                 </div>
                             </div>
-                             <div class="item">
+                            <div class="item">
                                 <img src="pic/Showhome4.jpg" width="400px" height="300px" alt="...">
                                 <div class="carousel-caption">
                                 </div>
@@ -78,10 +65,35 @@
                     </div>
                 </div>  
             </div>
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="pic">
+                        <a href=""><img src="pic/com.png" class="pic-image" width="100%" height="100%" alt="Pic"/>
+                            <span class="pic-caption bottom-to-top">
+                                <h1 class="pic-title" style="color: #ffffff">Computer</h1>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="pic">
+                        <a href="">
+                            <img src="pic/mob.png" class="pic-image" width="100%" height="100%" alt="Pic"/>
+                            <span class="pic-caption bottom-to-top">
+                                <h1 class="pic-title" style="color: #ffffff">Mobile</h1>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="pic">
+                        <a href=""><img src="pic/cam.png" class="pic-image" width="100%" height="100%" alt="Pic"/>
+                            <span class="pic-caption bottom-to-top">
+                                <h1 class="pic-title" style="color: #ffffff">Camera</h1>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">   
-
-
-                <div class="col-xs-12" style="margin:auto;padding-top: 50px">
+                <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
                         <div class="row">
                             <h3 class="col-md-12">Hot Items of Smartphone</h3>
@@ -113,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
 
         <script src="js/jasny-bootstrap.min.js"></script>
