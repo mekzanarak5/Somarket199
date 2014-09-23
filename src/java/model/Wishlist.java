@@ -83,7 +83,7 @@ public class Wishlist {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(wish_ID) AS LastMemberID FROM Wishlist");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(wish_Id) AS LastMemberID FROM wishlist");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
@@ -91,21 +91,21 @@ public class Wishlist {
                 newMemberID = 0;
             }
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Wishlist VALUES (?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO wishlist VALUES (?,?,?,?,?)");
             ps.setInt(1, newMemberID);
             ps.setInt(2, acct_Id);
             ps.setString(3, name);
             ps.setDouble(4, price);
             ps.setString(5, seller);
             row = ps.executeUpdate();
-
+con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Wishlist.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
     public static List<Wishlist> showWishlist(int id) {
-        String sqlCmd = "SELECT * FROM Wishlist WHERE Acct_id = ?";
+        String sqlCmd = "SELECT * FROM wishlist WHERE acct_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         Wishlist a = null;
         List<Wishlist> pa = new ArrayList<Wishlist>();
@@ -118,6 +118,7 @@ public class Wishlist {
                 rToO(a, rs);
                 pa.add(a);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Wishlist.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -128,10 +129,10 @@ public class Wishlist {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Wishlist WHERE wish_Id=?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM wishlist WHERE wish_Id=?");
             ps.setString(1, wishid);
             row = ps.executeUpdate();
-
+con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Wishlist.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -142,7 +143,7 @@ public class Wishlist {
             a.setWish_Id(rs.getInt("wish_Id"));
             a.setAcct_Id(rs.getInt("Acct_id"));
             a.setName(rs.getString("name"));
-            a.setPrice(rs.getDouble("Price"));
+            a.setPrice(rs.getDouble("price"));
             a.setSeller(rs.getString("seller"));
         } catch (SQLException ex) {
             Logger.getLogger(Wishlist.class.getName()).log(Level.SEVERE, null, ex);

@@ -165,6 +165,7 @@ public class order {
                 ps.setString(7, ems);
             }
             value = ps.executeUpdate();
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -176,17 +177,19 @@ public class order {
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, key);
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void delete(int id) {
-        String sql = "delete from order_sum where orderno = ?";
+        String sql = "delete from order_sum where OrderNo = ?";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -194,7 +197,7 @@ public class order {
 
     public static ArrayList<order> getOrderList(int acctno) {
         ArrayList<order> arr = new ArrayList<order>();
-        String sql = "select * from order_sum where accountid like ? order by orderno";
+        String sql = "select * from order_sum where AccountID like ? order by OrderNo";
         PreparedStatement ps;
         try {
             ps = ConnectionAgent.getConnection().prepareStatement(sql);
@@ -209,6 +212,7 @@ public class order {
                 o.setTotal(rs.getDouble(5));
                 arr.add(o);
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -230,6 +234,7 @@ public class order {
             if (rs.next()) {
                 result = rs.getDouble(1);
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -237,7 +242,7 @@ public class order {
     }
 
     public static int getLastedID() {
-        String sqlCmd = "select MAX(orderno) from order_sum";
+        String sqlCmd = "select MAX(OrderNo) from order_sum";
         int value = 1;
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sqlCmd);
@@ -245,6 +250,7 @@ public class order {
             if (rs.next()) {
                 value = rs.getInt(1) + 1;
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -253,7 +259,7 @@ public class order {
 
     public static ArrayList<order> search(String key, String kind) {
         ArrayList<order> o = new ArrayList<order>();
-        String sql = "select * from order_sum where " + kind + "=? order by created";
+        String sql = "select * from order_sum where " + kind + "=? order by Created";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, key);
@@ -261,6 +267,7 @@ public class order {
             while (rs.next()) {
                 o.add(toO(rs));
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -269,7 +276,7 @@ public class order {
 
     public static order searchByID(int id) {
         order o = null;
-        String sql = "select * from order_sum where orderno = ?";
+        String sql = "select * from order_sum where OrderNo = ?";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, id);
@@ -277,6 +284,7 @@ public class order {
             if (rs.next()) {
                 o = toO(rs);
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -305,25 +313,27 @@ public class order {
     }
 
     public static void addSlip(int order_id, String slip) {
-        String sql = "update order_sum set slip=? where orderno = ?";
+        String sql = "update order_sum set slip=? where OrderNo = ?";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, slip);
             ps.setInt(2, order_id);
             ps.executeUpdate();
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void addEms(int order_id, String status, String ems) {
-        String sql = "update order_sum set detail = ?, trackingno = ? where orderno = ?";
+        String sql = "update order_sum set Detail = ?, TrackingNo = ? where OrderNo = ?";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, status);
             ps.setString(2, ems);
             ps.setInt(3, order_id);
             ps.executeUpdate();
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -332,7 +342,7 @@ public class order {
     public static List<order> showAll() {
         order o = null;
         List<order> cs = new ArrayList<order>();
-        String sql = "select * from order_sum order by created desc";
+        String sql = "select * from order_sum order by Created desc";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -341,6 +351,7 @@ public class order {
                 o = toO(rs);
                 cs.add(o);
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }

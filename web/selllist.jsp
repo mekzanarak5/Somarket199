@@ -26,7 +26,7 @@
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
         <div class="col-md-3">
-            <jsp:include page="logo.jsp"/>
+            <jsp:include page="logo_1.jsp"/>
         </div>
         <div class="col-md-9">
             <jsp:include page="header.jsp"/>
@@ -64,23 +64,23 @@
                                     <td>Manage Post</td>
                                 </tr>
                                 <c:forEach items="${sell}" var="a">
-                                <tr>
-                                    <td>${a.createOn}</td>
-                                    <td><a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
-                                    <td>
-                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">
-                                            ${a.name}</a></td>
-                                    <td>${a.price}</td>
-                                    <td width="20%"><div class="btn-group">
-                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                Manage Post <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="ShowEditProduct?id=${a.productNO}">Edit</a></li>
-                                                <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete</a></li>
-                                            </ul>
-                                        </div></td>
-                                </tr>
+                                    <tr>
+                                        <td>${a.createOn}</td>
+                                        <td><a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
+                                        <td>
+                                            <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">
+                                                ${a.name}</a></td>
+                                        <td>${a.price}</td>
+                                        <td width="20%"><div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    Manage Post <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="ShowEditProduct?id=${a.productNO}">Edit</a></li>
+                                                    <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete</a></li>
+                                                </ul>
+                                            </div></td>
+                                    </tr>
                                 </c:forEach>
                             </table>
                         </div>

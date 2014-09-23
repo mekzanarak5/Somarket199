@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.sql.Connection;
@@ -15,12 +14,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Admin
  */
 public class Address {
+
     private int Address_Id;
     private int AcctNo;
     private String Address;
@@ -38,9 +37,9 @@ public class Address {
     }
 
     public Address() {
-      
+
     }
-    
+
     public int getAddress_Id() {
         return Address_Id;
     }
@@ -88,14 +87,14 @@ public class Address {
     public void setCanton(String Canton) {
         this.Canton = Canton;
     }
-    
-    public static int addAdress(int AcctNo, String Address, String Provice,int Post,String Canton) {
+
+    public static int addAdress(int AcctNo, String Address, String Provice, int Post, String Canton) {
         int row = 0;
         int newMemberID = 0;
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(ADDRESS_ID) AS LastMemberID FROM ADDRESS");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(Address_Id) AS LastMemberID FROM address");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
@@ -103,7 +102,7 @@ public class Address {
                 newMemberID = 0;
             }
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO ADDRESS VALUES (?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO address VALUES (?,?,?,?,?,?)");
             ps.setInt(1, newMemberID);
             ps.setInt(2, AcctNo);
             ps.setString(3, Address);
@@ -111,33 +110,35 @@ public class Address {
             ps.setInt(5, Post);
             ps.setString(6, Canton);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
-    public static int editAddress(String Address, String Provice, String Canton, int Post,int Address_Id) {
+
+    public static int editAddress(String Address, String Provice, String Canton, int Post, int Address_Id) {
         int row = 0;
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE ADDRESS SET Address=?,Provice=?,Post=?,Canton=?  WHERE Address_Id=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE address SET Address=?,Provice=?,Post=?,Canton=?  WHERE Address_Id=?");
             ps.setString(1, Address);
             ps.setString(2, Provice);
             ps.setInt(3, Post);
             ps.setString(4, Canton);
             ps.setInt(5, Address_Id);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
             row = -1;
         }
         return row;
     }
+
     public static List<Address> showAddress(int id) {
-        String sqlCmd = "SELECT * FROM Address WHERE AcctNo = ?";
+        String sqlCmd = "SELECT * FROM address WHERE AcctNo = ?";
         Connection con = ConnectionAgent.getConnection();
         Address a = null;
         List<Address> pa = new ArrayList<Address>();
@@ -150,13 +151,15 @@ public class Address {
                 rToO(a, rs);
                 pa.add(a);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pa;
     }
-     public static Address findAddress(int id) {
-        String sqlCmd = "SELECT * FROM Address WHERE Address_ID = ?";
+
+    public static Address findAddress(int id) {
+        String sqlCmd = "SELECT * FROM address WHERE Address_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         Address a = null;
         try {
@@ -167,27 +170,29 @@ public class Address {
                 a = new Address();
                 rToO(a, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
         }
         return a;
     }
-     
+
     public static int lastid() {
         Connection con = ConnectionAgent.getConnection();
         int id = 0;
         try {
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(Address_ID) FROM Address");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(Address_Id) FROM address");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
+
     public static int deleteAddress(String addid) {
         int row = 0;
         try {
@@ -196,12 +201,13 @@ public class Address {
             PreparedStatement ps = con.prepareStatement("DELETE FROM address WHERE Address_Id=?");
             ps.setString(1, addid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
+
     private static void rToO(Address a, ResultSet rs) {
         try {
             a.setAddress_Id(rs.getInt("Address_Id"));

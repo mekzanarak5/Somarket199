@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class Product implements Comparable {
+
     private int productNO;
     private int acctID;
     private int category_ID;
@@ -30,8 +31,29 @@ public class Product implements Comparable {
     private String description;
     private String available;
     private int brandID;
+    private int pNO;
+    private int Product_Id;
+    private String pathFile;
+    private String CreateOn;
 
     public Product() {
+    }
+    
+    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, int brandID, int pNO, int Product_Id, String pathFile, String CreateOn) {
+        this.productNO = productNO;
+        this.acctID = acctID;
+        this.category_ID = category_ID;
+        this.name = name;
+        this.price = price;
+        this.offerStart = offerStart;
+        this.offerEnd = offerEnd;
+        this.createOn = createOn;
+        this.description = description;
+        this.available = available;
+        this.brandID = brandID;
+        this.pNO = pNO;
+        this.Product_Id = Product_Id;
+        this.pathFile = pathFile;
     }
 
     public int getProductNO() {
@@ -122,11 +144,30 @@ public class Product implements Comparable {
         this.brandID = brandID;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" + "productNO=" + productNO + ", acctID=" + acctID + ", category_ID=" + category_ID + ", name=" + name + ", price=" + price + ", offerStart=" + offerStart + ", offerEnd=" + offerEnd + ", createOn=" + createOn + ", description=" + description + ", available=" + available + ", brandID=" + brandID + '}';
+    public int getpNO() {
+        return pNO;
     }
 
+    public void setpNO(int pNO) {
+        this.pNO = pNO;
+    }
+
+    public int getProduct_Id() {
+        return Product_Id;
+    }
+
+    public void setProduct_Id(int Product_Id) {
+        this.Product_Id = Product_Id;
+    }
+
+    public String getPathFile() {
+        return pathFile;
+    }
+
+    public void setPathFile(String pathFile) {
+        this.pathFile = pathFile;
+    }
+    
     public static int addProducts(String AcctID, int Category_ID, String Name, Double Price,
             String CreateOn, String Description, String Available, String Brand) {
         int row = 0;
@@ -134,7 +175,7 @@ public class Product implements Comparable {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(PRODUCTNO) AS LastMemberID FROM PRODUCT");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(productNO) AS LastMemberID FROM product");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
@@ -142,7 +183,7 @@ public class Product implements Comparable {
                 newMemberID = 0;
             }
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO PRODUCT (productNO,AcctID,Category_ID,Name,Price,CreateOn,Description,Available,BrandID) VALUES (?,?,?,?,?,current_timestamp,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO product (productNO,AcctID,Category_ID,Name,Price,CreateOn,Description,Available,BrandID) VALUES (?,?,?,?,?,current_timestamp,?,?,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, AcctID);
             ps.setInt(3, Category_ID);
@@ -152,7 +193,7 @@ public class Product implements Comparable {
             ps.setString(7, Available);
             ps.setString(8, Brand);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -171,6 +212,7 @@ public class Product implements Comparable {
                 p = new Product();
                 rToO(p, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -178,7 +220,7 @@ public class Product implements Comparable {
     }
 
     public static List<Product> showProduct() {
-        String sqlCmd = "SELECT * FROM PRODUCT";
+        String sqlCmd = "SELECT * FROM product";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> pa = new ArrayList<Product>();
@@ -190,6 +232,7 @@ public class Product implements Comparable {
                 rToO(p, rs);
                 pa.add(p);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -197,7 +240,7 @@ public class Product implements Comparable {
     }
 
     public static List<Product> showSell(int id) {
-        String sqlCmd = "SELECT * FROM PRODUCT WHERE ACCTID = ?";
+        String sqlCmd = "SELECT * FROM product p,product_img pi WHERE p.productNO = pi.Product_Id and AcctID = ? GROUP BY Product_Id";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> pa = new ArrayList<Product>();
@@ -210,6 +253,7 @@ public class Product implements Comparable {
                 rToO(p, rs);
                 pa.add(p);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -217,7 +261,7 @@ public class Product implements Comparable {
     }
 
     public static Product showDetail(int id) {
-        String sqlCmd = "SELECT * FROM PRODUCT WHERE PRODUCTNO = ?";
+        String sqlCmd = "SELECT * FROM product WHERE productNO = ?";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         try {
@@ -229,6 +273,7 @@ public class Product implements Comparable {
                 rToO(p, rs);
                 return p;
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -239,12 +284,12 @@ public class Product implements Comparable {
         Connection con = ConnectionAgent.getConnection();
         int id = 0;
         try {
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(PRODUCTNO) FROM PRODUCT");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(productNO) FROM product");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -252,7 +297,7 @@ public class Product implements Comparable {
     }
 
     public static Product findByName(String name) {
-        String sqlCmd = "SELECT * FROM product p WHERE product_name LIKE '%?%' ORDER BY product_id desc";
+        String sqlCmd = "SELECT * FROM product p WHERE Name LIKE '%?%' ORDER BY productNO desc";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         try {
@@ -263,6 +308,7 @@ public class Product implements Comparable {
                 p = new Product();
                 rToO(p, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -270,7 +316,7 @@ public class Product implements Comparable {
     }
 
     public static List<Product> search(String str, String id) {
-        String sqlCmd = "SELECT * FROM PRODUCT WHERE Description like ? OR name like ? and Category_ID like ? ORDER BY CreateOn DESC";
+        String sqlCmd = "SELECT * FROM product WHERE Description like ? OR Name like ? and Category_ID like ? ORDER BY CreateOn DESC";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> cs = new ArrayList<Product>();
@@ -285,14 +331,15 @@ public class Product implements Comparable {
                 rToO(p, rs);
                 cs.add(p);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cs;
     }
 
-    public static List<Product> findPrice(String key,String id, int x, int y,double str, double st) {
-        String sqlCmd = "SELECT * FROM PRODUCT WHERE Description like ? and name like ? and Category_ID like ? and PRICE between ? and ? ORDER BY CreateOn DESC limit ?,?";
+    public static List<Product> findPrice(String key, String id, int x, int y, double str, double st) {
+        String sqlCmd = "SELECT * FROM product WHERE Description like ? and Name like ? and Category_ID like ? and Price between ? and ? ORDER BY CreateOn DESC limit ?,?";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> cs = new ArrayList<Product>();
@@ -311,6 +358,7 @@ public class Product implements Comparable {
                 rToO(p, rs);
                 cs.add(p);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -318,7 +366,7 @@ public class Product implements Comparable {
     }
 
     public static List<Product> searchnotcat(String str) {
-        String sqlCmd = "SELECT * FROM PRODUCT WHERE Description like ? OR name like ? ORDER BY CreateOn DESC";
+        String sqlCmd = "SELECT * FROM product WHERE Description like ? OR Name like ? ORDER BY CreateOn DESC";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> cs = new ArrayList<Product>();
@@ -332,6 +380,7 @@ public class Product implements Comparable {
                 rToO(p, rs);
                 cs.add(p);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -343,20 +392,20 @@ public class Product implements Comparable {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM PRODUCT WHERE PRODUCTNO=?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM product WHERE productNO=?");
             ps.setString(1, productid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
 
-    public static ArrayList<Product> page(String key,String id, int x, int y) {
+    public static ArrayList<Product> page(String key, String id, int x, int y) {
         ArrayList<Product> ar = new ArrayList<Product>();
         try {
-            String sql = "select * from product where Description like ? OR name like ? and Category_ID like ? ORDER BY CreateON DESC limit ?,?";
+            String sql = "select * from product where Description like ? OR Name like ? and Category_ID like ? ORDER BY CreateON DESC limit ?,?";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key + "%");
@@ -370,15 +419,17 @@ public class Product implements Comparable {
                 rToO(p, rs);
                 ar.add(p);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ar;
     }
-    public static ArrayList<Product> highPrice(String key,String id, int x, int y) {
+
+    public static ArrayList<Product> highPrice(String key, String id, int x, int y) {
         ArrayList<Product> ar = new ArrayList<Product>();
         try {
-            String sql = "select * from product where Description like ? OR name like ? and Category_ID like ? ORDER BY PRICE DESC limit ?,?";
+            String sql = "select * from product where Description like ? OR Name like ? and Category_ID like ? ORDER BY Price DESC limit ?,?";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key + "%");
@@ -392,15 +443,17 @@ public class Product implements Comparable {
                 rToO(p, rs);
                 ar.add(p);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ar;
     }
-public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
+
+    public static ArrayList<Product> LowPrice(String key, String id, int x, int y) {
         ArrayList<Product> ar = new ArrayList<Product>();
         try {
-            String sql = "select * from product where Description like ? OR name like ? and Category_ID like ? ORDER BY PRICE ASC limit ?,?";
+            String sql = "select * from product where Description like ? OR Name like ? and Category_ID like ? ORDER BY Price ASC limit ?,?";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key + "%");
@@ -414,14 +467,16 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
                 rToO(p, rs);
                 ar.add(p);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ar;
     }
+
     public static int countRow(String key) {
         try {
-            String sql = "select count(productno) from product where name like ?";
+            String sql = "select count(productNO) from product where Name like ?";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key.trim() + "%");
@@ -429,13 +484,15 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
             if (rs.next()) {
                 return rs.getInt(1);
             }
+            con.close();
         } catch (Exception e) {
         }
         return 0;
     }
-    public static int countRowp(String key,double str, double st) {
+
+    public static int countRowp(String key, double str, double st) {
         try {
-            String sql = "select count(productno) from product where name like ? and PRICE between ? and ?";
+            String sql = "select count(productNO) from product where Name like ? and Price between ? and ?";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key.trim() + "%");
@@ -445,12 +502,13 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
             if (rs.next()) {
                 return rs.getInt(1);
             }
+            con.close();
         } catch (Exception e) {
         }
         return 0;
     }
 
-      public static int editCategory(int proid,int cat) {
+    public static int editCategory(int proid, int cat) {
         int row = 0;
         try {
 
@@ -459,19 +517,20 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
             ps.setInt(1, cat);
             ps.setInt(2, proid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
             row = -1;
         }
         return row;
     }
-      public static int editProduct(String name, double price, String des,String available, int cate, String brand,int productid) {
+
+    public static int editProduct(String name, double price, String des, String available, int cate, String brand, int productid) {
         int row = 0;
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE PRODUCT SET name=?,price=?,Description=?,Available=?,Category_ID=?,BrandID=?  WHERE PRODUCTNO=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE product SET Name=?,Price=?,Description=?,Available=?,Category_ID=?,BrandID=?  WHERE productNO=?");
             ps.setString(1, name);
             ps.setDouble(2, price);
             ps.setString(3, des);
@@ -479,28 +538,32 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
             ps.setInt(5, cate);
             ps.setString(6, brand);
             ps.setInt(7, productid);
-            
-            row = ps.executeUpdate();
 
+            row = ps.executeUpdate();
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
             row = -1;
         }
         return row;
     }
+
     private static void rToO(Product p, ResultSet rs) {
         try {
-            p.setProductNO(rs.getInt("productno"));
-            p.setAcctID(rs.getInt("acctid"));
-            p.setCategory_ID(rs.getInt("category_id"));
-            p.setName(rs.getString("name"));
-            p.setPrice(rs.getDouble("price"));
-            p.setOfferStart(rs.getDate("offerstart"));
-            p.setOfferEnd(rs.getDate("offerend"));
-            p.setCreateOn(rs.getDate("createon"));
-            p.setDescription(rs.getString("description"));
-            p.setAvailable(rs.getString("available"));
-            p.setBrandID(rs.getInt("brandid"));
+            p.setProductNO(rs.getInt("productNO"));
+            p.setAcctID(rs.getInt("AcctID"));
+            p.setCategory_ID(rs.getInt("Category_ID"));
+            p.setName(rs.getString("Name"));
+            p.setPrice(rs.getDouble("Price"));
+            p.setOfferStart(rs.getDate("OfferStart"));
+            p.setOfferEnd(rs.getDate("OfferEnd"));
+            p.setCreateOn(rs.getDate("CreateOn"));
+            p.setDescription(rs.getString("Description"));
+            p.setAvailable(rs.getString("Available"));
+            p.setBrandID(rs.getInt("BrandID"));
+            p.setpNO(rs.getInt("pNO"));
+            p.setProduct_Id(rs.getInt("Product_Id"));
+            p.setPathFile(rs.getString("pathFile"));
 
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
@@ -531,9 +594,11 @@ public static ArrayList<Product> LowPrice(String key,String id, int x, int y) {
 
     @Override
     public int compareTo(Object o) {
-        if(!(o instanceof Product))return 0;
-        Product n=(Product)o;
-        return acctID-n.getAcctID();
+        if (!(o instanceof Product)) {
+            return 0;
+        }
+        Product n = (Product) o;
+        return acctID - n.getAcctID();
     }
-    
+
 }

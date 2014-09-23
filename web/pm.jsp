@@ -33,7 +33,7 @@
                 </ol>
             </div>      
             <div class="col-xs-12" style="margin:auto;">
-                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
+                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
                         <h3 class="col-md-2">PM</h3>
                         <div class="col-md-1" style="margin-top: 30px">

@@ -30,37 +30,36 @@
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
                     <li class="active">Profile</li>
-                    <li>Wish List</li>
+                    <li>FeedBack</li>
                 </ol>
             </div>      
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
                     <div class="row">
-                        <h3 class="col-md-12">Wish List</h3>
-                        <form action="DeleteWishlistServlet" method="get">
-                            <div class="col-md-12">
-                                <table class="table table-striped" style="text-align: center">
-                                    <tr bgColor="#ffffff">
-                                    <input type="hidden" name="acctid" value="${user.account_Id}">
-                                    <td>Product Name</td>
-                                    <td>Price</td>
-                                    <td>Seller</td>
-                                    <td><button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
-                                    </tr>
-                                    <c:forEach items="${wish}" var="a">
-                                        <tr>
-                                            <td><a href="#">${a.name}</a></td>
-                                            <td><a href="#">${a.price}</a></td>
-                                            <td>${a.seller}</td>
-                                            <td><botton  class="checkbox"  for="checkbox1">
-                                            <input type="checkbox" name="wishid" value="${a.wish_Id}" id="checkbox1" data-toggle="checkbox">
-                                        </botton>
-                                        </td>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
-                        </form>
+                        <div class="col-md-12"><h2>Feedback</h2><hr></div>
+                        <table class="table" >
+                            <tr bgColor="#ececea">
+                                <td></td>
+                                <td></td>
+                                <td><select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select></td>
+                            </tr>
+                            <tr bgColor="#ececea">
+                                <td width="70%">FeedBack</td>
+                                <td>From Buyer</td>
+                                <td>Date</td>
+                            </tr>
+                            <tr>
+                                <td>แจ่มจุงเบย</td>
+                                <td>boss451</td>
+                                <td>10/05/2014</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

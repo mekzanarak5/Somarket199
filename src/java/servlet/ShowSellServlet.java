@@ -34,6 +34,7 @@ public class ShowSellServlet extends HttpServlet {
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         List<Product> p = Product.showSell(id);
+        System.out.println(p);
         request.setAttribute("sell", p);
         getServletContext().getRequestDispatcher("/selllist.jsp").forward(request, response);
     }

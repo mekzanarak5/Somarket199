@@ -17,7 +17,7 @@
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
         <div class="col-md-3">
-            <jsp:include page="logo.jsp"/>
+            <jsp:include page="logo_1.jsp"/>
         </div>
         <div class="col-md-9">
             <jsp:include page="header.jsp"/>
@@ -30,23 +30,6 @@
 
             </div>       
             <div class="col-md-12">
-                <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                            <span class="sr-only">Toggle navigation</span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-01">
-                        <ul class="nav navbar-nav navbar-form">           
-                            <li><a href="editProfile.jsp">Edit <span class="fui-gear"></span></a></li>
-                            <li><a href="changePassword.jsp">Change Password <span class="fui-lock"></span></a></li>                           
-                            <li><a href="#fakelink">Buy List <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
-                            <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List <span class="glyphicon glyphicon-home"></span></a></li>
-                            <li><a href="ShowAddressServlet?id=${user.account_Id}">Profile <span class="glyphicon glyphicon-folder-open"></a></li>
-                            <li><a href="ShowWishlistServlet?id=${user.account_Id}">Wish List <span class="glyphicon glyphicon-heart-empty"></a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </nav>
                 <div class="col-md-4" align="center">
                     <form action="AddProfilePic" method="post"
                           enctype="multipart/form-data">
@@ -105,30 +88,6 @@
                         </tr>
                     </table> 
                 </form>
-                <div class="col-md-12"><h2>Feedback</h2><hr></div>
-                <table class="table" >
-                    <tr bgColor="#ececea">
-                        <td></td>
-                        <td></td>
-                        <td><select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select></td>
-                    </tr>
-                    <tr bgColor="#ececea">
-                        <td width="70%">FeedBack</td>
-                        <td>From Buyer</td>
-                        <td>Date</td>
-                    </tr>
-                    <tr>
-                        <td>แจ่มจุงเบย</td>
-                        <td>boss451</td>
-                        <td>10/05/2014</td>
-                    </tr>
-                </table>
             </div> 
         </div>
         <script src="js1/vendor/jquery.ui.widget.js"></script>

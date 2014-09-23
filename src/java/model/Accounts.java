@@ -45,7 +45,7 @@ public class Accounts {
         this.Created = Created;
         this.Pic = Pic;
     }
-    
+
     public int getAccount_Id() {
         return Account_Id;
     }
@@ -125,7 +125,6 @@ public class Accounts {
     public void setPic(String Pic) {
         this.Pic = Pic;
     }
-    
 
     public static int addAccount(String Username, String Password, String Email, String dispName,
             String FirstName, String LastName, String Phone, String Created) {
@@ -134,7 +133,7 @@ public class Accounts {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(ACCOUNT_ID) AS LastMemberID FROM ACCOUNT");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(Account_Id) AS LastMemberID FROM account");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
@@ -142,7 +141,7 @@ public class Accounts {
                 newMemberID = 0;
             }
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO ACCOUNT VALUES (?,?,?,?,?,?,?,?,current_timestamp)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO account VALUES (?,?,?,?,?,?,?,?,current_timestamp)");
             ps.setInt(1, newMemberID);
             ps.setString(2, Username);
             ps.setString(3, Password);
@@ -152,7 +151,7 @@ public class Accounts {
             ps.setString(7, LastName);
             ps.setString(8, Phone);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -168,7 +167,7 @@ public class Accounts {
     }
 
     public static Accounts findById(String id) {
-        String sqlCmd = "SELECT * FROM ACCOUNT WHERE USERNAME = ?";
+        String sqlCmd = "SELECT * FROM account WHERE Username = ?";
         Connection con = ConnectionAgent.getConnection();
         Accounts a = null;
         try {
@@ -179,6 +178,7 @@ public class Accounts {
                 a = new Accounts();
                 rToO(a, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,7 +186,7 @@ public class Accounts {
     }
 
     public static List<Accounts> findByIdSender(int id) {
-        String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
+        String sqlCmd = "SELECT * FROM account WHERE Account_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         Accounts a = null;
         List<Accounts> cs = new ArrayList<Accounts>();
@@ -199,6 +199,7 @@ public class Accounts {
                 rToO(a, rs);
                 cs.add(a);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -206,7 +207,7 @@ public class Accounts {
     }
 
     public static Accounts findById2(int id) {
-        String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
+        String sqlCmd = "SELECT * FROM account WHERE Account_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         Accounts a = null;
         try {
@@ -217,13 +218,15 @@ public class Accounts {
                 a = new Accounts();
                 rToO(a, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
         return a;
     }
+
     public static Accounts findById3(String id) {
-        String sqlCmd = "SELECT * FROM ACCOUNT WHERE account_ID = ?";
+        String sqlCmd = "SELECT * FROM account WHERE Account_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         Accounts a = null;
         try {
@@ -234,13 +237,15 @@ public class Accounts {
                 a = new Accounts();
                 rToO(a, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
         return a;
     }
+
     public static Accounts findPic(int id) {
-        String sqlCmd = "SELECT pic FROM ACCOUNT WHERE account_ID = ?";
+        String sqlCmd = "SELECT Pic FROM account WHERE Account_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         Accounts a = null;
         try {
@@ -251,6 +256,7 @@ public class Accounts {
                 a = new Accounts();
                 rToO(a, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -262,16 +268,16 @@ public class Accounts {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE ACCOUNT SET dispname=?,FIRSTNAME=?,LASTNAME=?,phone=?  WHERE account_ID=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE account SET dispName=?,FirstName=?,LastName=?,Phone=?  WHERE Account_Id=?");
             ps.setString(1, dispname);
             ps.setString(2, firstname);
             ps.setString(3, lastname);
             ps.setString(4, phone);
             ps.setInt(5, acctid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
             row = -1;
         }
         return row;
@@ -282,11 +288,11 @@ public class Accounts {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE ACCOUNT SET password=? WHERE account_ID=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE account SET Password=? WHERE Account_Id=?");
             ps.setString(1, password);
             ps.setInt(2, acctid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
             row = -1;
@@ -296,16 +302,16 @@ public class Accounts {
 
     private static void rToO(Accounts a, ResultSet rs) {
         try {
-            a.setAccount_Id(rs.getInt("ACCOUNT_ID"));
-            a.setUsername(rs.getString("USERNAME"));
-            a.setPassword(rs.getString("PASSWORD"));
-            a.setEmail(rs.getString("EMAIL"));
-            a.setDispName(rs.getString("DISPNAME"));
-            a.setFirstName(rs.getString("FIRSTNAME"));
-            a.setLastName(rs.getString("LASTNAME"));
-            a.setPhone(rs.getString("PHONE"));
-            a.setCreated(rs.getString("CREATED"));
-            a.setPic(rs.getString("PIC"));
+            a.setAccount_Id(rs.getInt("Account_Id"));
+            a.setUsername(rs.getString("Username"));
+            a.setPassword(rs.getString("Password"));
+            a.setEmail(rs.getString("Email"));
+            a.setDispName(rs.getString("dispName"));
+            a.setFirstName(rs.getString("FirstName"));
+            a.setLastName(rs.getString("LastName"));
+            a.setPhone(rs.getString("Phone"));
+            a.setCreated(rs.getString("Created"));
+            a.setPic(rs.getString("Pic"));
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -317,7 +323,7 @@ public class Accounts {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) AS Count FROM ACCOUNT WHERE USERNAME = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) AS Count FROM account WHERE Username = ?");
             ps.setString(1, Username);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -325,7 +331,7 @@ public class Accounts {
             } else {
                 count = 0;
             }
-
+            con.close();
         } catch (SQLException ex) {
             return 999;
         }
@@ -338,28 +344,28 @@ public class Accounts {
 
             Connection con = ConnectionAgent.getConnection();
             System.out.println(pic);
-            PreparedStatement ps = con.prepareStatement("UPDATE ACCOUNT SET PIC = ? WHERE ACCOUNT_ID=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE account SET Pic = ? WHERE Account_Id=?");
             ps.setString(1, pic);
             ps.setString(2, accountid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
-    
 
     public boolean login(String username, String password) {
-        String sql = "select password from account where username = ?";
+        String sql = "select Password from account where Username = ?";
         String pass = "";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                pass = rs.getString("password");
+                pass = rs.getString("Password");
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -371,7 +377,7 @@ public class Accounts {
     }
 
     public static List<Accounts> find(String str) {
-        String sqlCmd = "SELECT * FROM ACCOUNT WHERE user_id like ? ORDER BY ACCOUNT_ID ASC";
+        String sqlCmd = "SELECT * FROM account WHERE Username like ? ORDER BY Account_Id ASC";
         Connection con = ConnectionAgent.getConnection();
         Accounts a = null;
         List<Accounts> cs = new ArrayList<Accounts>();
@@ -384,14 +390,15 @@ public class Accounts {
                 rToO(a, rs);
                 cs.add(a);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cs;
     }
-    
+
     public static Accounts getAccountById(int str) {
-        String sqlCmd = "SELECT * from Account a where a.account_id = ? ";
+        String sqlCmd = "SELECT * from account a where a.Account_Id	 = ? ";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         Accounts cs = new Accounts();
@@ -400,16 +407,17 @@ public class Accounts {
             ps.setInt(1, str);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                cs.setAccount_Id(rs.getInt("account_id"));
-                cs.setUsername(rs.getString("username")); 
-                cs.setDispName(rs.getString("dispname"));
-                cs.setFirstName(rs.getString("firstname"));
-                cs.setLastName(rs.getString("lastname"));
-                cs.setPhone(rs.getString("phone"));
+                cs.setAccount_Id(rs.getInt("Account_Id"));
+                cs.setUsername(rs.getString("Username"));
+                cs.setDispName(rs.getString("dispName"));
+                cs.setFirstName(rs.getString("FirstName"));
+                cs.setLastName(rs.getString("LastName"));
+                cs.setPhone(rs.getString("Phone"));
                 cs.setCreated(rs.getString("Created"));
             }
+            con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cs;
     }
@@ -419,10 +427,10 @@ public class Accounts {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM ACCOUNT WHERE ACCOUNT_ID=?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM account WHERE Account_Id=?");
             ps.setString(1, accountid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }

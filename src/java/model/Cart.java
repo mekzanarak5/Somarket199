@@ -85,6 +85,7 @@ public class Cart {
                     ps.executeUpdate();
                 }
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(Cart.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,6 +104,7 @@ public class Cart {
                 LineItem li = new LineItem(Product.findByName(rs.getString(3)), rs.getInt(2));
                 c.add(li);
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(Cart.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,7 +112,7 @@ public class Cart {
     }
 
     public static int idGenerator() {
-        String sql = "SELECT MAX(ORDERNO) FROM ORDER_SUM";
+        String sql = "SELECT MAX(OrderNo) FROM order_sum";
         int result = 0;
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
@@ -118,6 +120,7 @@ public class Cart {
             if (rs.next()) {
                 result = rs.getInt(1) + 1;
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(Cart.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,7 +128,7 @@ public class Cart {
     }
     
     public static int LastByOrder() {
-        String sql = "SELECT MAX(PRODUCT_ID) FROM ORDER_PRODUCT";
+        String sql = "SELECT MAX(Product_ID) FROM order_product";
         int result = 0;
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
@@ -133,6 +136,7 @@ public class Cart {
             if (rs.next()) {
                 result = rs.getInt(1);
             }
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(Cart.class.getName()).log(Level.SEVERE, null, ex);
         }

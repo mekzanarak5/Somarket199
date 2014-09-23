@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.sql.Connection;
@@ -20,6 +19,7 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class Bank {
+
     private int Bank_Id;
     private int AcctId;
     private String BankName;
@@ -76,14 +76,14 @@ public class Bank {
     public void setBankAccName(String BankAccName) {
         this.BankAccName = BankAccName;
     }
-              
+
     public static int addBank(int AcctNo, String BankName, String BankAccNo, String BankAccName) {
         int row = 0;
         int newMemberID = 0;
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(bank_ID) AS LastMemberID FROM bankaccount");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(Bank_Id) AS LastMemberID FROM bankaccount");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
@@ -99,32 +99,34 @@ public class Bank {
             ps.setString(5, BankAccName);
 
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
-    public static int editBank(String BankName, String BankAccNo, String BankAccName,int Address_Id) {
+
+    public static int editBank(String BankName, String BankAccNo, String BankAccName, int Address_Id) {
         int row = 0;
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE BANKACCOUNT SET BankName=?,BankAccNo=?,BankAccName=? WHERE BANK_Id=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE bankaccount SET Bankname=?,BankAccNo=?,BankAccName=? WHERE Bank_Id=?");
             ps.setString(1, BankName);
             ps.setString(2, BankAccNo);
             ps.setString(3, BankAccName);
             ps.setInt(4, Address_Id);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
             row = -1;
         }
         return row;
     }
+
     public static Bank findBank(int id) {
-        String sqlCmd = "SELECT * FROM Bankaccount WHERE Bank_ID = ?";
+        String sqlCmd = "SELECT * FROM bankaccount WHERE Bank_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         Bank a = null;
         try {
@@ -135,13 +137,15 @@ public class Bank {
                 a = new Bank();
                 rToO(a, rs);
             }
+            con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
         }
         return a;
     }
+
     public static List<Bank> showBank(int id) {
-        String sqlCmd = "SELECT * FROM BANKACCOUNT WHERE AcctNo = ?";
+        String sqlCmd = "SELECT * FROM bankaccount WHERE AcctNo = ?";
         Connection con = ConnectionAgent.getConnection();
         Bank a = null;
         List<Bank> pa = new ArrayList<Bank>();
@@ -154,50 +158,53 @@ public class Bank {
                 rToO(a, rs);
                 pa.add(a);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pa;
     }
+
     public static int lastid() {
         Connection con = ConnectionAgent.getConnection();
         int id = 0;
         try {
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(BANK_ID) FROM BANKACCOUNT");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(Bank_Id) FROM bankaccount");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-
+            con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
-     public static int deleteBank(String bankid) {
+
+    public static int deleteBank(String bankid) {
         int row = 0;
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM bankaccount WHERE bank_Id=?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM bankaccount WHERE Bank_Id=?");
             ps.setString(1, bankid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
+
     private static void rToO(Bank a, ResultSet rs) {
         try {
             a.setBank_Id(rs.getInt("Bank_Id"));
             a.setAcctId(rs.getInt("AcctNo"));
-            a.setBankName(rs.getString("BankName"));
+            a.setBankName(rs.getString("Bankname"));
             a.setBankAccNo(rs.getString("BankAccNo"));
             a.setBankAccName(rs.getString("BankAccName"));
-
         } catch (SQLException ex) {
-            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

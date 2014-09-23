@@ -74,7 +74,7 @@ public class Category {
     }
 
     public static List<Category> findBigAll() {
-        String sqlCmd = "SELECT * FROM CATEGORY where parentCateID is null";
+        String sqlCmd = "SELECT * FROM category where ParentCateID is null";
         Connection con = ConnectionAgent.getConnection();
         Category c = null;
         List<Category> ca = new ArrayList<Category>();
@@ -86,6 +86,7 @@ public class Category {
                 rToO(c, rs);
                 ca.add(c);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,7 +94,7 @@ public class Category {
     }
 
     public static List<Category> findBigP() {
-        String sqlCmd = "SELECT cateID FROM CATEGORY where parentCateID is null";
+        String sqlCmd = "SELECT cateID FROM category where ParentCateID is null";
         Connection con = ConnectionAgent.getConnection();
         Category c = null;
         List<Category> ca = new ArrayList<Category>();
@@ -105,6 +106,7 @@ public class Category {
                 rToO(c, rs);
                 ca.add(c);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -120,7 +122,7 @@ public class Category {
 
         for (Category category : ids) {
             currentId = category.getCateID();
-            String sqlCmd = "SELECT * FROM CATEGORY where parentCateID IN ( " + currentId + " )";
+            String sqlCmd = "SELECT * FROM category where ParentCateID IN ( " + currentId + " )";
             try {
                 PreparedStatement ps = con.prepareStatement(sqlCmd);
 //            ps.setInt(1, id);
@@ -130,6 +132,7 @@ public class Category {
                     rToO(c, rs);
                     ca.add(c);
                 }
+                con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -137,9 +140,10 @@ public class Category {
         }
         return ca;
     }
-public static Category findBySmall(int id) {
 
-        String sqlCmd = "SELECT * FROM CATEGORY where CateID = ?";
+    public static Category findBySmall(int id) {
+
+        String sqlCmd = "SELECT * FROM category where cateID = ?";
         Connection con = ConnectionAgent.getConnection();
         Category c = null;
         try {
@@ -150,14 +154,16 @@ public static Category findBySmall(int id) {
                 c = new Category();
                 rToO(c, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
     }
+
     public static List<Category> findByParent(int id) {
 
-        String sqlCmd = "SELECT * FROM CATEGORY where parentCateID = ?";
+        String sqlCmd = "SELECT * FROM category where ParentCateID = ?";
         Connection con = ConnectionAgent.getConnection();
         Category c = null;
         List<Category> ca = new ArrayList<Category>();
@@ -170,6 +176,7 @@ public static Category findBySmall(int id) {
                 rToO(c, rs);
                 ca.add(c);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -178,7 +185,7 @@ public static Category findBySmall(int id) {
 
     public static List<Category> findByParent2(List<Category> ids) {
         int currentId = 0;
-        String sqlCmd = "SELECT * FROM CATEGORY where parentCateID IN ( ? )";
+        String sqlCmd = "SELECT * FROM category where ParentCateID IN ( ? )";
         Connection con = ConnectionAgent.getConnection();
         List<Category> ca = new ArrayList<Category>();
         Category c = null;
@@ -191,6 +198,7 @@ public static Category findBySmall(int id) {
                 rToO(c, rs);
                 ca.add(c);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -204,7 +212,7 @@ public static Category findBySmall(int id) {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateid) AS LastMemberID FROM category where ParentCateID is null");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateID) AS LastMemberID FROM category where ParentCateID is null");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
@@ -218,7 +226,7 @@ public static Category findBySmall(int id) {
             ps.setString(3, ParentCateID);
             ps.setString(4, Value);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -231,7 +239,7 @@ public static Category findBySmall(int id) {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateid) AS LastMemberID FROM category where ParentCateID=?");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateID) AS LastMemberID FROM category where ParentCateID=?");
             ps1.setString(1, ParentCateID);
             row = ps1.executeUpdate();
             ResultSet rs = ps1.executeQuery();
@@ -246,35 +254,38 @@ public static Category findBySmall(int id) {
             ps.setString(2, cateName);
             ps.setString(3, ParentCateID);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
     }
-public static int lastid() {
+
+    public static int lastid() {
         Connection con = ConnectionAgent.getConnection();
         int id = 0;
         try {
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateid) FROM category where ParentCateID is null");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateID) FROM category where ParentCateID is null");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
+
     private static void rToO(Category c, ResultSet rs) {
         try {
-            c.setCateID(rs.getInt("CATEID"));
-            c.setCateName(rs.getString("CATENAME"));
-            c.setParentCateID(rs.getString("PARENTCATEID"));
-            c.setValue(rs.getString("VALUE"));
+            c.setCateID(rs.getInt("cateID"));
+            c.setCateName(rs.getString("cateName"));
+            c.setParentCateID(rs.getString("ParentCateID"));
+            c.setValue(rs.getString("Value"));
+
         } catch (SQLException ex) {
-            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

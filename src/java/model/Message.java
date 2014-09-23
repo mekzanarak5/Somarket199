@@ -106,7 +106,7 @@ public class Message {
     public void setRead(int Read) {
         this.Read = Read;
     }
-    
+
     @Override
     public String toString() {
         return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", Sender=" + Sender + ", Receiver=" + Receiver + ", pm=" + pm + '}';
@@ -119,14 +119,14 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MSGID) AS LastMemberID FROM PM");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MsgID) AS LastMemberID FROM Pm");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
             } else {
                 newMemberID = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO PM VALUES (?,?,?,?,?,current_timestamp,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,current_timestamp,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, subject);
             ps.setInt(3, sender);
@@ -135,7 +135,7 @@ public class Message {
             ps.setInt(6, read);
 
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,7 +143,7 @@ public class Message {
     }
 
     public static List<Message> findReceiver(int str) {
-        String sqlCmd = "SELECT * from Account a , PM m where m.sender = a.Account_Id AND m.Receiver = ? ";
+        String sqlCmd = "SELECT * from account a , Pm m where m.sender = a.Account_Id AND m.Receiver = ? ";
         Connection con = ConnectionAgent.getConnection();
 
         Message c = null;
@@ -157,6 +157,7 @@ public class Message {
                 rToO(c, rs);
                 cs.add(c);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -164,7 +165,7 @@ public class Message {
     }
 
     public static List<Message> findSender(int str) {
-        String sqlCmd = "SELECT * from Account a , PM m where m.sender = a.Account_Id AND m.sender = ? ";
+        String sqlCmd = "SELECT * from account a , Pm m where m.Sender = a.Account_Id AND m.Sender = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -177,6 +178,7 @@ public class Message {
                 rToO(c, rs);
                 cs.add(c);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -184,7 +186,7 @@ public class Message {
     }
 
     public static Message findSender2(int str) {
-        String sqlCmd = "SELECT * from Account a , PM m where m.sender = a.Account_Id AND m.msgid = ? ";
+        String sqlCmd = "SELECT * from account a , PM m where m.Sender = a.Account_Id AND m.MsgID = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         try {
@@ -195,6 +197,7 @@ public class Message {
                 c = new Message();
                 rToO(c, rs);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -206,10 +209,10 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM PM WHERE msgID=?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Pm WHERE MsgID=?");
             ps.setString(1, pmid);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -217,7 +220,7 @@ public class Message {
     }
 
     public static int findCount(int str) {
-        String sqlCmd = "SELECT count(*) FROM PM WHERE receiver = ? and isread = 1";
+        String sqlCmd = "SELECT count(*) FROM Pm WHERE Receiver = ? and isread = 1";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Message> cs = new ArrayList<Message>();
@@ -227,6 +230,7 @@ public class Message {
             ResultSet rs = ps.executeQuery();
             rs.next();
             return rs.getInt(1);
+            
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -238,10 +242,10 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE PM SET isread=0  WHERE msgID=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE Pm SET isread=0  WHERE MsgID=?");
             ps.setInt(1, msg);
             row = ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
             row = -1;
@@ -251,13 +255,13 @@ public class Message {
 
     private static void rToO(Message m, ResultSet rs) {
         try {
-            m.setMsgID(rs.getInt("msgid"));
-            m.setSubject(rs.getString("subject"));
-            m.setSender(rs.getInt("sender"));
-            m.setReceiver(rs.getInt("receiver"));
-            m.setPm(rs.getString("pm"));
-            m.setTime(rs.getString("time"));
-            m.setUsername(rs.getString("username"));
+            m.setMsgID(rs.getInt("MsgID"));
+            m.setSubject(rs.getString("Subject"));
+            m.setSender(rs.getInt("Sender"));
+            m.setReceiver(rs.getInt("Receiver"));
+            m.setPm(rs.getString("PM"));
+            m.setTime(rs.getString("Time"));
+            m.setUsername(rs.getString("Username"));
             m.setRead(rs.getInt("isread"));
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);

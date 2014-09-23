@@ -18,10 +18,10 @@ public class ConnectionAgent {
         String driver = "com.mysql.jdbc.Driver";
         //jdbc:mysql://localhost/chanin_tasm?useUnicode=yes&characterEncoding=UTF-8
         //String url = "jdbc:mysql://bm-wallet.com:3306/bmwallet_boss";
-        String url = "jdbc:mysql://localhost/test?useUnicode=yes&characterEncoding=UTF-8";
+        String url = "jdbc:mysql://128.199.226.22:3306/test?useUnicode=yes&characterEncoding=UTF-8";
         try {
             Class.forName(driver);
-            con = DriverManager.getConnection(url, "root", "");
+            con = DriverManager.getConnection(url, "test", "mekza199");
             System.out.println("Connection Complete");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);

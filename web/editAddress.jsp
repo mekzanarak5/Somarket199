@@ -20,7 +20,7 @@
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
         <div class="col-md-3">
-            <jsp:include page="logo.jsp"/>
+            <jsp:include page="logo_1.jsp"/>
         </div>
         <div class="col-md-9">
             <jsp:include page="header.jsp"/>
