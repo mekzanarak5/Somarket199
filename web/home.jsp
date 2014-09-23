@@ -47,22 +47,22 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
+                                <img src="pic/Showhome1.jpg" width="400px" height="300px" alt="...">
                                 <div class="carousel-caption">
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
+                                <img src="pic/Showhome2.jpg" width="400px" height="300px" alt="...">
                                 <div class="carousel-caption">
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
+                                <img src="pic/Showhome3.jpg" width="400px" height="300px" alt="...">
                                 <div class="carousel-caption">
                                 </div>
                             </div>
                              <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
+                                <img src="pic/Showhome4.jpg" width="400px" height="300px" alt="...">
                                 <div class="carousel-caption">
                                 </div>
                             </div>
