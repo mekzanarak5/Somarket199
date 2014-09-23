@@ -2,8 +2,6 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="bootstrap/css/jasny-bootstrap.min.css"/>
 <link href="bootstrap/css/semantic.css" rel="stylesheet">
-<link href="css/less-compiled.css" rel="stylesheet">
-<link href="css/sass-compiled.css" rel="stylesheet">
 <!--<link href="bootstrap/css/style.css" rel="stylesheet">-->
 
 <!-- Loading Flat UI -->
