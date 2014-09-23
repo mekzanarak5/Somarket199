@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +39,7 @@ public class SearchProductServlet extends HttpServlet {
         String cat = request.getParameter("herolist");
         String xx = request.getParameter("x");
         Product pp = new Product();
+        ArrayList<Product> a1 = new ArrayList<Product>();
         int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
         int y = Integer.parseInt(request.getParameter("y"));
         int totalPage = (int) Math.ceil((pp.countRow(sid) * 1.0) / y);

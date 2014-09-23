@@ -316,7 +316,7 @@ public class Product implements Comparable {
     }
 
     public static List<Product> search(String str, String id) {
-        String sqlCmd = "SELECT * FROM product WHERE Description like ? OR Name like ? and Category_ID like ? ORDER BY CreateOn DESC";
+        String sqlCmd = "SELECT * FROM product p,product_img pi WHERE p.productNO = pi.Product_Id or Description like ? OR Name like ? and Category_ID like ? GROUP BY pi.Product_Id ORDER BY p.CreateOn DESC";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> cs = new ArrayList<Product>();
@@ -405,7 +405,7 @@ public class Product implements Comparable {
     public static ArrayList<Product> page(String key, String id, int x, int y) {
         ArrayList<Product> ar = new ArrayList<Product>();
         try {
-            String sql = "select * from product where Description like ? OR Name like ? and Category_ID like ? ORDER BY CreateON DESC limit ?,?";
+            String sql = "select * from product p,product_img pi where p.productNO = pi.Product_Id or p.Description like ? OR p.Name like ? and p.Category_ID like ? GROUP BY pi.Product_Id ORDER BY p.CreateON DESC limit ?,?";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key + "%");

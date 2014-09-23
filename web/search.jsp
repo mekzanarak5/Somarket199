@@ -19,6 +19,7 @@
         <!-- Loading Bootstrap -->
         <jsp:include page="cssup.jsp"/>
     </head>
+
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <jsp:include page="header1.jsp"/>
         <div class="col-md-3">
@@ -61,16 +62,16 @@
                 </div>
             </div>
             <center>
-                <div class="col-xs-12" style="margin:auto;" >
-                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 900px;background: #FFFFFF">
+                <div class="col-md-12" style="margin:auto;" >
+                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 750px;background: #FFFFFF">
                         <div class="row">
                             <h3 class="col-md-12">Search</h3>
                             <div class="row">
                                 <c:forEach items="${products}" var="a">
                                     <form action="AddToCart" method="get">
-                                        <div class="col-sm-4">
+                                        <div class="col-md-4">
                                             <div class="thumbnail">
-                                                <img src="#" alt="...">                                                
+                                                <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 190; height: 140px;" class="img-rounded"></a>                                               
                                                 <div class="caption" >
                                                     <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p><p>${a.price}0฿</p></a>                                      
                                                     <input type="hidden" name="url" />
@@ -79,7 +80,7 @@
 
                                                     <p><button class="btn btn-primary" role="button">Add to cart</button> <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </form>
@@ -87,52 +88,54 @@
                                 <%-- out.print(url); --%>
                             </div>
                         </div>
+                        <table style="width: 30%" align="center">
+                            <tr>
+                                <c:choose>
+                                    <c:when test="${x-y>=0}">
+                                        <td style="width: 50px;height: 20px;text-align: center ">
+                                            <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x-y}&y=${y}&s=${s}">Prev</a></td> 
+                                        </c:when>
+                                        <c:otherwise>
+                                        <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
+                                            Prev</td> 
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                <c:set var="i" value="1"/>
+                                <c:forEach begin="1" end="${totalPage}">
+                                    <c:choose>
+                                        <c:when test="${y*(i-1)==x}">
+                                            <td style="background-color: #02639d;width: 50px;height: 20px;text-align: center ">
+                                                ${i} 
+                                            </td>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <td style="width: 50px;height: 20px;text-align: center ">
+                                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${y*(i-1)}&y=${y}&s=${s}">${i}</a>
+                                            </td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:set var="i" value="${i+1}"/>
+                                </c:forEach>
+
+                                <c:choose>
+                                    <c:when test="${currentPage<totalPage}">
+                                        <td style="width: 50px;height: 20px;text-align: center ">
+                                            <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x+y}&y=${y}&s=${s}">Next</a></td> 
+                                        </c:when>
+                                        <c:otherwise>
+                                        <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
+                                            Next</td>
+                                        </c:otherwise>
+                                    </c:choose> 
+                            </tr>
+                        </table>
                     </div>
                 </div>
+
             </center>
-            <table style="width: 30%" align="center">
-                <tr>
-                    <c:choose>
-                        <c:when test="${x-y>=0}">
-                            <td style="width: 50px;height: 20px;text-align: center ">
-                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x-y}&y=${y}&s=${s}">Prev</a></td> 
-                            </c:when>
-                            <c:otherwise>
-                            <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
-                                Prev</td> 
-                            </c:otherwise>
-                        </c:choose>
 
-                    <c:set var="i" value="1"/>
-                    <c:forEach begin="1" end="${totalPage}">
-                        <c:choose>
-                            <c:when test="${y*(i-1)==x}">
-                                <td style="background-color: #02639d;width: 50px;height: 20px;text-align: center ">
-                                    ${i} 
-                                </td>
-                            </c:when>
-
-                            <c:otherwise>
-                                <td style="width: 50px;height: 20px;text-align: center ">
-                                    <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${y*(i-1)}&y=${y}&s=${s}">${i}</a>
-                                </td>
-                            </c:otherwise>
-                        </c:choose>
-                        <c:set var="i" value="${i+1}"/>
-                    </c:forEach>
-
-                    <c:choose>
-                        <c:when test="${currentPage<totalPage}">
-                            <td style="width: 50px;height: 20px;text-align: center ">
-                                <a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=${x+y}&y=${y}&s=${s}">Next</a></td> 
-                            </c:when>
-                            <c:otherwise>
-                            <td style="width: 50px;height: 20px;text-align: center;color: #02639d ">
-                                Next</td>
-                            </c:otherwise>
-                        </c:choose> 
-                </tr>
-            </table>
         </div>
         <script src="js/accordion.js"></script>
         <script src="js/semantic.js"></script>

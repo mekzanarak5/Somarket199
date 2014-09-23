@@ -11,7 +11,7 @@
         <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List <span class="glyphicon glyphicon-home"></span></a></li>
         <li><a href="ShowAddressServlet?id=${user.account_Id}">Profile <span class="glyphicon glyphicon-folder-open"></a></li>
         <li><a href="ShowWishlistServlet?id=${user.account_Id}">Wish List <span class="glyphicon glyphicon-heart-empty"></a></li>
-        <li><a href="ShowWishlistServlet?id=${user.account_Id}">FeedBack <span class="glyphicon glyphicon-refresh"></a></li>
+        <li><a href="feedback.jsp">FeedBack <span class="glyphicon glyphicon-refresh"></a></li>
     </ul>
   </div>
 </div>
