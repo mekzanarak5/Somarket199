@@ -8,7 +8,9 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,23 +37,33 @@ public class ShowCategoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession s1 = request.getSession();
-        List<Category> c = Category.findBigAll();
-        s1.setAttribute("cateID", c);
-        HttpSession s2 = request.getSession();
-        List<Category> cc = Category.findBigP();
-        int currentId=0;
-        
-        List<Category> c2 = new ArrayList<Category>();
-        List<Category> c3 = new ArrayList<Category>();
-        for (Category category : cc) {
-            currentId = category.getCateID();   
-            c2 = Category.findByParent(currentId);
-            System.out.println(currentId);
-            c3.addAll(c2);
+        Map<Category, List<Category>> cate = new HashMap<Category, List<Category>>();
+
+        for (Category category : Category.findBigAll()) {
+            List<Category> subCategories = Category.findBigP(category.getCateID());
+            cate.put(category, subCategories);
+            System.out.println(subCategories);
         }
-        s2.setAttribute("cateID1", c3);
+        s1.setAttribute("cate", cate);
         response.sendRedirect("home.jsp");
-        
+//        HttpSession s1 = request.getSession();
+//        List<Category> c = Category.findBigAll();
+//        s1.setAttribute("cateID", c);
+//        HttpSession s2 = request.getSession();
+//        List<Category> cc = Category.findBigP();
+//        int currentId=0;
+//        
+//        List<Category> c2 = new ArrayList<Category>();
+//        List<Category> c3 = new ArrayList<Category>();
+//        for (Category category : cc) {
+//            currentId = category.getCateID();   
+//            c2 = Category.findByParent(currentId);
+//            System.out.println(currentId);
+//            c3.addAll(c2);
+//        }
+//        s2.setAttribute("cateID1", c3);
+//        response.sendRedirect("home.jsp");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

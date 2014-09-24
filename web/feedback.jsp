@@ -32,7 +32,28 @@
                     <li class="active">Profile</li>
                     <li>FeedBack</li>
                 </ol>
-            </div>      
+            </div>   
+            <div class="col-xs-12" style="margin:auto;">
+                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                    <div class="row">
+                        <div class="col-md-12"><h4>Item Awaiting Feedback</h4><hr></div>
+                        <table class="table" >
+                            <tr bgColor="#ececea">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr bgColor="#ececea">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
                     <div class="row">
@@ -50,7 +71,7 @@
                                     </select></td>
                             </tr>
                             <tr bgColor="#ececea">
-                                <td width="70%">FeedBack</td>
+                                <td width="65%">FeedBack</td>
                                 <td>From Buyer</td>
                                 <td>Date</td>
                             </tr>

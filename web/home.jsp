@@ -17,7 +17,6 @@
                 /*height: 10000px;*/
                 font-family: "Lato";
                 background-color: #2980b9;
-                padding:20px 30px;
                 margin: 0px;
             }
 
@@ -214,36 +213,36 @@
                     </div>
                 </div>  
             </div>
-                <div class="col-md-12" style="margin:20px">
+            <div class="col-md-12" style="margin:20px;" >
                 <div class="container-a1">
-                    <ul class="caption-style-1">
-                            <li>
-                                <img src="pic/com1.png" class="img-rounded" alt="">
-                                <div class="caption">
-                                    <div class="blur"></div>
-                                    <div class="caption-text">
-                                        <h1>Computer</h1>
-                                    </div>
+                    <ul class="caption-style-1" >
+                        <li>
+                            <img src="pic/com1.png" class="img-rounded" alt="">
+                            <div class="caption">
+                                <div class="blur"></div>
+                                <div class="caption-text">
+                                    <h1>Computer</h1>
                                 </div>
-                            </li>
-                            <li>
-                                <img src="pic/mob1.png" class="img-rounded" alt="">
-                                <div class="caption">
-                                    <div class="blur"></div>
-                                    <div class="caption-text">
-                                        <h1>Mobile</h1>
-                                    </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="pic/mob1.png" class="img-rounded" alt="">
+                            <div class="caption">
+                                <div class="blur"></div>
+                                <div class="caption-text">
+                                    <h1>Mobile</h1>
                                 </div>
-                            </li>
-                            <li>
-                                <img src="pic/cam1.png" class="img-rounded" alt="">
-                                <div class="caption">
-                                    <div class="blur"></div>
-                                    <div class="caption-text">
-                                        <h1>Camera</h1>
-                                    </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="pic/cam1.png" class="img-rounded" alt="">
+                            <div class="caption">
+                                <div class="blur"></div>
+                                <div class="caption-text">
+                                    <h1>Camera</h1>
                                 </div>
-                            </li>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
@@ -307,5 +306,6 @@
                         ;
             });
         </script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

@@ -5,8 +5,8 @@
         <div class="col-md-3">
             <select name="herolist" class="select-block">
                 <option value="" selected>Choose Category</option>
-                <c:forEach items="${cateID}" var="a">
-                    <option value="${a.cateID}">${a.cateName}</option>
+                <c:forEach items="${cate}" var="entry">
+                    <option value="${entry.key.cateID}">${entry.key.cateName}</option>
                 </c:forEach>
             </select>
         </div>

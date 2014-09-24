@@ -93,13 +93,14 @@ public class Category {
         return ca;
     }
 
-    public static List<Category> findBigP() {
-        String sqlCmd = "SELECT cateID FROM category where ParentCateID is null";
+    public static List<Category> findBigP(int cateID) {
+        String sqlCmd = "SELECT * FROM category where ParentCateID = ?";
         Connection con = ConnectionAgent.getConnection();
         Category c = null;
         List<Category> ca = new ArrayList<Category>();
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, cateID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 c = new Category();
@@ -115,7 +116,7 @@ public class Category {
 
     public static List<Category> findByParent1(List<Category> ids) {
         int currentId = 0;
-        //String sqlCmd = "SELECT * FROM CATEGORY where parentCateID IN ( ? )";
+//String sqlCmd = "SELECT * FROM CATEGORY where parentCateID IN ( ? )";
         Connection con = ConnectionAgent.getConnection();
         List<Category> ca = new ArrayList<Category>();
         Category c = null;
@@ -125,7 +126,7 @@ public class Category {
             String sqlCmd = "SELECT * FROM category where ParentCateID IN ( " + currentId + " )";
             try {
                 PreparedStatement ps = con.prepareStatement(sqlCmd);
-//            ps.setInt(1, id);
+// ps.setInt(1, id);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     c = new Category();
@@ -191,7 +192,7 @@ public class Category {
         Category c = null;
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
-//            ps.setInt(1, id);
+// ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 c = new Category();

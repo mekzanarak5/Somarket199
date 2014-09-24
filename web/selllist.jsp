@@ -43,17 +43,10 @@
                         <h6 class="col-md-3"  >Sell List</h6>
                         <div id="cbp-vm" class="cbp-vm-switcher">
                             <div class="btn-group btn-group-justified">
-                                <div class="btn-group">
-                                    <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Now Sell</button></a>
-                                </div>
-                                <div class="btn-group">
+                                    <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-primary">Now Sell</button></a>
                                     <a href="ongoing.html"><button type="button" class="btn btn-default">Ongoing</button></a>
-                                </div>
-                                <div class="btn-group">
                                     <a href="sold.html"><button type="button" class="btn btn-default">Sold List</button></a>
-                                </div>
                             </div>
-                            <div class="col-md-12"><h6>Now Sell</h6></div>
                             <hr>
                             <table class="table table-striped" style="text-align: center">
                                 <tr bgColor="#ffffff">

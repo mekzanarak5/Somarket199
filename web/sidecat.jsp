@@ -1,29 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
-<div style=" border: 1px solid #ffffff;border-radius: 15px;height: 800px;background: #ffffff">
     <h6 class="col-md-3">Catagory</h6>
-    <div class="col-md-12">
-        <c:forEach items="${cateID}" var="a">
-            <div class="ui accordion">
-                <div class="active title">
-                    <i class="dropdown icon"></i>
-                    ${a.cateName}
-                </div>
-                <%--<c:forEach items="${cateID}" var="a">--%>
-                    <div class="active content">                                    
-                        <div class="accordion">
-                            <div class="active content">
-                                <i class="dropdown icon"></i>
-                                Level 1A
-                            </div>
-                        </div>
-                    </div>   
-                <%--</c:forEach>--%>
+    
+    <c:forEach items="${cate}" var="entry">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">${entry.key.cateName}</h3>
             </div>
-        </c:forEach>
-    </div>
+            <c:forEach items="${entry.value}" var="sub_entry">
+                <div class="panel-body">
+                    <ul class="nav nav-sidebar">
+                        <li>${sub_entry.cateName}</li>
+                    </ul>
+                </div>
+            </c:forEach>
+        </div>
+    </c:forEach>
     <form action="PriceServlet" method="get">
-
         <h6 class="col-md-12">Price Range</h6>
         <div class="col-xs-12">
             <div class="row">
@@ -40,4 +33,3 @@
             <input type="submit" class="btn btn-block btn-lg btn-info" value="Search">
         </div>
     </form>
-</div>
