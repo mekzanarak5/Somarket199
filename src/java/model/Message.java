@@ -28,8 +28,12 @@ public class Message {
     private String time;
     private String username;
     private int Read;
+    private String pic;
 
-    public Message(int MsgID, String Subject, int Sender, int Receiver, String pm, String time, String username) {
+    public Message() {
+    }
+
+    public Message(int MsgID, String Subject, int Sender, int Receiver, String pm, String time, String username, int Read, String pic) {
         this.MsgID = MsgID;
         this.Subject = Subject;
         this.Sender = Sender;
@@ -37,10 +41,8 @@ public class Message {
         this.pm = pm;
         this.time = time;
         this.username = username;
-    }
-
-    public Message() {
-
+        this.Read = Read;
+        this.pic = pic;
     }
 
     public int getMsgID() {
@@ -107,9 +109,12 @@ public class Message {
         this.Read = Read;
     }
 
-    @Override
-    public String toString() {
-        return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", Sender=" + Sender + ", Receiver=" + Receiver + ", pm=" + pm + '}';
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public static int insertPM(String subject, int sender, int receiver, String pm, String time) {
@@ -186,7 +191,7 @@ public class Message {
     }
 
     public static Message findSender2(int str) {
-        String sqlCmd = "SELECT * from account a , PM m where m.Sender = a.Account_Id AND m.MsgID = ? ";
+        String sqlCmd = "SELECT * from account a , Pm m where m.Sender = a.Account_Id AND m.MsgID = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         try {
@@ -263,6 +268,7 @@ public class Message {
             m.setTime(rs.getString("Time"));
             m.setUsername(rs.getString("Username"));
             m.setRead(rs.getInt("isread"));
+            m.setPic(rs.getString("Pic"));
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }

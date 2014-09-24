@@ -20,7 +20,11 @@
        <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="logo.jsp"/>
         </div>
@@ -44,7 +48,7 @@
                                     <ul class="media-list">
                                         <li class="media">
                                             <a class="pull-left" href="#">
-                                                <img class="media-object" src="pic/Pikachu.png" alt="..." width="80px" height="100px">
+                                                <img class="media-object" src="${pm.pic}" alt="..." width="80px" height="100px">
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="media-heading">Sender</h4>
@@ -89,6 +93,7 @@
                 </div>
             </div>
         </div>
+        </div>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
@@ -102,5 +107,6 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

@@ -14,7 +14,10 @@
         <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
+        <div style="margin-bottom: -20px">
         <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="logo.jsp"/>
         </div>
@@ -28,7 +31,7 @@
             </div>  
             <div class="col-md-12" align="center">
                 <div class="col-md-5">
-                    <img name="Image" src="${pic1.pathFile}" width="250" height="250"><br /><br /> 
+                    <img name="Image" class="rounded" src="${pic1.pathFile}" width="250" height="250" ><br /><br /> 
                     <c:forEach items="${pic}" var="a">
                     <a onclick="ChangeImage('${a.pathFile}')"><img src="${a.pathFile}" width="50" height="50"></a> 
                     </c:forEach>
@@ -88,6 +91,7 @@
                 </form>
             </div>
         </div>
+        </div>
         <script language="JavaScript">
             function ChangeImage(image) {
                 document.Image.src = image;
@@ -125,5 +129,6 @@
                 js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

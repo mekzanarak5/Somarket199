@@ -108,7 +108,7 @@
                                 <c:forEach begin="1" end="${totalPage}">
                                     <c:choose>
                                         <c:when test="${y*(i-1)==x}">
-                                            <td style="background-color: #02639d;width: 50px;height: 20px;text-align: center ">
+                                            <td style="background-color: #ffffff;width: 50px;height: 20px;text-align: center ">
                                                 ${i} 
                                             </td>
                                         </c:when>

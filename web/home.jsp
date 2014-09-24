@@ -253,7 +253,7 @@
             </div>
             <div class="col-md-12">   
                 <div class="col-xs-12" style="margin:auto;">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
+                    <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: gainsboro">
                         <div class="row">
                             <h5 class="col-md-12">Hot Items of Smartphone</h5>
                             <div>
@@ -266,7 +266,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12" style="padding-top: 20px">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
+                    <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: gainsboro">
                         <div class="row">
                             <h5 class="col-md-12">Hot Items of Tablet</h5>
                             <div>
