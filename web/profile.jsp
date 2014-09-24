@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Register</title>
+        <title>Social Market | Profile</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
@@ -15,7 +15,10 @@
 
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="logo_1.jsp"/>
         </div>
@@ -24,7 +27,7 @@
             <div class="col-xs-12">
 
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="home.jsp">Home</a></li>
                     <li class="active">Profile</li>
                 </ol>
 
@@ -35,12 +38,11 @@
                           enctype="multipart/form-data">
                         <img src="${user.pic}" alt="..." width="100%" class="img-thumbnail">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <span class="btn btn-default btn-file"><span class="fileinput-new">+</span><span class="fileinput-exists">Change</span><input type="file" name="file" accept="image/*" multiple=""></span>
-                            <span class="fileinput-filename"></span>
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">Change</span><span class="fileinput-exists">Change</span><input type="file" name="file" onchange="this.form.submit();" accept="image/*" ></span>
+                
                             <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
                         </div>
                         <input type="hidden" name="id" value="${user.account_Id}"/>
-                        <input type="submit" class="btn btn-default" value="Change Profile" />
                     </form>
                 </div>
                 <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
@@ -90,6 +92,7 @@
                 </form>
             </div> 
         </div>
+        </div>
         <script src="js1/vendor/jquery.ui.widget.js"></script>
         <script src="js1/tmpl.min.js"></script>
         <script src="js1/load-image.min.js"></script>
@@ -121,5 +124,6 @@
                 $('.fileinput').fileinput()
             });
         </script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

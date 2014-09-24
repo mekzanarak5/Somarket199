@@ -18,59 +18,63 @@
         <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
-        <div class="col-md-3">
-            <jsp:include page="logo_1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
         </div>
-        <div class="col-md-9">
-            <jsp:include page="header.jsp"/>
-            <div class="col-md-12">
-                <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li>Profile</li>
-                    <li class="active">Edit</li>
-                </ol>
+        <div class="row">
+            <div class="col-md-3">
+                <jsp:include page="logo_1.jsp"/>
             </div>
-            <form action="EditProfileServlet" method="get">
-                <div class="col-xs-12" style="margin:auto;">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
-                        <div class="form-horizontal">
-                            <h3 class="col-md-12"  >Edit Profile</h3>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Display Name</label>
-                                <div class="col-sm-4">
-                                    <input type="hidden" name="acctid" value="${user.account_Id}">
-                                    <input type="text" class="form-control" value="${user.dispName}" name="dispname" required>
+            <div class="col-md-9">
+                <jsp:include page="header.jsp"/>
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="profile.jsp">Profile</a></li>
+                        <li class="active">Edit</li>
+                    </ol>
+                </div>
+                <form action="EditProfileServlet" method="get">
+                    <div class="col-xs-12" style="margin:auto;">
+                        <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
+                            <div class="form-horizontal">
+                                <h3 class="col-md-12"  >Edit Profile</h3>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Display Name</label>
+                                    <div class="col-sm-4">
+                                        <input type="hidden" name="acctid" value="${user.account_Id}">
+                                        <input type="text" class="form-control" value="${user.dispName}" name="dispname" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">First Name</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" value="${user.firstName}" name="firstname" required>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">First Name</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" value="${user.firstName}" name="firstname" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Last Name</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" value="${user.lastName}" name="lastname" required>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Last Name</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" value="${user.lastName}" name="lastname" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label">Phone</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" value="${user.phone}" name="phone" required>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Phone</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" value="${user.phone}" name="phone" required>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -85,5 +89,6 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

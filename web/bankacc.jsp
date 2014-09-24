@@ -19,7 +19,10 @@
         <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="logo_1.jsp"/>
         </div>
@@ -27,16 +30,16 @@
             <jsp:include page="header.jsp"/>
             <div class="col-xs-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li>Profile</li>
-                    <li class="active">Add Bank Account</li>
+                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="profile.jsp">Profile</a></li>
+                    <li class="active">My Bank Account</li>
                 </ol>
             </div>      
             <div class="col-xs-12" style="margin:auto;">
-                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 700px;background: #FFFFFF">
+                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
-                        <a href="ShowAddressServlet?id=${user.account_Id}"><button type="button" class="btn btn-default col-lg-6">Address</button></a>
-                        <a href="ShowBankServlet?id=${user.account_Id}"><button type="button" class="btn btn-default col-lg-6">Bank Account</button></a>
+                        <a href="ShowAddressServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Address</button></a>
+                        <a href="ShowBankServlet?id=${user.account_Id}"><button type="button" class="btn btn-primary">Bank Account</button></a>
                     </div>
                     <div class="form-horizontal">
                         <div class="row">
@@ -116,6 +119,7 @@
                 </div>
             </div>
         </div>
+        </div>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
@@ -129,5 +133,6 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

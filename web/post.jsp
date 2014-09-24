@@ -18,7 +18,10 @@
         <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
+        <div style="margin-bottom: -20px">
         <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="logo.jsp"/>
         </div>
@@ -110,7 +113,7 @@
                 </div>
             </div>
         </div>
-        
+        </div>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -128,5 +131,6 @@
                 $("#series").chainedTo("#mark");
             });
         </script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

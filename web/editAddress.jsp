@@ -18,7 +18,10 @@
         <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="logo_1.jsp"/>
         </div>
@@ -26,10 +29,10 @@
             <jsp:include page="header.jsp"/>
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Profile</li>
-                    <li class="active">My Address</li>
-                    <li class="active">Edit Address</li>
+                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="profile.jsp">Profile</a></li>
+                    <li><a href="ShowAddressServlet?id=${user.account_Id}">My Address</a></li>
+                    <li>Edit Address</li>
                 </ol>
             </div>
             <div class="col-xs-12" style="margin:auto;">
@@ -156,6 +159,7 @@
                 </div>
             </div>
         </div>
+        </div>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
@@ -169,5 +173,6 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

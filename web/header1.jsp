@@ -29,13 +29,13 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Change Password</a></li>
+                            <li><a href="editProfile.jsp">Edit</a></li>
+                            <li><a href="changePassword.jsp">Change Password</a></li>
                             <li><a href="#">Buy List</a></li>
-                            <li><a href="#">Sell List</a></li>
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Wish List</a></li>
-                            <li><a href="#">Feedback</a></li>
+                            <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
+                            <li><a href="ShowAddressServlet?id=${user.account_Id}">Profile</a></li>
+                            <li><a href="ShowWishlistServlet?id=${user.account_Id}">Wish List</a></li>
+                            <li><a href="feedback.jsp">Feedback</a></li>
                         </ul>
                     </div>
                     <a href="ShowPmServlet?id=${user.account_Id}"><img src="pic/Mail2.png" width="40" height="40" style="size:" /><span class="badge"><%=Message.findCount(user.getAccount_Id())%> </span></a>

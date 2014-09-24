@@ -429,7 +429,7 @@ public class Product implements Comparable {
     public static ArrayList<Product> highPrice(String key, String id, int x, int y) {
         ArrayList<Product> ar = new ArrayList<Product>();
         try {
-            String sql = "select * from product where Description like ? OR Name like ? and Category_ID like ? ORDER BY Price DESC limit ?,?";
+            String sql = "select * from product p,product_img pi where p.productNO = pi.Product_Id and (p.Description like ? or p.Name like ?) and p.Category_ID like ? GROUP BY pi.Product_Id ORDER BY p.Price DESC limit ?,?";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key + "%");
@@ -453,7 +453,7 @@ public class Product implements Comparable {
     public static ArrayList<Product> LowPrice(String key, String id, int x, int y) {
         ArrayList<Product> ar = new ArrayList<Product>();
         try {
-            String sql = "select * from product where Description like ? OR Name like ? and Category_ID like ? ORDER BY Price ASC limit ?,?";
+            String sql = "select * from product p,product_img pi where p.productNO = pi.Product_Id and (p.Description like ? or p.Name like ?) and p.Category_ID like ? GROUP BY pi.Product_Id ORDER BY p.Price ASC limit ?,?";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key + "%");

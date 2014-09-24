@@ -21,7 +21,10 @@
     </head>
 
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="sidecat.jsp"/>
         </div>
@@ -133,10 +136,9 @@
                         </table>
                     </div>
                 </div>
-
             </center>
-
         </div>
+                                </div>
         <script src="js/accordion.js"></script>
         <script src="js/semantic.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -160,5 +162,6 @@
                 $('input[name=url]').val((window.location.href.toString()));
             });
         </script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

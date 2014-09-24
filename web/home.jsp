@@ -162,7 +162,9 @@
         </style>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
+        <div style="margin-bottom: -20px">
         <jsp:include page="header1.jsp"/>
+        </div>
         <div class="row">
             <div class="col-md-3">
                 <jsp:include page="logo.jsp"/>
@@ -214,47 +216,46 @@
                 </div>  
             </div>
             <div class="col-md-12" style="margin:20px;" >
-                <div class="container-a1">
+                <div class="container-a1 col-md-12">
                     <ul class="caption-style-1" >
                         <li>
-                            <img src="pic/com1.png" class="img-rounded" alt="">
+                            <a href="SearchProductServlet?id=${pro}&herolist=1&x=0&y=5&s=a"><img src="pic/com1.png" class="img-rounded" alt="">
                             <div class="caption">
                                 <div class="blur"></div>
                                 <div class="caption-text">
                                     <h1>Computer</h1>
                                 </div>
                             </div>
+                            </a>
                         </li>
                         <li>
-                            <img src="pic/mob1.png" class="img-rounded" alt="">
+                            <a href="SearchProductServlet?id=${pro}&herolist=2&x=0&y=5&s=a"><img src="pic/mob1.png" class="img-rounded" alt="">
                             <div class="caption">
                                 <div class="blur"></div>
                                 <div class="caption-text">
                                     <h1>Mobile</h1>
                                 </div>
                             </div>
+                            </a>
                         </li>
                         <li>
-                            <img src="pic/cam1.png" class="img-rounded" alt="">
+                            <a href="SearchProductServlet?id=${pro}&herolist=3&x=0&y=5&s=a"><img src="pic/cam1.png" class="img-rounded" alt="">
                             <div class="caption">
                                 <div class="blur"></div>
                                 <div class="caption-text">
                                     <h1>Camera</h1>
                                 </div>
                             </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
-
             </div>
             <div class="col-md-12">   
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
                         <div class="row">
-                            <h3 class="col-md-12">Hot Items of Smartphone</h3>
-                            <div class="col-xs-12">
-                                <hr>
-                            </div>
+                            <h5 class="col-md-12">Hot Items of Smartphone</h5>
                             <div>
                                 <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
                                 <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
@@ -267,10 +268,7 @@
                 <div class="col-xs-12" style="padding-top: 20px">
                     <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: #ffffff">
                         <div class="row">
-                            <h3 class="col-md-12">Hot Items of Tablet</h3>
-                            <div class="col-xs-12">
-                                <hr>
-                            </div>
+                            <h5 class="col-md-12">Hot Items of Tablet</h5>
                             <div>
                                 <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
                                 <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
@@ -281,6 +279,7 @@
                     </div>
                 </div>
             </div>
+                
         </div>
 
         <script src="js/jasny-bootstrap.min.js"></script>

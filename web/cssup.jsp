@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="bootstrap/css/jasny-bootstrap.min.css"/>
 <link href="bootstrap/css/semantic.css" rel="stylesheet">
 <!--<link href="bootstrap/css/style.css" rel="stylesheet">-->
+<link href="css/style_1.css" rel="stylesheet" />
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:700" rel="stylesheet" />
 
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.css" rel="stylesheet">
