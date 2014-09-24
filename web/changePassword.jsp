@@ -29,9 +29,9 @@
             <jsp:include page="header.jsp"/>
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li>Profile</li>
-                    <li class="active">Edit</li>
+                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="profile.jsp">Profile</a></li>
+                    <li class="active">Change Password</li>
                 </ol>
             </div>
             <div class="col-xs-12" style="margin:auto;">

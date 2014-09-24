@@ -21,7 +21,10 @@
         <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="logo.jsp"/>
         </div>
@@ -29,7 +32,7 @@
             <jsp:include page="header.jsp"/>
             <div class="col-xs-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="home.jsp">Home</a></li>
                     <li class="active">Cart</li>
                 </ol>
             </div>      
@@ -37,7 +40,6 @@
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
                         <h3 class="col-md-12">Cart</h3>
-                        <div class="col-xs-12">
                             <form action="UpdateCart" method="get">
                                 <table class="table table-striped" style="text-align: center">
                                     <tr bgColor="#ffffff">
@@ -57,13 +59,13 @@
                                                     <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
                                                     <tr >
                                                         <td><a href="ShowAccount?acctid=${line.product.acctID}">${n.dispName}</a></td>
-                                                        <td><a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}"><img src="img/ip1.jpeg" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
+                                                        <td><a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}"><img src="img/ip1.jpeg" style="width: 50px; height: 50px;" class="img-rounded"/></a></td>
                                                         <td>
                                                             <a href="ShowDetailServlet?productId=${line.product.productNO}&acctid=${line.product.acctID}">
                                                                 ${line.product.name}</a></td>
                                                         <td>${line.product.price}</td>
                                                         <td><input type="hidden" value="${line.product.productNO}" name="productId" >
-                                                            <input style="text-align:right" type="number" name="unit" size='4' value="${line.unit}" required></td>
+                                                            <input style="text-align:right" type="number" class="form-control" name="unit" size='4' value="${line.unit}" required></td>
                                                         <td>${line.total}</td>
                                                         <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
                                                     </tr>
@@ -92,12 +94,11 @@
                             <div style="margin-left:300px">
                                 <a href="ConfirmCart"><input type="button" class="btn btn-danger" value="Check out"></a> 
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        </div>
         <%--<c:forEach items="${map}" var="entry">
             เจ้าของ : ${entry.key}<br />
             <ul>
@@ -129,5 +130,6 @@
                 window.location.href = 'UpdateCart';
             });
         </script>-->
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

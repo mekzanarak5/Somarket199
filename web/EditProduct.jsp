@@ -13,7 +13,7 @@
         <!-- Force latest IE rendering engine or ChromeFrame if installed -->
         <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Post</title>
+        <title>Social Market | Edit Product</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
@@ -37,7 +37,10 @@
         Product c = (Product) request.getAttribute("pro");
     %>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
             <jsp:include page="logo.jsp"/>
         </div>
@@ -45,14 +48,15 @@
             <jsp:include page="header.jsp"/>
             <div class="col-xs-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Post</li>
+                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
+                    <li class="active">Edit Product</li>
                 </ol>
             </div> 
             <div class="col-xs-11" style="margin:auto;">
                 <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
-                        <h3 class="col-md-12">Post</h3>
+                        <h3 class="col-md-12">Edit Post</h3>
 
                         <div class="form-horizontal" align="center">
                             <form action="EditProduct" method="get">
@@ -160,7 +164,6 @@
             </div>
         </div>
     </div>
-
     <script src="js1/vendor/jquery.ui.widget.js"></script>
     <script src="js1/tmpl.min.js"></script>
     <script src="js1/load-image.min.js"></script>
@@ -214,5 +217,6 @@
             }
         });
     </script>
+    <jsp:include page="footer.jsp"/>
 </body> 
 </html>

@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="col-xs-12" style="margin:auto;">
-                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
+                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
                         <div class="col-md-12"><h4>Recent Feedback</h4><hr></div>
                         <table class="table" >
