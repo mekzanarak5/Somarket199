@@ -29,21 +29,32 @@ public class order {
     private String slip;
     private String status;
     private String ems;
-    private int acctno;
+    private String seller;
     private int billing;
 
     public order() {
     }
 
-    public order(int orderId, String username, double total, int address, Timestamp time, String slip, String status, String ems) {
+    public order(int orderId, String username, double total, int address, Timestamp time, String payment, String slip, String status, String ems, String seller, int billing) {
         this.orderId = orderId;
         this.username = username;
         this.total = total;
         this.address = address;
         this.time = time;
+        this.payment = payment;
         this.slip = slip;
         this.status = status;
         this.ems = ems;
+        this.seller = seller;
+        this.billing = billing;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
     }
 
     public int getBilling() {
@@ -52,14 +63,6 @@ public class order {
 
     public void setBilling(int billing) {
         this.billing = billing;
-    }
-
-    public int getAcctno() {
-        return acctno;
-    }
-
-    public void setAcctno(int acctno) {
-        this.acctno = acctno;
     }
 
     public Timestamp getTime() {
@@ -141,28 +144,29 @@ public class order {
 
     public int add(order o) {
         int value = 0;
-        String sql = "insert into order_sum(OrderNo,AccountID,TotalPrice,Created,Detail,payment,slip,TrackingNo) values(?,?,?,CURRENT_TIMESTAMP,?,?,?,?)";
+        String sql = "insert into order_sum(OrderNo,user,seller,TotalPrice,Created,Detail,payment,slip,TrackingNo) values(?,?,?,?,CURRENT_TIMESTAMP,?,?,?,?)";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, o.getOrderId());
-            ps.setInt(2, o.getAcctno());
+            ps.setString(2, o.getUsername());
+            ps.setString(3, o.getSeller());
             //ps.setString(3, o.getAddress());
-            ps.setDouble(3, o.getTotal());
-            ps.setString(4, "Not Paid");
+            ps.setDouble(4, o.getTotal());
+            ps.setString(5, "Not Paid");
             if (payment == null) {
-                ps.setNull(5, java.sql.Types.VARCHAR);
-            } else {
-                ps.setString(5, payment);
-            }
-            if (slip == null) {
                 ps.setNull(6, java.sql.Types.VARCHAR);
             } else {
-                ps.setString(6, slip);
+                ps.setString(6, payment);
             }
-            if (ems == null) {
+            if (slip == null) {
                 ps.setNull(7, java.sql.Types.VARCHAR);
             } else {
-                ps.setString(7, ems);
+                ps.setString(7, slip);
+            }
+            if (ems == null) {
+                ps.setNull(8, java.sql.Types.VARCHAR);
+            } else {
+                ps.setString(8, ems);
             }
             value = ps.executeUpdate();
             ConnectionAgent.getConnection().close();
@@ -195,21 +199,16 @@ public class order {
         }
     }
 
-    public static ArrayList<order> getOrderList(int acctno) {
+    public static ArrayList<order> getOrderList(String user) {
         ArrayList<order> arr = new ArrayList<order>();
-        String sql = "select * from order_sum where AccountID like ? order by OrderNo";
+        String sql = "select * from order_sum where user like ? order by OrderNo";
         PreparedStatement ps;
         try {
             ps = ConnectionAgent.getConnection().prepareStatement(sql);
-            ps.setInt(1, acctno);
+            ps.setString(1, user);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                order o = new order();
-                o.setOrderId(rs.getInt(1));
-                o.setUsername(rs.getString(2));
-                o.setAddress(rs.getInt(3));
-                o.setTime(rs.getTimestamp(4));
-                o.setTotal(rs.getDouble(5));
+                order o = toO(rs);
                 arr.add(o);
             }
             ConnectionAgent.getConnection().close();
@@ -296,15 +295,16 @@ public class order {
         try {
             o = new order();
             o.setOrderId(rs.getInt(1));
-            o.setAcctno(rs.getInt(2));
-            o.setTotal(rs.getDouble(3));
-            o.setTime(rs.getTimestamp(4));
-            o.setStatus(rs.getString(5));
-            o.setAddress(rs.getInt(6));
-            o.setBilling(rs.getInt(7));
-            o.setPayment(rs.getString(8));
-            o.setSlip(rs.getString(9));
-            o.setEms(rs.getString(10));
+            o.setUsername(rs.getString(2));
+            o.setSeller(rs.getString(3));
+            o.setTotal(rs.getDouble(4));
+            o.setTime(rs.getTimestamp(5));
+            o.setStatus(rs.getString(6));
+            o.setAddress(rs.getInt(7));
+            o.setBilling(rs.getInt(8));
+            o.setPayment(rs.getString(9));
+            o.setSlip(rs.getString(10));
+            o.setEms(rs.getString(11));
 
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);

@@ -15,7 +15,7 @@ import model.Cart;
 
 /**
  *
- * @author S๐l2n
+ * @author Sl2n
  */
 public class RemoveLineItem extends HttpServlet {
 
@@ -39,7 +39,7 @@ public class RemoveLineItem extends HttpServlet {
 
         Cart cart = (Cart) s.getAttribute("cart");
         cart.getItems().remove(Integer.parseInt(pid));
-        getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/ViewCart").forward(request, response);
 
         //        
     }

@@ -33,7 +33,6 @@ public class EditProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int acctid = Integer.parseInt(request.getParameter("acctid"));
-        String dispname = request.getParameter("dispname");
         String firstname = request.getParameter("firstname");
         String fthai = new String(firstname.getBytes("ISO8859_1"),"UTF-8");
         String lastname = request.getParameter("lastname");
@@ -41,7 +40,7 @@ public class EditProfileServlet extends HttpServlet {
         String Phone = request.getParameter("phone");
         
         Accounts c = new Accounts();
-        c.editProfile(dispname, fthai, lthai, Phone, acctid);
+        c.editProfile(fthai, lthai, Phone, acctid);
         request.setAttribute("edit", c);
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response);
     }

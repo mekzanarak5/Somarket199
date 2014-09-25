@@ -23,7 +23,6 @@ public class Accounts {
     private String Username;
     private String Password;
     private String Email;
-    private String dispName;
     private String FirstName;
     private String LastName;
     private String Phone;
@@ -33,12 +32,11 @@ public class Accounts {
     public Accounts() {
     }
 
-    public Accounts(int Account_Id, String Username, String Password, String Email, String dispName, String FirstName, String LastName, String Phone, String Created, String Pic) {
+    public Accounts(int Account_Id, String Username, String Password, String Email, String FirstName, String LastName, String Phone, String Created, String Pic) {
         this.Account_Id = Account_Id;
         this.Username = Username;
         this.Password = Password;
         this.Email = Email;
-        this.dispName = dispName;
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.Phone = Phone;
@@ -76,14 +74,6 @@ public class Accounts {
 
     public void setEmail(String Email) {
         this.Email = Email;
-    }
-
-    public String getDispName() {
-        return dispName;
-    }
-
-    public void setDispName(String dispName) {
-        this.dispName = dispName;
     }
 
     public String getFirstName() {
@@ -141,15 +131,14 @@ public class Accounts {
                 newMemberID = 0;
             }
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO account VALUES (?,?,?,?,?,?,?,?,current_timestamp)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO account VALUES (?,?,?,?,?,?,?,current_timestamp)");
             ps.setInt(1, newMemberID);
             ps.setString(2, Username);
             ps.setString(3, Password);
             ps.setString(4, Email);
-            ps.setString(5, dispName);
-            ps.setString(6, FirstName);
-            ps.setString(7, LastName);
-            ps.setString(8, Phone);
+            ps.setString(5, FirstName);
+            ps.setString(6, LastName);
+            ps.setString(7, Phone);
             row = ps.executeUpdate();
             con.close();
         } catch (SQLException ex) {
@@ -263,17 +252,17 @@ public class Accounts {
         return a;
     }
 
-    public static int editProfile(String dispname, String firstname, String lastname, String phone, int acctid) {
+    public static int editProfile(String firstname, String lastname, String phone, int acctid) {
         int row = 0;
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE account SET dispName=?,FirstName=?,LastName=?,Phone=?  WHERE Account_Id=?");
-            ps.setString(1, dispname);
-            ps.setString(2, firstname);
-            ps.setString(3, lastname);
-            ps.setString(4, phone);
-            ps.setInt(5, acctid);
+            PreparedStatement ps = con.prepareStatement("UPDATE account SET FirstName=?,LastName=?,Phone=?  WHERE Account_Id=?");
+            //ps.setString(1, dispname);
+            ps.setString(1, firstname);
+            ps.setString(2, lastname);
+            ps.setString(3, phone);
+            ps.setInt(4, acctid);
             row = ps.executeUpdate();
             con.close();
         } catch (SQLException ex) {
@@ -306,7 +295,6 @@ public class Accounts {
             a.setUsername(rs.getString("Username"));
             a.setPassword(rs.getString("Password"));
             a.setEmail(rs.getString("Email"));
-            a.setDispName(rs.getString("dispName"));
             a.setFirstName(rs.getString("FirstName"));
             a.setLastName(rs.getString("LastName"));
             a.setPhone(rs.getString("Phone"));
@@ -397,31 +385,6 @@ public class Accounts {
         return cs;
     }
 
-    public static Accounts getAccountById(int str) {
-        String sqlCmd = "SELECT * from account a where a.Account_Id	 = ? ";
-        Connection con = ConnectionAgent.getConnection();
-        Product p = null;
-        Accounts cs = new Accounts();
-        try {
-            PreparedStatement ps = con.prepareStatement(sqlCmd);
-            ps.setInt(1, str);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                cs.setAccount_Id(rs.getInt("Account_Id"));
-                cs.setUsername(rs.getString("Username"));
-                cs.setDispName(rs.getString("dispName"));
-                cs.setFirstName(rs.getString("FirstName"));
-                cs.setLastName(rs.getString("LastName"));
-                cs.setPhone(rs.getString("Phone"));
-                cs.setCreated(rs.getString("Created"));
-            }
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return cs;
-    }
-
     public static int deleteAccount(String accountid) {
         int row = 0;
         try {
@@ -435,5 +398,30 @@ public class Accounts {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
+    }
+
+    public static Accounts getAccountById(int str) {
+        String sqlCmd = "SELECT * from account a where a.Account_Id = ? ";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        Accounts cs = new Accounts();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, str);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cs.setAccount_Id(rs.getInt("Account_Id"));
+                cs.setUsername(rs.getString("Username"));
+                cs.setEmail(rs.getString("Email"));
+                cs.setFirstName(rs.getString("FirstName"));
+                cs.setLastName(rs.getString("LastName"));
+                cs.setPhone(rs.getString("Phone"));
+                cs.setCreated(rs.getString("Created"));
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
     }
 }

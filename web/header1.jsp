@@ -23,30 +23,31 @@
                     <!--<a href="profile.jsp"> <span class="fui-user"></span></a>-->
                     <!-- Split button -->
                     <div class="btn-group">
-                        <button type="button" onclick="window.location.href='profile.jsp'" class="btn btn-primary">${user.dispName}<span class="fui-user"></span></button>
+                        <button type="button" onclick="window.location.href='profile.jsp'" class="btn btn-primary">${user.username}<span class="fui-user"></span></button>
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
+                            <li style="color: #FFB70A"><a href="seachcata" style="color: #FFB70A">Post</a></li>
+                            <li><a href="ShowPmServlet?id=${user.account_Id}">Private Message <span class="badge btn-default"><%=Message.findCount(user.getAccount_Id())%> </span></a></li>
                             <li><a href="editProfile.jsp">Edit</a></li>
                             <li><a href="changePassword.jsp">Change Password</a></li>
-                            <li><a href="#">Buy List</a></li>
+                            <li><a href="ShowOrder">Buy List</a></li>
                             <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
                             <li><a href="ShowAddressServlet?id=${user.account_Id}">Profile</a></li>
                             <li><a href="ShowWishlistServlet?id=${user.account_Id}">Wish List</a></li>
                             <li><a href="feedback.jsp">Feedback</a></li>
+                            <li style="color: red"><a href="${loginAndOut}" style="color: red">Logout</a></li>
                         </ul>
                     </div>
-                    <a href="ShowPmServlet?id=${user.account_Id}"><img src="pic/Mail2.png" width="40" height="40" style="size:" /><span class="badge"><%=Message.findCount(user.getAccount_Id())%> </span></a>
+                    
+                </c:otherwise>
+            </c:choose>
                     <a href="ViewCart"><img src="pic/cart.png" width="30" height="30" style="size:" />
                         ${cart!=null?" ( ":""}
                         ${cart!= null? cart.unitItem:""}
                         ${cart!=null?" ) ":""}</a>
-                    <a href="seachcata" class="btn btn-sm btn-warning"  >Post</a>
-                    <a href="${loginAndOut}" class="btn btn-sm btn-danger" >Logout</a>
-                </c:otherwise>
-            </c:choose>
         </div>
     </div>
 </nav>

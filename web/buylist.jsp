@@ -8,7 +8,6 @@
 <%@page import="model.Product"%>
 <%@page import="model.ProductPic"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -32,8 +31,8 @@
             <jsp:include page="header.jsp"/>
             <div class="col-md-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li>Profile</li>
+                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="profile.jsp">Profile</a></li>
                     <li class="active">Buy List</li>
                 </ol>
             </div>
@@ -47,19 +46,28 @@
                                 <tr bgColor="#ffffff">
                                     <td>No.</td>
                                     <td>Order ID</td>
+                                    <td>Seller</td>
                                     <td>Order Date</td>
                                     <td>Total Price</td>
-                                    <td>Tranfer</td>
+                                    <td>Transfer</td>
                                     <td>Status</td>
                                 </tr>
+                                <c:set value="1" var="no" />
+                                <c:forEach items="${arr}" var="ord" >
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><button class="btn btn-default">Tranfer & Payment</button></td>
+                                        <td>${no}</td>
+                                        <td>${ord.orderId}</td>
+                                        <td>${ord.seller}</td>
+                                        <td>${ord.time}</td>
+                                        <td>${ord.total}</td>
+                                        <td><c:choose>
+                                                <c:when test="${ord.payment==null}" ><button class="btn btn-default">Tranfer & Payment</button></c:when>
+                                                <c:otherwise><button class="btn btn-default" disabled="">Tranfer & Payment</button></c:otherwise>
+                                            </c:choose></td>
+                                        <td>${ord.status}</td>
                                     </tr>
+                                    <c:set value="${no+1}" var="no" />
+                                </c:forEach>
                             </table>
                         </div>
                     </div>
@@ -79,5 +87,6 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

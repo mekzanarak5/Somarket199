@@ -54,6 +54,7 @@ public class AddToCart extends HttpServlet {
             li = new LineItem(tmp);
             cart.add(li);
             //}
+            System.out.println("SSSSS"+url);
         request.setAttribute("msg","Add " + tmp.getName() + " Complete");
         //String key = request.getParameter("keySearch");
 //        String key = request.getParameter("productId");

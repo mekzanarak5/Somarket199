@@ -15,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Sell List</title>
+        <title>Social Market | Ongoing</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
@@ -37,45 +37,35 @@
                 <ol class="breadcrumb">
                     <li><a href="home.jsp">Home</a></li>
                     <li><a href="profile.jsp">Profile</a></li>
-                    <li class="active">Sell List</li>
+                    <li class="active">Ongoing</li>
                 </ol>
             </div>
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
-                        <h6 class="col-md-3"  >Sell List</h6>
+                        <h6 class="col-md-3"  >Ongoing</h6>
                         <div id="cbp-vm" class="cbp-vm-switcher">
                             <div class="btn-group btn-group-justified">
-                                    <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-primary">Now Sell</button></a>
-                                    <a href=""><button type="button" class="btn btn-default">Ongoing</button></a>
-                                    <a href=""><button type="button" class="btn btn-default">Sold List</button></a>
+                                    <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Now Sell</button></a>
+                                    <a href="ongoing.html"><button type="button" class="btn btn-primary">Ongoing</button></a>
+                                    <a href="sold.html"><button type="button" class="btn btn-default">Sold List</button></a>
                             </div>
                             <hr>
                             <table class="table table-striped" style="text-align: center">
                                 <tr bgColor="#ffffff">
-                                    <td width="15%">Expiration Date</td>
-                                    <td width="20%">Pic</td>
-                                    <td width="20%">Name</td>
-                                    <td>Price</td>
-                                    <td>Manage Post</td>
+                                    <td width="15%">No.</td>
+                                    <td width="20%">Order ID</td>
+                                    <td width="20%">Order Date</td>
+                                    <td>Total Price</td>
+                                    <td>Status</td>
                                 </tr>
-                                <c:forEach items="${sell}" var="a">
+                                <c:forEach items="" var="a">
                                     <tr>
-                                        <td>${a.createOn}</td>
-                                        <td><a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
-                                        <td>
-                                            <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">
-                                                ${a.name}</a></td>
-                                        <td>${a.price}</td>
-                                        <td width="20%"><div class="btn-group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                    Manage Post <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="ShowEditProduct?id=${a.productNO}">Edit</a></li>
-                                                    <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete</a></li>
-                                                </ul>
-                                            </div></td>
+                                        <td></td>
+                                        <td><a href=""></a></td>
+                                        <td><a href=""></a></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </c:forEach>
                             </table>

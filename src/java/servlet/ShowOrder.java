@@ -40,13 +40,13 @@ public class ShowOrder extends HttpServlet {
         ArrayList<order> arr = order.getOrderList(username.getUsername());   
         System.out.println(arr);
         String usernameCus = username.getUsername();
-        double totalSum = order.getTotalPriceOrder(username.getUsername());   
-        System.out.println(totalSum);
-        request.setAttribute("usernameCus", usernameCus);
-        request.setAttribute("totalSum", totalSum);
+        //double totalSum = order.getTotalPriceOrder(username.getUsername());   
+        //System.out.println(totalSum);
+        //request.setAttribute("usernameCus", usernameCus);
+        //request.setAttribute("totalSum", totalSum);
         request.setAttribute("arr", arr);
       
-        getServletContext().getRequestDispatcher("/OrderList.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/buylist.jsp").forward(request, response);
     }
 
 

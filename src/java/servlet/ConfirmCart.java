@@ -24,7 +24,7 @@ import model.order;
 
 /**
  *
- * @author S๐l2n
+ * @author Sl2n
  */
 public class ConfirmCart extends HttpServlet {
 
@@ -64,7 +64,8 @@ public class ConfirmCart extends HttpServlet {
                 int order_id = Cart.idGenerator();
                 System.out.println(order_id);
                 o.setOrderId(order_id);
-                o.setAcctno(cus.getAccount_Id());
+                o.setUsername(cus.getUsername());
+                o.setSeller(Accounts.getAccountById(entry.getKey()).getUsername());
                 o.setTotal(entry.getValue());
                 System.out.println(o);
                 value += o.add(o);

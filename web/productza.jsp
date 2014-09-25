@@ -55,12 +55,14 @@
                     <br />
                 </div>
                 <div class="col-md-1">
+                    <c:choose><c:when test="${user.account_Id!=showName.account_Id || user==null}" >
                     <a href="AdminGetProId?proid=${showDetail.productNO}"><button type="button" class="btn btn-danger">Report</button></a>
                     <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-warning" style="margin-top: 5px">Add to WishList<span class="fui-heart"></button></a>
+                    </c:when></c:choose>
                 </div>
             </div>
             <div class="col-md-12" style="margin-top: 50px">
-                <form action="AddToCart" method="get" class="form-horizontal" role="form">
+                <form action="AddToCart" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">Product</label>
                         <div class="col-sm-7">
@@ -79,12 +81,14 @@
                             <input type="number" class="form-control" placeholder="Quatity" value="1" required>
                         </div>
                     </div>
+                    <c:choose><c:when test="${user.account_Id!=showName.account_Id || user==null}" >
                     <div class="well col-md-6" style="margin: auto;float: none">
                         <!--<form action="AddToCart" method="get"> -->
                         <input type="hidden" name="url" />
                         <input type="hidden" name="productId" value="${showDetail.productNO}" />
                         <input type="hidden" name="acctid" value="${showName.account_Id}" />
-                        <button role="button" class="btn btn-primary btn-lg btn-block">Add To Cart</button>
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Add To Cart">
+                        </c:when></c:choose>
                         <%--<a href="AddToCart?productId=${showDetail.productNO}&acctid=${showName.account_Id}">--%><!--</a>-->
                         <!--</form>-->
                     </div>
@@ -114,11 +118,10 @@
         <div id="fb-root"></div>
         <script>
             $(function() {
-                $('.ui.accordion').accordion();
+                //$('.ui.accordion').accordion();
+                  $('input[name=url]').val((window.location.href.toString()));
             });
-            $(document).ready(function() {
-                $('input[name=url]').val((window.location.href.toString()));
-            });
+           
         </script>
         <script>(function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
