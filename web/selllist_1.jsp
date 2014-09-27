@@ -47,8 +47,6 @@
                             <div id="cbp-vm" class="cbp-vm-switcher">
                                 <div class="btn-group btn-group-justified">
                                     <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-primary">Now Sell</button></a>
-                                    <a href=""><button type="button" class="btn btn-default">Ongoing</button></a>
-                                    <a href=""><button type="button" class="btn btn-default">Sold List</button></a>
                                 </div>
                                 <hr>
                                     <table class="table table-striped" style="text-align: center">
@@ -57,7 +55,6 @@
                                             <td>Pic</td>
                                             <td >Name</td>
                                             <td>Price</td>
-                                            <td>Manage Post</td>
                                         </tr>
                                         <c:forEach items="${sell}" var="a">
                                             <tr>
@@ -69,15 +66,6 @@
                                                     </a>
                                                 </td>
                                                 <td>${a.price}</td>
-                                                <td width="20%"><div class="btn-group">
-                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                            Manage Post <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="ShowEditProduct?id=${a.productNO}">Edit</a></li>
-                                                            <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete</a></li>
-                                                        </ul>
-                                                    </div></td>
                                             </tr>
                                         </c:forEach>
                                     </table>

@@ -29,6 +29,7 @@ public class Message {
     private String username;
     private int Read;
     private String pic;
+    private int relate;
 
     public Message() {
     }
@@ -117,6 +118,20 @@ public class Message {
         this.pic = pic;
     }
 
+    public int getRelate() {
+        return relate;
+    }
+
+    public void setRelate(int relate) {
+        this.relate = relate;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", Sender=" + Sender + ", Receiver=" + Receiver + ", pm=" + pm + ", time=" + time + ", username=" + username + ", Read=" + Read + ", pic=" + pic + ", relate=" + relate + '}';
+    }
+
+    
     public static int insertPM(String subject, int sender, int receiver, String pm, String time) {
         int row = 0;
         int newMemberID = 0;
@@ -131,13 +146,44 @@ public class Message {
             } else {
                 newMemberID = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,current_timestamp,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,current_timestamp,?,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, subject);
             ps.setInt(3, sender);
             ps.setInt(4, receiver);
             ps.setString(5, pm);
             ps.setInt(6, read);
+            ps.setInt(7, newMemberID);
+
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+    public static int insertReply(String subject, int sender, int receiver, String pm, String time,int relate) {
+        int row = 0;
+        int newMemberID = 0;
+        int read = 1;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MsgID) AS LastMemberID FROM Pm");
+            ResultSet rs = ps1.executeQuery();
+            if (rs.next()) {
+                newMemberID = rs.getInt(1) + 1;
+            } else {
+                newMemberID = 0;
+            }
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,current_timestamp,?,?)");
+            ps.setInt(1, newMemberID);
+            ps.setString(2, subject);
+            ps.setInt(3, sender);
+            ps.setInt(4, receiver);
+            ps.setString(5, pm);
+            ps.setInt(6, read);
+            ps.setInt(7, relate);
 
             row = ps.executeUpdate();
             con.close();
@@ -150,7 +196,6 @@ public class Message {
     public static List<Message> findReceiver(int str) {
         String sqlCmd = "SELECT * from account a , Pm m where m.sender = a.Account_Id AND m.Receiver = ? ";
         Connection con = ConnectionAgent.getConnection();
-
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
         try {
@@ -207,6 +252,26 @@ public class Message {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
+    }
+    public static List<Message> findReply(int str) {
+        String sqlCmd = "SELECT * from account a , Pm m where m.Sender = a.Account_Id AND m.relateID = ? ORDER BY Time ASC";
+        Connection con = ConnectionAgent.getConnection();
+        Message c = null;
+        List<Message> cs = new ArrayList<Message>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, str);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Message();
+                rToO(c, rs);
+                cs.add(c);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
     }
 
     public static int deletePm(String pmid) {
@@ -269,6 +334,7 @@ public class Message {
             m.setUsername(rs.getString("Username"));
             m.setRead(rs.getInt("isread"));
             m.setPic(rs.getString("Pic"));
+            m.setRelate(rs.getInt("relateID"));
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -36,6 +36,7 @@ public class ShowPmServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         List<Message> p = Message.findReceiver(id);
         request.setAttribute("pm", p);
+        System.out.println(p);
         getServletContext().getRequestDispatcher("/pm.jsp").forward(request, response);
     }
 

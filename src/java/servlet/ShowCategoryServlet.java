@@ -16,8 +16,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Address;
 import model.Category;
 import model.Message;
+import model.Product;
 
 /**
  *
@@ -37,6 +39,7 @@ public class ShowCategoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession s1 = request.getSession();
+        HttpSession s2 = request.getSession();
         Map<Category, List<Category>> cate = new HashMap<Category, List<Category>>();
 
         for (Category category : Category.findBigAll()) {
@@ -45,6 +48,9 @@ public class ShowCategoryServlet extends HttpServlet {
             System.out.println(subCategories);
         }
         s1.setAttribute("cate", cate);
+        List<Product> a = Product.showRandomProduct();
+        s2.setAttribute("pro1", a);
+        System.out.println();
         response.sendRedirect("home.jsp");
 //        HttpSession s1 = request.getSession();
 //        List<Category> c = Category.findBigAll();

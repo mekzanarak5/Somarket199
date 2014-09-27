@@ -40,43 +40,66 @@
                         <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                             <div class="row">
                                 <h3 class="col-md-12">Transfer</h3>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Transfer Date</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" placeholder="Tranfer Date" name="userid" required>
+                                <div class="col-md-12">
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <select name="herolist" class="select-block">
+                                                <option value="" selected>Choose Bank Your Transfer</option>
+                                                <option value="">bank1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">Transfer Date</label>
+                                        <div class="col-sm-4">
+                                            <div class='input-group date' id='datetimepicker5'>
+                                                <input type='date' class="form-control" data-date-format="YYYY/MM/DD"/>
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $(function() {
+                                                    $('#datetimepicker5').datetimepicker({
+                                                        pickTime: false
+                                                    });
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-3 control-label">Transfer Time</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="password" data-mask="99:99" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-3 control-label">Amount</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Amount" name="confirmpassword" required>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Transfer Time</label>
-                                    <div class="col-sm-4">
-                                        <input type="password" class="form-control" placeholder="Tranfer Time" name="password" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Amount</label>
-                                    <div class="col-sm-4">
-                                        <input type="password" class="form-control" placeholder="Amount" name="confirmpassword" required>
-                                    </div>
-                                </div>
-                                
                             </div>
-                            <div class="fileinput fileinput-new" data-provides="fileinput" style="float: right;margin-top: -190px;margin-right: 100px">
-                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img data-src="holder.js/100%x100%" alt="...">
-                                    </div>
-                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-                                    <div>
-                                        <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Slips</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
-                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                    </div>
+                            <div class="fileinput fileinput-new" data-provides="fileinput" style="float: right;margin-top: -190px;margin-right: 50px">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img data-src="holder.js/100%x100%" alt="...">
                                 </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Slips</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
                             <div class="row">
                                 <h3 class="col-md-12">Shiping Address</h3>
                                 <div class="col-md-10">
-                                <select name="herolist" class="select-block">
-                                    <option value="" selected>Choose Address</option>
-                                    <option value="">address1</option>
-                                </select>
+                                    <select name="herolist" class="select-block">
+                                        <option value="" selected>Choose Address</option>
+                                        <option value="">address1</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-5">
                                     <h4>Add New Address</h4>
@@ -231,6 +254,7 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

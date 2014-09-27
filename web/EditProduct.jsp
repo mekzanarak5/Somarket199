@@ -63,14 +63,15 @@
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-3">Product</label>
                                     <div class="col-sm-6">
-                                        <input type="hidden" value="${pro.productNO}" name="proid">  
-                                        <input type="text" class="form-control" value="${pro.name}" name="name" required>                               
+                                        <input type="hidden" value="${pro.productNO}" name="proid">
+                                        <input type="hidden" value="${user.account_Id}" name="acctid">
+                                        <input type="text" class="form-control" value="${pro.name}" name="name" maxlength="20" required>                               
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-3">Price</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="${pro.price}" name="price" required>
+                                        <input type="text" class="form-control" value="${pro.price}" name="price" maxlength="7" required>
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -143,7 +143,9 @@ public class AddProductPic extends HttpServlet {
         }
         Boolean complete = false;
         model.Product p = new model.Product();
-        int row = p.addProducts(acctid, cata, name, price, CreateOn, des, available, brand);
+        String namethai = new String(name.getBytes("ISO8859_1"), "UTF-8");
+        String desthai = new String(des.getBytes("ISO8859_1"), "UTF-8");
+        int row = p.addProducts(acctid, cata, namethai, price, CreateOn, desthai, available, brand);
 
         if (row == 1) {
             msg = "Congratulations, GoToTheSell!";

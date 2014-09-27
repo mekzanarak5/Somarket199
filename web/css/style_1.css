@@ -73,7 +73,7 @@ h1{
 
 h1:after{
 	content: '';
-	background: url('../img/sprite.png') 0 0;
+	/*background: url('../img/sprite.png') 0 0;*/
 	width: 45px;
 	height: 70px;
 	position: absolute;
@@ -173,7 +173,7 @@ footer a.logo i{
 footer a.logo:before{
 	content: '';
 	display: inline-block;
-	background: url('../img/sprite.png') no-repeat -19px -70px;
+	/*background: url('../img/sprite.png') no-repeat -19px -70px;*/
 	width: 48px;
 	height: 37px;
 	vertical-align: text-top;
@@ -209,7 +209,7 @@ footer > ul > li:hover p{
 footer p:before{
 	content: '';
 	display: inline-block;
-	background: url('../img/sprite.png') no-repeat;
+	/*background: url('../img/sprite.png') no-repeat;*/
 	width: 16px;
 	height: 18px;
 	margin: 0 12px 0 15px;
@@ -235,11 +235,11 @@ footer p.home:before{
 }
 
 footer p.services{
-	background-color: #00b274;
+	background-color: #0096d6;
 
-	background-image:-webkit-linear-gradient(top, #00b274, #00a46b);
-	background-image:-moz-linear-gradient(top, #00b274, #00a46b);
-	background-image:linear-gradient(top, #00b274, #00a46b);
+	background-image:-webkit-linear-gradient(top, #0096d6, #0096d6);
+	background-image:-moz-linear-gradient(top, #0096d6, #00a46b);
+	background-image:linear-gradient(top, #0096d6, #00a46b);
 }
 
 footer p.services:before{

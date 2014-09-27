@@ -12,29 +12,167 @@
 
         <!-- Loading Bootstrap -->
         <jsp:include page="cssup.jsp"/>
+        <style type="text/css">
+            body{
+                /*height: 10000px;*/
+                font-family: "Lato";
+                background-color: #2980b9;
+                margin: 0px;
+            }
+
+            h1,h2,h3,h4{
+                padding: 0px;
+                margin: 0px;
+            }
+
+            .caption-style-1{
+                list-style-type: none;
+                margin: 0px;
+                padding: 0px;
+
+            }
+
+            .caption-style-1 li{
+                float: left;
+                padding: 0px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .caption-style-1 li:hover .caption{
+                opacity: 1;
+
+            }
+
+
+            .caption-style-1 img{
+                margin: 0px;
+                padding: 0px;
+                float: left;
+                z-index: 4;
+            }
+
+
+            .caption-style-1 .caption{
+                cursor: pointer;
+                position: absolute;
+                opacity: 0;
+                -webkit-transition:all 0.45s ease-in-out;
+                -moz-transition:all 0.45s ease-in-out;
+                -o-transition:all 0.45s ease-in-out;
+                -ms-transition:all 0.45s ease-in-out;
+                transition:all 0.45s ease-in-out;
+
+            }
+            .caption-style-1 .blur{
+                background-color: rgba(0,0,0,0.65);
+                height: 300px;
+                width: 400px;
+                z-index: 5;
+                position: absolute;
+            }
+
+            .caption-style-1 .caption-text h1{
+                text-transform: uppercase;
+                font-size: 24px;
+            }
+            .caption-style-1 .caption-text{
+                z-index: 10;
+                color: #fff;
+                position: absolute;
+                width: 320px;
+                height: 240px;
+                text-align: center;
+                top:100px;
+            }
+
+            /** Nav Menu */
+            ul.nav-menu{
+                padding: 0px;
+                margin: 0px;
+                list-style-type: none;
+                width: 490px;
+                margin: 60px auto;
+            }
+
+            ul.nav-menu li{
+                display: inline;
+                margin-right: 10px;
+                padding:10px;
+                border: 1px solid #ddd;
+            }
+
+            ul.nav-menu li a{
+                color: #eee;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            ul.nav-menu li a:hover, ul.nav-menu li a.active{
+                color: #2c3e50;
+            } 
+
+            /** content **/
+            .content{
+                margin-top: 100px;
+                margin-left: 100px;
+                width: 700px;
+            }
+            .content h1, .content h2{
+                font-family: "Source Sans Pro",sans-serif;
+                color: #ecf0f1;
+                padding: 0px;
+                margin: 0px;
+                font-weight: normal;
+            }
+
+            .content h1{
+                font-weight: 900;
+                font-size: 64px;
+            }
+
+            .content h2{
+                font-size:26px;
+            }
+
+            .content p{
+                color: #ecf0f1;
+                font-family: "Lato";
+                line-height: 28px;
+                font-size: 15px;
+                padding-top: 50px;
+            }
+
+            p.credit{
+                padding-top: 20px;
+                font-size: 12px;
+            }
+
+            p a{
+                color: #ecf0f1;
+            }
+
+            /** fork icon**/
+            .fork{
+                position: absolute;
+                top:0px;
+                left: 0px;
+            }
+
+        </style>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
         <div class="row">
             <div class="col-md-3">
                 <jsp:include page="logo.jsp"/>
-                <div id='cssmenu'>
-                    <c:forEach items="${cateID}" var="a">
-                        <ul>
-                            <li class='active has-sub'><a href='#'><span>${a.cateName}</span></a>
-                                <ul>
-                                    <c:forEach items="${cateID1}" var="b">
-                                        <li class='has-sub'><a href='#'><span>${b.cateName}</span></a></li>
-                                                </c:forEach>
-                                </ul>
-                            </li>
-                        </ul>
-                    </c:forEach>
-                </div>
             </div>
             <div class="col-md-9">
                 <jsp:include page="header.jsp"/>
                 <div class="col-md-12">
+                    
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
@@ -78,7 +216,43 @@
                     </div>
                 </div>  
             </div>
-            <div class="col-md-12" style="margin-top: 50px">   
+            <div class="col-md-12" style="margin-top: 50px">
+                <div class="col-md-12" style="margin:20px;" >
+                <div class="container-a1 col-md-12">
+                    <ul class="caption-style-1" >
+                        <li>
+                            <a href="SearchProductServlet?id=${pro}&herolist=1&x=0&y=5&s=a"><img src="pic/com1.png" class="img-rounded" alt="">
+                            <div class="caption">
+                                <div class="blur"></div>
+                                <div class="caption-text">
+                                    <h1>Computer</h1>
+                                </div>
+                            </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="SearchProductServlet?id=${pro}&herolist=2&x=0&y=5&s=a"><img src="pic/mob1.png" class="img-rounded" alt="">
+                            <div class="caption">
+                                <div class="blur"></div>
+                                <div class="caption-text">
+                                    <h1>Mobile</h1>
+                                </div>
+                            </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="SearchProductServlet?id=${pro}&herolist=3&x=0&y=5&s=a"><img src="pic/cam1.png" class="img-rounded" alt="">
+                            <div class="caption">
+                                <div class="blur"></div>
+                                <div class="caption-text">
+                                    <h1>Camera</h1>
+                                </div>
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
                 <ul class="nav nav-tabs" style="text-align: center" role="tablist">
                     <li class="active col-md-2"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
                     <li class="col-md-2"><a href="#product" role="tab" data-toggle="tab">Product</a></li>
@@ -136,22 +310,22 @@
                                         <td>CreateOn</td>
                                         <td>Manage Post</td>
                                     </tr>
-                                    
-                                        <c:forEach items="${pro}" var="a">
-                                            <tr>
-                                                <td>${a.acctID}</td>
-                                                <td>${a.category_ID}</td>
-                                                <td>${a.name}</td>
-                                                <td>${a.price}</td>
-                                                <td>${a.createOn}</td>
-                                                <td width="20%">
-                                                    <div class="btn-group">                                              
-                                                        <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-primary">Edit</button></a>
-                                                        <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-danger">Delete</button></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
+
+                                    <c:forEach items="${pro}" var="a">
+                                        <tr>
+                                            <td>${a.acctID}</td>
+                                            <td>${a.category_ID}</td>
+                                            <td>${a.name}</td>
+                                            <td>${a.price}</td>
+                                            <td>${a.createOn}</td>
+                                            <td width="20%">
+                                                <div class="btn-group">                                              
+                                                    <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-primary">Edit</button></a>
+                                                    <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-danger">Delete</button></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </table>                           
                             </div>
                         </div>
@@ -208,11 +382,11 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Category Name" name="cateName" required>
                                     <select name="parentid" class="form-control">
-                                    <option value="">--</option>
-                                    <c:forEach items="${cateID}" var="a">
-                                        <option value="${a.cateID}">${a.cateName}</option>
-                                    </c:forEach>
-                                </select>
+                                        <option value="">--</option>
+                                        <c:forEach items="${cateID}" var="a">
+                                            <option value="${a.cateID}">${a.cateName}</option>
+                                        </c:forEach>
+                                    </select>
                                     <input type="hidden" name="value" value="NULL">
                                 </div>
                             </div>
@@ -226,7 +400,6 @@
                 </div>
             </div>  
         </div>
-
         <!--<script src="js/jasny-bootstrap.min.js"></script>-->
         <script src="js/dropdown.js"></script>
         <script src="js/semantic.js"></script>
@@ -255,5 +428,6 @@
                 $("#series").chainedTo("#mark");
             });
         </script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

@@ -18,9 +18,12 @@
         <jsp:include page="cssup.jsp"/>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
+        </div>
+        <div class="row">
         <div class="col-md-3">
-            <jsp:include page="logo.jsp"/>
+            <jsp:include page="logo_1.jsp"/>
         </div>
         <div class="col-md-9">
             <jsp:include page="header.jsp"/>
@@ -32,7 +35,7 @@
             </div>
             <form action="SendPmServlet" method="get">
                 <div class="col-xs-12" style="margin:auto;">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 470px;background: #FFFFFF">
+                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
                             <h3 class="col-md-12"  >Send Private Message</h3>
                             <div class="col-xs-12">
@@ -58,6 +61,7 @@
                     </div>
                 </div>
             </form>
+        </div>
         </div>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>

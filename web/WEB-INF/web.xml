@@ -252,6 +252,10 @@
         <servlet-name>EditProductPic</servlet-name>
         <servlet-class>servlet.EditProductPic</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowSellServletOther</servlet-name>
+        <servlet-class>servlet.ShowSellServletOther</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -503,6 +507,10 @@
     <servlet-mapping>
         <servlet-name>EditProductPic</servlet-name>
         <url-pattern>/EditProductPic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowSellServletOther</servlet-name>
+        <url-pattern>/ShowSellServletOther</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -238,6 +238,25 @@ public class Product implements Comparable {
         }
         return pa;
     }
+    public static List<Product> showRandomProduct() {
+        String sqlCmd = "select * from product p,product_img pi where p.productNO = pi.Product_Id Group by p.productNO ORDER BY RAND( ) DESC limit 4";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Product> pa = new ArrayList<Product>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+                pa.add(p);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pa;
+    }
 
     public static List<Product> showSell(int id) {
         String sqlCmd = "SELECT * FROM product p,product_img pi WHERE p.productNO = pi.Product_Id and AcctID = ? GROUP BY Product_Id";

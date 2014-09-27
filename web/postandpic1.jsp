@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <jsp:include page="logo.jsp"/>
+                <jsp:include page="logo_1.jsp"/>
             </div>
             <div class="col-xs-9">
                 <jsp:include page="header.jsp"/>
@@ -56,13 +56,13 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-3">Product</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" placeholder="Name of product" name="name" required>                               
+                                            <input type="text" class="form-control" placeholder="Name of product" name="name" maxlength="50" required>                               
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-3">Price</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" placeholder="Price" name="price" required>
+                                            <input type="text" class="form-control" placeholder="Price" name="price" maxlength="7" required>
                                         </div>
                                     </div>
                                     <div class="form-group">

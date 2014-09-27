@@ -8,19 +8,18 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Accounts;
-import model.Message;
+import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class SendReplyServlet extends HttpServlet {
+public class ShowSellServletOther extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,31 +32,11 @@ public class SendReplyServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession s = request.getSession(false);
-        Accounts a = (Accounts) s.getAttribute("user");
-        if (a== null){
-            request.setAttribute("msg", "Go To Login !");
-        }
-        
-        else{
-            String pm = request.getParameter("pm");
-            String pmthai = new String(pm.getBytes("ISO8859_1"),"UTF-8");
-            String pm1 = "<br>"+pm+"<br>";
-            String pm1thai = new String(pm1.getBytes("ISO8859_1"),"UTF-8");
-            String subject = request.getParameter("subject");
-            String subthai = new String(subject.getBytes("ISO8859_1"),"UTF-8");
-            int receiver  = Integer.parseInt(request.getParameter("receiver"));
-            int relate  = Integer.parseInt(request.getParameter("relate"));
-            String time = request.getParameter("time");
-            int sender = a.getAccount_Id();
-            Message c = new Message();
-            c.insertReply(subthai,sender, receiver, pm1thai,time,relate);
-            request.setAttribute("pm", c);
-            request.setAttribute("u", sender);
-        }
-        
-        getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
-        
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<Product> p = Product.showSell(id);
+        System.out.println(p);
+        request.setAttribute("sell", p);
+        getServletContext().getRequestDispatcher("/selllist_1.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

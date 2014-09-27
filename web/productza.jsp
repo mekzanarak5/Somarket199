@@ -50,7 +50,7 @@
                         <h6 class="list-group-item-heading">Send Private Message</h6>
                     </a>
                     <div class="list-group-item">
-                        <div class="fb-share-button" data-href="http://www.google.co.th"></div>
+                        <div class="fb-share-button" data-href="<%=request.getRequestURI() %>"></div>
                     </div>
                     <br />
                 </div>

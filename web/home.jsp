@@ -217,7 +217,7 @@
             </div>
             <div class="col-md-12" style="margin:20px;" >
                 <div class="container-a1 col-md-12">
-                    <ul class="caption-style-1" >
+                    <ul class="caption-style-1">
                         <li>
                             <a href="SearchProductServlet?id=${pro}&herolist=1&x=0&y=5&s=a"><img src="pic/com1.png" class="img-rounded" alt="">
                             <div class="caption">
@@ -252,32 +252,19 @@
                 </div>
             </div>
             <div class="col-md-12">   
-                <div class="col-xs-12" style="margin:auto;">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: gainsboro">
+                <div class="col-xs-12" style="margin-:auto;">
+                    <div class="col-md-12" style=" border: 3px solid #8ebbce;border-radius: 15px;min-height: 230px;background: gainsboro;">
                         <div class="row">
                             <h5 class="col-md-12">Hot Items of Smartphone</h5>
-                            <div>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
+                            <div align="center">
+                                <c:forEach items="${pro1}" var="a">
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12" style="padding-top: 20px">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff;border-radius: 15px;min-height: 230px;background: gainsboro">
-                        <div class="row">
-                            <h5 class="col-md-12">Hot Items of Tablet</h5>
-                            <div>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                                <a href="#"><img src='pic/iphone.png' width="200px" height="200px"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
                 
         </div>

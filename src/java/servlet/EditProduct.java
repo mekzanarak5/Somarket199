@@ -33,6 +33,7 @@ public class EditProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int proid = Integer.parseInt(request.getParameter("proid"));
+        int acctid = Integer.parseInt(request.getParameter("acctid"));
         String Name = request.getParameter("name");
         String namethai = new String(Name.getBytes("ISO8859_1"), "UTF-8");
         String Description = request.getParameter("des");
@@ -45,7 +46,7 @@ public class EditProduct extends HttpServlet {
         Product c = new Product();
         c.editProduct(namethai, Price, desthai, Available, Category_ID, Brand, proid);
         request.setAttribute("edit", c);
-        getServletContext().getRequestDispatcher("/ShowEditProduct?id="+proid).forward(request, response);
+        getServletContext().getRequestDispatcher("/ShowSellServlet?id="+acctid).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

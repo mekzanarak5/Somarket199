@@ -1,3 +1,5 @@
+
+<%@page import="model.Accounts"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,116 +7,91 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market |  Profile</title>
+        <title>Social Market | Profile</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
-        <!-- Loading Bootstrap -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+        <jsp:include page="cssup.jsp"/>
 
-        <!-- Loading Flat UI -->
-        <link href="css/flat-ui.css" rel="stylesheet">
-        <link href="css/demo.css" rel="stylesheet">
-
-        <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <jsp:include page="header1.jsp"/>
-        <div class="col-md-3">
-            <jsp:include page="logo.jsp"/>
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
         </div>
-        <div class="col-md-9">
-            <jsp:include page="header.jsp"/>
-            <div class="col-xs-12">
+        <div class="row">
+            <div class="col-md-3">
+                <jsp:include page="logo_1_1.jsp"/>
+            </div>
+            <div class="col-md-9">
+                <jsp:include page="header.jsp"/>
+                <div class="col-xs-12">
 
-                <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Profile</li>
-                </ol>
+                    <ol class="breadcrumb">
+                        <li><a href="home.jsp">Home</a></li>
+                        <li class="active">Profile</li>
+                    </ol>
 
-            </div>       
-
-            <div class="col-md-12">
-                <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                            <span class="sr-only">Toggle navigation</span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-01">
-                        <ul class="nav navbar-nav navbar-left">           
-                            <li><a href="ShowSellServlet?id=${showName.account_Id}">Sell List</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </nav>
-                <div class="col-md-2" align="center">   
-                    <img src="pic/Pikachu.png" alt="..." class="img-thumbnail">
-                    <a href="GetReceiverServlet?acctid=${showName.account_Id}"><button type="button" class="btn btn-danger btn-xs">PM</button></a>
                 </div>
-                <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 300px;background: #FFFFFF">
-                    <h5>Personal Info</h5>
-                    <table>
-                        <tr>
-                            <td class="col-md-2" style="color: #2980b9">
-                                E-mail
-                            </td>
-                            <td class="col-md-6">
-                                ${showName.email}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-3" style="color: #2980b9">
-                                First name
-                            </td>
-                            <td class="col-md-6">
-                                ${showName.firstName}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-2" style="color: #2980b9">
-                                Last name
-                            </td>
-                            <td class="col-md-6">
-                                ${showName.lastName}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-2" style="color: #2980b9">
-                                Phone
-                            </td>
-                            <td class="col-md-6">
-                                ${showName.phone}
-                            </td>
-                        </tr>
-                    </table> 
-                </form>
-                <div class="col-md-12"><h2>Feedback</h2><hr></div>
-                <table class="table" >
-                    <tr bgColor="#ececea">
-                        <td></td>
-                        <td></td>
-                        <td><select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select></td>
-                    </tr>
-                    <tr bgColor="#ececea">
-                        <td width="70%">FeedBack</td>
-                        <td>From Buyer</td>
-                        <td>Date</td>
-                    </tr>
-                    <tr>
-                        <td>แจ่มจุงเบย</td>
-                        <td>boss451</td>
-                        <td>10/05/2014</td>
-                    </tr>
-                </table>
-            </div> 
+                <div class="col-md-12">
+                    <div class="col-md-4" align="center">   
+                        <img src="${showName.pic}" alt="..." class="img-thumbnail" width="250px" height="250px">
+                        <a href="GetReceiverServlet?acctid=${showName.account_Id}"><button type="button" class="btn btn-danger btn-xs">PM</button></a>
+                    </div>
+                    <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
+                        <h5>Personal Info</h5>
+                        <table>
+                            <tr>
+                                <td class="col-md-2" style="color: #2980b9">
+                                    E-mail
+                                </td>
+                                <td class="col-md-6">
+                                    ${showName.email}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="col-md-3" style="color: #2980b9">
+                                    First name
+                                </td>
+                                <td class="col-md-6">
+                                    ${showName.firstName}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" style="color: #2980b9">
+                                    Last name
+                                </td>
+                                <td class="col-md-6">
+                                    ${showName.lastName}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" style="color: #2980b9">
+                                    Phone
+                                </td>
+                                <td class="col-md-6">
+                                    ${showName.phone}
+                                </td>
+                            </tr>
+                        </table> 
+                    </form>
+                </div>
+            </div>
         </div>
+        <script src="js1/vendor/jquery.ui.widget.js"></script>
+        <script src="js1/tmpl.min.js"></script>
+        <script src="js1/load-image.min.js"></script>
+        <script src="js1/canvas-to-blob.min.js"></script>
+        <script src="js1/bootstrap.min.js"></script>
+        <script src="js1/bootstrap-image-gallery.min.js"></script>
+        <script src="js1/jquery.iframe-transport.js"></script>
+        <script src="js1/jquery.fileupload.js"></script>
+        <script src="js1/jquery.fileupload-fp.js"></script>
+        <script src="js1/jquery.fileupload-ui.js"></script>
+        <script src="js1/locale.js"></script>
+        <script src="js1/main.js"></script>
+
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
@@ -128,5 +105,6 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

@@ -1,15 +1,19 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Message"%>
 <%@page import="model.Accounts"%>
+<c:set var="usernae" value="" />
+<c:set var="loginAndOut" value="" />
 <%
     Accounts user = (Accounts) session.getAttribute("user");
 %>
+
 <a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">My Account</h3>
+        <h3 class="panel-title ">My Account</h3>
     </div>
     <div class="panel-body">
-        <ul class="nav nav-sidebar">
+        <ul class="nav nav-sidebar ">
             <li style="color: #FFB70A"><a href="seachcata" style="color: #FFB70A">Post</a></li>
             <li><a href="ShowPmServlet?id=${user.account_Id}">Private Message <span class="badge btn-default"><%=Message.findCount(user.getAccount_Id())%> </span></a></li>
             <li><a href="editProfile.jsp">Edit</a></li>
@@ -23,6 +27,3 @@
         </ul>
     </div>
 </div>
-
-
-

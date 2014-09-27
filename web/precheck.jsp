@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Order Detail</title>
+        <title>Social Market | Order Detail (Waiting For Check)</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
@@ -37,14 +37,14 @@
                         <li><a href="home.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
                         <li><a href="">Buy List</a></li>
-                        <li class="active">Order Detail</li>
+                        <li class="active">Order Detail (Waiting For Check)</li>
                     </ol>
                 </div>
             </div>
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
-                        <h5 class="col-md-12 panel panel-heading">Order Detail</h5>
+                        <h5 class="col-md-12 panel panel-heading">Order Detail (Waiting For Check)</h5>
                         <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                             <h6 class="panel-heading">Item Detail</h6>
                             <table class="table table-striped" style="text-align: center">
@@ -68,28 +68,37 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="panel panel-default col-md-11" style="margin-left: 45px ">
-                            <h6 class="col-md-12 panel-heading">Payment Information</h6>
-                            <div class="col-md-4">
+                        <div class="panel panel-default col-md-4" style="margin-left: 45px ">
+                            <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
+                            <div class="col-md-12">
                                 <table class="table table-bordered" style="text-align: center">
                                     <tr>
-                                        <td style="background: #ededed">Bank Name</td>
+                                        <td style="background: #ededed">Transfer Date</td>
                                         <td>วน</td>
                                     </tr>
                                     <tr>
-                                        <td style="background: #ededed">Bank Account No.</td>
+                                        <td style="background: #ededed">Transfer Time</td>
                                         <td>วน</td>
                                     </tr>
                                     <tr>
-                                        <td style="background: #ededed">Bank Account Name</td>
+                                        <td style="background: #ededed">Amount</td>
                                         <td>วน</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <div align="center">
-                        <a href="tranfer.jsp"><input type="button" class="btn btn-warning" value="Transfer Order"></a> 
+                        <div class="panel panel-default col-md-4" style="margin-left: 25px ">
+                            <h6 class="col-md-12 panel-heading">Shipping Address</h6>
+                            <div class="col-md-12">
+                                วน arrayวน arrayวน arrayวน arrayวน arrayวน arrayวน arrayวน arrayวน arrayวน arrayวน arrayวน array
+                            </div>
+                        </div>
+                        <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
+                            <h6 class="col-md-12 panel-heading" align="center">Status</h6>
+                            <div class="col-md-12" align="center">
+                                Waiting For Checking
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

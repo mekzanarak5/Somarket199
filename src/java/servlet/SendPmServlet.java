@@ -42,13 +42,15 @@ public class SendPmServlet extends HttpServlet {
         else{
             String pm = request.getParameter("pm");
             String pmthai = new String(pm.getBytes("ISO8859_1"),"UTF-8");
+            String pm1 = "<br>"+pm+"<br>";
+            String pm1thai = new String(pm1.getBytes("ISO8859_1"),"UTF-8");
             String subject = request.getParameter("subject");
             String subthai = new String(subject.getBytes("ISO8859_1"),"UTF-8");
             int receiver  = Integer.parseInt(request.getParameter("receiver"));
             String time = request.getParameter("time");
             int sender = a.getAccount_Id();
             Message c = new Message();
-            c.insertPM(subject,sender, receiver, pmthai,time);
+            c.insertPM(subthai,sender, receiver, pm1thai,time);
             request.setAttribute("pm", c);
             request.setAttribute("u", sender);
         }

@@ -72,23 +72,23 @@
                                 <div class="row">
                                     <c:forEach items="${products}" var="a">
                                         <form action="AddToCart" method="get">
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" style="height: 350px">
                                                 <div class="thumbnail">
                                                     <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 190; height: 140px;" class="img-rounded"></a>                                               
                                                     <div class="caption" >
-                                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p><p>${a.price}</p></a>                                      
+                                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p><p>${a.price}0 ฿</p></a>                                      
                                                         <input type="hidden" name="url" />
                                                         <input type="hidden" name="productId" value="${a.productNO}" />
                                                         <input type="hidden" name="acctid" value="${a.acctID}" />
-                                                        <c:choose><c:when test="${user.account_Id!=a.acctID || user.account_Id==null}">
+                                                        <c:choose>
+                                                            <c:when test="${user.account_Id!=a.acctID || user.account_Id==null}">
                                                                 <p><button class="btn btn-primary" role="button ">Add to cart</button> <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
-                                                            </c:when></c:choose>
-
-                                                            </div>
-
-                                                        </div>
+                                                            </c:when>
+                                                        </c:choose>
                                                     </div>
-                                                </form>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </c:forEach>
                                     <%-- out.print(url); --%>
                                 </div>
@@ -110,7 +110,7 @@
                                     <c:forEach begin="1" end="${totalPage}">
                                         <c:choose>
                                             <c:when test="${y*(i-1)==x}">
-                                                <td style="background-color: #02639d;width: 50px;height: 20px;text-align: center ">
+                                                <td style="width: 50px;height: 20px;text-align: center ">
                                                     ${i} 
                                                 </td>
                                             </c:when>
@@ -155,7 +155,7 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
-
+        <jsp:include page="footer.jsp"/>
         <script>
             $(function() {
                 $('.ui.accordion').accordion();
@@ -164,6 +164,6 @@
                 $('input[name=url]').val((window.location.href.toString()));
             });
         </script>
-        <jsp:include page="footer.jsp"/>
+
     </body>
 </html>

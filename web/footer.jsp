@@ -6,11 +6,11 @@
 <footer>
     <ul style="margin-top: 20px">
         <li>
-            <p class="home">Home</p>
+            <p class="clients">Home</p>
             <a  href="#">Company Name <i>&copy; 2013</i></a>
         </li>
         <li>
-            <p class="services">Services</p>
+            <p class="clients">Services</p>
 
             <ul>
                 <li><a href="#">3D modeling</a></li>
@@ -20,7 +20,7 @@
             </ul>
         </li>
         <li>
-            <p class="reachus">Reach us</p>
+            <p class="clients">Reach us</p>
 
             <ul>
                 <li><a href="#">Email</a></li>

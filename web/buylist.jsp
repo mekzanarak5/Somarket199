@@ -45,7 +45,6 @@
                             <table class="table table-striped" style="text-align: center">
                                 <tr bgColor="#ffffff">
                                     <td>No.</td>
-                                    <td>Order ID</td>
                                     <td>Seller</td>
                                     <td>Order Date</td>
                                     <td>Total Price</td>
@@ -56,7 +55,6 @@
                                 <c:forEach items="${arr}" var="ord" >
                                     <tr>
                                         <td>${no}</td>
-                                        <td>${ord.orderId}</td>
                                         <td>${ord.seller}</td>
                                         <td>${ord.time}</td>
                                         <td>${ord.total}</td>

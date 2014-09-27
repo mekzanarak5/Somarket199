@@ -34,9 +34,13 @@ public class ReplyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Message p = Message.findSender2(id);
-        p.updateRead(id);
-        request.setAttribute("pm", p);
+        int relateid = Integer.parseInt(request.getParameter("relate"));
+        Message m = Message.findSender2(id);
+        List<Message> p;
+        p = Message.findReply(relateid);
+        m.updateRead(id);
+        request.setAttribute("reply", p);
+        request.setAttribute("pm", m);
         getServletContext().getRequestDispatcher("/replay.jsp").forward(request, response);
     }
 
