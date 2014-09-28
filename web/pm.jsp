@@ -53,17 +53,14 @@
                                         <td>Sender</td>
                                         <td>Subject</td>
                                         <td>Time</td>
-                                        <td><button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
+                                        <td><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button></td>
                                         </tr>
                                         <c:forEach items="${pm}" var="a">
                                             <tr>
-                                                <td><a href="#">${a.username}</a></td>
+                                                <td><a href="#">${a.senderName}</a></td>
                                                 <td><a href="ReplayServlet?id=${a.msgID}&relate=${a.relate}">${a.subject}</a></td>
                                                 <td>${a.time}</td>
-                                                <td><botton  class="checkbox"  for="checkbox1">
-                                                <input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox">
-                                            </botton>
-                                            </td>
+                                                <td><botton  class="checkbox"  for="checkbox1"><input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox"></botton></td>
                                             </tr>
                                         </c:forEach>
                                     </table>

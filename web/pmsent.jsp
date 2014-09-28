@@ -25,7 +25,7 @@
         </div>
         <div class="row">
         <div class="col-md-3">
-            <jsp:include page="logo.jsp"/>
+            <jsp:include page="logo_1.jsp"/>
         </div>
         <div class="col-xs-9">
             <jsp:include page="header.jsp"/>
@@ -43,7 +43,7 @@
                                  <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-default">Inbox</button></a>
                             </div>
                             <div class="col-md-3" style="margin-top: 30px">
-                                <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-primary">Sent</button></a>
+                                <a href="ShowSentServlet?id=${user.username}"><button class="btn btn-primary">Sent</button></a>
                             </div>
                         <div class="col-md-12">
                             <form action="DeleteSentServlet" method="get">
@@ -57,7 +57,7 @@
                                     </tr>
                                     <c:forEach items="${pm}" var="a">
                                         <tr>
-                                            <td><a href="#">${a.username}</a></td>
+                                            <td><a href="#">${a.senderName}</a></td>
                                             <td><a href="ReplayServlet?id=${a.msgID}">${a.subject}</a></td>
                                             <td>${a.time}</td>
                                             <td><botton  class="checkbox"  for="checkbox1">

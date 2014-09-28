@@ -35,7 +35,7 @@ public class DeleteSentServlet extends HttpServlet {
         String[] ids = request.getParameterValues("pmid");
         String acctid = request.getParameter("acctid");
         for (String id : ids) {
-            Message.deletePm(id);
+            Message.upPm(id);
         }
         request.setAttribute("pm", ids);
         getServletContext().getRequestDispatcher("/ShowSentServlet?id="+acctid).forward(request, response);

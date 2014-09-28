@@ -25,16 +25,18 @@ public class Wishlist {
     private String name;
     private double price;
     private String seller;
+    private int productId;
 
     public Wishlist() {
     }
 
-    public Wishlist(int wish_Id, int acct_Id, String name, double price, String seller) {
+    public Wishlist(int wish_Id, int acct_Id, String name, double price, String seller, int productId) {
         this.wish_Id = wish_Id;
         this.acct_Id = acct_Id;
         this.name = name;
         this.price = price;
         this.seller = seller;
+        this.productId = productId;
     }
 
     public int getWish_Id() {
@@ -76,8 +78,21 @@ public class Wishlist {
     public void setSeller(String seller) {
         this.seller = seller;
     }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    @Override
+    public String toString() {
+        return "Wishlist{" + "wish_Id=" + wish_Id + ", acct_Id=" + acct_Id + ", name=" + name + ", price=" + price + ", seller=" + seller + ", productId=" + productId + '}';
+    }
     
-    public static int addWishlist(int acct_Id, String name,double price,String seller) {
+    public static int addWishlist(int acct_Id, String name,double price,String seller,int productId) {
         int row = 0;
         int newMemberID = 0;
         try {
@@ -91,12 +106,13 @@ public class Wishlist {
                 newMemberID = 0;
             }
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO wishlist VALUES (?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO wishlist VALUES (?,?,?,?,?,?)");
             ps.setInt(1, newMemberID);
             ps.setInt(2, acct_Id);
             ps.setString(3, name);
             ps.setDouble(4, price);
             ps.setString(5, seller);
+            ps.setInt(6, productId);
             row = ps.executeUpdate();
 con.close();
         } catch (SQLException ex) {
@@ -145,6 +161,7 @@ con.close();
             a.setName(rs.getString("name"));
             a.setPrice(rs.getDouble("price"));
             a.setSeller(rs.getString("seller"));
+            a.setProductId(rs.getInt("productId"));
         } catch (SQLException ex) {
             Logger.getLogger(Wishlist.class.getName()).log(Level.SEVERE, null, ex);
         }

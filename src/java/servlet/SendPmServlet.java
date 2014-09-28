@@ -46,13 +46,15 @@ public class SendPmServlet extends HttpServlet {
             String pm1thai = new String(pm1.getBytes("ISO8859_1"),"UTF-8");
             String subject = request.getParameter("subject");
             String subthai = new String(subject.getBytes("ISO8859_1"),"UTF-8");
-            int receiver  = Integer.parseInt(request.getParameter("receiver"));
+            int receiverID  = Integer.parseInt(request.getParameter("receiverID"));
             String time = request.getParameter("time");
-            int sender = a.getAccount_Id();
+            int senderID = a.getAccount_Id();
+            String senderName = request.getParameter("senderName");
+            String receiverName = request.getParameter("receiverName");
             Message c = new Message();
-            c.insertPM(subthai,sender, receiver, pm1thai,time);
+            c.insertPM(subthai,senderID, receiverID,senderName,receiverName, pm1thai,time);
             request.setAttribute("pm", c);
-            request.setAttribute("u", sender);
+            request.setAttribute("u", senderID);
         }
         
         getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);

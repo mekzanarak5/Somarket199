@@ -46,12 +46,14 @@ public class SendReplyServlet extends HttpServlet {
             String pm1thai = new String(pm1.getBytes("ISO8859_1"),"UTF-8");
             String subject = request.getParameter("subject");
             String subthai = new String(subject.getBytes("ISO8859_1"),"UTF-8");
-            int receiver  = Integer.parseInt(request.getParameter("receiver"));
+            int receiver  = Integer.parseInt(request.getParameter("receiverID"));
+            String receiverName  = request.getParameter("receiverName");
+            String senderName  = request.getParameter("senderName");
             int relate  = Integer.parseInt(request.getParameter("relate"));
             String time = request.getParameter("time");
             int sender = a.getAccount_Id();
             Message c = new Message();
-            c.insertReply(subthai,sender, receiver, pm1thai,time,relate);
+            c.insertReply(subthai,sender, receiver,senderName,receiverName, pm1thai,time,relate);
             request.setAttribute("pm", c);
             request.setAttribute("u", sender);
         }

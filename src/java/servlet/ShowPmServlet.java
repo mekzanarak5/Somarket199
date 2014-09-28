@@ -33,7 +33,7 @@ public class ShowPmServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         List<Message> p = Message.findReceiver(id);
         request.setAttribute("pm", p);
         System.out.println(p);

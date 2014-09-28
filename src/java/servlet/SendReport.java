@@ -45,8 +45,10 @@ public class SendReport extends HttpServlet {
             int receiver = Integer.parseInt(request.getParameter("receiver"));
             String time = request.getParameter("time");
             int sender = a.getAccount_Id();
+            String senderName = request.getParameter("senderName");
+            String receiverName = request.getParameter("receiverName");
             Message c = new Message();
-            c.insertPM(subthai, sender, receiver, pmthai, time);
+            c.insertPM(subthai, sender, receiver,senderName,receiverName, pmthai, time);
             request.setAttribute("pm", c);
             request.setAttribute("u", sender);
         }

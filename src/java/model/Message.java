@@ -22,28 +22,36 @@ public class Message {
 
     private int MsgID;
     private String Subject;
-    private int Sender;
-    private int Receiver;
+    private int SenderID;
+    private int ReceiverID;
     private String pm;
     private String time;
     private String username;
     private int Read;
     private String pic;
     private int relate;
+    private String SenderName;
+    private String ReceiverName;
+    private int count;
+    
 
     public Message() {
     }
 
-    public Message(int MsgID, String Subject, int Sender, int Receiver, String pm, String time, String username, int Read, String pic) {
+    public Message(int MsgID, String Subject, int SenderID, int ReceiverID, String pm, String time, String username, int Read, String pic, int relate, String SenderName, String ReceiverName, int count) {
         this.MsgID = MsgID;
         this.Subject = Subject;
-        this.Sender = Sender;
-        this.Receiver = Receiver;
+        this.SenderID = SenderID;
+        this.ReceiverID = ReceiverID;
         this.pm = pm;
         this.time = time;
         this.username = username;
         this.Read = Read;
         this.pic = pic;
+        this.relate = relate;
+        this.SenderName = SenderName;
+        this.ReceiverName = ReceiverName;
+        this.count = count;
     }
 
     public int getMsgID() {
@@ -62,20 +70,20 @@ public class Message {
         this.Subject = Subject;
     }
 
-    public int getSender() {
-        return Sender;
+    public int getSenderID() {
+        return SenderID;
     }
 
-    public void setSender(int Sender) {
-        this.Sender = Sender;
+    public void setSenderID(int SenderID) {
+        this.SenderID = SenderID;
     }
 
-    public int getReceiver() {
-        return Receiver;
+    public int getReceiverID() {
+        return ReceiverID;
     }
 
-    public void setReceiver(int Receiver) {
-        this.Receiver = Receiver;
+    public void setReceiverID(int ReceiverID) {
+        this.ReceiverID = ReceiverID;
     }
 
     public String getPm() {
@@ -126,15 +134,73 @@ public class Message {
         this.relate = relate;
     }
 
+    public String getSenderName() {
+        return SenderName;
+    }
+
+    public void setSenderName(String SenderName) {
+        this.SenderName = SenderName;
+    }
+
+    public String getReceiverName() {
+        return ReceiverName;
+    }
+
+    public void setReceiverName(String ReceiverName) {
+        this.ReceiverName = ReceiverName;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     @Override
     public String toString() {
-        return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", Sender=" + Sender + ", Receiver=" + Receiver + ", pm=" + pm + ", time=" + time + ", username=" + username + ", Read=" + Read + ", pic=" + pic + ", relate=" + relate + '}';
+        return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", SenderID=" + SenderID + ", ReceiverID=" + ReceiverID + ", pm=" + pm + ", time=" + time + ", username=" + username + ", Read=" + Read + ", pic=" + pic + ", relate=" + relate + ", SenderName=" + SenderName + ", ReceiverName=" + ReceiverName + ", count=" + count + '}';
     }
-
-    
-    public static int insertPM(String subject, int sender, int receiver, String pm, String time) {
+     
+    public static int insertPM(String subject, int senderID, int receiverID,String senderName,String receiverName, String pm, String time) {
         int row = 0;
         int newMemberID = 0;
+        int read = 1;
+        int count = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MsgID) AS LastMemberID FROM Pm");
+            ResultSet rs = ps1.executeQuery();
+            if (rs.next()) {
+                newMemberID = rs.getInt(1) + 1;
+            } else {
+                newMemberID = 0;
+            }
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,?,?,current_timestamp,?,?,?)");
+            ps.setInt(1, newMemberID);
+            ps.setString(2, subject);
+            ps.setInt(3, senderID);
+            ps.setInt(4, receiverID);
+            ps.setString(5, senderName);
+            ps.setString(6, receiverName);
+            ps.setString(7, pm);
+            ps.setInt(8, read);
+            ps.setInt(9, newMemberID);
+            ps.setInt(10, count);
+
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+    public static int insertReply(String subject, int senderID, int receiverID,String senderName,String receiverName, String pm, String time,int relate) {
+        int row = 0;
+        int newMemberID = 0;
+        double newMemberID1 = 0;
         int read = 1;
         try {
 
@@ -146,44 +212,24 @@ public class Message {
             } else {
                 newMemberID = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,current_timestamp,?,?)");
-            ps.setInt(1, newMemberID);
-            ps.setString(2, subject);
-            ps.setInt(3, sender);
-            ps.setInt(4, receiver);
-            ps.setString(5, pm);
-            ps.setInt(6, read);
-            ps.setInt(7, newMemberID);
-
-            row = ps.executeUpdate();
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return row;
-    }
-    public static int insertReply(String subject, int sender, int receiver, String pm, String time,int relate) {
-        int row = 0;
-        int newMemberID = 0;
-        int read = 1;
-        try {
-
-            Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MsgID) AS LastMemberID FROM Pm");
-            ResultSet rs = ps1.executeQuery();
-            if (rs.next()) {
-                newMemberID = rs.getInt(1) + 1;
+            PreparedStatement ps2 = con.prepareStatement("SELECT MAX(count) AS LastMember FROM Pm");
+            ResultSet rs1 = ps2.executeQuery();
+            if (rs1.next()) {
+                newMemberID1 = rs1.getDouble(1) + 1;
             } else {
-                newMemberID = 0;
+                newMemberID1 = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,current_timestamp,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,?,?,current_timestamp,?,?,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, subject);
-            ps.setInt(3, sender);
-            ps.setInt(4, receiver);
-            ps.setString(5, pm);
-            ps.setInt(6, read);
-            ps.setInt(7, relate);
+            ps.setInt(3, senderID);
+            ps.setInt(4, receiverID);
+            ps.setString(5, senderName);
+            ps.setString(6, receiverName);
+            ps.setString(7, pm);
+            ps.setInt(8, read);
+            ps.setInt(9, relate);
+            ps.setDouble(10, newMemberID1);
 
             row = ps.executeUpdate();
             con.close();
@@ -193,14 +239,14 @@ public class Message {
         return row;
     }
 
-    public static List<Message> findReceiver(int str) {
-        String sqlCmd = "SELECT * from account a , Pm m where m.sender = a.Account_Id AND m.Receiver = ? ";
+    public static List<Message> findReceiver(String str) {
+        String sqlCmd = "SELECT * from Pm where ReceiverID = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
-            ps.setInt(1, str);
+            ps.setString(1, str);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 c = new Message();
@@ -215,7 +261,7 @@ public class Message {
     }
 
     public static List<Message> findSender(int str) {
-        String sqlCmd = "SELECT * from account a , Pm m where m.Sender = a.Account_Id AND m.Sender = ? ";
+        String sqlCmd = "SELECT * from Pm where SenderID = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -236,7 +282,25 @@ public class Message {
     }
 
     public static Message findSender2(int str) {
-        String sqlCmd = "SELECT * from account a , Pm m where m.Sender = a.Account_Id AND m.MsgID = ? ";
+        String sqlCmd = "SELECT * from Pm where MsgID = ? ";
+        Connection con = ConnectionAgent.getConnection();
+        Message c = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, str);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                c = new Message();
+                rToO(c, rs);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+    }
+    public static Message findCountMessage(int str) {
+        String sqlCmd = "SELECT * from Pm where MsgID = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         try {
@@ -254,7 +318,7 @@ public class Message {
         return c;
     }
     public static List<Message> findReply(int str) {
-        String sqlCmd = "SELECT * from account a , Pm m where m.Sender = a.Account_Id AND m.relateID = ? ORDER BY Time ASC";
+        String sqlCmd = "SELECT * from Pm where relateID = ? ORDER BY Time ASC";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -289,8 +353,23 @@ public class Message {
         return row;
     }
 
+    public static int upPm(String pmid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE Pm SET SenderID=null  WHERE MsgID=?");
+            ps.setString(1, pmid);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+
     public static int findCount(int str) {
-        String sqlCmd = "SELECT count(*) FROM Pm WHERE Receiver = ? and isread = 1";
+        String sqlCmd = "SELECT count(*) FROM Pm WHERE ReceiverID = ? and isread = 1";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Message> cs = new ArrayList<Message>();
@@ -327,14 +406,15 @@ public class Message {
         try {
             m.setMsgID(rs.getInt("MsgID"));
             m.setSubject(rs.getString("Subject"));
-            m.setSender(rs.getInt("Sender"));
-            m.setReceiver(rs.getInt("Receiver"));
+            m.setSenderID(rs.getInt("SenderID"));
+            m.setSenderName(rs.getString("SenderName"));
+            m.setReceiverID(rs.getInt("ReceiverID"));
+            m.setReceiverName(rs.getString("ReceiverName"));
             m.setPm(rs.getString("PM"));
             m.setTime(rs.getString("Time"));
-            m.setUsername(rs.getString("Username"));
             m.setRead(rs.getInt("isread"));
-            m.setPic(rs.getString("Pic"));
             m.setRelate(rs.getInt("relateID"));
+            m.setCount(rs.getInt("count"));
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -36,11 +36,13 @@ public class ReplyServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         int relateid = Integer.parseInt(request.getParameter("relate"));
         Message m = Message.findSender2(id);
+        Message m1 = Message.findCountMessage(id);
         List<Message> p;
         p = Message.findReply(relateid);
         m.updateRead(id);
         request.setAttribute("reply", p);
         request.setAttribute("pm", m);
+        request.setAttribute("pm1", m1);
         getServletContext().getRequestDispatcher("/replay.jsp").forward(request, response);
     }
 

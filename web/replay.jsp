@@ -26,7 +26,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <jsp:include page="logo.jsp"/>
+                <jsp:include page="logo_1.jsp"/>
             </div>
             <div class="col-xs-9">
                 <jsp:include page="header.jsp"/>
@@ -52,7 +52,7 @@
                                                 </a>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">Sender</h4>
-                                                    ${pm.username}
+                                                    ${pm.senderName}
                                                 </div>
                                             </li>
                                         </ul>
@@ -71,21 +71,22 @@
                                     <div class="panel panel-info">
                                         <div class="panel-heading">Message</div>
                                         <div class="panel-body">
-                                            <c:forEach items="${reply}" var="a">
-                                                ${a.username} Say: ${a.pm}
+                                            <c:forEach items="${reply}" var="a" begin="0" end="${pm1.count}">
+                                                ${a.senderName} Say: ${a.pm}
                                             </c:forEach>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-10 " style="margin-bottom: 50px">
                                             <textarea class="form-control" name="pm" rows="3" placeholder="Reply" required></textarea> 
                                         </div>
                                     </div>
-                                    <input type="hidden" name="sender"  value="${user.account_Id}" />
-                                    <input type="hidden" name="subject" value="Re: ${pm.subject}"/>
-                                    <input type="hidden" name="receiver" value="${pm.sender}"/>
+                                    <input type="hidden" name="subject" value="${pm.subject}"/>
+                                    <input type="hidden" name="receiverID" value="${pm.senderID}"/>
+                                    <input type="hidden" name="receiverName" value="${pm.senderName}"/>
+                                    <input type="hidden" name="senderName" value="${pm.receiverName}"/>
                                     <input type="hidden" name="relate" value="${pm.relate}"/>
                                     <button type="submit" class="btn btn-info">Reply</button>
                                 </div>

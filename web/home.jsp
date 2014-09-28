@@ -163,7 +163,7 @@
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <div style="margin-bottom: -20px">
-        <jsp:include page="header1.jsp"/>
+            <jsp:include page="header1.jsp"/>
         </div>
         <div class="row">
             <div class="col-md-3">
@@ -182,29 +182,32 @@
                         </ol>
 
                         <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="pic/Showhome1.jpg" width="400px" height="300px" alt="...">
-                                <div class="carousel-caption">
+                        <form action="ShowCategoryServlet" method="get">
+                            <button type="submit">
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img src="pic/ip6.jpg" alt="...">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="pic/s5.jpg" alt="...">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="pic/mac.jpg" alt="...">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src="pic/n7.jpg" alt="...">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Showhome2.jpg" width="400px" height="300px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Showhome3.jpg" width="400px" height="300px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Showhome4.jpg" width="400px" height="300px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                        </div>
-
+                            </button>
+                        </form>
                         <!-- Controls -->
                         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -220,32 +223,32 @@
                     <ul class="caption-style-1">
                         <li>
                             <a href="SearchProductServlet?id=${pro}&herolist=1&x=0&y=5&s=a"><img src="pic/com1.png" class="img-rounded" alt="">
-                            <div class="caption">
-                                <div class="blur"></div>
-                                <div class="caption-text">
-                                    <h1>Computer</h1>
+                                <div class="caption">
+                                    <div class="blur"></div>
+                                    <div class="caption-text">
+                                        <h1>Computer</h1>
+                                    </div>
                                 </div>
-                            </div>
                             </a>
                         </li>
                         <li>
                             <a href="SearchProductServlet?id=${pro}&herolist=2&x=0&y=5&s=a"><img src="pic/mob1.png" class="img-rounded" alt="">
-                            <div class="caption">
-                                <div class="blur"></div>
-                                <div class="caption-text">
-                                    <h1>Mobile</h1>
+                                <div class="caption">
+                                    <div class="blur"></div>
+                                    <div class="caption-text">
+                                        <h1>Mobile</h1>
+                                    </div>
                                 </div>
-                            </div>
                             </a>
                         </li>
                         <li>
                             <a href="SearchProductServlet?id=${pro}&herolist=3&x=0&y=5&s=a"><img src="pic/cam1.png" class="img-rounded" alt="">
-                            <div class="caption">
-                                <div class="blur"></div>
-                                <div class="caption-text">
-                                    <h1>Camera</h1>
+                                <div class="caption">
+                                    <div class="blur"></div>
+                                    <div class="caption-text">
+                                        <h1>Camera</h1>
+                                    </div>
                                 </div>
-                            </div>
                             </a>
                         </li>
                     </ul>
@@ -259,14 +262,14 @@
                             <div align="center">
                                 <c:forEach items="${pro1}" var="a">
                                     <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>
-                                </c:forEach>
+                                    </c:forEach>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
-                
+
         </div>
 
         <script src="js/jasny-bootstrap.min.js"></script>

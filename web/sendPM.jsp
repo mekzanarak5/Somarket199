@@ -41,11 +41,12 @@
                             <div class="col-xs-12">
                                 <h3 class="demo-panel-title">Receiver</h3>
                                 <input id="tagsinput" class="tagsinput" value="${showRe.username}" />
-                                <input type="hidden" name="receiver" value="${showRe.account_Id}" />
+                                <input type="hidden" name="receiverID" value="${showRe.account_Id}" />
+                                <input type="hidden" name="receiverName" value="${showRe.username}" />
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <input type="hidden" name="sender"  value="${user.account_Id}" />
+                                    <input type="hidden" name="senderName"  value="${user.username}" />
                                     <input type="text" name="subject"  placeholder="subject" class="form-control" />
                                 </div>          
                             </div>
@@ -54,7 +55,7 @@
                                     <textarea class="form-control" name="pm" rows="3" required></textarea> 
                                 </div>          
                             </div>
-                            <div class="col-xs-5" style="margin: auto;float: none" >
+                            <div class="col-xs-5" style="margin: auto;float: none;margin-bottom: 50px" >
                                 <input type="submit" class="btn btn-block btn-lg btn-info" value="Send !">
                             </div>
                         </div>
