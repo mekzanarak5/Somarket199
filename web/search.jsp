@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@page import="model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,7 +20,6 @@
         <!-- Loading Bootstrap -->
         <jsp:include page="cssup.jsp"/>
     </head>
-
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
         <div style="margin-bottom: -20px">
             <jsp:include page="header1.jsp"/>
@@ -65,14 +65,14 @@
                     </div>
                 </div>
                 <center>
-                    <div class="col-md-12" style="margin:auto;" >
-                        <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 750px;background: #FFFFFF">
+                    <div class="col-md-12" style="margin:auto;border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 800px;background: #FFFFFF" >
+                        <div class="col-md-12" style="margin-left: 10px;border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 750px;background: #FFFFFF">
                             <div class="row">
                                 <h3 class="col-md-12">Search</h3>
                                 <div class="row">
                                     <c:forEach items="${products}" var="a">
                                         <form action="AddToCart" method="get">
-                                            <div class="col-md-4" style="height: 350px">
+                                            <div class="col-md-4" style="height: 350px" >
                                                 <div class="thumbnail">
                                                     <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 190; height: 140px;" class="img-rounded"></a>                                               
                                                     <div class="caption" >

@@ -53,9 +53,9 @@
                                 <hr>
                                     <table class="table table-striped" style="text-align: center">
                                         <tr bgColor="#ffffff">
-                                            <td>Expiration Date</td>
+                                            <td>Create Date</td>
                                             <td>Pic</td>
-                                            <td >Name</td>
+                                            <td>Name</td>
                                             <td>Price</td>
                                             <td>Manage Post</td>
                                         </tr>
@@ -74,8 +74,8 @@
                                                             Manage Post <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="ShowEditProduct?id=${a.productNO}">Edit</a></li>
-                                                            <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete</a></li>
+                                                            <li><a href="ShowEditProduct?id=${a.productNO}">Edit Post</a></li>
+                                                            <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete Post</a></li>
                                                         </ul>
                                                     </div></td>
                                             </tr>

@@ -42,7 +42,7 @@ public class PriceServlet extends HttpServlet {
         int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
         int y = Integer.parseInt(request.getParameter("y"));
         int totalPage = (int) Math.ceil((Product.countRowp(sid,str,st) * 1.0) / y);
-        request.setAttribute("totalPage", totalPage);
+        request.setAttribute("totalPage", totalPage);   
         request.setAttribute("products", Product.findPrice(sid, cat, x, y, str, st));
         request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
         HttpSession s1 = request.getSession();

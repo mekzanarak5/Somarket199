@@ -36,8 +36,8 @@ public class AdminShowReport extends HttpServlet {
             throws ServletException, IOException {
         List<Product> p = Product.showProduct();
         request.setAttribute("pro", p);
-        List<Message> p1 = Message.findReceiver(0);
-        request.setAttribute("pm", p1);
+//        List<Message> p1 = Message.findReceiver();
+//        request.setAttribute("pm", p1);
         
         List<Category> c = Category.findBigAll();
         request.setAttribute("cateID", c);

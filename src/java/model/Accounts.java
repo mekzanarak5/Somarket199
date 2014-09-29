@@ -116,7 +116,7 @@ public class Accounts {
         this.Pic = Pic;
     }
 
-    public static int addAccount(String Username, String Password, String Email, String dispName,
+    public static int addAccount(String Username, String Password, String Email, 
             String FirstName, String LastName, String Phone, String Created) {
         int row = 0;
         int newMemberID = 0;

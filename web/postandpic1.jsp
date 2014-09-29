@@ -44,13 +44,13 @@
                 <div class="col-xs-12">
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
-                        <li class="active">Post</li>
+                        <li class="active">Post Product</li>
                     </ol>
                 </div> 
                 <div class="col-xs-11" style="margin:auto;">
                     <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
-                            <h3 class="col-md-12">Post</h3>
+                            <h3 class="col-md-12">Post Product</h3>
                             <form action="AddProductPic" method="post" enctype="multipart/form-data">
                                 <div class="form-horizontal" align="center">
                                     <div class="form-group">

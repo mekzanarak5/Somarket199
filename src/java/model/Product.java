@@ -38,7 +38,7 @@ public class Product implements Comparable {
 
     public Product() {
     }
-    
+
     public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, int brandID, int pNO, int Product_Id, String pathFile, String CreateOn) {
         this.productNO = productNO;
         this.acctID = acctID;
@@ -167,7 +167,7 @@ public class Product implements Comparable {
     public void setPathFile(String pathFile) {
         this.pathFile = pathFile;
     }
-    
+
     public static int addProducts(String AcctID, int Category_ID, String Name, Double Price,
             String CreateOn, String Description, String Available, String Brand) {
         int row = 0;
@@ -238,6 +238,7 @@ public class Product implements Comparable {
         }
         return pa;
     }
+
     public static List<Product> showRandomProduct() {
         String sqlCmd = "select * from product p,product_img pi where p.productNO = pi.Product_Id Group by p.productNO ORDER BY RAND( ) DESC limit 4";
         Connection con = ConnectionAgent.getConnection();
@@ -297,6 +298,46 @@ public class Product implements Comparable {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public static Product countCateP(int id) {
+
+        String sqlCmd = "SELECT count(*) FROM product p,category c WHERE p.Category_ID = c.cateID and c.ParentCateID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Product c = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Product();
+                rToO(c, rs);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+    }
+
+    public static Product countCateS(int id) {
+
+        String sqlCmd = "SELECT count(*) FROM product where Category_ID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Product c = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Product();
+                rToO(c, rs);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
     }
 
     public static int lastid() {
@@ -359,11 +400,12 @@ public class Product implements Comparable {
 
     public static List<Product> findPrice(String key, String id, int x, int y, double str, double st) {
         String sqlCmd = "SELECT * FROM product WHERE Description like ? and Name like ? and Category_ID like ? and Price between ? and ? ORDER BY CreateOn DESC limit ?,?";
+        String sqlCmd1 = "select * from product p,product_img pi where p.productNO = pi.Product_Id and (p.Description like ? or p.Name like ?) and p.Category_ID like ? and Price between ? and ? GROUP BY pi.Product_Id ORDER BY p.CreateON DESC limit ?,?";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> cs = new ArrayList<Product>();
         try {
-            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            PreparedStatement ps = con.prepareStatement(sqlCmd1);
             ps.setString(1, "%" + key + "%");
             ps.setString(2, key + "%");
             ps.setString(3, id + "%");

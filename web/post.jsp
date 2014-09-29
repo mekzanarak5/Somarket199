@@ -36,7 +36,7 @@
             <div class="col-xs-11" style="margin:auto;">
                 <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 580px;background: #FFFFFF">
                     <div class="row">
-                        <h3 class="col-md-12">Post</h3>
+                        <h3 class="col-md-12">Post Product</h3>
                         <form class="form-horizontal" align="center" action="product">
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-3">Product</label>

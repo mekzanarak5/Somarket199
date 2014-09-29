@@ -22,10 +22,10 @@ public class Category {
 
     private int cateID;
     private String cateName;
-    private String ParentCateID;
+    private int ParentCateID;
     private String Value;
 
-    public Category(int cateID, String cateName, String ParentCateID, String Value) {
+    public Category(int cateID, String cateName, int ParentCateID, String Value) {
         this.cateID = cateID;
         this.cateName = cateName;
         this.ParentCateID = ParentCateID;
@@ -52,11 +52,11 @@ public class Category {
         this.cateName = cateName;
     }
 
-    public String getParentCateID() {
+    public int getParentCateID() {
         return ParentCateID;
     }
 
-    public void setParentCateID(String ParentCateID) {
+    public void setParentCateID(int ParentCateID) {
         this.ParentCateID = ParentCateID;
     }
 
@@ -282,7 +282,7 @@ public class Category {
         try {
             c.setCateID(rs.getInt("cateID"));
             c.setCateName(rs.getString("cateName"));
-            c.setParentCateID(rs.getString("ParentCateID"));
+            c.setParentCateID(rs.getInt("ParentCateID"));
             c.setValue(rs.getString("Value"));
 
         } catch (SQLException ex) {

@@ -178,25 +178,25 @@
                                 <table class="table table-striped" style="text-align: center">
                                     <tr bgColor="#ffffff">
                                         <td>Address</td>
-                                        <td>Provice</td>
-                                        <td>Post</td>
-                                        <td>Canton</td>
-                                        <td>Manage Post</td>
+                                        <td>District</td>
+                                        <td>Province</td>
+                                        <td>Zip Code</td>
+                                        <td>Manage</td>
                                     </tr>
                                     <c:forEach items="${add}" var="a">
                                         <tr>
                                             <td>${a.address}</td>
+                                            <td>${a.canton}</td>
                                             <td>${a.provice}</td>
                                             <td>${a.post}</td>
-                                            <td>${a.canton}</td>
                                             <td width="20%">
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                        Manage Post <span class="caret"></span>
+                                                        Edit Address <span class="caret"></span>
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="EditShowAddress?addid=${a.address_Id}">Edit</a></li>
-                                                        <li><a href="DeleteAddressServlet?id=${a.address_Id}&acctid=${user.account_Id}">Delete</a></li>
+                                                        <li><a href="EditShowAddress?addid=${a.address_Id}">Edit Address</a></li>
+                                                        <li><a href="DeleteAddressServlet?id=${a.address_Id}&acctid=${user.account_Id}">Delete Address</a></li>
                                                     </ul>
                                                 </div>
                                             </td>
