@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <jsp:include page="logo.jsp"/>
+                <jsp:include page="logo_1_1.jsp"/>
             </div>
             <div class="col-md-9">
                 <jsp:include page="header.jsp"/>
@@ -59,39 +59,41 @@
                                 </tr>
                                 <c:forEach items="${detail.lineItems}" var="line">
                                     <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
-                                <tr>
-                                    <td><a href="#">${n.username}</a></td>
-                                    <td><a href=""><img src="img/ip1.jpeg" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
-                                    <td>
-                                        <a href="#">
-                                            ${line.product.name}</a></td>
-                                    <td>${line.product.price}</td>
-                                    <td>${line.unit}</td>
-                                    <td>${line.total}</td>
-                                </tr>
+                                    <tr>
+                                        <td><a href="#">${n.username}</a></td>
+                                        <td><a href=""><img src="img/ip1.jpeg" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
+                                        <td>
+                                            <a href="#">
+                                                ${line.product.name}</a></td>
+                                        <td>${line.product.price}</td>
+                                        <td>${line.unit}</td>
+                                        <td>${line.total}</td>
+                                    </tr>
                                 </c:forEach>
                             </table>
                         </div>
                         <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                             <h6 class="col-md-12 panel-heading">Payment Information</h6>
-                            <div class="col-md-4">
                             <c:forEach items="${bank}" var="bb" >
-                                <table class="table table-bordered" style="text-align: center">
-                                    <tr>
-                                        <td style="background: #ededed">Bank Name</td>
-                                        <td>${bb.bankName}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="background: #ededed">Bank Account No.</td>
-                                        <td>${bb.bankAccNo}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="background: #ededed">Bank Account Name</td>
-                                        <td>${bb.bankAccName}</td>
-                                    </tr>
-                                </table>
-                                </c:forEach>
-                            </div>
+                                <div class="col-md-6">
+
+                                    <table class="table table-bordered" style="text-align: center">
+                                        <tr>
+                                            <td style="background: #ededed">Bank Name</td>
+                                            <td>${bb.bankName}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background: #ededed">Bank Account No.</td>
+                                            <td>${bb.bankAccNo}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background: #ededed">Bank Account Name</td>
+                                            <td>${bb.bankAccName}</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <div align="center">

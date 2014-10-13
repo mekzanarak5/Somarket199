@@ -35,9 +35,9 @@
                         <li class="active">Transfer</li>
                     </ol>
                 </div>
-                <form action="Pay2" class="form-horizontal" method="get">
-                    <div class="col-xs-12" style="margin:auto;">
-                        <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                <div class="col-xs-12" style="margin:auto;">
+                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                        <form action="Pay2" class="form-horizontal" method="get">
                             <div class="row">
                                 <h3 class="col-md-12">Transfer</h3>
                                 <div class="col-md-12">
@@ -96,7 +96,7 @@
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                 </div>
                             </div>--%>
-                            <div class="row">
+                            <div class="row" style="margin-bottom: 20px">
                                 <h3 class="col-md-12">Shiping Address</h3>
                                 <div class="col-md-10">
                                     <select name="shipaddr" class="select-block">
@@ -106,23 +106,23 @@
                                             <option value="${a.acctNo}">${a.address}&nbsp;&nbsp;${a.provice}&nbsp;&nbsp;${a.post}&nbsp;&nbsp;${a.canton}</option>
                                         </c:forEach>
                                     </select>
-                                </div>
-                                <div class="col-md-5">
-                                    <h4>Add New Address</h4>
-                                </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-xs btn-primary" style="margin-left: -50px;margin-top: 20px" data-toggle="modal" data-target=".bs-example-modal-lg">+</button>
+                                    <font size="2">
+                                    <a data-toggle="modal" data-target=".bs-example-modal-lg">&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                                    </font>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-10">
                                     <input type="hidden" value="${order}" name="id" />
                                     <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-default">Reset</button>
                                 </div>
-                            </div>                               
-                        </div>
+                            </div>
+                        </form>
+
                     </div>
-                </form>
+                </div>
+
             </div>
         </div>
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
