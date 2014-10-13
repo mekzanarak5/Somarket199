@@ -36,7 +36,7 @@ public class ToOrder extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Accounts cus = (Accounts) request.getSession().getAttribute("user");
+        /*Accounts cus = (Accounts) request.getSession().getAttribute("user");
         String address = request.getParameter("address");
         int value = 0;
         if (cus != null) {
@@ -64,7 +64,7 @@ public class ToOrder extends HttpServlet {
                 request.setAttribute("msg", "Confirm Order Failed Please Chose Address");
                 getServletContext().getRequestDispatcher("/MakeSureOrder.jsp").forward(request, response);
             }
-        }
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

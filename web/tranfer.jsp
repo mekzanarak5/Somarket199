@@ -35,7 +35,7 @@
                         <li class="active">Transfer</li>
                     </ol>
                 </div>
-                <form action="" class="form-horizontal" method="get">
+                <form action="Pay" class="form-horizontal" method="get">
                     <div class="col-xs-12" style="margin:auto;">
                         <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                             <div class="row">
@@ -45,7 +45,9 @@
                                         <div class="form-group">
                                             <select name="herolist" class="select-block">
                                                 <option value="" selected>Choose Bank Your Transfer</option>
-                                                <option value="">bank1</option>
+                                                <c:forEach items="${bank}" var="ba" >
+                                                    <option value="${ba.bank_Id}">${ba.bankName}&nbsp;&nbsp;${ba.bankAccNo}&nbsp;&nbsp;${ba.bankAccName}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -89,7 +91,7 @@
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                 <div>
-                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Slips</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Slips</span><span class="fileinput-exists">Change</span><input type="file" name="file"></span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                 </div>
                             </div>
@@ -98,7 +100,9 @@
                                 <div class="col-md-10">
                                     <select name="herolist" class="select-block">
                                         <option value="" selected>Choose Address</option>
-                                        <option value="">address1</option>
+                                          <c:forEach items="${addr}" var="a" >
+                                              <option value="${a.acctNo}">${a.address}&nbsp;&nbsp;${a.provice}&nbsp;&nbsp;${a.post}&nbsp;&nbsp;${a.canton}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col-md-5">
@@ -110,7 +114,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-10">
-
+                                    <input type="hidden" value="${order}" name="id" />
                                     <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-default">Reset</button>
                                 </div>
                             </div>                               
@@ -128,7 +132,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
                                 <div class="col-sm-6">
-                                    <input type="hidden" name="acctid" value="${user.account_Id}">
+                                    <%--<input type="hidden" name="acctid" value="${user.account_Id}">--%>
                                     <textarea class="form-control" name="address" rows="3" required></textarea> 
                                 </div>
                             </div>
@@ -237,6 +241,7 @@
                                 </div>
                             </div>
                         </div>
+                                    <input type="hidden" name="url" />
                     </form>
                 </div>
             </div>
@@ -254,6 +259,13 @@
         <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <script>
+            $(function() {
+                //$('.ui.accordion').accordion();
+                  $('input[name=url]').val((window.location.href.toString()));
+            });
+           
+        </script>
 
         <jsp:include page="footer.jsp"/>
     </body>

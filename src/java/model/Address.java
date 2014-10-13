@@ -192,6 +192,24 @@ public class Address {
         }
         return id;
     }
+    
+    public static boolean checkAddr(int id) {
+        String sqlCmd = "SELECT * FROM address WHERE AcctNo = ?";
+        Connection con = ConnectionAgent.getConnection();
+        boolean k = false;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                k=true;
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return k;
+    }
 
     public static int deleteAddress(String addid) {
         int row = 0;

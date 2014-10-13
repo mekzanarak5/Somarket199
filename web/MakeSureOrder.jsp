@@ -113,8 +113,8 @@
                                 <c:set value="${entry.value}" var="order" />
                                 <c:set value="${wtf:getAccountById(entry.key)}" var="n" />
                                 <h5 class="col-md-5">Order Information</h5> 
+                                <form action="DetailOrder" method="get" > 
                                 <div id="cbp-vm" class="cbp-vm-switcher">
-
                                     <table class="table table-striped" style="text-align: center">
                                         <tr bgColor="#ffffff">
                                             <td>Order ID</td>
@@ -131,8 +131,9 @@
                                     </table>
                                 </div>
                                 <div style="margin-left:300px">
-                                    <a href="tranfer.jsp"><input type="button" class="btn btn-warning" value="Your Order Detail"></a> 
+                                    <a href="DetailOrder?orderid=${order.orderId}"><input type="button" class="btn btn-warning" value="Detail" name="detail" /></a>
                                 </div>
+                                </form>
                             </c:forEach>
                         </div>
                     </div>

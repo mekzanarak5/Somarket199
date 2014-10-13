@@ -39,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
         String LastName = request.getParameter("lastname");
         String lthai = new String(LastName.getBytes("ISO8859_1"),"UTF-8");
         String Phone = request.getParameter("phone");
-        String Created = request.getParameter("created");
+//String Created = request.getParameter("created");
         String msg = "kuy";
         Boolean complete = false;
 
@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
             if (Password.length() >= 6) {
                 if (Password.equals(confirmpassword)) {
                     if (Accounts.checkEmail(Email)) {
-                            int row = Accounts.addAccount(Username,Password,Email,FirstName,LastName,Phone,Created);
+                            int row = Accounts.addAccount(Username,Password,Email,fthai,lthai,Phone);
                             if (row == 1) {
                                 msg = "Congratulations, you are now a member of GoToTheSell!";
                                 request.setAttribute("msg", msg);

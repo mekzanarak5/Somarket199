@@ -58,7 +58,7 @@
                                     <c:forEach items="${pm}" var="a">
                                         <tr>
                                             <td><a href="#">${a.senderName}</a></td>
-                                            <td><a href="ReplayServlet?id=${a.msgID}">${a.subject}</a></td>
+                                            <td><a href="ReplayServlet?id=${a.msgID}&relate=${a.relate}">${a.subject}</a></td>
                                             <td>${a.time}</td>
                                             <td><botton  class="checkbox"  for="checkbox1">
                                                     <input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox">

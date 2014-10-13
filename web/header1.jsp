@@ -6,16 +6,23 @@
 %>
 <c:set var="usernae" value="" />
 <c:set var="loginAndOut" value="" />
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse " role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <c:choose>
             <c:when test="${user == null}">
                 <c:set var="username" value="Guest"/>
                 <c:set var="loginAndOut" value="Login.jsp"/>
-                <div class="navbar-header navbar-right">
-                    <a href="${loginAndOut}" class="btn btn-sm btn-info" style="margin-top: 7px">Login</a>
-                    <a href="Register.jsp" class="btn btn-sm btn-warning" style="margin-top: 7px">Register</a>
+                <div class="btn-group navbar-header navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="ViewCart"><span class="glyphicon glyphicon-shopping-cart"></span>
+                                ${cart!=null?" ( ":""}
+                                ${cart!= null? cart.unitItem:""}
+                                ${cart!=null?" ) ":""}
+                            </a></li>
+                            <li><button class="btn btn-info" onclick="window.location.href = 'Login.jsp'" style="margin-top: 5px">Login</button></li>
+                        <li><button class="btn btn-default" onclick="window.location.href = 'Register.jsp'" style="margin-top: 5px">Register</button></li>
+                    </ul>
                 </div>
             </c:when>
             <c:otherwise>
@@ -35,7 +42,7 @@
                                 ${cart!=null?" ) ":""}
                             </a></li>
                     </ul>
-                            <div class="nav navbar-right">
+                    <div class="nav navbar-right" style="margin-left: 280px">
                         <button type="button" style="margin-top: 5px;width: 120px" onclick="window.location.href = 'profile.jsp'" class="btn btn-primary">${user.username}<span class="fui-user"></span></button>
                         <button type="button" style="margin-top: 5px" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>

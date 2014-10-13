@@ -143,6 +143,24 @@ public class Bank {
         }
         return a;
     }
+    
+    public static boolean checkBank(int id) {
+        String sqlCmd = "SELECT * FROM bankaccount WHERE AcctNo = ?";
+        Connection con = ConnectionAgent.getConnection();
+        boolean k = false;
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                k=true;
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return k;
+    }
 
     public static List<Bank> showBank(int id) {
         String sqlCmd = "SELECT * FROM bankaccount WHERE AcctNo = ?";

@@ -101,14 +101,10 @@
                                                 <td>${a.bankName}</td>
                                                 <td>${a.bankAccNo}</td>
                                                 <td>${a.bankAccName}</td>
-                                                <td width="20%"><div class="btn-group">
-                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                            Manage Bank Account <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="EditShowBank?bankid=${a.bank_Id}">Edit Bank Account</a></li>
-                                                            <li><a href="DeleteBankServlet?id=${a.bank_Id}&acctid=${user.account_Id}">Delete Bank Account</a></li>
-                                                        </ul>
+                                                <td>
+                                                <div class="btn-group">
+                                                        <button class="btn btn-info" onclick="window.location.href = 'EditShowBank?bankid=${a.bank_Id}'">Edit</button>
+                                                        <button class="btn btn-danger" onclick="window.location.href = 'DeleteBankServlet?id=${a.bank_Id}&acctid=${user.account_Id}'">Delete</button>                                                    
                                                     </div></td>
                                             </tr>
                                         </c:forEach>

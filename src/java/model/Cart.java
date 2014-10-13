@@ -73,11 +73,11 @@ public class Cart {
         String sql = "insert into order_product values(?,?,?,?)";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
-            ps.setInt(1, getOrderId());
+            ps.setInt(1, Cart.idGenerator());
             List<LineItem> a = getLineItems();
             System.out.println(a);
             for (LineItem li : a) {
-                if (key == li.getProduct().getAcctID()) {
+                if (li.getProduct().getAcctID() == key){
                     //ps.setInt(2, li.getUnit());
                     ps.setInt(2, li.getProduct().getProductNO());
                     ps.setDouble(3, li.getUnit());
@@ -94,14 +94,14 @@ public class Cart {
 
     public static Cart getDetailList(int oid) {
         Cart c = new Cart();
-        String sql = "select * from gadget_order2 where order_id = ? ";
+        String sql = "select * from order_product where order_id = ? ";
         PreparedStatement ps;
         try {
             ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, oid);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                LineItem li = new LineItem(Product.findByName(rs.getString(3)), rs.getInt(2));
+                LineItem li = new LineItem(Product.findById(rs.getInt(2)), rs.getInt(3));
                 c.add(li);
             }
             ConnectionAgent.getConnection().close();
@@ -112,7 +112,7 @@ public class Cart {
     }
 
     public static int idGenerator() {
-        String sql = "SELECT MAX(OrderNo) FROM order_sum";
+        String sql = "SELECT MAX(Order_ID) FROM order_product";
         int result = 0;
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);

@@ -90,8 +90,8 @@ public class AddProfilePic extends HttpServlet {
                         pic = "pic/upload/" + fileName;
                     } else if (fi.isFormField()) {
                         id = fi.getString();
-                        name = fi.getString();
-                        System.out.println(name);
+//                        name = fi.getString();
+//                        System.out.println(name);
                     }
                 }
             } catch (Exception ex) {

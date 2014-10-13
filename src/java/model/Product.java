@@ -239,8 +239,46 @@ public class Product implements Comparable {
         return pa;
     }
 
-    public static List<Product> showRandomProduct() {
-        String sqlCmd = "select * from product p,product_img pi where p.productNO = pi.Product_Id Group by p.productNO ORDER BY RAND( ) DESC limit 4";
+    public static List<Product> showRandomProductCom() {
+        String sqlCmd = "select * from product p,product_img pi,category c where p.productNO = pi.Product_Id and p.Category_ID = c.cateID and ParentCateID = 1 Group by p.productNO ORDER BY RAND( ) DESC limit 1";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Product> pa = new ArrayList<Product>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+                pa.add(p);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pa;
+    }
+    public static List<Product> showRandomProductMob() {
+        String sqlCmd = "select * from product p,product_img pi,category c where p.productNO = pi.Product_Id and p.Category_ID = c.cateID and ParentCateID = 2 Group by p.productNO ORDER BY RAND( ) DESC limit 1";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Product> pa = new ArrayList<Product>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p = new Product();
+                rToO(p, rs);
+                pa.add(p);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pa;
+    }
+    public static List<Product> showRandomProductCam() {
+        String sqlCmd = "select * from product p,product_img pi,category c where p.productNO = pi.Product_Id and p.Category_ID = c.cateID and ParentCateID = 3 Group by p.productNO ORDER BY RAND( ) DESC limit 1";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> pa = new ArrayList<Product>();
@@ -625,6 +663,28 @@ public class Product implements Comparable {
             p.setpNO(rs.getInt("pNO"));
             p.setProduct_Id(rs.getInt("Product_Id"));
             p.setPathFile(rs.getString("pathFile"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private static void rToO2(Product p, ResultSet rs) {
+        try {
+            p.setProductNO(rs.getInt("productNO"));
+            p.setAcctID(rs.getInt("AcctID"));
+            p.setCategory_ID(rs.getInt("Category_ID"));
+            p.setName(rs.getString("Name"));
+            p.setPrice(rs.getDouble("Price"));
+            p.setOfferStart(rs.getDate("OfferStart"));
+            p.setOfferEnd(rs.getDate("OfferEnd"));
+            p.setCreateOn(rs.getDate("CreateOn"));
+            p.setDescription(rs.getString("Description"));
+            p.setAvailable(rs.getString("Available"));
+            p.setBrandID(rs.getInt("BrandID"));
+            /*p.setpNO(rs.getInt("pNO"));
+            p.setProduct_Id(rs.getInt("Product_Id"));
+            p.setPathFile(rs.getString("pathFile"));*/
 
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);

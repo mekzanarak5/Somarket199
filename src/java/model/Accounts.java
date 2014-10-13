@@ -116,12 +116,10 @@ public class Accounts {
         this.Pic = Pic;
     }
 
-    public static int addAccount(String Username, String Password, String Email, 
-            String FirstName, String LastName, String Phone, String Created) {
+    public static int addAccount(String Username, String Password, String Email, String FirstName, String LastName, String Phone) {
         int row = 0;
         int newMemberID = 0;
         try {
-
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps1 = con.prepareStatement("SELECT MAX(Account_Id) AS LastMemberID FROM account");
             ResultSet rs = ps1.executeQuery();
@@ -131,7 +129,7 @@ public class Accounts {
                 newMemberID = 0;
             }
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO account VALUES (?,?,?,?,?,?,?,current_timestamp)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO account(Account_Id, Username, Password, Email, FirstName, LastName, Phone, Created) VALUES (?,?,?,?,?,?,?,current_timestamp)");
             ps.setInt(1, newMemberID);
             ps.setString(2, Username);
             ps.setString(3, Password);
@@ -194,6 +192,25 @@ public class Accounts {
         }
         return cs;
     }
+    public static List<Accounts> findAllAcct() {
+        String sqlCmd = "SELECT * FROM account";
+        Connection con = ConnectionAgent.getConnection();
+        Accounts a = null;
+        List<Accounts> cs = new ArrayList<Accounts>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                a = new Accounts();
+                rToO(a, rs);
+                cs.add(a);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
 
     public static Accounts findById2(int id) {
         String sqlCmd = "SELECT * FROM account WHERE Account_Id = ?";
@@ -231,6 +248,24 @@ public class Accounts {
             Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
         }
         return a;
+    }
+    
+    public static Accounts getUser(String user) {
+        String sql = "select * from account where username= ?";
+        PreparedStatement ps;
+        Accounts m = null;
+        try {
+            ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, user);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                m = new Accounts();
+                rToO(m, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return m;
     }
 
     public static Accounts findPic(int id) {

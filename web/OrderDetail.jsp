@@ -1,89 +1,119 @@
-`<%-- 
-    Document   : showOldOrder
-    Created on : Dec 7, 2013, 3:39:47 PM
-    Author     : Sorn
+<%-- 
+    Document   : Login
+    Created on : Aug 7, 2014, 2:11:19 PM
+    Author     : Admin
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Product"%>
+<%@page import="model.ProductPic"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:include page="WEB-INF/headerLogout2.jsp"/>
+        <title>Social Market | Order Detail</title>
+        <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
+
+        <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+
+        <jsp:include page="cssup.jsp"/>
     </head>
-    <body>
-        <div class="container" style="padding-top: 150px;">
-            <div class="panel panel-default" >
-                <div class="panel-heading"><h4 class="panel-title">Your Ordered</h4></div>
-               
-                
-                
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Unit</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <c:set var="no" value="1"/>
-                        <c:forEach items="${detail.lineItems}" var="line"> 
 
-                            <tr>
-                                <td style="vertical-align: middle">
-                                    ${no}
-                                </td>
-                                <td>
-                                    <img src="${line.product.productImg}" width="70" height="100">
-                                </td>
-                                <td style="vertical-align: middle">
-                                    ${line.product.productName}       
-                                </td >
-                                <td style="vertical-align: middle">
-                                    <input type="hidden" value="${line.product.productId}" name="productId" >
-                    <input style="text-align:right" type="number" name="unit" size='4' value="${line.unit}" required>
-                                </td>
-                                <td style="vertical-align: middle">
-                                    <fmt:formatNumber pattern ="#,###.##" value="${line.product.productCost}" />
-                                </td>
-                                <td style="vertical-align: middle">
-                                    <fmt:formatNumber pattern="#,###.##" value="${line.total}" />
-                                </td>
-                                <td style="vertical-align: middle">
-                                    
-                                </td>
-                            <c:set var="no" value="${no+1}"/>
-                            </tr>
-                        </c:forEach>
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td> Total Price :</td>
-                            <td><%=request.getAttribute("total")%></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                
-
-            </div>
-            <footer>
-                <p>&copy; Company 2013</p>
-            </footer>
+    <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
+        <div style="margin-bottom: -20px">
+            <jsp:include page="header1.jsp"/>
         </div>
-
+        <div class="row">
+            <div class="col-md-3">
+                <jsp:include page="logo.jsp"/>
+            </div>
+            <div class="col-md-9">
+                <jsp:include page="header.jsp"/>
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="profile.jsp">Profile</a></li>
+                        <li><a href="ShowOrder">Buy List</a></li>
+                        <li class="active">Order Detail</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-xs-12" style="margin:auto;">
+                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                    <div class="row">
+                        <h5 class="col-md-12 panel panel-heading">Order Detail</h5>
+                        <div class="panel panel-default col-md-11" style="margin-left: 45px ">
+                            <h6 class="panel-heading">Item Detail</h6>
+                            <table class="table table-striped" style="text-align: center">
+                                <tr>
+                                    <td>Seller</td>
+                                    <td>Pic</td>
+                                    <td>Name</td>
+                                    <td>Unit Price</td>
+                                    <td>Quantity</td>
+                                    <td>Total</td>
+                                </tr>
+                                <c:forEach items="${detail.lineItems}" var="line">
+                                    <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
+                                <tr>
+                                    <td><a href="#">${n.username}</a></td>
+                                    <td><a href=""><img src="img/ip1.jpeg" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
+                                    <td>
+                                        <a href="#">
+                                            ${line.product.name}</a></td>
+                                    <td>${line.product.price}</td>
+                                    <td>${line.unit}</td>
+                                    <td>${line.total}</td>
+                                </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                        <div class="panel panel-default col-md-11" style="margin-left: 45px ">
+                            <h6 class="col-md-12 panel-heading">Payment Information</h6>
+                            <div class="col-md-4">
+                            <c:forEach items="${bank}" var="bb" >
+                                <table class="table table-bordered" style="text-align: center">
+                                    <tr>
+                                        <td style="background: #ededed">Bank Name</td>
+                                        <td>${bb.bankName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background: #ededed">Bank Account No.</td>
+                                        <td>${bb.bankAccNo}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background: #ededed">Bank Account Name</td>
+                                        <td>${bb.bankAccName}</td>
+                                    </tr>
+                                </table>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                    <div align="center">
+                        <a href="Transfer?id=${id}"><input type="button" class="btn btn-warning" value="Order Payment"></a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--</div>-->
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-select.js"></script>
+        <script src="js/bootstrap-switch.js"></script>
+        <script src="js/flatui-checkbox.js"></script>
+        <script src="js/flatui-radio.js"></script>
+        <script src="js/jquery.tagsinput.js"></script>
+        <script src="js/jquery.placeholder.js"></script>
+        <script src="js/jquery.stacktable.js"></script>
+        <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+        <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

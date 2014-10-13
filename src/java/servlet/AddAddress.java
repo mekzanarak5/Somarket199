@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Accounts;
 import model.Address;
 /**
  *
@@ -30,7 +31,7 @@ public class AddAddress extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int AcctID = Integer.parseInt(request.getParameter("acctid"));
+        int AcctID = ((Accounts) request.getSession().getAttribute("user")).getAccount_Id();
         String Address = request.getParameter("address");
         String addressthai = new String(Address.getBytes("ISO8859_1"), "UTF-8");
         String Provice = request.getParameter("provice");
@@ -53,10 +54,15 @@ public class AddAddress extends HttpServlet {
             request.setAttribute("msg", msg);
             complete = false;
         }
-
+        
+        String url = request.getParameter("url");
         if (complete) {
+            if (url==null){
             request.setAttribute("lastid", a.lastid());
             getServletContext().getRequestDispatcher("/ShowAddressServlet?id="+AcctID).forward(request, response);
+            }else{
+                response.sendRedirect(url);
+            }
         } else {
             getServletContext().getRequestDispatcher("/address.jsp").forward(request, response);
         }

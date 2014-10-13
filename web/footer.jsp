@@ -10,30 +10,28 @@
             <a  href="#">Company Name <i>&copy; 2013</i></a>
         </li>
         <li>
-            <p class="clients">Services</p>
+            <p class="clients">Category</p>
 
             <ul>
-                <li><a href="#">3D modeling</a></li>
-                <li><a href="#">Web development</a></li>
-                <li><a href="#">Mobile development</a></li>
-                <li><a href="#">Web &amp; Print Design</a></li>
+                <li><a href="#">Computer</a></li>
+                <li><a href="#">Mobile & Tablet</a></li>
+                <li><a href="#">Camera</a></li>
             </ul>
         </li>
         <li>
             <p class="clients">Reach us</p>
 
             <ul>
-                <li><a href="#">Email</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Facebook</a></li>
-                <li>555-123456789</li>
+                <li><a href="https://mail.google.com/">Gmail</a></li>
+                <li><a href="https://twitter.com/?lang=th">Twitter</a></li>
+                <li><a href="https://th-th.facebook.com/">Facebook</a></li>
             </ul>
         </li>
         <li>
-            <p class="clients">Clients</p>
+            <p class="clients">Contact</p>
 
             <ul>
-                <li><a href="#">Login Area</a></li>
+                <li><a href="#">Admin</a></li>
                 <li><a href="#">Support Center</a></li>
                 <li><a href="#">FAQ</a></li>
             </ul>

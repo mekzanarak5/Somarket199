@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Accounts;
 import model.Category;
 import model.Message;
 import model.Product;
@@ -36,6 +37,9 @@ public class AdminShowReport extends HttpServlet {
             throws ServletException, IOException {
         List<Product> p = Product.showProduct();
         request.setAttribute("pro", p);
+        List<Accounts> a = Accounts.findAllAcct();
+        request.setAttribute("acc", a);
+        
 //        List<Message> p1 = Message.findReceiver();
 //        request.setAttribute("pm", p1);
         

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Accounts;
 import model.Product;
+import model.order;
 
 /**
  *
@@ -35,10 +36,16 @@ public class DeleteProductServlet extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         String acctid = request.getParameter("acctid");
+        if(order.checkProductOrder(Integer.parseInt(id))){
         Product c = new Product();
         c.deleteProduct(id);
         request.setAttribute("product", c);
-        getServletContext().getRequestDispatcher("/ShowSellServlet?id="+acctid).forward(request, response);
+        }else{
+            String msg = "Product have orders can not remove";
+            request.setAttribute("msg", msg);
+        }
+        
+        getServletContext().getRequestDispatcher("/ShowSellServlet?id="+acctid).forward(request, response); 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

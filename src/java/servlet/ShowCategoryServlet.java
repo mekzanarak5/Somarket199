@@ -40,6 +40,8 @@ public class ShowCategoryServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession s1 = request.getSession();
         HttpSession s2 = request.getSession();
+        HttpSession s3 = request.getSession();
+        HttpSession s4 = request.getSession();
         Map<Category, List<Category>> cate = new HashMap<Category, List<Category>>();
 
         for (Category category : Category.findBigAll()) {
@@ -48,8 +50,12 @@ public class ShowCategoryServlet extends HttpServlet {
             System.out.println(subCategories);
         }
         s1.setAttribute("cate", cate);
-        List<Product> a = Product.showRandomProduct();
+        List<Product> a = Product.showRandomProductCom();
         s2.setAttribute("pro1", a);
+        List<Product> a1 = Product.showRandomProductMob();
+        s3.setAttribute("pro2", a1);
+        List<Product> a2 = Product.showRandomProductCam();
+        s4.setAttribute("pro3", a2);
         System.out.println();
         response.sendRedirect("home.jsp");
 //        HttpSession s1 = request.getSession();

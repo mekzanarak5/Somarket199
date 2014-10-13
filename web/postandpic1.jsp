@@ -46,7 +46,8 @@
                         <li><a href="#">Home</a></li>
                         <li class="active">Post Product</li>
                     </ol>
-                </div> 
+                </div>
+                
                 <div class="col-xs-11" style="margin:auto;">
                     <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
@@ -72,8 +73,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-3">Available</label>
-                                        <div class="col-sm-3">
+                                        <label for="inputPassword3" class="col-md-3">Available</label>
+                                        <div class="col-md-3">
                                             <select value="Yes" class="form-control" name="available" >
                                                 <option value="yes">Yes</option>
                                                 <option value="no">No</option>
@@ -83,7 +84,7 @@
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-3">Category</label>
                                         <div class="row">
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <select id="mark" class="form-control">
                                                     <option value="">--</option>
                                                     <c:forEach items="${cateID}" var="a">
@@ -91,7 +92,7 @@
                                                     </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-md-2" >
+                                            <div class="col-md-3" >
                                                 <select id="series" class="form-control" name="cata">
                                                     <option value="">--</option>
                                                     <c:forEach items="${childCateID1}" var="a">
@@ -111,8 +112,15 @@
                                         <label for="inputPassword3" class="col-sm-3">Brand</label>
                                         <div class="col-sm-3">
                                             <select value="Yes" class="form-control" name="brand" >
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
+                                                <option value="">Acer</option>
+                                                <option value="">Apple</option>
+                                                <option value="">Asus</option>
+                                                <option value="">BenQ</option>
+                                                <option value="">Compaq</option>
+                                                <option value="">Dell</option>
+                                                <option value="">Fujitsu</option>
+                                                <option value="">Gateway</option>
+                                                <option value="">HP</option>
                                             </select>
                                         </div>
                                     </div>

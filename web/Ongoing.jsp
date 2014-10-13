@@ -59,14 +59,16 @@
                                     <td>Total Price</td>
                                     <td>Status</td>
                                 </tr>
-                                <c:forEach items="" var="a">
+                                <c:set value="${no=1}" var="no" />
+                                <c:forEach items="${oldorders}" var="a">
                                     <tr>
-                                        <td></td>
-                                        <td><a href=""></a></td>
-                                        <td><a href=""></a></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>${no}</td>
+                                        <td><a href="#"></a>${a.orderId}</td>
+                                        <td><a href="#"></a>${a.time}</td>
+                                        <td>${a.total}</td>
+                                        <td>${a.status}</td>
                                     </tr>
+                                <c:set value="${no+1}" var="no" />
                                 </c:forEach>
                             </table>
                         </div>

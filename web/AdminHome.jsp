@@ -162,97 +162,8 @@
         </style>
     </head>
     <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <div style="margin-bottom: -20px">
-            <jsp:include page="header1.jsp"/>
-        </div>
         <div class="row">
-            <div class="col-md-3">
-                <jsp:include page="logo.jsp"/>
-            </div>
-            <div class="col-md-9">
-                <jsp:include page="header.jsp"/>
-                <div class="col-md-12">
-                    
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                </div>  
-            </div>
             <div class="col-md-12" style="margin-top: 50px">
-                <div class="col-md-12" style="margin:20px;" >
-                <div class="container-a1 col-md-12">
-                    <ul class="caption-style-1" >
-                        <li>
-                            <a href="SearchProductServlet?id=${pro}&herolist=1&x=0&y=5&s=a"><img src="pic/com1.png" class="img-rounded" alt="">
-                            <div class="caption">
-                                <div class="blur"></div>
-                                <div class="caption-text">
-                                    <h1>Computer</h1>
-                                </div>
-                            </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="SearchProductServlet?id=${pro}&herolist=2&x=0&y=5&s=a"><img src="pic/mob1.png" class="img-rounded" alt="">
-                            <div class="caption">
-                                <div class="blur"></div>
-                                <div class="caption-text">
-                                    <h1>Mobile</h1>
-                                </div>
-                            </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="SearchProductServlet?id=${pro}&herolist=3&x=0&y=5&s=a"><img src="pic/cam1.png" class="img-rounded" alt="">
-                            <div class="caption">
-                                <div class="blur"></div>
-                                <div class="caption-text">
-                                    <h1>Camera</h1>
-                                </div>
-                            </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
                 <ul class="nav nav-tabs" style="text-align: center" role="tablist">
                     <li class="active col-md-2"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
                     <li class="col-md-2"><a href="#product" role="tab" data-toggle="tab">Product</a></li>
@@ -262,44 +173,73 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" style="margin-top: 50px" id="account">
-                        <p> Register
-                        <div style="width:50%">
-                            <div>
-                                <canvas id="canvas" height="450" width="600"></canvas>
-                            </div>
+                        <h3 class="col-md-2">Account</h3>
+                        <div class="col-md-12">
+                            <table class="table table-striped" style="text-align: center">
+                                <tr bgColor="#ffffff">
+                                    <td>Account ID</td>
+                                    <td>Buy List</td>
+                                    <td>Sell List</td>
+                                    <td>Ongoing</td>
+                                    <td>Waiting For Check</td>
+                                    <td>Sold List</td>
+                                </tr>
+                                <c:forEach items="${acc}" var="a">
+                                    <tr>
+                                        <td>${a.account_Id}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td width="20%">
+                                            <div class="btn-group">                                              
+                                                <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-primary">Edit</button></a>
+                                                <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-danger">Delete</button></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>                           
                         </div>
-                        <script>
-                            var randomScalingFactor = function() {
-                                return Math.round(Math.random() * 100)
-                            };
-                            var lineChartData = {
-                                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                                datasets: [
-                                    {
-                                        label: "My Second dataset",
-                                        fillColor: "rgba(151,187,205,0.2)",
-                                        strokeColor: "rgba(151,187,205,1)",
-                                        pointColor: "rgba(151,187,205,1)",
-                                        pointStrokeColor: "#fff",
-                                        pointHighlightFill: "#fff",
-                                        pointHighlightStroke: "rgba(151,187,205,1)",
-                                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-                                    }
-                                ]
-
-                            }
-
-                            window.onload = function() {
-                                var ctx = document.getElementById("canvas").getContext("2d");
-                                window.myLine = new Chart(ctx).Line(lineChartData, {
-                                    responsive: true
-                                });
-                            }
-                        </script>
+                        <!--                        <p> Register
+                                                <div style="width:50%">
+                                                    <div>
+                                                        <canvas id="canvas" height="450" width="600"></canvas>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var randomScalingFactor = function() {
+                                                        return Math.round(Math.random() * 100)
+                                                    };
+                                                    var lineChartData = {
+                                                        labels: ["January", "February", "March", "April", "May", "June", "July"],
+                                                        datasets: [
+                                                            {
+                                                                label: "My Second dataset",
+                                                                fillColor: "rgba(151,187,205,0.2)",
+                                                                strokeColor: "rgba(151,187,205,1)",
+                                                                pointColor: "rgba(151,187,205,1)",
+                                                                pointStrokeColor: "#fff",
+                                                                pointHighlightFill: "#fff",
+                                                                pointHighlightStroke: "rgba(151,187,205,1)",
+                                                                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                                                            }
+                                                        ]
+                        
+                                                    }
+                        
+                                                    window.onload = function() {
+                                                        var ctx = document.getElementById("canvas").getContext("2d");
+                                                        window.myLine = new Chart(ctx).Line(lineChartData, {
+                                                            responsive: true
+                                                        });
+                                                    }
+                                                </script>
+                                            </div>-->
                     </div>
                     <div class="tab-pane" id="product">
                         <div class="row">
-                            <h3 class="col-md-2">Product</h3>
+                            <h3 class="col-md-2" style="margin-top: 50px">Product</h3>
                             <div class="col-md-12">
                                 <table class="table table-striped" style="text-align: center">
                                     <tr bgColor="#ffffff">
@@ -415,16 +355,16 @@
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script>
-                            $(function() {
-                                $('.demo.menu .item')
-                                        .tab('deactivate all')
-                                        .tab('activate tab', 'third')
-                                        .tab('activate navigation', 'third')
-                                        ;
-                            });
+            $(function () {
+                $('.demo.menu .item')
+                        .tab('deactivate all')
+                        .tab('activate tab', 'third')
+                        .tab('activate navigation', 'third')
+                        ;
+            });
         </script>
         <script>
-            $(function() {
+            $(function () {
                 $("#series").chainedTo("#mark");
             });
         </script>

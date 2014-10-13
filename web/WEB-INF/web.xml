@@ -256,6 +256,18 @@
         <servlet-name>ShowSellServletOther</servlet-name>
         <servlet-class>servlet.ShowSellServletOther</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Pay</servlet-name>
+        <servlet-class>servlet.Pay</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Transfer</servlet-name>
+        <servlet-class>servlet.Transfer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Pay2</servlet-name>
+        <servlet-class>servlet.Pay2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -512,6 +524,18 @@
         <servlet-name>ShowSellServletOther</servlet-name>
         <url-pattern>/ShowSellServletOther</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Pay</servlet-name>
+        <url-pattern>/Pay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Transfer</servlet-name>
+        <url-pattern>/Transfer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Pay2</servlet-name>
+        <url-pattern>/Pay2</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -521,7 +545,7 @@
         <description>Location to store uploaded file</description>
         <param-name>file-upload</param-name>
         <param-value>
-         /Users/Admin/Downloads/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/
+         C:\Users\Mekza\Documents\NetBeansProjects\Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271\Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271\web\pic\upload\
      </param-value>
     </context-param>
 </web-app>

@@ -69,7 +69,7 @@ public class ConfirmCart extends HttpServlet {
                 o.setTotal(entry.getValue());
                 System.out.println(o);
                 value += o.add(o);
-                c.setOrderId(order_id);
+                //c.setOrderId(order_id);
                 c.addDetail(entry.getKey());
                 arr.put(entry.getKey(), order.searchByID(order_id));
             }

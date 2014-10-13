@@ -50,25 +50,25 @@ public class ViewCart extends HttpServlet {
                 ownerIds.add(li.getProduct().getAcctID()); // ไหนคือเจ้าของ
             }
 
-            TreeMap<Integer, ArrayList<Product>> map = new TreeMap<Integer, ArrayList<Product>>();
+            TreeMap<Integer, ArrayList<LineItem>> map = new TreeMap<Integer, ArrayList<LineItem>>();
             for (int o : ownerIds) {
-                ArrayList<Product> p = new ArrayList<Product>();
+                ArrayList<LineItem> te = new ArrayList<LineItem>();
                 // ตรงนี้ก็วนลูป items ทั้งหมด แล้วดึงเฉพาะตัวที้มี ownerId เป็น o (o = ownerId ในรอบปัจจุบันของลูป แล้วสั่ง p.add(productชิ้นนั้น); // ปิดลูป
                 for (LineItem li : cart.getLineItems()) {
                     if (li.getProduct().getAcctID() == o) {
-                        p.add(li.getProduct());
+                        te.add(li);
                     }
 
                 }
 
-                map.put(o, p);
+                map.put(o, te);
             }
             request.setAttribute("map", map);
             Map<Integer, Double> price = new TreeMap<Integer, Double>();
             for (int o : map.keySet()) {
                 double sum = 0;
-                for (Product p : map.get(o)) {
-                    sum += p.getPrice();
+                for (LineItem p : map.get(o)) {
+                    sum += p.getTotal();
                 }
                 price.put(o, sum);
             }

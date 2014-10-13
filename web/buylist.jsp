@@ -45,6 +45,7 @@
                             <table class="table table-striped" style="text-align: center">
                                 <tr bgColor="#ffffff">
                                     <td>No.</td>
+                                    <td>Order NO.</td>
                                     <td>Seller</td>
                                     <td>Order Date</td>
                                     <td>Total Price</td>
@@ -55,11 +56,12 @@
                                 <c:forEach items="${arr}" var="ord" >
                                     <tr>
                                         <td>${no}</td>
+                                        <td><a href="DetailOrder?orderid=${ord.orderId}">${ord.orderId}</a></td>
                                         <td>${ord.seller}</td>
                                         <td>${ord.time}</td>
                                         <td>${ord.total}</td>
                                         <td><c:choose>
-                                                <c:when test="${ord.payment==null}" ><button class="btn btn-default">Tranfer & Payment</button></c:when>
+                                                <c:when test="${ord.payment==null}" ><a href="Transfer?id=${ord.orderId}"><button class="btn btn-default">Tranfer & Payment</button></a></c:when>
                                                 <c:otherwise><button class="btn btn-default" disabled="">Tranfer & Payment</button></c:otherwise>
                                             </c:choose></td>
                                         <td>${ord.status}</td>

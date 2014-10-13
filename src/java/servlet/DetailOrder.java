@@ -6,11 +6,15 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Accounts;
+import model.Bank;
 import model.Cart;
+import model.order;
 
 /**
  *
@@ -34,7 +38,12 @@ public class DetailOrder extends HttpServlet {
         Cart cart = new Cart();
         cart = Cart.getDetailList(orderid);
         request.setAttribute("detail", cart);
-        request.setAttribute("total", request.getParameter("total"));
+        order o = order.searchByID(orderid);
+        Accounts a = Accounts.getUser(o.getSeller());
+        List<Bank> b = Bank.showBank(a.getAccount_Id());
+        request.setAttribute("id", orderid);
+        request.setAttribute("total", o.getTotal());
+        request.setAttribute("bank", b);
         getServletContext().getRequestDispatcher("/OrderDetail.jsp").forward(request, response);
 
     }

@@ -218,60 +218,38 @@
                     </div>
                 </div>  
             </div>
-            <div class="col-md-12" style="margin:20px;" >
-                <div class="container-a1 col-md-12">
-                    <ul class="caption-style-1">
-                        <li>
-                            <a href="SearchProductServlet?id=${pro}&herolist=1&x=0&y=5&s=a"><img src="pic/com1.png" class="img-rounded" alt="">
-                                <div class="caption">
-                                    <div class="blur"></div>
-                                    <div class="caption-text">
-                                        <h1>Computer</h1>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="SearchProductServlet?id=${pro}&herolist=2&x=0&y=5&s=a"><img src="pic/mob1.png" class="img-rounded" alt="">
-                                <div class="caption">
-                                    <div class="blur"></div>
-                                    <div class="caption-text">
-                                        <h1>Mobile</h1>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="SearchProductServlet?id=${pro}&herolist=3&x=0&y=5&s=a"><img src="pic/cam1.png" class="img-rounded" alt="">
-                                <div class="caption">
-                                    <div class="blur"></div>
-                                    <div class="caption-text">
-                                        <h1>Camera</h1>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-12">   
+            <div class="col-md-12" style="margin-top: 10px">   
                 <div class="col-xs-12" style="margin-:auto;">
-                    <div class="col-md-12" style=" border: 3px solid #8ebbce;border-radius: 15px;min-height: 230px;background: gainsboro;">
-                        <div class="row">
-                            <h5 class="col-md-12">Hot Items of Smartphone</h5>
-                            <div align="center">
+                    <div class="col-md-12" style=" border: 3px solid #efefef;border-radius: 15px;min-height: 230px;background: #efefef;">
+                        <h5 class="col-md-12" style="color: red">Hot Items <span class="glyphicon glyphicon-fire"></span></h5>
+                        <div class="col-md-offset-1 col-md-3">
+                            <div>
                                 <c:forEach items="${pro1}" var="a">
                                     <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>
                                     </c:forEach>
                             </div>
+                            <h6 class="col-md-12">Computer</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <c:forEach items="${pro2}" var="a">
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>
+                                    </c:forEach>
+                            </div>
+                            <h6 class="col-md-12">Mobile&Tablet</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <c:forEach items="${pro3}" var="a">
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>
+                                    </c:forEach>
+                            </div>
+                            <h6 class="col-md-12">Camera</h6>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
         <script src="js/jasny-bootstrap.min.js"></script>
         <script src="js/dropdown.js"></script>
         <script src="js/semantic.js"></script>
@@ -287,7 +265,7 @@
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script>
-            $(function() {
+            $(function () {
                 $('.demo.menu .item')
                         .tab('deactivate all')
                         .tab('activate tab', 'third')

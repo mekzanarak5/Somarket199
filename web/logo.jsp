@@ -4,10 +4,10 @@
 <div id='cssmenu'>
     <ul>
         <c:forEach items="${cate}" var="entry">
-            <li class='active has-sub'><a href='SearchProductServlet?id=${pro}&herolist=1&x=0&y=5&s=a'><span>${entry.key.cateName}</span></a>
+            <li class='active has-sub'><a href='SearchProductServlet?id=&herolist=${entry.key.cateID}&x=0&y=6&s=a'><span>${entry.key.cateName}</span></a>
                 <ul>
                     <c:forEach items="${entry.value}" var="sub_entry">
-                        <li><a href='#'><span>${sub_entry.cateName}</span></a></li>
+                        <li><a href='SearchProductServlet?id=&herolist=${sub_entry.cateID}&x=0&y=6&s=a'><span>${sub_entry.cateName}</span></a></li>
                                 </c:forEach>
                 </ul>
             </li>

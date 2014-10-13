@@ -44,9 +44,9 @@
                                 Sort By <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=5&s=a">New Arrival</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=5&s=h">High Price</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=5&s=l">Low Price</a></li>
+                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=a">New Arrival</a></li>
+                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=h">High Price</a></li>
+                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=l">Low Price</a></li>
                             </ul>
                         </div>
                     </div>
@@ -57,9 +57,9 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=3&s=${s}">3</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=5&s=${s}">5</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=10&s=${s}">10</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=15&s=${s}">15</a></li>
+                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=${s}">6</a></li>
+                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=12&s=${s}">12</a></li>
+                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=18&s=${s}">18</a></li>
                             </ul>
                         </div>
                     </div>

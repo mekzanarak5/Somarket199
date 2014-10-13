@@ -15,6 +15,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Accounts;
+import model.Address;
+import model.Bank;
 import model.ProductPic;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -37,6 +40,9 @@ public class AddProductPic extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Accounts acc =(Accounts) request.getSession().getAttribute("user");
+        int acct = acc.getAccount_Id();
+        if (Address.checkAddr(acct) & Bank.checkBank(acct)){
         File file;
         String name = "";
         double price = 0;
@@ -163,6 +169,11 @@ public class AddProductPic extends HttpServlet {
             getServletContext().getRequestDispatcher("/ShowSellServlet?id=" + acctid).forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/postandpic1.jsp").forward(request, response);
+        }
+        }else{
+            String msg = "Please complete your account information (Add your address/ bank account)";
+            request.setAttribute("msg", msg);
+            getServletContext().getRequestDispatcher("/ShowAddressServlet?id="+acct).forward(request, response);
         }
     }
 
