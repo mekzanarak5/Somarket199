@@ -27,7 +27,7 @@
         <div class="col-md-3">
             <jsp:include page="logo_1.jsp"/>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9" style="margin-bottom: 20px">
             <jsp:include page="header.jsp"/>
             <div class="col-md-12">
                 <ol class="breadcrumb">

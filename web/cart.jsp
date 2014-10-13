@@ -92,14 +92,13 @@
                                     </c:forEach>
                                 </table>
                             </form>
-                            <div><h3>Payment Methond</h3><hr></div>
+                            <div><h3 class="col-md-12"  >Payment Methond</h3><hr></div>
                             <div class="radio" style="margin-left:100px">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
                                     Bank Tranfer
                                 </label>
                             </div>
-                            <div style="margin-left:300px">
+                            <div style="margin-left:300px;margin-bottom: 20px">
                                 <a href="ConfirmCart"><input type="button" class="btn btn-danger" value="Check out"></a> 
                             </div>
                         </div>

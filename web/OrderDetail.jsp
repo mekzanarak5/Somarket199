@@ -74,29 +74,28 @@
                         </div>
                         <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                             <h6 class="col-md-12 panel-heading">Payment Information</h6>
-                            <c:forEach items="${bank}" var="bb" >
-                                <div class="col-md-6">
-
+                            
+                                <div class="col-md-12">
                                     <table class="table table-bordered" style="text-align: center">
                                         <tr>
                                             <td style="background: #ededed">Bank Name</td>
-                                            <td>${bb.bankName}</td>
-                                        </tr>
-                                        <tr>
                                             <td style="background: #ededed">Bank Account No.</td>
-                                            <td>${bb.bankAccNo}</td>
-                                        </tr>
-                                        <tr>
                                             <td style="background: #ededed">Bank Account Name</td>
+                                            
+                                        </tr>
+                                        <c:forEach items="${bank}" var="bb" >
+                                        <tr>
+                                            <td>${bb.bankName}</td>
+                                            <td>${bb.bankAccNo}</td>
                                             <td>${bb.bankAccName}</td>
                                         </tr>
+                                        </c:forEach>
                                     </table>
-
                                 </div>
-                            </c:forEach>
+                            
                         </div>
                     </div>
-                    <div align="center">
+                    <div align="center" style="margin-bottom: 20px">
                         <a href="Transfer?id=${id}"><input type="button" class="btn btn-warning" value="Order Payment"></a> 
                     </div>
                 </div>
