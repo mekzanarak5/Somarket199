@@ -18,10 +18,10 @@
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <jsp:include page="logo.jsp"/>
             </div>
-            <div class="col-xs-9">
+            <div class="col-xs-10">
                 <jsp:include page="header.jsp"/>
                 <div class="col-md-12">
                     <ol class="breadcrumb">

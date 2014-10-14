@@ -24,10 +24,10 @@
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <jsp:include page="logo_1.jsp"/>
             </div>
-            <div class="col-xs-9">
+            <div class="col-xs-10">
                 <jsp:include page="header.jsp"/>
                 <div class="col-xs-12">
                     <ol class="breadcrumb">
@@ -60,7 +60,7 @@
                                                 <td><a href="#">${a.senderName}</a></td>
                                                 <td><a href="ReplayServlet?id=${a.msgID}&relate=${a.relate}">${a.subject}</a></td>
                                                 <td>${a.time}</td>
-                                                <td><botton  class="checkbox"  for="checkbox1"><input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox"></botton></td>
+                                                <td style="width: 50px"><botton  class="checkbox"  for="checkbox1"><input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox"></botton></td>
                                             </tr>
                                         </c:forEach>
                                     </table>
