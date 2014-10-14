@@ -161,8 +161,10 @@
 
         </style>
     </head>
-    <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <div class="row">
+   <jsp:include page="header1.jsp"/>
+    <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
+        <div style="margin-bottom: 70px">
+        </div>
             <div class="col-md-12" style="margin-top: 50px">
                 <ul class="nav nav-tabs" style="text-align: center" role="tablist">
                     <li class="active col-md-2"><a href="#account" role="tab" data-toggle="tab">Account</a></li>

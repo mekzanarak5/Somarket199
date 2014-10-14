@@ -161,17 +161,17 @@
 
         </style>
     </head>
-    <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <div style="margin-bottom: -20px">
-            <jsp:include page="header1.jsp"/>
+      <jsp:include page="header1.jsp"/>
+    <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
+        <div style="margin-bottom: 70px">
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <jsp:include page="logo.jsp"/>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
@@ -222,7 +222,7 @@
                 <div class="col-xs-12" style="margin-:auto;">
                     <div class="col-md-12" style=" border: 3px solid #efefef;border-radius: 15px;min-height: 230px;background: #efefef;">
                         <h5 class="col-md-12" style="color: red">Hot Items <span class="glyphicon glyphicon-fire"></span></h5>
-                        <div class="col-md-offset-1 col-md-3">
+                        <div class="col-md-offset-2 col-md-3">
                             <div>
                                 <c:forEach items="${pro1}" var="a">
                                     <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>

@@ -18,9 +18,9 @@
 
         <jsp:include page="cssup.jsp"/>
     </head>
-    <body style="background-color: gainsboro;max-width: 1024px;margin: auto">
-        <div style="margin-bottom: -20px">
-            <jsp:include page="header1.jsp"/>
+<jsp:include page="header1.jsp"/>
+    <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
+        <div style="margin-bottom: 70px">
         </div>
         <div class="row">
             <div class="col-md-3">
@@ -50,6 +50,7 @@
                                                     <option value="${ba.bank_Id}">${ba.bankName}&nbsp;&nbsp;${ba.bankAccNo}&nbsp;&nbsp;${ba.bankAccName}</option>
                                                 </c:forEach>
                                             </select>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-12">

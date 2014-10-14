@@ -21,6 +21,7 @@
 <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 <!--<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>-->
 <script type="text/javascript" src="js/accordion.js"></script>
+<script type="text/javascript" src="js/bootstrap-hover-dropdown.min.js"></script>
 
 
 
