@@ -33,12 +33,14 @@
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
                 <div class="col-md-12">
+                    <font size="2">
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
                         <li><a href="ShowOrder">Buy List</a></li>
                         <li class="active">Order Detail</li>
                     </ol>
+                    </font>
                 </div>
             </div>
             <div class="col-xs-12" style="margin:auto;">

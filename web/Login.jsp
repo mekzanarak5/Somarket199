@@ -28,14 +28,16 @@
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
                 <div class="col-md-12">
+                    <font size="2">
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
                         <li class="active">Login</li>
                     </ol>
+                    </font>
                 </div>
                 <form action="Login" method="get">
-                    <div class="col-xs-9" style="margin:auto;">
-                        <div class="col-md-9" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
+                    <div class="col-xs-8" style="margin:auto;">
+                        <div class="col-md-8" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
                             <div class="row">
                                 <h3 class="col-md-3"  >Login</h3>
                                 <div class="col-xs-12">

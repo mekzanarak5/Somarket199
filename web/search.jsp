@@ -20,39 +20,36 @@
         <!-- Loading Bootstrap -->
         <jsp:include page="cssup.jsp"/>
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <jsp:include page="sidecat.jsp"/>
             </div>
-            <div class="col-md-9">
-                <jsp:include page="header.jsp"/>
+            <div class="col-md-10">
                 <%-- String url = request.getRequestURI();--%>
+                <jsp:include page="header.jsp"/>
                 <div class="col-md-12">
-                    <div class="col-md-8">
-                        <ol class="breadcrumb">
+                        <font size="2">
+                        <ol class="breadcrumb col-md-9" style="margin-right: 20px">
                             <li><a href="home.jsp">Home</a></li>
                             <li class="active">Search</li>
                         </ol>
-                    </div>
-                    <div class="col-md-2">
+                        </font>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
                                 Sort By <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" role="menu">
                                 <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=a">New Arrival</a></li>
                                 <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=h">High Price</a></li>
                                 <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=l">Low Price</a></li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-md-2">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
                                 Choose Size <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -63,10 +60,9 @@
                             </ul>
                         </div>
                     </div>
-                </div>
                 <center>
-                    <div class="col-md-12" style="margin:auto;border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 800px;background: #FFFFFF" >
-                        <div class="col-md-12" style="margin-left: 10px;border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 750px;background: #FFFFFF">
+                    <div class="col-md-12" style="margin:auto;border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF" >
+                        <div class="col-md-12" style="margin-left: 10px;border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 1010px;background: #FFFFFF">
                             <div class="row">
                                 <h3 class="col-md-12">Search</h3>
                                 <div class="row">
@@ -140,30 +136,30 @@
                     </div>
                 </center>
             </div>
-        </div>
-        <script src="js/accordion.js"></script>
-        <script src="js/semantic.js"></script>
-        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script src="js/jquery.ui.touch-punch.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-select.js"></script>
-        <script src="js/bootstrap-switch.js"></script>
-        <script src="js/flatui-checkbox.js"></script>
-        <script src="js/flatui-radio.js"></script>
-        <script src="js/jquery.tagsinput.js"></script>
-        <script src="js/jquery.placeholder.js"></script>
-        <script src="js/jquery.stacktable.js"></script>
-        <script src="http://vjs.zencdn.net/4.3/video.js"></script>
-        <script src="js/application.js"></script>
-        <jsp:include page="footer.jsp"/>
-        <script>
-            $(function() {
-                $('.ui.accordion').accordion();
-            });
-            $(document).ready(function() {
-                $('input[name=url]').val((window.location.href.toString()));
-            });
-        </script>
+            </div>
+            <script src="js/accordion.js"></script>
+            <script src="js/semantic.js"></script>
+            <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+            <script src="js/jquery.ui.touch-punch.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/bootstrap-select.js"></script>
+            <script src="js/bootstrap-switch.js"></script>
+            <script src="js/flatui-checkbox.js"></script>
+            <script src="js/flatui-radio.js"></script>
+            <script src="js/jquery.tagsinput.js"></script>
+            <script src="js/jquery.placeholder.js"></script>
+            <script src="js/jquery.stacktable.js"></script>
+            <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+            <script src="js/application.js"></script>
+            <jsp:include page="footer.jsp"/>
+            <script>
+                $(function() {
+                    $('.ui.accordion').accordion();
+                });
+                $(document).ready(function() {
+                    $('input[name=url]').val((window.location.href.toString()));
+                });
+            </script>
 
     </body>
 </html>

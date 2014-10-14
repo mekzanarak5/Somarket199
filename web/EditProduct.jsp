@@ -36,188 +36,190 @@
     <%
         Product c = (Product) request.getAttribute("pro");
     %>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
-        <div class="col-md-2">
-            <jsp:include page="logo.jsp"/>
-        </div>
-        <div class="col-xs-10">
-            <jsp:include page="header.jsp"/>
-            <div class="col-xs-12">
-                <ol class="breadcrumb">
-                    <li><a href="home.jsp">Home</a></li>
-                    <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
-                    <li class="active">Edit Product</li>
-                </ol>
-            </div> 
-            <div class="col-xs-11" style="margin:auto;">
-                <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
-                    <div class="row">
-                        <h3 class="col-md-12">Edit Post</h3>
+            <div class="col-md-2">
+                <jsp:include page="logo.jsp"/>
+            </div>
+            <div class="col-xs-10">
+                <jsp:include page="header.jsp"/>
+                <div class="col-xs-12">
+                    <font size="2">
+                    <ol class="breadcrumb">
+                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
+                        <li class="active">Edit Product</li>
+                    </ol>
+                    </font>
+                </div> 
+                <div class="col-xs-11" style="margin:auto;">
+                    <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                        <div class="row">
+                            <h3 class="col-md-12">Edit Post</h3>
 
-                        <div class="form-horizontal" align="center">
-                            <form action="EditProduct" method="get">
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3">Product</label>
-                                    <div class="col-sm-6">
-                                        <input type="hidden" value="${pro.productNO}" name="proid">
-                                        <input type="hidden" value="${user.account_Id}" name="acctid">
-                                        <input type="text" class="form-control" value="${pro.name}" name="name" maxlength="20" required>                               
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3">Price</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="${pro.price}" name="price" maxlength="7" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3">Description</label>
-                                    <div class="col-sm-6">
-                                        <textarea class="form-control" name="des" rows="3" required>${pro.description}</textarea> 
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3">Available</label>
-                                    <div class="col-sm-3">
-                                        <select value="${pro.available}" class="form-control" name="available" >
-                                            <option value="yes">Yes</option>
-                                            <option value="no">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3">Category</label>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <select id="mark" class="form-control">
-                                                <option value="">--</option>
-                                                <c:forEach items="${cateID}" var="a">
-                                                    <option value="${a.cateID}">${a.cateName}</option>
-                                                </c:forEach>
-                                            </select>
+                            <div class="form-horizontal" align="center">
+                                <form action="EditProduct" method="get">
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-3">Product</label>
+                                        <div class="col-sm-6">
+                                            <input type="hidden" value="${pro.productNO}" name="proid">
+                                            <input type="hidden" value="${user.account_Id}" name="acctid">
+                                            <input type="text" class="form-control" value="${pro.name}" name="name" maxlength="20" required>                               
                                         </div>
-                                        <div class="col-md-3" >
-                                            <select id="series" class="form-control" name="cata">
-                                                <option value="<%=Category.findBySmall(c.getCategory_ID()).getCateID()%>"><%=Category.findBySmall(c.getCategory_ID()).getCateName()%></option>
-                                                <c:forEach items="${childCateID1}" var="a">
-                                                    <option value="${a.cateID}" class="1">${a.cateName}</option>
-                                                </c:forEach>
-                                                <c:forEach items="${childCateID2}" var="a">
-                                                    <option value="${a.cateID}" class="2">${a.cateName}</option>
-                                                </c:forEach>
-                                                <c:forEach items="${childCateID3}" var="a">
-                                                    <option value="${a.cateID}" class="3">${a.cateName}</option>
-                                                </c:forEach>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-3">Price</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" value="${pro.price}" name="price" maxlength="7" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3">Description</label>
+                                        <div class="col-sm-6">
+                                            <textarea class="form-control" name="des" rows="3" required>${pro.description}</textarea> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-3">Available</label>
+                                        <div class="col-sm-3">
+                                            <select value="${pro.available}" class="form-control" name="available" >
+                                                <option value="yes">Yes</option>
+                                                <option value="no">No</option>
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3">Brand</label>
-                                    <div class="col-sm-3">
-                                        <select value="Yes" class="form-control" name="brand" >
-                                            <option value="1">Yes</option>
-                                            <option value="0">No</option>
-                                        </select>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3">Category</label>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <select id="mark" class="form-control">
+                                                    <option value="">--</option>
+                                                    <c:forEach items="${cateID}" var="a">
+                                                        <option value="${a.cateID}">${a.cateName}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3" >
+                                                <select id="series" class="form-control" name="cata">
+                                                    <option value="<%=Category.findBySmall(c.getCategory_ID()).getCateID()%>"><%=Category.findBySmall(c.getCategory_ID()).getCateName()%></option>
+                                                    <c:forEach items="${childCateID1}" var="a">
+                                                        <option value="${a.cateID}" class="1">${a.cateName}</option>
+                                                    </c:forEach>
+                                                    <c:forEach items="${childCateID2}" var="a">
+                                                        <option value="${a.cateID}" class="2">${a.cateName}</option>
+                                                    </c:forEach>
+                                                    <c:forEach items="${childCateID3}" var="a">
+                                                        <option value="${a.cateID}" class="3">${a.cateName}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-3">Brand</label>
+                                        <div class="col-sm-3">
+                                            <select value="Yes" class="form-control" name="brand" >
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-10" style="margin: auto;float:none">
+                                            <button type="submit" class="btn btn-info btn-lg btn-block">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <form action="EditProductPic" method="post" enctype="multipart/form-data">
+                                    <div class="form-group col-md-12" >   
+                                        <input id="file-3" type="file" name="file" multiple=true>
+                                        <input type="hidden" name="id" value="${pro.productNO}"/>
+                                    </div>
+                                </form>
+                            </div>   
+
+                            <form action="DeleteProductPic" method="get">
+                                <div class="col-md-12">
+                                    <div class="col-md-10">
+                                        <c:forEach items="${pic}" var="a">
+                                            <div class="col-md-1">
+                                                <botton  class="checkbox"  for="checkbox1">
+                                                    <input type="checkbox" name="picid" value="${a.pNO}" id="checkbox1" data-toggle="checkbox">
+                                                </botton>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <img src="${a.pathFile}" width="150px" height="120px">
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="hidden" name="acctid" value="${pro.productNO}">
+                                        <button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-10" style="margin: auto;float:none">
-                                        <button type="submit" class="btn btn-info btn-lg btn-block">Submit</button>
-                                    </div>
-                                </div>
-
                             </form>
-                            <form action="EditProductPic" method="post" enctype="multipart/form-data">
-                                <div class="form-group col-md-12" >   
-                                    <input id="file-3" type="file" name="file" multiple=true>
-                                    <input type="hidden" name="id" value="${pro.productNO}"/>
-                                </div>
-                            </form>
-                        </div>   
-
-                        <form action="DeleteProductPic" method="get">
-                            <div class="col-md-12">
-                                <div class="col-md-10">
-                                    <c:forEach items="${pic}" var="a">
-                                        <div class="col-md-1">
-                                            <botton  class="checkbox"  for="checkbox1">
-                                                <input type="checkbox" name="picid" value="${a.pNO}" id="checkbox1" data-toggle="checkbox">
-                                            </botton>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <img src="${a.pathFile}" width="150px" height="120px">
-                                        </div>
-                                    </c:forEach>
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="hidden" name="acctid" value="${pro.productNO}">
-                                    <button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="js1/vendor/jquery.ui.widget.js"></script>
-    <script src="js1/tmpl.min.js"></script>
-    <script src="js1/load-image.min.js"></script>
-    <script src="js1/canvas-to-blob.min.js"></script>
-    <script src="js1/bootstrap.min.js"></script>
-    <script src="js1/bootstrap-image-gallery.min.js"></script>
-    <script src="js1/jquery.iframe-transport.js"></script>
-    <script src="js1/jquery.fileupload.js"></script>
-    <script src="js1/jquery.fileupload-fp.js"></script>
-    <script src="js1/jquery.fileupload-ui.js"></script>
-    <script src="js1/locale.js"></script>
-    <script src="js1/main.js"></script>
-    <script src="js1/fileinput.js" type="text/javascript"></script>
+        <script src="js1/vendor/jquery.ui.widget.js"></script>
+        <script src="js1/tmpl.min.js"></script>
+        <script src="js1/load-image.min.js"></script>
+        <script src="js1/canvas-to-blob.min.js"></script>
+        <script src="js1/bootstrap.min.js"></script>
+        <script src="js1/bootstrap-image-gallery.min.js"></script>
+        <script src="js1/jquery.iframe-transport.js"></script>
+        <script src="js1/jquery.fileupload.js"></script>
+        <script src="js1/jquery.fileupload-fp.js"></script>
+        <script src="js1/jquery.fileupload-ui.js"></script>
+        <script src="js1/locale.js"></script>
+        <script src="js1/main.js"></script>
+        <script src="js1/fileinput.js" type="text/javascript"></script>
 
-    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/jquery.ui.touch-punch.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/flatui-checkbox.js"></script>
-    <script src="js/flatui-radio.js"></script>
-    <script src="js/jquery.tagsinput.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-    <script src="http://vjs.zencdn.net/4.3/video.js"></script>
-    <script src="js/application.js"></script>
-    <script src="js/chained.js"></script>
+        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-select.js"></script>
+        <script src="js/bootstrap-switch.js"></script>
+        <script src="js/flatui-checkbox.js"></script>
+        <script src="js/flatui-radio.js"></script>
+        <script src="js/jquery.tagsinput.js"></script>
+        <script src="js/jquery.placeholder.js"></script>
+        <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+        <script src="js/application.js"></script>
+        <script src="js/chained.js"></script>
 
-    <script>
-        $(function() {
-            $("#series").chainedTo("#mark");
-        });
-    </script>
+        <script>
+            $(function() {
+                $("#series").chainedTo("#mark");
+            });
+        </script>
 
-    <script>
-        $("#file-1").fileinput({
-            initialPreview: ["<img src='Desert.jpg' class='file-preview-image'>", "<img src='Jellyfish.jpg' class='file-preview-image'>"],
-            overwriteInitial: false,
-            maxFileSize: 100,
-            maxFilesNum: 10
-        });
-        $("#file-3").fileinput({
-            showCaption: false,
-            browseClass: "btn btn-primary btn-lg",
-            fileType: "any"
-        });
-        $(".btn-warning").on('click', function() {
-            if ($('#file-4').attr('disabled')) {
-                $('#file-4').fileinput('enable');
-            } else {
-                $('#file-4').fileinput('disable');
-            }
-        });
-    </script>
-    <jsp:include page="footer.jsp"/>
-</body> 
+        <script>
+            $("#file-1").fileinput({
+                initialPreview: ["<img src='Desert.jpg' class='file-preview-image'>", "<img src='Jellyfish.jpg' class='file-preview-image'>"],
+                overwriteInitial: false,
+                maxFileSize: 100,
+                maxFilesNum: 10
+            });
+            $("#file-3").fileinput({
+                showCaption: false,
+                browseClass: "btn btn-primary btn-lg",
+                fileType: "any"
+            });
+            $(".btn-warning").on('click', function() {
+                if ($('#file-4').attr('disabled')) {
+                    $('#file-4').fileinput('enable');
+                } else {
+                    $('#file-4').fileinput('disable');
+                }
+            });
+        </script>
+        <jsp:include page="footer.jsp"/>
+    </body> 
 </html>

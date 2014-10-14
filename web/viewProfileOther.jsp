@@ -26,12 +26,12 @@
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
                 <div class="col-xs-12">
-
+<font size="2">
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
                         <li class="active">Profile</li>
                     </ol>
-
+</font>
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-4" align="center">   

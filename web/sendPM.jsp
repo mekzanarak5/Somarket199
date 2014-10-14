@@ -28,10 +28,12 @@
         <div class="col-md-10">
             <jsp:include page="header.jsp"/>
             <div class="col-md-12">
+                <font size="2">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
                     <li class="active">Private Message</li>
                 </ol>
+                </font>
             </div>
             <form action="SendPmServlet" method="get">
                 <div class="col-xs-12" style="margin:auto;">

@@ -24,10 +24,12 @@
             <div class="col-xs-10">
                 <jsp:include page="header.jsp"/>
                 <div class="col-md-12">
+                    <font size="2">
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li class="active">Product</li>
                     </ol>
+                    </font>
                 </div>  
                 <div class="col-md-12" align="center">
                     <div class="col-md-5">

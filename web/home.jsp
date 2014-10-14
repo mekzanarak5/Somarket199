@@ -218,7 +218,7 @@
                     </div>
                 </div>  
             </div>
-            <div class="col-md-12" style="margin-top: 10px">   
+            <div class="col-md-10" style="margin-top: 10px">   
                 <div class="col-xs-12" style="margin-:auto;">
                     <div class="col-md-12" style=" border: 3px solid #efefef;border-radius: 15px;min-height: 230px;background: #efefef;">
                         <h5 class="col-md-12" style="color: red">Hot Items <span class="glyphicon glyphicon-fire"></span></h5>

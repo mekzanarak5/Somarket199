@@ -14,77 +14,77 @@
         <jsp:include page="cssup.jsp"/>
 
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
-        <div class="col-md-2">
-            <jsp:include page="logo_1.jsp"/>
-        </div>
-        <div class="col-md-10">
-            <jsp:include page="header.jsp"/>
-            <div class="col-xs-12">
+            <div class="col-md-2">
+                <jsp:include page="logo_1.jsp"/>
+            </div>
+            <div class="col-md-10">
+                <jsp:include page="header.jsp"/>
+                <div class="col-xs-12">
+                    <font size="2">
+                    <ol class="breadcrumb">
+                        <li><a href="home.jsp">Home</a></li>
+                        <li class="active">Profile</li>
+                    </ol>
+                    </font>
+                </div>       
+                <div class="col-md-12">
+                    <div class="col-md-4" align="center">
+                        <form action="AddProfilePic" method="post"
+                              enctype="multipart/form-data">
+                            <img src="${user.pic}" alt="..." width="250px" height="250px" class="img-thumbnail" >
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-default btn-file"><span class="fileinput-new">Edit Profile Pic</span><span class="fileinput-exists">Change</span><input type="file" name="file" onchange="this.form.submit();" accept="image/*" ></span>
 
-                <ol class="breadcrumb">
-                    <li><a href="home.jsp">Home</a></li>
-                    <li class="active">Profile</li>
-                </ol>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                            </div>
+                            <input type="hidden" name="id" value="${user.account_Id}"/>
+                        </form>
+                    </div>
+                    <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
+                        <h5>Personal Info</h5>
+                        <table>
+                            <tr>
+                                <td class="col-md-2" style="color: #2980b9">
+                                    E-mail
+                                </td>
+                                <td class="col-md-6">
+                                    ${user.email}
+                                </td>
+                            </tr>
 
-            </div>       
-            <div class="col-md-12">
-                <div class="col-md-4" align="center">
-                    <form action="AddProfilePic" method="post"
-                          enctype="multipart/form-data">
-                        <img src="${user.pic}" alt="..." width="250px" height="250px" class="img-thumbnail" >
-                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <span class="btn btn-default btn-file"><span class="fileinput-new">Edit Profile Pic</span><span class="fileinput-exists">Change</span><input type="file" name="file" onchange="this.form.submit();" accept="image/*" ></span>
-                
-                            <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
-                        </div>
-                        <input type="hidden" name="id" value="${user.account_Id}"/>
+                            <tr>
+                                <td class="col-md-3" style="color: #2980b9">
+                                    First name
+                                </td>
+                                <td class="col-md-6">
+                                    ${user.firstName}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" style="color: #2980b9">
+                                    Last name
+                                </td>
+                                <td class="col-md-6">
+                                    ${user.lastName}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" style="color: #2980b9">
+                                    Phone
+                                </td>
+                                <td class="col-md-6">
+                                    ${user.phone}
+                                </td>
+                            </tr>
+                        </table> 
                     </form>
-                </div>
-                <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
-                    <h5>Personal Info</h5>
-                    <table>
-                        <tr>
-                            <td class="col-md-2" style="color: #2980b9">
-                                E-mail
-                            </td>
-                            <td class="col-md-6">
-                                ${user.email}
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="col-md-3" style="color: #2980b9">
-                                First name
-                            </td>
-                            <td class="col-md-6">
-                                ${user.firstName}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-2" style="color: #2980b9">
-                                Last name
-                            </td>
-                            <td class="col-md-6">
-                                ${user.lastName}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-2" style="color: #2980b9">
-                                Phone
-                            </td>
-                            <td class="col-md-6">
-                                ${user.phone}
-                            </td>
-                        </tr>
-                    </table> 
-                </form>
-            </div> 
-        </div>
+                </div> 
+            </div>
         </div>
         <script src="js1/vendor/jquery.ui.widget.js"></script>
         <script src="js1/tmpl.min.js"></script>
@@ -113,9 +113,9 @@
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script>
-            $(function() {
-                $('.fileinput').fileinput()
-            });
+                                $(function() {
+                                    $('.fileinput').fileinput()
+                                });
         </script>
         <jsp:include page="footer.jsp"/>
     </body>
