@@ -62,7 +62,7 @@
                                                 <td><a href="#">${a.senderName}</a></td>
                                                 <td><a href="ReplayServlet?id=${a.msgID}&relate=${a.relate}">${a.subject}</a></td>
                                                 <td>${a.time}</td>
-                                                <td style="width: 50px"><botton  class="checkbox"  for="checkbox1"><input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox"></botton></td>
+                                                <td><input type="checkbox" name="pmid" value="${a.msgID}"</td>
                                             </tr>
                                         </c:forEach>
                                     </table>

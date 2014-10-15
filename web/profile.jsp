@@ -45,7 +45,7 @@
                             <input type="hidden" name="id" value="${user.account_Id}"/>
                         </form>
                     </div>
-                    <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
+                    <form class="form-horizontal col-md-6" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
                         <h5>Personal Info</h5>
                         <table>
                             <tr>

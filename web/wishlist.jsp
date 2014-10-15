@@ -50,16 +50,15 @@
                                     <td>Product Name</td>
                                     <td>Price</td>
                                     <td>Seller</td>
-                                    <td><button type="submit" class="btn btn-info"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
+                                    <td><button type="submit" class="btn btn-info" onclick="return confirm('Are you sure ?');"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
                                     </tr>
                                     <c:forEach items="${wish}" var="a">
                                         <tr>
                                             <td><a href="#">${a.name}</a></td>
                                             <td><a href="#">${a.price}</a></td>
                                             <td>${a.seller}</td>
-                                            <td><botton  class="checkbox"  for="checkbox1">
-                                            <input type="checkbox" name="wishid" value="${a.wish_Id}" id="checkbox1" data-toggle="checkbox">
-                                        </botton>
+                                            <td>
+                                            <input type="checkbox" name="wishid" value="${a.wish_Id}">
                                         </td>
                                         </tr>
                                     </c:forEach>

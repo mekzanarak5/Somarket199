@@ -49,7 +49,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="profile.jsp">View Profile</a></li>
                             <li style="color: #FFB70A"><a href="seachcata" style="color: #FFB70A">Post Product</a></li>
-                            <li><a href="ShowPmServlet?id=${user.account_Id}">Message <span class="badge btn-default"><%=Message.findCount(user.getAccount_Id())%> </span></a></li>
+                            <li><a href="ShowPmServlet?id=${user.account_Id}">Inbox <span class="badge btn-default"><%=Message.findCount(user.getAccount_Id())%> </span></a></li>
                             <li><a href="ShowOrder">Buy List</a></li>
                             <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
                             <li><a href="ShowWishlistServlet?id=${user.account_Id}">Wish List</a></li>

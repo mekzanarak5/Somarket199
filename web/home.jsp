@@ -218,14 +218,14 @@
                     </div>
                 </div>  
             </div>
-            <div class="col-md-10" style="margin-top: 10px">   
+            <div class="col-md-12" style="margin-top: 10px">   
                 <div class="col-xs-12" style="margin-:auto;">
                     <div class="col-md-12" style=" border: 3px solid #efefef;border-radius: 15px;min-height: 230px;background: #efefef;">
                         <h5 class="col-md-12" style="color: red">Hot Items <span class="glyphicon glyphicon-fire"></span></h5>
                         <div class="col-md-offset-2 col-md-3">
                             <div>
                                 <c:forEach items="${pro1}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px;box-shadow: 0px 2px 5px black;"></a>
                                     </c:forEach>
                             </div>
                             <h6 class="col-md-12">Computer</h6>
@@ -233,7 +233,7 @@
                         <div class="col-md-3">
                             <div>
                                 <c:forEach items="${pro2}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px;box-shadow: 0px 2px 5px black;"></a>
                                     </c:forEach>
                             </div>
                             <h6 class="col-md-12">Mobile&Tablet</h6>
@@ -241,7 +241,7 @@
                         <div class="col-md-4">
                             <div>
                                 <c:forEach items="${pro3}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px"></a>
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="200px" height="200px" style="margin-bottom: 10px;box-shadow: 0px 2px 5px black;"></a>
                                     </c:forEach>
                             </div>
                             <h6 class="col-md-12">Camera</h6>
