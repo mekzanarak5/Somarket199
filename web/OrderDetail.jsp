@@ -46,7 +46,11 @@
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
-                        <h5 class="col-md-12 panel panel-heading">Order Detail</h5>
+                        <div style="padding: 20px;">
+                            <h5 style="display: inline ">Order Detail</h5>
+                            <p style="display: inline;margin-left: 15px; font-size: 22px">#</p>
+                            <p style="display: inline; font-size: 22px; color: #666666">${order.orderId}</p>
+                        </div>
                         <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                             <h6 class="panel-heading">Item Detail</h6>
                             <table class="table table-striped" style="text-align: center">
