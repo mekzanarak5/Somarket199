@@ -40,7 +40,7 @@
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
-                            <h3 class="col-md-2">PM</h3>
+                            <h3 class="col-md-1">PM</h3>
                             <div class="col-md-1" style="margin-top: 30px">
                                 <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-primary">Inbox</button></a>
                             </div>
@@ -55,7 +55,7 @@
                                         <td>Sender</td>
                                         <td>Subject</td>
                                         <td>Time</td>
-                                        <td><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button></td>
+                                        <td><button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure ?');"><span class="glyphicon glyphicon-trash"></span></button></td>
                                         </tr>
                                         <c:forEach items="${pm}" var="a">
                                             <tr>
@@ -83,7 +83,6 @@
         <script src="js/flatui-radio.js"></script>
         <script src="js/jquery.tagsinput.js"></script>
         <script src="js/jquery.placeholder.js"></script>
-        <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <jsp:include page="footer.jsp"/>

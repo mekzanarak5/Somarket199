@@ -38,7 +38,7 @@
                 </div>
                 <form action="EditProfileServlet" method="get">
                     <div class="col-xs-12" style="margin:auto;">
-                        <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
+                        <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                             <div class="form-horizontal">
                                 <h3 class="col-md-12"  >Edit Profile</h3>
                                 <div class="form-group">
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="col-sm-offset-3 col-sm-10">
                                         <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
                                     </div>
                                 </div>
@@ -81,7 +81,6 @@
         <script src="js/flatui-radio.js"></script>
         <script src="js/jquery.tagsinput.js"></script>
         <script src="js/jquery.placeholder.js"></script>
-        <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <jsp:include page="footer.jsp"/>

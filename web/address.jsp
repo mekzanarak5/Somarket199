@@ -47,11 +47,11 @@
                             <div class="row">
                                 <div id="cbp-vm" class="cbp-vm-switcher">
                                     <div class="col-md-12">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <h4>My Address</h4>
                                         </div>
                                         <div class="col-md-2">
-                                            <button class="btn btn-xs btn-primary" style="margin-left: -50px;margin-top: 20px" data-toggle="modal" data-target=".bs-example-modal-lg">+</button>
+                                            <button class="btn btn-xs btn-primary" style="margin-left: -80px;margin-top: 20px" data-toggle="modal" data-target=".bs-example-modal-lg">+</button>
                                             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
@@ -194,7 +194,7 @@
                                                 <td>
                                                     <div class="btn-group">
                                                         <button class="btn btn-info" onclick="window.location.href = 'EditShowAddress?addid=${a.address_Id}'">Edit</button>
-                                                        <button class="btn btn-danger" onclick="window.location.href = 'DeleteAddressServlet?id=${a.address_Id}&acctid=${user.account_Id}'">Delete</button>                                                    
+                                                        <a href="DeleteAddressServlet?id=${a.address_Id}&acctid=${user.account_Id}" class="btn btn-danger" onclick="return confirm('Are you sure ?');">Delete</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -217,7 +217,6 @@
         <script src="js/flatui-radio.js"></script>
         <script src="js/jquery.tagsinput.js"></script>
         <script src="js/jquery.placeholder.js"></script>
-        <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <jsp:include page="footer.jsp"/>

@@ -575,7 +575,7 @@ public class Product implements Comparable {
 
     public static int countRow(String key) {
         try {
-            String sql = "select count(productNO) from product where Name like ?";
+            String sql = "select count(productNO) from product p,category c where p.Category_ID = c.cateID and c.cateID like ? ";
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, "%" + key.trim() + "%");

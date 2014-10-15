@@ -42,23 +42,29 @@ public class SearchProductServlet extends HttpServlet {
         ArrayList<Product> a1 = new ArrayList<Product>();
         int x = xx.length() == 0 ? 0 : Integer.parseInt(xx);
         int y = Integer.parseInt(request.getParameter("y"));
-        int totalPage = (int) Math.ceil((pp.countRow(sid) * 1.0) / y);
+//        int totalPage = (int) Math.ceil((pp.countRow(sid) * 1.0) / y);
         String sort = request.getParameter("s");
         request.setAttribute("x", x);
         request.setAttribute("y", y);
         request.setAttribute("id", sid);
-        request.setAttribute("totalPage", totalPage);
-        if(sort.equalsIgnoreCase("a")){
-        request.setAttribute("products", pp.page(sid,cat, x, y));
+//        request.setAttribute("totalPage", totalPage);
+        if (sort.equalsIgnoreCase("a")) {
+            int totalPage = (int) Math.ceil((pp.countRow(cat) * 1.0) / y);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("products", pp.page(sid, cat, x, y));
         }
-        if(sort.equalsIgnoreCase("h")){
-            request.setAttribute("products", pp.highPrice(sid,cat, x, y));
+        if (sort.equalsIgnoreCase("h")) {
+            int totalPage = (int) Math.ceil((pp.countRow(cat) * 1.0) / y);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("products", pp.highPrice(sid, cat, x, y));
         }
-        if(sort.equalsIgnoreCase("l")){
-            request.setAttribute("products", pp.LowPrice(sid,cat, x, y));
+        if (sort.equalsIgnoreCase("l")) {
+            int totalPage = (int) Math.ceil((pp.countRow(cat) * 1.0) / y);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("products", pp.LowPrice(sid, cat, x, y));
         }
         request.setAttribute("currentPage", (int) Math.ceil(x / y) + 1);
-        String url = request.getParameter("url");                        
+        String url = request.getParameter("url");
         HttpSession s1 = request.getSession();
         HttpSession s2 = request.getSession();
         HttpSession s3 = request.getSession();

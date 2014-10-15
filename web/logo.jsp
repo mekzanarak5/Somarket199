@@ -7,8 +7,11 @@
             <li class='active has-sub'><a href='SearchProductServlet?id=&herolist=${entry.key.cateID}&x=0&y=6&s=a'><span>${entry.key.cateName}</span></a>
                 <ul>
                     <c:forEach items="${entry.value}" var="sub_entry">
-                        <li><a href='SearchProductServlet?id=&herolist=${sub_entry.cateID}&x=0&y=6&s=a'><span>${sub_entry.cateName}</span></a></li>
-                                </c:forEach>
+                        <li>
+                            <a href='SearchProductServlet?id=&herolist=${sub_entry.cateID}&x=0&y=6&s=a'><span>${sub_entry.cateName}</span>
+                            </a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </li>
         </c:forEach>

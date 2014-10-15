@@ -12,6 +12,7 @@
     <div class="panel-heading">
         <h3 class="panel-title ">My Account</h3>
     </div>
+    <font size="2">
     <div class="panel-body">
         <ul class="nav nav-sidebar ">
             <li><a href="ShowWishlistServlet?id=${user.account_Id}">Wish List</a></li>
@@ -21,4 +22,5 @@
             <li><a href="changePassword.jsp">Change Password</a></li>
         </ul>
     </div>
+    </font>
 </div>

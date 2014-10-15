@@ -1,4 +1,4 @@
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="bootstrap/css/jasny-bootstrap.min.css"/>
 <link href="bootstrap/css/semantic.css" rel="stylesheet">

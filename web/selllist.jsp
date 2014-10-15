@@ -76,7 +76,7 @@
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
                                                             <li><a href="ShowEditProduct?id=${a.productNO}">Edit</a></li>
-                                                            <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}">Delete</a></li>
+                                                            <li><a href="DeleteProductServlet?id=${a.productNO}&acctid=${user.account_Id}" onclick="return confirm('Are you sure ?');">Delete</a></li>
                                                         </ul>
                                                     </div></td>
                                             </tr>
@@ -98,7 +98,6 @@
         <script src="js/flatui-radio.js"></script>
         <script src="js/jquery.tagsinput.js"></script>
         <script src="js/jquery.placeholder.js"></script>
-        <script src="js/jquery.stacktable.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <jsp:include page="footer.jsp"/>

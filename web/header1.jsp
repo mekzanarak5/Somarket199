@@ -13,7 +13,7 @@
             <c:when test="${user == null}">
                 <c:set var="username" value="Guest"/>
                 <c:set var="loginAndOut" value="Login.jsp"/>
-                <div class="btn-group navbar-header navbar-right">
+                <div class="btn-group navbar-header navbar-right" style="margin-right: 75px">
                     <ul class="nav navbar-nav">
                         <li><a href="ViewCart"><span class="glyphicon glyphicon-shopping-cart"></span>
                                 ${cart!=null?" ( ":""}
@@ -30,7 +30,7 @@
                 <c:set var="loginAndOut" value="Logout"/>
                 <!--<a href="profile.jsp"> <span class="fui-user"></span></a>-->
                 <!-- Split button -->
-                <div class="btn-group navbar-header">
+                <div class="btn-group navbar-header" style="margin-left: 50px">
                     <ul class="nav navbar-nav">           
                         <li><a href="seachcata">Post Product</a></li>
                         <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
@@ -38,7 +38,7 @@
                         <li><a href="ShowPmServlet?id=${user.account_Id}">Inbox <span class="badge btn-default"><%=Message.findCount(user.getAccount_Id())%> </span></a></li>                            
                     </ul>
                 </div>
-                <div class="btn-group navbar-header navbar-right">
+                <div class="btn-group navbar-header navbar-right" style="margin-right: 75px">
                     <ul class="nav navbar-nav">
                         <li><a href="ViewCart"><span class="glyphicon glyphicon-shopping-cart"></span>
                                 ${cart!=null?" ( ":""}
