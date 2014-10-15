@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Accounts;
+import model.Address;
 import model.Bank;
 import model.Cart;
 import model.order;
@@ -41,7 +42,8 @@ public class DetailOrder extends HttpServlet {
         order o = order.searchByID(orderid);
         Accounts a = Accounts.getUser(o.getSeller());
         List<Bank> b = Bank.showBank(a.getAccount_Id());
-        request.setAttribute("id", orderid);
+        request.setAttribute("order", o);
+        request.setAttribute("add", Address.findAddress(o.getAddress()));
         request.setAttribute("total", o.getTotal());
         request.setAttribute("bank", b);
         getServletContext().getRequestDispatcher("/OrderDetail.jsp").forward(request, response);
