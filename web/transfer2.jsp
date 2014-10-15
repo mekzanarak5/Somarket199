@@ -106,7 +106,7 @@
                                         <option value="" selected>Choose Address</option>
                                         <c:forEach items="${addr}" var="a" >
                                             <%--<input type="hidden" name="shipaddr" value="${a.address_Id}" />--%>
-                                            <option value="${a.acctNo}">${a.address}&nbsp;&nbsp;${a.provice}&nbsp;&nbsp;${a.post}&nbsp;&nbsp;${a.canton}</option>
+                                            <option value="${a.address_Id}">${a.address}&nbsp;&nbsp;${a.provice}&nbsp;&nbsp;${a.post}&nbsp;&nbsp;${a.canton}</option>
                                         </c:forEach>
                                     </select>
                                     <font size="2">

@@ -152,7 +152,7 @@ public class order {
             ps.setString(3, o.getSeller());
             //ps.setString(3, o.getAddress());
             ps.setDouble(4, o.getTotal());
-            ps.setString(5, "Not Paid");
+            ps.setString(5, "Waiting for payment.");
             if (payment == null) {
                 ps.setNull(6, java.sql.Types.VARCHAR);
             } else {
@@ -375,7 +375,7 @@ public class order {
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, pay);
-            ps.setString(2, "Paid, waiting for check... ");
+            ps.setString(2, "Verifying... ");
             ps.setInt(3, order_id);
             ps.executeUpdate();
             ConnectionAgent.getConnection().close();
