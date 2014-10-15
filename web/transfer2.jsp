@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
-                        <form action="Pay2" class="form-horizontal" method="get">
+                        <form action="Pay2" class="form-horizontal" method="post" enctype="multipart/form-data" >
                             <div class="row">
                                 <h3 class="col-md-12">Transfer</h3>
                                 <div class="col-md-12">
@@ -89,16 +89,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <%--<div class="fileinput fileinput-new" data-provides="fileinput" style="float: right;margin-top: -190px;margin-right: 50px">
+                            <div class="fileinput fileinput-new" data-provides="fileinput" style="float: right;margin-top: -190px;margin-right: 50px">
                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                                     <img data-src="holder.js/100%x100%" alt="...">
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                 <div>
-                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Slips</span><span class="fileinput-exists">Change</span><input type="file" name="file"></span>
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Slips</span><span class="fileinput-exists">Change</span><input type="file" name="pic"></span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                 </div>
-                            </div>--%>
+                            </div>
                             <div class="row" style="margin-bottom: 20px">
                                 <h3 class="col-md-12">Shiping Address</h3>
                                 <div class="col-md-10">

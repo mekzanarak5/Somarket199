@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.ProductPic;
+import model.Test;
 import model.order;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -39,14 +41,16 @@ public class Pay2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         File file;
-        String date = request.getParameter("paydate");
-        String time = request.getParameter("paytime");
-        double amount =(Double) Double.parseDouble(request.getParameter("payamount"));
+        MultipartRequest m = new MultipartRequest(request, "/Users/Admin/NetBeansProjects/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/");
+        String date = m.getParameter("paydate");
+        String time = m.getParameter("paytime");
+        String pic = m.getFilesystemName("pic");
+        double amount = Double.parseDouble(m.getParameter("payamount"));
         String refid = "";
-        int bank = Integer.parseInt(request.getParameter("bankid"));
-        int addr = Integer.parseInt(request.getParameter("shipaddr"));
-        String pic = "";
-        int orderid = Integer.parseInt(request.getParameter("id"));
+        int bank = Integer.parseInt(m.getParameter("bankid"));
+        int addr = Integer.parseInt(m.getParameter("shipaddr"));
+        String pic1 = "";
+        int orderid = Integer.parseInt(m.getParameter("id"));
 //        String namethai = new String(name.getBytes("ISO8859_1"), "UTF-8");
 //        String desthai = new String(des.getBytes("ISO8859_1"), "UTF-8");
         String acctid = "";
@@ -54,9 +58,10 @@ public class Pay2 extends HttpServlet {
         String sum = date + "\n" + time + "\n" + amount + "\n" + refid;
         order.addBank(orderid, bank);
         order.addPayment(orderid, sum);
-        order.addSlip(orderid, pic);
+        order.addSlip(orderid, "/Users/Admin/NetBeansProjects/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/"+pic);
         order.addAddr(orderid, addr);
         //order.addPayment(orderid, );
+
         getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
     }
 
