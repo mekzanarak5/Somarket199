@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Product"%>
 <%@page import="model.ProductPic"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
 
         <jsp:include page="cssup.jsp"/>
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
@@ -46,7 +46,11 @@
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
-                        <h5 class="col-md-12 panel panel-heading">Order Detail</h5>
+                        <div style="padding: 20px;">
+                            <h5 style="display: inline ">Order Detail</h5>
+                            <p style="display: inline;margin-left: 15px; font-size: 22px">#</p>
+                            <p style="display: inline; font-size: 22px; color: #666666">${order.orderId}</p>
+                        </div>
                         <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                             <h6 class="panel-heading">Item Detail</h6>
                             <table class="table table-striped" style="text-align: center">
@@ -74,81 +78,125 @@
                             </table>
                         </div>
                         <c:choose>
-                            <c:when test="${user.username==order.username}" >
+                            <c:when test="${user.username == order.username}" >
                                 <c:choose>
-                                    <c:when test="${order.payment==null && order.slip==null}" >
-                        <div class="panel panel-default col-md-11" style="margin-left: 45px ">
-                            <h6 class="col-md-12 panel-heading">Payment Information</h6>
-                            
-                                <div class="col-md-12">
-                                    <table class="table table-bordered" style="text-align: center">
-                                        <tr>
-                                            <td style="background: #ededed">Bank Name</td>
-                                            <td style="background: #ededed">Bank Account No.</td>
-                                            <td style="background: #ededed">Bank Account Name</td>
-                                            
-                                        </tr>
-                                        <c:forEach items="${bank}" var="bb" >
-                                        <tr>
-                                            <td>${bb.bankName}</td>
-                                            <td>${bb.bankAccNo}</td>
-                                            <td>${bb.bankAccName}</td>
-                                        </tr>
-                                        </c:forEach>
-                                    </table>
-                                </div>
-                            
-                        </div>
-                    </div>
-                    <div align="center" style="margin-bottom: 20px">
-                        <a href="Transfer?id=${id}"><input type="button" class="btn btn-warning" value="Order Payment"></a> 
-                    </div>
-                    </c:when><c:otherwise>
-                                        <div class="panel panel-default col-md-4" style="margin-left: 45px ">
-                            <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
-                            <div class="col-md-12">
-                                <table class="table table-bordered" style="text-align: center">
-                                    <tr>
-                                        <td style="background: #ededed">Transfer Date</td>
-                                        <td>วน</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="background: #ededed">Transfer Time</td>
-                                        <td>วน</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="background: #ededed">Amount</td>
-                                        <td>วน</td>
-                                    </tr>
-                                </table>
-                </div>
-            </div>
-                                        <div class="panel panel-default col-md-4" style="margin-left: 25px ">
-                            <h6 class="col-md-12 panel-heading">Shipping Address</h6>
-                            <div class="col-md-12">
-                                ${add.address}<br>
-                                ${add.canton}<br>
-                                ${add.provice}, ${add.post}
-        </div>
-        </div>
-                        <div class="col-md-3">
-                            <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                        </div>
-                        <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
-                            <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
-                            <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                <input type="text" class="form-control" placeholder="Tranfer Time" name="password">
-                            </div>
-                            <div align="center" style="margin-bottom: 20px">
-                                <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
-                            </div>
-                        </div>
-                                    </c:otherwise>
+                                    <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
+                                        <div class="panel panel-default col-md-11" style="margin-left: 45px ">
+                                            <h6 class="col-md-12 panel-heading">Payment Information</h6>
+
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered" style="text-align: center">
+                                                    <tr>
+                                                        <td style="background: #ededed">Bank Name</td>
+                                                        <td style="background: #ededed">Bank Account No.</td>
+                                                        <td style="background: #ededed">Bank Account Name</td>
+
+                                                    </tr>
+                                                    <c:forEach items="${bank}" var="bb" >
+                                                        <tr>
+                                                            <td>${bb.bankName}</td>
+                                                            <td>${bb.bankAccNo}</td>
+                                                            <td>${bb.bankAccName}</td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div align="center" style="margin-bottom: 20px">
+                                        <a href="Transfer?id=${id}"><input type="button" class="btn btn-warning" value="Order Payment"></a> 
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="panel panel-default col-md-4" style="margin-left: 45px ">
+                                        <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
+                                        <div class="col-md-12">
+                                            <table class="table table-bordered" style="text-align: center">
+                                                <tr>
+                                                    <td style="background: #ededed">Transfer Date</td>
+                                                    <td>วน</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="background: #ededed">Transfer Time</td>
+                                                    <td>วน</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="background: #ededed">Amount</td>
+                                                    <td>วน</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default col-md-4" style="margin-left: 25px ">
+                                        <h6 class="col-md-12 panel-heading">Shipping Address</h6>
+                                        <div class="col-md-12">
+                                            ${add.address}<br>
+                                            ${add.canton}<br>
+                                            ${add.provice}, ${add.post}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
+                                    </div>
+                                    <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
+                                        <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
+                                        <div class="col-md-12" align="center" style="margin-bottom: 20px">
+                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="password">
+                                        </div>
+                                        <!--<div align="center" style="margin-bottom: 20px">
+                                            <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
+                                        </div>-->
+                                    </div>
+                                </c:otherwise>
                             </c:choose>
-                    </c:when>
-                            <%--<c:otherwise>
-                                
-                            </c:otherwise>--%>
+                        </c:when>
+                        <c:otherwise>
+                            <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
+                                waiting for payment
+                            </c:when><c:otherwise>
+                                <div class="panel panel-default col-md-4" style="margin-left: 45px ">
+                                        <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
+                                        <div class="col-md-12">
+                                            <table class="table table-bordered" style="text-align: center">
+                                                <tr>
+                                                    <td style="background: #ededed">Transfer Date</td>
+                                                    <td>วน</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="background: #ededed">Transfer Time</td>
+                                                    <td>วน</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="background: #ededed">Amount</td>
+                                                    <td>วน</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default col-md-4" style="margin-left: 25px ">
+                                        <h6 class="col-md-12 panel-heading">Shipping Address</h6>
+                                        <div class="col-md-12">
+                                            ${add.address}<br>
+                                            ${add.canton}<br>
+                                            ${add.provice}, ${add.post}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
+                                    </div>
+                                    <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
+                                        <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
+                                        <div class="col-md-12" align="center" style="margin-bottom: 20px">
+                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="password">
+                                        </div>
+                                        <div align="center" style="margin-bottom: 20px">
+                                            <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-default">Reject</a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-default">Reset</a>
+                                        </div>
+                                    </div>
+                            </c:otherwise>
+                        </c:otherwise>
                     </c:choose>
                 </div>
             </div>
