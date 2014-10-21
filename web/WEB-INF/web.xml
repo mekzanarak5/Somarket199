@@ -545,7 +545,7 @@
         <description>Location to store uploaded file</description>
         <param-name>file-upload</param-name>
         <param-value>
-         C:\Users\Mekza\Documents\NetBeansProjects\Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271\Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271\web\pic\upload\
+         /Users/Admin/NetBeansProjects/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/
      </param-value>
     </context-param>
 </web-app>

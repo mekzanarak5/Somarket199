@@ -105,7 +105,7 @@ public class ConfirmCart extends HttpServlet {
         } else {
             String check = "no";
             request.setAttribute("sas", check);
-            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
     }
 

@@ -76,12 +76,13 @@
                                                         <input type="hidden" name="url" />
                                                         <input type="hidden" name="productId" value="${a.productNO}" />
                                                         <input type="hidden" name="acctid" value="${a.acctID}" />
-                                                        <c:choose>
+                                                        <p><c:choose>
                                                             <c:when test="${user.account_Id!=a.acctID || user.account_Id==null}">
-                                                                <p><button class="btn btn-primary" role="button ">Add to cart</button> <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a></p>
+                                                                <button class="btn btn-primary" role="button ">Add to cart</button> 
                                                             </c:when>
                                                         </c:choose>
-                                                    </div>
+                                                                <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a>
+                                                    </p></div>
                                                 </div>
                                             </div>
                                         </form>
