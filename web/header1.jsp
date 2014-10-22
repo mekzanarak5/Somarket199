@@ -20,8 +20,10 @@
                                 ${cart!= null? cart.unitItem:""}
                                 ${cart!=null?" ) ":""}
                             </a></li>
-                        <li><button class="btn btn-sm btn-info" onclick="window.location.href = 'Login.jsp'" style="margin-top: 5px">Login</button></li>
-                        <li><button class="btn btn-sm btn-default" onclick="window.location.href = 'Register.jsp'" style="margin-top: 5px">Register</button></li>
+                            <li style="margin-top: 12px">Hey!, Whats up? Guy</li>
+                            <li><a href="Login.jsp">Login</a></li>
+                            <li style="margin-top: 12px">or</li>
+                            <li><a href="Register.jsp">Register</a></li>
                     </ul>
                 </div>
             </c:when>

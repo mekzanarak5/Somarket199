@@ -89,8 +89,8 @@
                         </ol>
                         </font>
                     </div> 
-                    <div class="col-md-12">
-                        <div class="col-md-5" style="margin-top: -20px;margin-bottom: -40px">
+                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                        <div class="col-md-5" style="margin-bottom: -40px">
                             <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
                                 <div class='carousel-outer'>
                                     <!-- Wrapper for slides -->
@@ -177,8 +177,7 @@
                                 </div>
                             </div> 
                         </div>
-                    </div>                              
-                    <div class="col-md-9" style="margin-top: 30px">
+                                        <div class="col-md-9" style="margin-top: 30px">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Description</h3>
@@ -188,6 +187,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>                              
+                    
                 </form>
             </div>
         </div>

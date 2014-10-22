@@ -29,10 +29,10 @@
                     </ol>
                     </font>
                 </div>     
-                <div class="col-xs-12" style="margin:auto;">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                <div class="col-xs-10" style="margin:auto;">
+                    <div class="col-md-10" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="form-horizontal">
-                            <h3 class="col-md-12">Register</h3>
+                            <h5 class="col-md-12">Register</h5>
                             <form role="form" action="register" method="get">
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-3 control-label">E-mail</label>
@@ -78,7 +78,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="col-sm-offset-3 col-sm-10">
                                         <button type="submit" class="btn btn-info">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
                                     </div>
                                 </div>

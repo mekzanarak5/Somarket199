@@ -15,28 +15,28 @@
         <jsp:include page="cssup.jsp"/>
 
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
             <div class="col-md-2">
-                <jsp:include page="logo_1_1.jsp"/>
+                <jsp:include page="logoOther.jsp"/>
             </div>
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
                 <div class="col-xs-12">
-<font size="2">
+                    <font size="2">
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
                         <li class="active">Profile</li>
                     </ol>
-</font>
+                    </font>
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-4" align="center">   
                         <img src="${showName.pic}" alt="..." class="img-thumbnail" width="250px" height="250px">
-                        <a href="GetReceiverServlet?acctid=${showName.account_Id}"><button type="button" class="btn btn-danger btn-xs">PM</button></a>
+                        <br><a href="GetReceiverServlet?acctid=${showName.account_Id}"><button type="button" class="btn btn-danger btn-xs">Send PM</button></a>
                     </div>
                     <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
                         <h5>Personal Info</h5>

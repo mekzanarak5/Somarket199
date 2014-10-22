@@ -36,6 +36,7 @@ public class SendReport extends HttpServlet {
         HttpSession s = request.getSession(false);
         Accounts a = (Accounts) s.getAttribute("user");
         if (a == null) {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
             request.setAttribute("msg", "Go To Login !");
         } else {
             String pm = request.getParameter("herolist");
