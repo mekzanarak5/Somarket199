@@ -100,12 +100,22 @@
                         <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                             <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                             <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                <input type="text" class="form-control" placeholder="Tranfer Time" name="password">
+                                <input type="text" class="form-control" placeholder="Tranfer Time" name="trans" id="tran">
                             </div>
                             <div align="center" style="margin-bottom: 20px">
-                                <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
+                                <a href="showems.html" class="btn btn-info" disabled>Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
                             </div>
                         </div>
+                        <script>
+                            $(documnet).ready(function(){
+                                $('#tran').keypress(function(){
+                                    alert('ccc');
+                                });
+                            });
+                        </script>
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
