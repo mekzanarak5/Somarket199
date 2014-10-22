@@ -52,7 +52,7 @@ public class ShowDetailServlet extends HttpServlet {
                testo.add(test);
             }
         }    
-         System.out.println(testo);
+         System.out.println(p);
         request.setAttribute("pic", pp);
         request.setAttribute("picsum", testo);
         request.setAttribute("pic1", p1);

@@ -1,4 +1,7 @@
 
+<%@page import="model.Product"%>
+<%@page import="model.Accounts"%>
+<%@page import="model.Wishlist"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -66,29 +69,33 @@
                 position: relative;
             }
         </style>
+        <%
+            Accounts user = (Accounts) session.getAttribute("user");
+            Product p = (Product) request.getAttribute("showDetail");
+        %>
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
-
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
             <div class="col-md-2">
                 <jsp:include page="logo.jsp"/>
             </div>
-            <div class="col-xs-10">
+            <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
                 <form action="AddToCart" class="form-horizontal" role="form">
                     <div class="col-md-12">
                         <font size="2">
                         <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Product</a></li>
-                            <li><a href="#"></a></li>
+                            <li><a href="home.jsp">Home</a></li>
+                            <li><a href="SearchProductServlet?id=&herolist=&x=0&y=6&s=a">Product</a></li>
+                            <li><a href="SearchProductServlet?id=&herolist=${showDetail.cateID}&x=0&y=6&s=a">${showDetail.cateName}</a></li>
                             <li class="active">${showDetail.name}</li>
                         </ol>
                         </font>
                     </div> 
+                        <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="col-md-5" style="margin-bottom: -40px">
                             <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
@@ -150,8 +157,15 @@
                                         <c:choose>
                                             <c:when test="${user.account_Id!=showName.account_Id || user==null}" >
                                                 <div align="center">
+                                                    <%
+                                                        if (Wishlist.findCountWish(user.getAccount_Id(), p.getProductNO()) == 0){
+                                                    %>
                                                     <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
                                                     </a>
+                                                    <%}else{%>
+                                                    <a href="DeleteWishlistProductza?proid=${showDetail.productNO}&acctid=${user.account_Id}&acct=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">Delete Wishlist <span class="fui-cross"></button>
+                                                    </a>
+                                                    <%}%>
                                                     <a href="AdminGetProId?proid=${showDetail.productNO}"><button type="button" class="btn btn-xs btn-danger" style="margin-top: 15px">Report</button>
                                                     </a>
                                                 </div>
@@ -177,18 +191,18 @@
                                 </div>
                             </div> 
                         </div>
-                                        <div class="col-md-9" style="margin-top: 30px">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Description</h3>
-                            </div>
-                            <div class="panel-body">
-                                ${showDetail.description}
+                        <div class="col-md-9" style="margin-top: 30px">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Description</h3>
+                                </div>
+                                <div class="panel-body">
+                                    ${showDetail.description}
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>                              
-                    
+</div>
                 </form>
             </div>
         </div>

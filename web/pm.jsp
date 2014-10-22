@@ -32,20 +32,20 @@
                 <div class="col-xs-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">PM</li>
+                        <li><a href="home.jsp">Home</a></li>
+                        <li class="active">PM (Inbox)</li>
                     </ol>
                     </font>
                 </div>      
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
-                            <h3 class="col-md-1">PM</h3>
-                            <div class="col-md-1" style="margin-top: 30px">
-                                <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-primary">Inbox</button></a>
+                            <h5 class="col-md-1">PM</h5>
+                            <div class="col-md-1" style="margin-top: 14px;margin-left: -30px">
+                                <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-xs btn-primary">Inbox</button></a>
                             </div>
-                            <div class="col-md-3" style="margin-top: 30px">
-                                <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-default">Sent</button></a>
+                            <div class="col-md-1" style="margin-top: 14px;margin-left: -30px">
+                                <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-xs btn-default">Sent</button></a>
                             </div>
                             <form action="DeleteMessageServlet" method="get">
                                 <div class="col-md-12">
