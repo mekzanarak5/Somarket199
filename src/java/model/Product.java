@@ -201,7 +201,7 @@ public class Product implements Comparable {
     }
 
     public static Product findById(int id) {
-        String sqlCmd = "SELECT * FROM product p WHERE productNO = ? ORDER BY productNO desc";
+        String sqlCmd = "SELECT * FROM product p,product_img = pi WHERE p.productNO = pi.Product_Id and productNO = ? ORDER BY productNO desc";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         try {

@@ -41,7 +41,7 @@
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
-                            <h3 class="col-md-12">Cart</h3>
+                            <h5 class="col-md-12">Cart</h5>
                             <form action="UpdateCart" method="get">
                                 <table class="table table-striped" style="text-align: center">
                                     <tr bgColor="#ffffff">
@@ -94,13 +94,13 @@
                                     </c:forEach>
                                 </table>
                             </form>
-                            <div><h3 class="col-md-12"  >Payment Methond</h3><hr></div>
+                            <div><h5 class="col-md-12"  >Payment Methond</h5><hr></div>
                             <div class="radio" style="margin-left:100px">
                                 <label>
                                     Bank Tranfer
                                 </label>
                             </div>
-                            <div style="margin-left:300px;margin-bottom: 20px">
+                            <div style="margin-left:450px;margin-bottom: 20px">
                                 <a href="ConfirmCart"><input type="button" class="btn btn-danger" value="Check out"></a> 
                             </div>
                         </div>

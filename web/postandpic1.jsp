@@ -53,7 +53,7 @@
                 <div class="col-xs-11" style="margin:auto;">
                     <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
-                            <h3 class="col-md-12">Post Product</h3>
+                            <h5 class="col-md-12">Post Product</h5>
                             <form action="AddProductPic" method="post" enctype="multipart/form-data">
                                 <div class="form-horizontal" align="center">
                                     <div class="form-group">
@@ -127,7 +127,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">            
-                                        <input id="file-3" type="file" name="file" multiple=true>
+                                        <input id="file-3" type="file" name="file" accept="image/*" multiple=true>
                                         <input type="hidden" name="acctid" value="${user.account_Id}"/>
                                     </div>
                                 </div>

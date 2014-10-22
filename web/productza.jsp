@@ -12,9 +12,64 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".mCustomScrollbar").mCustomScrollbar({axis: "x"});
+            });
+        </script>
+
+        <style type="text/css">
+            h4 {
+                margin: 20px 10px 10px;
+            }
+            p {
+                margin: 10px;
+            }
+
+            #carousel-example-generic {
+                margin: 20px auto;
+                width: 400px;
+            }
+
+            #carousel-custom {
+                margin: 20px auto;
+                width: 400px;
+            }
+            #carousel-custom .carousel-indicators {
+                margin: 10px 0 0;
+                overflow: auto;
+                position: static;
+                text-align: left;
+                white-space: nowrap;
+                width: 100%;
+            }
+            #carousel-custom .carousel-indicators li {
+                background-color: transparent;
+                -webkit-border-radius: 0;
+                border-radius: 0;
+                display: inline-block;
+                height: auto;
+                margin: 0 !important;
+                width: auto;
+            }
+            #carousel-custom .carousel-indicators li img {
+                display: block;
+                opacity: 0.5;
+            }
+            #carousel-custom .carousel-indicators li.active img {
+                opacity: 1;
+            }
+            #carousel-custom .carousel-indicators li:hover img {
+                opacity: 0.75;
+            }
+            #carousel-custom .carousel-outer {
+                position: relative;
+            }
+        </style>
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
+
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
@@ -23,83 +78,117 @@
             </div>
             <div class="col-xs-10">
                 <jsp:include page="header.jsp"/>
-                <div class="col-md-12">
-                    <font size="2">
-                    <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Product</li>
-                    </ol>
-                    </font>
-                </div>  
-                <div class="col-md-12" align="center">
-                    <div class="col-md-5">
-                        <img name="Image" class="rounded" src="${pic1.pathFile}" width="250" height="250" ><br /><br /> 
-                        <c:forEach items="${pic}" var="a">
-                            <a onclick="ChangeImage('${a.pathFile}')"><img src="${a.pathFile}" width="50" height="50"></a> 
-                            </c:forEach>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="#" class="list-group-item active">
-                            Price ${showDetail.price}
-                        </a>
-                        <a href="ShowAccount?acctid=${showName.account_Id}" class="list-group-item">
-                            <h6 class="list-group-item-heading">${showName.username} ( 999<span class="glyphicon glyphicon-star"></span> )</h6>
-                        </a>
-                        <div class="list-group-item">
-                            <h6 class="list-group-item-heading">Phone No. ${showName.phone}</h6>
+                <form action="AddToCart" class="form-horizontal" role="form">
+                    <div class="col-md-12">
+                        <font size="2">
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Product</a></li>
+                            <li><a href="#"></a></li>
+                            <li class="active">${showDetail.name}</li>
+                        </ol>
+                        </font>
+                    </div> 
+                    <div class="col-md-12">
+                        <div class="col-md-5" style="margin-top: -20px;margin-bottom: -40px">
+                            <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+                                <div class='carousel-outer'>
+                                    <!-- Wrapper for slides -->
+                                    <div class='carousel-inner'>
+                                        <div class='item active'>
+                                            <img src='${pic1.pathFile}' alt='' height="260px" width="400"/>
+                                        </div>
+                                        <c:forEach items="${picsum}" var="a">
+                                            <div class='item'>
+                                                <img src='${a.pathFile}' alt='' height="260px" width="400"/>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                    <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+                                        <span class='glyphicon glyphicon-chevron-left'></span>
+                                    </a>
+                                    <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+                                        <span class='glyphicon glyphicon-chevron-right'></span>
+                                    </a>
+                                </div>
+                                <ol class='carousel-indicators mCustomScrollbar'>
+                                    <c:set value="0" var="no" />
+                                    <c:forEach items="${pic}" var="a">
+                                        <li data-target='#carousel-custom' data-slide-to='${no}'>
+                                            <img src='${a.pathFile}' alt='' width="150" height="100"/>
+                                        </li>
+                                        <c:set value="${no+1}" var="no" />
+                                    </c:forEach>
+                                </ol>
+                            </div>      
                         </div>
-                        <a href="GetReceiverServlet?acctid=${showName.account_Id}" class="list-group-item">
-                            <h6 class="list-group-item-heading">Send Private Message</h6>
-                        </a>
-                        <div class="list-group-item">
-                            <div class="fb-share-button" data-href="<%=request.getRequestURI()%>"></div>
+                        <div class="col-md-7">
+                            <h5>${showDetail.name}</h5><hr>
+                            <div class="col-md-7">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5><div style="color: red">฿ ${showDetail.price}</div></h5>
+                                    </div>
+                                    <div class="panel-body">
+
+                                        <div class="col-md-12" style="margin: auto;float: none">
+                                            <c:choose><c:when test="${user.account_Id!=showName.account_Id || user==null}" >
+                                                    <font size="2">
+                                                    <div class="input-group input-group-sm" style="margin-bottom: 15px">
+                                                        <span class="input-group-addon">Quatity</span>
+                                                        <input type="number" class="form-control" placeholder="Quatity" value="1" required>
+                                                    </div>
+                                                    </font>
+                                                    <input type="hidden" name="url" />
+                                                    <input type="hidden" name="productId" value="${showDetail.productNO}" />
+                                                    <input type="hidden" name="acctid" value="${showName.account_Id}" />
+                                                    <input type="hidden" name="name" value="${showDetail.name}" />
+                                                    <input type="hidden" name="des" value="${showDetail.description}" />
+                                                    <button type="submit" class="btn btn-primary btn-sm btn-block" style="background-color: " >Add To Cart <span class="glyphicon glyphicon-shopping-cart"></button>
+                                                </c:when></c:choose>
+                                            </div>
+                                        <c:choose>
+                                            <c:when test="${user.account_Id!=showName.account_Id || user==null}" >
+                                                <div align="center">
+                                                    <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
+                                                    </a>
+                                                    <a href="AdminGetProId?proid=${showDetail.productNO}"><button type="button" class="btn btn-xs btn-danger" style="margin-top: 15px">Report</button>
+                                                    </a>
+                                                </div>
+                                            </c:when>
+                                        </c:choose>
+                                        <div class="fb-share-button" data-href="<%=request.getRequestURI()%>"></div> 
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <div class="col-md-5">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Seller Information
+                                    </div>
+                                    <div class="panel-body">
+                                        <a href="ShowAccount?acctid=${showName.account_Id}" >${showName.username} ( 999<span class="glyphicon glyphicon-star"></span> )</a>
+                                        <font size="2">
+                                        <br>Phone No. ${showName.phone}
+                                        <a href="GetReceiverServlet?acctid=${showName.account_Id}" class="list-group-item">Send Private Message</a>
+                                        </font>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
-                        <br />
-                    </div>
-                    <div class="col-md-1">
-                        <c:choose>
-                            <c:when test="${user.account_Id!=showName.account_Id || user==null}" >
-                                <a href="AdminGetProId?proid=${showDetail.productNO}"><button type="button" class="btn btn-danger">Report</button>
-                                </a>
-                                <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-warning" style="margin-top: 5px">Add to WishList<span class="fui-heart"></button>
-                                </a>
-                            </c:when>
-                        </c:choose>
-                    </div>
-                </div>
-                <div class="col-md-12" style="margin-top: 50px">
-                    <form action="AddToCart" class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Product</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" placeholder="Name of product" name="name" value="${showDetail.name}" disabled="disabled">
+                    </div>                              
+                    <div class="col-md-9" style="margin-top: 30px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Description</h3>
+                            </div>
+                            <div class="panel-body">
+                                ${showDetail.description}
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
-                            <div class="col-sm-7">
-                                <textarea class="form-control" name="des" rows="3" disabled>${showDetail.description}</textarea> 
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Quatity</label>
-                            <div class="col-sm-3">
-                                <input type="number" class="form-control" placeholder="Quatity" value="1" required>
-                            </div>
-                        </div>
-                        <c:choose><c:when test="${user.account_Id!=showName.account_Id || user==null}" >
-                                <div class="well col-md-6" style="margin: auto;float: none">
-                                    <!--<form action="AddToCart" method="get"> -->
-                                    <input type="hidden" name="url" />
-                                    <input type="hidden" name="productId" value="${showDetail.productNO}" />
-                                    <input type="hidden" name="acctid" value="${showName.account_Id}" />
-                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Add To Cart">
-                                </c:when></c:choose>
-                            <%--<a href="AddToCart?productId=${showDetail.productNO}&acctid=${showName.account_Id}">--%><!--</a>-->
-                            <!--</form>-->
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
         <script language="JavaScript">
@@ -107,6 +196,7 @@
                 document.Image.src = image;
             }
         </script> 
+
         <script src="js/jasny-bootstrap.min.js"></script>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -138,5 +228,6 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
             <jsp:include page="footer.jsp"/>
+
     </body>
 </html>

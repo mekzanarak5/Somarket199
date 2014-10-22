@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,10 +44,20 @@ public class ShowDetailServlet extends HttpServlet {
         Accounts a = Accounts.findById2(acctid);
         request.setAttribute("showDetail", p);
         request.setAttribute("showName", a);
+        List<ProductPic> testo = new ArrayList<ProductPic>();
+        for (int i = 0; i < pp.size(); i++){
+            if (i >= 1){
+               ProductPic test = pp.get(i);
+               
+               testo.add(test);
+            }
+        }    
+         System.out.println(testo);
         request.setAttribute("pic", pp);
+        request.setAttribute("picsum", testo);
         request.setAttribute("pic1", p1);
         request.setAttribute("wl", wl);
-        System.out.println(p1);
+        System.out.println(pp);
         getServletContext().getRequestDispatcher("/productza.jsp").forward(request, response);
     }
 

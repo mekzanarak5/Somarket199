@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <input type="hidden" name="acctid" value="${pro.productNO}">
-                                        <button  type="submit"><img src="pic/bin.png" width="18px" height="18px" ></button>
+                                        <button type="submit" class="btn btn-primary"><img src="pic/bin.png" width="18px" height="18px" ></button>
                                     </div>
                                 </div>
                             </form>

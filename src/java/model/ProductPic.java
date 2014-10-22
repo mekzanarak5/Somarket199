@@ -67,6 +67,11 @@ public class ProductPic {
         this.CreateOn = CreateOn;
     }
 
+    @Override
+    public String toString() {
+        return "ProductPic{" + "pNO=" + pNO + ", Product_Id=" + Product_Id + ", pathFile=" + pathFile + ", CreateOn=" + CreateOn + '}';
+    }
+    
     public static int insertPic(List<String> path) {
         int row = 0;
         int newMemberID = 0;
