@@ -268,6 +268,10 @@
         <servlet-name>Pay2</servlet-name>
         <servlet-class>servlet.Pay2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderFinish</servlet-name>
+        <servlet-class>servlet.OrderFinish</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -535,6 +539,10 @@
     <servlet-mapping>
         <servlet-name>Pay2</servlet-name>
         <url-pattern>/Pay2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderFinish</servlet-name>
+        <url-pattern>/OrderFinish</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
