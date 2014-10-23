@@ -194,10 +194,7 @@
                                         <td></td>
                                         <td></td>
                                         <td width="20%">
-                                            <div class="btn-group">                                              
-                                                <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-primary">Edit</button></a>
-                                                <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-danger">Delete</button></a>
-                                            </div>
+                                           
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -370,6 +367,5 @@
                 $("#series").chainedTo("#mark");
             });
         </script>
-        <jsp:include page="footer.jsp"/>
     </body>
 </html>

@@ -34,6 +34,7 @@ public class AdminEditCategory extends HttpServlet {
             throws ServletException, IOException {
         int proid = Integer.parseInt(request.getParameter("proid"));
         int cat = Integer.parseInt(request.getParameter("cata"));
+        
         Product c = new Product();
         c.editCategory(proid, cat);
         request.setAttribute("edit", c);

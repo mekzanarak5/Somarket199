@@ -31,7 +31,7 @@
             <p class="clients">Contact</p>
 
             <ul>
-                <li><a href="#">Admin</a></li>
+                <li><a href="adminLogin.jsp">Admin</a></li>
                 <li><a href="#">Support Center</a></li>
                 <li><a href="#">FAQ</a></li>
             </ul>

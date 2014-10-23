@@ -91,7 +91,7 @@
                             </div>
                             <div class="fileinput fileinput-new" data-provides="fileinput" style="float: right;margin-top: -190px;margin-right: 50px">
                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img data-src="holder.js/100%x100%" alt="...">
+                                    <img src="pic/upload.jpg" alt="..." >
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                 <div>

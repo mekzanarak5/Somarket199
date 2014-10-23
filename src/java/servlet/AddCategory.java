@@ -31,13 +31,14 @@ public class AddCategory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        String cateName = request.getParameter("cateName");
+       String catethai = new String(cateName.getBytes("ISO8859_1"), "UTF-8");
        String parentid = request.getParameter("parentid");
        String value = request.getParameter("value");
        String msg = "";
         Boolean complete = false;
        model.Category a = new model.Category();
 
-        int row =  a.addCatBig(cateName, parentid, value);
+        int row =  a.addCatBig(catethai, parentid, value);
         if (row == 1) {
             msg = "Congratulations, GoToTheSell!";
             request.setAttribute("msg", msg);

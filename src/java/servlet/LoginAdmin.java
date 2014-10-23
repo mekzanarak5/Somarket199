@@ -12,12 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.admin;
 
 /**
  *
  * @author Admin
  */
-public class AdminAddCategorySmall extends HttpServlet {
+public class LoginAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,32 +32,23 @@ public class AdminAddCategorySmall extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cateName = request.getParameter("cateName");
-        String catethai = new String(cateName.getBytes("ISO8859_1"), "UTF-8");
-       String parentid = request.getParameter("parentid");
-       String value = request.getParameter("value");
-       String msg = "";
-        Boolean complete = false;
-       model.Category a = new model.Category();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String msg = null;
+        admin m1 = new admin();
+        if (m1.login(username, password)) {
+                HttpSession s1 = request.getSession();
+                s1.setAttribute("username", username);
+                s1.setAttribute("user", m1.findById(username));
+                request.setAttribute("username", username);
+            } else {
+                msg = "Login Failed";
+                request.setAttribute("msg", msg);
+                getServletContext().getRequestDispatcher("/adminLogin.jsp").forward(request, response);
+                return;
+            }
 
-        int row =  a.addCatSmall(catethai, parentid, value);
-        if (row == 1) {
-            msg = "Congratulations, GoToTheSell!";
-            request.setAttribute("msg", msg);
-            complete = true;
-
-        } else {
-            msg = "Database is not updated, please contact administrator.";
-            request.setAttribute("msg", msg);
-            complete = false;
-        }
-
-        if (complete) {
-            request.setAttribute("lastid", a.lastid());
             getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/AdminHome.jsp").forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

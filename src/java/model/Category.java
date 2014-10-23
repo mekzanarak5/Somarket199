@@ -240,7 +240,7 @@ public class Category {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateID) AS LastMemberID FROM category where ParentCateID=?");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateID) AS LastMemberID FROM category where cateID=?");
             ps1.setString(1, ParentCateID);
             row = ps1.executeUpdate();
             ResultSet rs = ps1.executeQuery();
