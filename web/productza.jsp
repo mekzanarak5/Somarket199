@@ -69,10 +69,7 @@
                 position: relative;
             }
         </style>
-        <%
-            Accounts user = (Accounts) session.getAttribute("user");
-            Product p = (Product) request.getAttribute("showDetail");
-        %>
+
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -95,114 +92,118 @@
                         </ol>
                         </font>
                     </div> 
-                        <div class="col-xs-12" style="margin:auto;">
-                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
-                        <div class="col-md-5" style="margin-bottom: -40px">
-                            <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
-                                <div class='carousel-outer'>
-                                    <!-- Wrapper for slides -->
-                                    <div class='carousel-inner'>
-                                        <div class='item active'>
-                                            <img src='${pic1.pathFile}' alt='' height="260px" width="400"/>
-                                        </div>
-                                        <c:forEach items="${picsum}" var="a">
-                                            <div class='item'>
-                                                <img src='${a.pathFile}' alt='' height="260px" width="400"/>
+                    <div class="col-xs-12" style="margin:auto;">
+                        <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                            <div class="col-md-5" style="margin-bottom: -40px">
+                                <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+                                    <div class='carousel-outer'>
+                                        <!-- Wrapper for slides -->
+                                        <div class='carousel-inner'>
+                                            <div class='item active'>
+                                                <img src='${pic1.pathFile}' alt='' height="260px" width="400"/>
                                             </div>
-                                        </c:forEach>
-                                    </div>
-                                    <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-                                        <span class='glyphicon glyphicon-chevron-left'></span>
-                                    </a>
-                                    <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-                                        <span class='glyphicon glyphicon-chevron-right'></span>
-                                    </a>
-                                </div>
-                                <ol class='carousel-indicators mCustomScrollbar'>
-                                    <c:set value="0" var="no" />
-                                    <c:forEach items="${pic}" var="a">
-                                        <li data-target='#carousel-custom' data-slide-to='${no}'>
-                                            <img src='${a.pathFile}' alt='' width="150" height="100"/>
-                                        </li>
-                                        <c:set value="${no+1}" var="no" />
-                                    </c:forEach>
-                                </ol>
-                            </div>      
-                        </div>
-                        <div class="col-md-7">
-                            <h5>${showDetail.name}</h5><hr>
-                            <div class="col-md-7">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h5><div style="color: red">฿ ${showDetail.price}</div></h5>
-                                    </div>
-                                    <div class="panel-body">
-
-                                        <div class="col-md-12" style="margin: auto;float: none">
-                                            <c:choose><c:when test="${user.account_Id!=showName.account_Id || user==null}" >
-                                                    <font size="2">
-                                                    <div class="input-group input-group-sm" style="margin-bottom: 15px">
-                                                        <span class="input-group-addon">Quatity</span>
-                                                        <input type="number" class="form-control" placeholder="Quatity" value="1" required>
-                                                    </div>
-                                                    </font>
-                                                    <input type="hidden" name="url" />
-                                                    <input type="hidden" name="productId" value="${showDetail.productNO}" />
-                                                    <input type="hidden" name="acctid" value="${showName.account_Id}" />
-                                                    <input type="hidden" name="name" value="${showDetail.name}" />
-                                                    <input type="hidden" name="des" value="${showDetail.description}" />
-                                                    <button type="submit" class="btn btn-primary btn-sm btn-block" style="background-color: " >Add To Cart <span class="glyphicon glyphicon-shopping-cart"></button>
-                                                </c:when></c:choose>
-                                            </div>
-                                        <c:choose>
-                                            <c:when test="${user.account_Id!=showName.account_Id || user==null}" >
-                                                <div align="center">
-                                                    <%
-                                                        if (Wishlist.findCountWish(user.getAccount_Id(), p.getProductNO()) == 0){
-                                                    %>
-                                                    <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
-                                                    </a>
-                                                    <%}else{%>
-                                                    <a href="DeleteWishlistProductza?proid=${showDetail.productNO}&acctid=${user.account_Id}&acct=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">Delete Wishlist <span class="fui-cross"></button>
-                                                    </a>
-                                                    <%}%>
-                                                    <a href="AdminGetProId?proid=${showDetail.productNO}"><button type="button" class="btn btn-xs btn-danger" style="margin-top: 15px">Report</button>
-                                                    </a>
+                                            <c:forEach items="${picsum}" var="a">
+                                                <div class='item'>
+                                                    <img src='${a.pathFile}' alt='' height="260px" width="400"/>
                                                 </div>
-                                            </c:when>
-                                        </c:choose>
-                                        <div class="fb-share-button" data-href="<%=request.getRequestURI()%>"></div> 
+                                            </c:forEach>
+                                        </div>
+                                        <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+                                            <span class='glyphicon glyphicon-chevron-left'></span>
+                                        </a>
+                                        <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+                                            <span class='glyphicon glyphicon-chevron-right'></span>
+                                        </a>
                                     </div>
-                                </div>
-                                <br />
+                                    <ol class='carousel-indicators mCustomScrollbar'>
+                                        <c:set value="0" var="no" />
+                                        <c:forEach items="${pic}" var="a">
+                                            <li data-target='#carousel-custom' data-slide-to='${no}'>
+                                                <img src='${a.pathFile}' alt='' width="150" height="100"/>
+                                            </li>
+                                            <c:set value="${no+1}" var="no" />
+                                        </c:forEach>
+                                    </ol>
+                                </div>      
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-7">
+                                <h5>${showDetail.name}</h5><hr>
+                                <div class="col-md-7">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h5><div style="color: red">฿ ${showDetail.price}</div></h5>
+                                        </div>
+                                        <div class="panel-body">
+
+                                            <div class="col-md-12" style="margin: auto;float: none">
+                                                <c:choose><c:when test="${user.account_Id!=showName.account_Id || user==null}" >
+                                                        <font size="2">
+                                                        <div class="input-group input-group-sm" style="margin-bottom: 15px">
+                                                            <span class="input-group-addon">Quatity</span>
+                                                            <input type="number" class="form-control" placeholder="Quatity" value="1" required>
+                                                        </div>
+                                                        </font>
+                                                        <input type="hidden" name="url" />
+                                                        <input type="hidden" name="productId" value="${showDetail.productNO}" />
+                                                        <input type="hidden" name="acctid" value="${showName.account_Id}" />
+                                                        <input type="hidden" name="name" value="${showDetail.name}" />
+                                                        <input type="hidden" name="des" value="${showDetail.description}" />
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-block" style="background-color: " >Add To Cart <span class="glyphicon glyphicon-shopping-cart"></button>
+                                                    </c:when></c:choose>
+                                                </div>
+                                            <c:choose>
+                                                <c:when test="${user.account_Id!=showName.account_Id || user==null}" >
+                                                    <div align="center">
+                                                        <%
+                                                            Accounts user = (Accounts) session.getAttribute("user");
+                                                             Product p = (Product) request.getAttribute("showDetail");
+                                                             if(user!=null){
+                                                            if (Wishlist.findCountWish(user.getAccount_Id(), p.getProductNO()) == 0) {
+                                                        %>
+                                                        <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
+                                                        </a>
+                                                        <%} else {%>
+                                                        <a href="DeleteWishlistProductza?proid=${showDetail.productNO}&acctid=${user.account_Id}&acct=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">Delete Wishlist <span class="fui-cross"></button>
+                                                        </a>
+                                                        <%}%>
+                                                        <%}%>
+                                                        <a href="AdminGetProId?proid=${showDetail.productNO}"><button type="button" class="btn btn-xs btn-danger" style="margin-top: 15px">Report</button>
+                                                        </a>
+                                                    </div>
+                                                </c:when>
+                                            </c:choose>
+                                            <div class="fb-share-button" data-href="<%=request.getRequestURI()%>"></div> 
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Seller Information
+                                        </div>
+                                        <div class="panel-body">
+                                            <a href="ShowAccount?acctid=${showName.account_Id}" >${showName.username} ( 999<span class="glyphicon glyphicon-star"></span> )</a>
+                                            <font size="2">
+                                            <br>Phone No. ${showName.phone}
+                                            <a href="GetReceiverServlet?acctid=${showName.account_Id}" class="list-group-item">Send Private Message</a>
+                                            </font>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="col-md-9" style="margin-top: 30px">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        Seller Information
+                                        <h3 class="panel-title">Description</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <a href="ShowAccount?acctid=${showName.account_Id}" >${showName.username} ( 999<span class="glyphicon glyphicon-star"></span> )</a>
-                                        <font size="2">
-                                        <br>Phone No. ${showName.phone}
-                                        <a href="GetReceiverServlet?acctid=${showName.account_Id}" class="list-group-item">Send Private Message</a>
-                                        </font>
+                                        ${showDetail.description}
                                     </div>
                                 </div>
-                            </div> 
-                        </div>
-                        <div class="col-md-9" style="margin-top: 30px">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Description</h3>
-                                </div>
-                                <div class="panel-body">
-                                    ${showDetail.description}
-                                </div>
                             </div>
-                        </div>
-                    </div>                              
-</div>
+                        </div>                              
+                    </div>
                 </form>
             </div>
         </div>

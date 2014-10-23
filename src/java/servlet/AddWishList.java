@@ -34,6 +34,7 @@ public class AddWishList extends HttpServlet {
             throws ServletException, IOException {
         HttpSession s = request.getSession(false);
         Accounts a = (Accounts) s.getAttribute("user");
+
         if (a == null) {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         } else {

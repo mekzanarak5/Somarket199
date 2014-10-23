@@ -31,7 +31,7 @@
         <jsp:include page="cssup.jsp"/>
         <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
@@ -49,7 +49,7 @@
                     </ol>
                     </font>
                 </div>
-                
+
                 <div class="col-xs-11" style="margin:auto;">
                     <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
@@ -112,17 +112,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-3">Brand</label>
-                                        <div class="col-sm-3">
-                                            <select value="Yes" class="form-control" name="brand" >
-                                                <option value="">Acer</option>
-                                                <option value="">Apple</option>
-                                                <option value="">Asus</option>
-                                                <option value="">BenQ</option>
-                                                <option value="">Compaq</option>
-                                                <option value="">Dell</option>
-                                                <option value="">Fujitsu</option>
-                                                <option value="">Gateway</option>
-                                                <option value="">HP</option>
+                                        <div class="col-md-3">
+                                            <select id="brand" class="form-control" name="brand" >
+                                                <option value="">--</option>
+                                                <option value="1" class="11 12">Acer</option>
+                                                <option value="1" class="11">Apple</option>
+                                                <option value="1" class="11">Asus</option>
+                                                <option value="1" class="11">BenQ</option>
+                                                <option value="1" class="1">Compaq</option>
+                                                <option value="1" class="1">Dell</option>
+                                                <option value="1" class="1">Fujitsu</option>
+                                                <option value="1" class="1">Gateway</option>
+                                                <option value="1" class="1">HP</option>
                                             </select>
                                         </div>
                                     </div>
@@ -167,6 +168,7 @@
         <script>
             $(function() {
                 $("#series").chainedTo("#mark");
+                $("#brand").chainedTo("#series");
             });
         </script>
 

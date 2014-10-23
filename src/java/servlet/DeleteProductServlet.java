@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Accounts;
 import model.Product;
+import model.ProductPic;
 import model.order;
 
 /**
@@ -39,6 +40,7 @@ public class DeleteProductServlet extends HttpServlet {
         if(order.checkProductOrder(Integer.parseInt(id))){
         Product c = new Product();
         c.deleteProduct(id);
+        ProductPic.deletePicPro(id);
         request.setAttribute("product", c);
         }else{
             String msg = "Product have orders can not remove";
