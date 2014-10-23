@@ -64,7 +64,7 @@
                                 <c:forEach items="${oldorders}" var="a">
                                     <tr>
                                         <td>${no}</td>
-                                        <td><a href="DetailOrder?orderid=${a.orderId}"></a>${a.orderId}</td>
+                                        <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
                                         <td><a href="#"></a>${a.time}</td>
                                         <td>${a.total}</td>
                                         <td>${a.status}</td>

@@ -152,6 +152,7 @@
                             </c:choose>
                         </c:when>
                         <c:otherwise>
+                            <c:choose>
                             <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
                                 waiting for payment
                             </c:when><c:otherwise>
@@ -195,6 +196,7 @@
                                         </div>
                                     </div>
                             </c:otherwise>
+                            </c:choose>
                         </c:otherwise>
                     </c:choose>
                 </div>
