@@ -122,17 +122,16 @@
                                             <td>Seller</td>
                                             <td>Order Date</td>
                                             <td>Total Price</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <td>${order.orderId}</td>
                                             <td>${n.username}</td>
                                             <td>${order.time}</td>
                                             <td>${order.total}</td>
+                                            <td><a href="DetailOrder?orderid=${order.orderId}" target="_blank"><input type="button" class="btn btn-warning" value="Detail" name="detail" /></a></td>
                                         </tr>
                                     </table>
-                                </div>
-                                <div style="margin-left:300px">
-                                    <a href="DetailOrder?orderid=${order.orderId}"><input type="button" class="btn btn-warning" value="Detail" name="detail" /></a>
                                 </div>
                                 </form>
                             </c:forEach>
