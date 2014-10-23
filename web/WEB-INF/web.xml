@@ -276,6 +276,10 @@
         <servlet-name>SellerOrder</servlet-name>
         <servlet-class>servlet.SellerOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteWishlistProductza</servlet-name>
+        <servlet-class>servlet.DeleteWishlistProductza</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -551,6 +555,10 @@
     <servlet-mapping>
         <servlet-name>SellerOrder</servlet-name>
         <url-pattern>/SellerOrder</url-pattern>
+    </servlet-mapping>  
+    <servlet-mapping> 
+        <servlet-name>DeleteWishlistProductza</servlet-name>
+        <url-pattern>/DeleteWishlistProductza</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
