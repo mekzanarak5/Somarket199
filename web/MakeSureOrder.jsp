@@ -128,7 +128,7 @@
                                             <td>${order.orderId}</td>
                                             <td>${n.username}</td>
                                             <td>${order.time}</td>
-                                            <td>${order.total}</td>
+                                            <td>${order.total}0</td>
                                             <td><a href="DetailOrder?orderid=${order.orderId}" target="_blank"><input type="button" class="btn btn-warning" value="Detail" name="detail" /></a></td>
                                         </tr>
                                     </table>
