@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div align="center" style="margin-bottom: 20px">
-                                        <a href="Transfer?id=${id}"><input type="button" class="btn btn-warning" value="Order Payment"></a> 
+                                        <a href="Transfer?id=${order.orderId}"><input type="button" class="btn btn-warning" value="Order Payment"></a> 
                                     </div>
                                 </c:when>
                                 <c:otherwise>
