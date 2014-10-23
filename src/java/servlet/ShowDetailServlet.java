@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Accounts;
 import model.Product;
 import model.ProductPic;
@@ -35,6 +36,9 @@ public class ShowDetailServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession s = request.getSession(false);
+        Accounts a1 = (Accounts) s.getAttribute("user");
+                s.setAttribute("user", a1);
         int id = Integer.parseInt(request.getParameter("productId"));
         int acctid = Integer.parseInt(request.getParameter("acctid"));
         List<Wishlist> wl = Wishlist.showWishlist(acctid);
@@ -52,7 +56,7 @@ public class ShowDetailServlet extends HttpServlet {
                testo.add(test);
             }
         }    
-         System.out.println(testo);
+         System.out.println(p);
         request.setAttribute("pic", pp);
         request.setAttribute("picsum", testo);
         request.setAttribute("pic1", p1);

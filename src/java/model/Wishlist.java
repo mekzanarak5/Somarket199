@@ -140,6 +140,24 @@ con.close();
         }
         return pa;
     }
+    public static int findCountWish(int str,int id) {
+        String sqlCmd = "SELECT count(productId) as total FROM wishlist WHERE acct_id = ? and productId = ? GROUP BY productId";
+        Connection con = ConnectionAgent.getConnection();
+        Product p = null;
+        List<Message> cs = new ArrayList<Message>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, str);
+            ps.setInt(2, id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
      public static int deleteWishlist(String wishid) {
         int row = 0;
         try {
@@ -147,6 +165,21 @@ con.close();
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement("DELETE FROM wishlist WHERE wish_Id=?");
             ps.setString(1, wishid);
+            row = ps.executeUpdate();
+con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Wishlist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+     public static int deleteWishlistPro(String wishid,String id) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM wishlist WHERE productId=? and acct_Id=?");
+            ps.setString(1, wishid);
+            ps.setString(2, id);
             row = ps.executeUpdate();
 con.close();
         } catch (SQLException ex) {

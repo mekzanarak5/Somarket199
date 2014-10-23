@@ -57,8 +57,8 @@
                 </div> 
                 <div class="col-xs-11" style="margin:auto;">
                     <div class="col-md-11" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
-                        <div class="row">
-                            <h3 class="col-md-12">Edit Post</h3>
+                        <div class="row" style="margin-bottom: 20px">
+                            <h5 class="col-md-12">Edit Post</h5>
 
                             <div class="form-horizontal" align="center">
                                 <form action="EditProduct" method="get">
@@ -141,7 +141,6 @@
                                     </div>
                                 </form>
                             </div>   
-
                             <form action="DeleteProductPic" method="get">
                                 <div class="col-md-12">
                                     <div class="col-md-10">

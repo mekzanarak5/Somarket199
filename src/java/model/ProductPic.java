@@ -246,4 +246,18 @@ public class ProductPic {
         }
         return row;
     }
+     public static int deletePicPro(String picid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM product_img WHERE Product_Id=?");
+            ps.setString(1, picid);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductPic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
 }

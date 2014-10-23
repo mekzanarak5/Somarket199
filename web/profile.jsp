@@ -36,9 +36,9 @@
                     <div class="col-md-4" align="center">
                         <form action="AddProfilePic" method="post"
                               enctype="multipart/form-data">
-                            <img src="${user.pic}" alt="..." width="250px" height="250px" class="img-thumbnail" >
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <span class="btn btn-default btn-file"><span class="fileinput-new">Edit Profile Pic</span><span class="fileinput-exists">Change</span><input type="file" name="file" onchange="this.form.submit();" accept="image/*" ></span>
+                            <img src="${user.pic}" alt="..." width="200px" height="200px" class="img-thumbnail" >
+                            <div class="fileinput fileinput-new" data-provides="fileinput" style="margin-top: 5px">
+                                <span class="btn btn-default btn-file"><span class="fileinput-new">Edit Profile Picture</span><span class="fileinput-exists">Change</span><input type="file" name="file" onchange="this.form.submit();" accept="image/*" ></span>
 
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
                             </div>

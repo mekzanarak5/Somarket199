@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlet;
 
 import java.io.IOException;
@@ -12,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Accounts;
 
 /**
@@ -31,10 +31,16 @@ public class GetReceiverServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int acctid = Integer.parseInt(request.getParameter("acctid"));
-        Accounts a = Accounts.findById2(acctid);
-        request.setAttribute("showRe", a);
-        getServletContext().getRequestDispatcher("/sendPM.jsp").forward(request, response);
+        HttpSession s = request.getSession(false);
+        Accounts a1 = (Accounts) s.getAttribute("user");
+        if (a1 == null) {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        } else {
+            int acctid = Integer.parseInt(request.getParameter("acctid"));
+            Accounts a = Accounts.findById2(acctid);
+            request.setAttribute("showRe", a);
+            getServletContext().getRequestDispatcher("/sendPM.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

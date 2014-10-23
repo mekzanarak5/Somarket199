@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
@@ -11,15 +12,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Accounts;
-import model.Product;
+import model.Wishlist;
 
 /**
  *
  * @author Admin
  */
-public class AdminGetProId extends HttpServlet {
+public class DeleteWishlistProductza extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,16 +31,12 @@ public class AdminGetProId extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession s = request.getSession(false);
-        Accounts a = (Accounts) s.getAttribute("user");
-        if (a == null) {
-            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-        } else {
-            int proid = Integer.parseInt(request.getParameter("proid"));
-            Product p = Product.showDetail(proid);
-            request.setAttribute("pro", p);
-            getServletContext().getRequestDispatcher("/Report.jsp").forward(request, response);
-        }
+        String id = request.getParameter("proid");
+        String acctid = request.getParameter("acctid");
+        String acct = request.getParameter("acct");
+            Wishlist.deleteWishlistPro(id,acctid);
+        request.setAttribute("wish", id);
+        getServletContext().getRequestDispatcher("/ShowDetailServlet?productId="+id+"&acctid="+acct).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

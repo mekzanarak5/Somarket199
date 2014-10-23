@@ -35,38 +35,44 @@
                     </ol>
                     </font>
                 </div>
-                <form action="Login" method="get">
-                    <div class="col-xs-8" style="margin:auto;">
-                        <div class="col-md-8" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 400px;background: #FFFFFF">
-                            <div class="row">
-                                <h3 class="col-md-3"  >Login</h3>
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" name="username"  placeholder="username" class="form-control" />
-                                    </div>          
-                                </div>
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <input type="password" name="password" placeholder="password" class="form-control" />
-                                    </div>          
-                                </div>
-                                <div class="col-xs-12">
-                                    <div class="col-xs-3">
-                                        <label class="checkbox" for="checkbox1">
-                                            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-                                            Remember
-                                        </label>
-                                    </div> <!-- /checkboxes col-xs-3 -->
-                                </div>
-                                <div class="col-xs-12">
-                                    <input type="submit" class="btn btn-block btn-lg btn-info" value="Login">
-                                    <a class="login-link" href="#">Lost your password?</a>
-                                    <a href="Register.jsp" class="btn btn-block btn-lg btn-block">Register</a>
+                <div class="col-md-12">
+                    <form action="Login" method="get">
+                            <div class="col-md-6" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF;margin-right: 10px">
+                                <div class="row">
+                                    <h5 class="col-md-3"  >Login</h5>
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" name="username"  placeholder="username" class="form-control" />
+                                        </div>          
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <input type="password" name="password" placeholder="password" class="form-control" />
+                                        </div>          
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-3">
+                                            <label class="checkbox" for="checkbox1">
+                                                <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+                                                Remember
+                                            </label>
+                                        </div> <!-- /checkboxes col-xs-3 -->
+                                    </div>
+                                    <div class="col-xs-12" style="margin-bottom: 10px">
+                                        <input type="submit" class="btn btn-block btn-lg btn-info" value="Login">
+                                        <a class="login-link" href="#">Lost your password?</a>
+                                    </div>
                                 </div>
                             </div>
+                    </form>
+                    <div class="col-md-5" align="center" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                        <div style="margin-top: 87px;margin-bottom: 87px">
+                            <h6>New to SoMarket?</h6><br>
+                            Get started now. It's fast and easy!<br>
+                        <a href="Register.jsp" class="btn btn-lg btn-default">Register</a>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         <script src="js/jquery-1.8.3.min.js"></script>
@@ -81,6 +87,6 @@
         <script src="js/jquery.placeholder.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
-<jsp:include page="footer.jsp"/>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

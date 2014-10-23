@@ -22,13 +22,13 @@
 
         <jsp:include page="cssup.jsp"/>
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
             <div class="col-md-2">
-                <jsp:include page="logo_1.jsp"/>
+                <jsp:include page="logoOther.jsp"/>
             </div>
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
@@ -50,26 +50,26 @@
                                     <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-primary">Now Sell</button></a>
                                 </div>
                                 <hr>
-                                    <table class="table table-striped" style="text-align: center">
-                                        <tr bgColor="#ffffff">
-                                            <td>Expiration Date</td>
-                                            <td>Pic</td>
-                                            <td >Name</td>
-                                            <td>Price</td>
+                                <table class="table table-striped" style="text-align: center">
+                                    <tr bgColor="#ffffff">
+                                        <td>Date Created</td>
+                                        <td>Pic</td>
+                                        <td >Name</td>
+                                        <td>Price</td>
+                                    </tr>
+                                    <c:forEach items="${sell}" var="a">
+                                        <tr>
+                                            <td>${a.createOn}</td>
+                                            <td><a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
+                                            <td style="max-width: 200px">
+                                                <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">
+                                                    ${a.name}
+                                                </a>
+                                            </td>
+                                            <td>${a.price}</td>
                                         </tr>
-                                        <c:forEach items="${sell}" var="a">
-                                            <tr>
-                                                <td>${a.createOn}</td>
-                                                <td><a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 100px; height: 100px;" class="img-rounded"/></a></td>
-                                                <td style="max-width: 200px">
-                                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">
-                                                        ${a.name}
-                                                    </a>
-                                                </td>
-                                                <td>${a.price}</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </table>
+                                    </c:forEach>
+                                </table>
                             </div>
                         </div>
                     </div>

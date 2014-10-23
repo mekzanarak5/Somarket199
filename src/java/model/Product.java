@@ -35,11 +35,13 @@ public class Product implements Comparable {
     private int Product_Id;
     private String pathFile;
     private String CreateOn;
+    private int cateID;
+    private String cateName;
 
     public Product() {
     }
 
-    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, int brandID, int pNO, int Product_Id, String pathFile, String CreateOn) {
+    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, int brandID, int pNO, int Product_Id, String pathFile, String CreateOn, int cateID, String cateName) {
         this.productNO = productNO;
         this.acctID = acctID;
         this.category_ID = category_ID;
@@ -54,8 +56,11 @@ public class Product implements Comparable {
         this.pNO = pNO;
         this.Product_Id = Product_Id;
         this.pathFile = pathFile;
+        this.CreateOn = CreateOn;
+        this.cateID = cateID;
+        this.cateName = cateName;
     }
-
+    
     public int getProductNO() {
         return productNO;
     }
@@ -168,6 +173,27 @@ public class Product implements Comparable {
         this.pathFile = pathFile;
     }
 
+    public int getCateID() {
+        return cateID;
+    }
+
+    public void setCateID(int cateID) {
+        this.cateID = cateID;
+    }
+
+    public String getCateName() {
+        return cateName;
+    }
+
+    public void setCateName(String cateName) {
+        this.cateName = cateName;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "productNO=" + productNO + ", acctID=" + acctID + ", category_ID=" + category_ID + ", name=" + name + ", price=" + price + ", offerStart=" + offerStart + ", offerEnd=" + offerEnd + ", createOn=" + createOn + ", description=" + description + ", available=" + available + ", brandID=" + brandID + ", pNO=" + pNO + ", Product_Id=" + Product_Id + ", pathFile=" + pathFile + ", CreateOn=" + CreateOn + ", cateID=" + cateID + ", cateName=" + cateName + '}';
+    }
+ 
     public static int addProducts(String AcctID, int Category_ID, String Name, Double Price,
             String CreateOn, String Description, String Available, String Brand) {
         int row = 0;
@@ -319,7 +345,7 @@ public class Product implements Comparable {
     }
 
     public static Product showDetail(int id) {
-        String sqlCmd = "SELECT * FROM product WHERE productNO = ?";
+        String sqlCmd = "SELECT * FROM product p,category c WHERE p.Category_ID = c.cateID and p.productNO = ?";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         try {
@@ -328,7 +354,7 @@ public class Product implements Comparable {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 p = new Product();
-                rToO(p, rs);
+                rToO1(p, rs);
                 return p;
             }
             con.close();
@@ -663,12 +689,30 @@ public class Product implements Comparable {
             p.setpNO(rs.getInt("pNO"));
             p.setProduct_Id(rs.getInt("Product_Id"));
             p.setPathFile(rs.getString("pathFile"));
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private static void rToO1(Product p, ResultSet rs) {
+        try {
+            p.setProductNO(rs.getInt("productNO"));
+            p.setAcctID(rs.getInt("AcctID"));
+            p.setCategory_ID(rs.getInt("Category_ID"));
+            p.setName(rs.getString("Name"));
+            p.setPrice(rs.getDouble("Price"));
+            p.setOfferStart(rs.getDate("OfferStart"));
+            p.setOfferEnd(rs.getDate("OfferEnd"));
+            p.setCreateOn(rs.getDate("CreateOn"));
+            p.setDescription(rs.getString("Description"));
+            p.setAvailable(rs.getString("Available"));
+            p.setBrandID(rs.getInt("BrandID"));
+            p.setCateID(rs.getInt("cateID"));
+            p.setCateName(rs.getString("cateName"));
 
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     private static void rToO2(Product p, ResultSet rs) {
         try {
             p.setProductNO(rs.getInt("productNO"));

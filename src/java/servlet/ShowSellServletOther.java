@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Accounts;
 import model.Product;
 
 /**
@@ -36,6 +37,8 @@ public class ShowSellServletOther extends HttpServlet {
         List<Product> p = Product.showSell(id);
         System.out.println(p);
         request.setAttribute("sell", p);
+        Accounts a = Accounts.findById2(id);
+        request.setAttribute("showName", a);
         getServletContext().getRequestDispatcher("/selllist_1.jsp").forward(request, response);
     }
 

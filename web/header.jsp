@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form class="navbar-form navbar-right" action="SearchProductServlet" role="search">
-    <div class="row">
+<form class="navbar-form navbar-right" action="SearchProductServlet" role="search" >
+    <div class="row" >
         <div class="col-md-2">
             <select name="herolist" class="select-block">
                 <option value="" selected>Choose Category</option>

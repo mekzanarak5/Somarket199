@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 <center>
-                    <div class="col-md-12" style="margin:auto;border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF" >
+                    <div class="col-md-12" style="margin-left: 15px;border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF;" >
                         <div class="col-md-12" style="margin-left: 10px;border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 1010px;background: #FFFFFF">
                             <div class="row">
                                 <h3 class="col-md-12">Search</h3>
