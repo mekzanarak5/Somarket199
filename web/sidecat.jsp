@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     Map<Category, List<Category>> c = (Map<Category, List<Category>>) session.getAttribute("cate");
-    Product p = (Product) request.getAttribute("products");
 %>
 <a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
     

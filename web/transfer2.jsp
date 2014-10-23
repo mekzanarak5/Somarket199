@@ -77,7 +77,7 @@
                                         <div class="form-group">
                                             <label for="inputPassword3" class="col-sm-3 control-label">Transfer Time</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" placeholder="Tranfer Time" name="paytime" data-mask="99:99" required>
+                                                <input type="time" class="form-control" placeholder="Tranfer Time" name="paytime" required>
                                             </div>
                                         </div>
                                         <div class="form-group">

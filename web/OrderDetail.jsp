@@ -70,9 +70,9 @@
                                         <td>
                                             <a href="#">
                                                 ${line.product.name}</a></td>
-                                        <td>${line.product.price}</td>
+                                        <td>${line.product.price}0</td>
                                         <td>${line.unit}</td>
-                                        <td>${line.total}</td>
+                                        <td>${line.total}0</td>
                                     </tr>
                                 </c:forEach>
                             </table>
