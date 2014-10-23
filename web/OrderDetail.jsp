@@ -66,7 +66,7 @@
                                     <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
                                     <tr>
                                         <td><a href="#">${n.username}</a></td>
-                                        <td><a href=""><img src="img/ip1.jpeg" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
+                                        <td><a href="#"><img src="img/ip1.jpeg" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
                                         <td>
                                             <a href="#">
                                                 ${line.product.name}</a></td>
@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div align="center" style="margin-bottom: 20px">
-                                        <a href="Transfer?id=${id}"><input type="button" class="btn btn-warning" value="Order Payment"></a> 
+                                        <a href="Transfer?id=${order.orderId}"><input type="button" class="btn btn-warning" value="Order Payment"></a> 
                                     </div>
                                 </c:when>
                                 <c:otherwise>
@@ -188,11 +188,10 @@
                                     <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                         <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="password">
+                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="ems">
                                         </div>
                                         <div align="center" style="margin-bottom: 20px">
-                                            <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-default">Reject</a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-default">Reset</a>
+                                            <a href="OrderFinish?orderid=${order.orderId}" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="OrderFinish?orderid=${order.orderId}&ems=0" class="btn btn-default">Reject</a>
                                         </div>
                                     </div>
                             </c:otherwise>

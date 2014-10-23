@@ -25,28 +25,36 @@ public class order {
     private double total;
     private int address;
     private Timestamp time;
+    private int bankacct;
     private String payment;
     private String slip;
     private String status;
     private String ems;
     private String seller;
-    private int billing;
 
     public order() {
     }
 
-    public order(int orderId, String username, double total, int address, Timestamp time, String payment, String slip, String status, String ems, String seller, int billing) {
+    public order(int orderId, String username, double total, int address, Timestamp time, int bankacct, String payment, String slip, String status, String ems, String seller) {
         this.orderId = orderId;
         this.username = username;
         this.total = total;
         this.address = address;
         this.time = time;
+        this.bankacct = bankacct;
         this.payment = payment;
         this.slip = slip;
         this.status = status;
         this.ems = ems;
         this.seller = seller;
-        this.billing = billing;
+    }
+
+    public int getBankacct() {
+        return bankacct;
+    }
+
+    public void setBankacct(int bankacct) {
+        this.bankacct = bankacct;
     }
 
     public String getSeller() {
@@ -55,14 +63,6 @@ public class order {
 
     public void setSeller(String seller) {
         this.seller = seller;
-    }
-
-    public int getBilling() {
-        return billing;
-    }
-
-    public void setBilling(int billing) {
-        this.billing = billing;
     }
 
     public Timestamp getTime() {
@@ -139,7 +139,7 @@ public class order {
 
     @Override
     public String toString() {
-        return "order{" + "orderId=" + orderId + ", username=" + username + ", total=" + total + ", address=" + address + ", time=" + time + ", slip=" + slip + ", status=" + status + ", ems=" + ems + '}';
+        return "order{" + "orderId=" + orderId + ", username=" + username + ", total=" + total + ", address=" + address + ", time=" + time + ", bankacct=" + bankacct + ", payment=" + payment + ", slip=" + slip + ", status=" + status + ", ems=" + ems + ", seller=" + seller + '}';
     }
 
     public int add(order o) {
@@ -320,7 +320,7 @@ public class order {
             o.setTime(rs.getTimestamp(5));
             o.setStatus(rs.getString(6));
             o.setAddress(rs.getInt(7));
-            o.setBilling(rs.getInt(8));
+            o.setBankacct(rs.getInt(8));
             o.setPayment(rs.getString(9));
             o.setSlip(rs.getString(10));
             o.setEms(rs.getString(11));
