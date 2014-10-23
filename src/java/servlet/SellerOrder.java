@@ -34,7 +34,7 @@ public class SellerOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Accounts user = (Accounts) request.getSession().getAttribute("user");
-        List<order> orders = order.search("seller", user.getUsername());
+        List<order> orders = order.search(user.getUsername(), "seller");
         request.setAttribute("oldorders", orders);
         getServletContext().getRequestDispatcher("/Ongoing.jsp").forward(request, response);
     }
