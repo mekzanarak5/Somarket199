@@ -142,7 +142,7 @@
                                     <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                         <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="password" disabled>
+                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="ems" value="${order.ems}" disabled>
                                         </div>
                                         <!--<div align="center" style="margin-bottom: 20px">
                                             <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
@@ -186,15 +186,19 @@
                                     <div class="col-md-3">
                                         <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
                                     </div>
+                                        <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
                                     <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                         <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="ems">
-                                        </div>
+                                            <c:choose><c:when test="${order.ems==null}">
+                                            <input type="text" class="form-control" placeholder="Enter EMS" name="ems" >
                                         <div align="center" style="margin-bottom: 20px">
-                                            <a href="OrderFinish?orderid=${order.orderId}" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="OrderFinish?orderid=${order.orderId}&ems=0" class="btn btn-default">Reject</a>
+                                            <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Reject</button>
+                                        </div></c:when>
+                                            <c:otherwise><input type="text" class="form-control" name="ems" value="${order.ems}" disabled></c:otherwise>
+                                            </c:choose>
                                         </div>
-                                    </div>
+                                    </div></form>
                             </c:otherwise>
                             </c:choose>
                         </c:otherwise>

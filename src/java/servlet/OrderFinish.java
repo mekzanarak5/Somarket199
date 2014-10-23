@@ -42,12 +42,12 @@ public class OrderFinish extends HttpServlet {
         Cart cart = Cart.getDetailList(orderid);
         Accounts seller = Accounts.getUser(o.getSeller());
         Bank bpay = Bank.findBank(o.getBankacct());
-        if(Integer.parseInt(ems) == 0){
+        if(ems == null){
             order.update("status", "rejected");
             List<Bank> b = Bank.showBank(seller.getAccount_Id());
             request.setAttribute("bank", b);
         }else{
-            order.addEms(orderid, "shipping", ems);
+            o.addEms(orderid, "shipping", ems);
             request.setAttribute("add", Address.findAddress(o.getAddress()));
             request.setAttribute("b2", bpay);
             //System.out.println("mother fucker");
