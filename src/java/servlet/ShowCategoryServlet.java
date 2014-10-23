@@ -56,6 +56,7 @@ public class ShowCategoryServlet extends HttpServlet {
         s3.setAttribute("pro2", a1);
         List<Product> a2 = Product.showRandomProductCam();
         s4.setAttribute("pro3", a2);
+        
         System.out.println();
         response.sendRedirect("home.jsp");
 //        HttpSession s1 = request.getSession();

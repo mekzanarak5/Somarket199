@@ -115,15 +115,37 @@
                                         <div class="col-md-3">
                                             <select id="brand" class="form-control" name="brand" >
                                                 <option value="">--</option>
-                                                <option value="1" class="11 12">Acer</option>
-                                                <option value="1" class="11">Apple</option>
-                                                <option value="1" class="11">Asus</option>
-                                                <option value="1" class="11">BenQ</option>
-                                                <option value="1" class="1">Compaq</option>
-                                                <option value="1" class="1">Dell</option>
-                                                <option value="1" class="1">Fujitsu</option>
-                                                <option value="1" class="1">Gateway</option>
-                                                <option value="1" class="1">HP</option>
+                                                <option value="ACER" class="11 12 14 15 16 21 22 23">ACER</option>
+                                                <option value="APPLE" class="11 12 13 14 15 16 21 22 23">APPLE</option>
+                                                <option value="ASUS" class="11 12 14 15 16 21 22 23">ASUS</option>
+                                                <option value="BENQ" class="11 12 13 14 15 16 21 31 32 33 35 36">BENQ</option>
+                                                <option value="COMPAQ" class="11 12 13 14 15 16 22">COMPAQ</option>
+                                                <option value="CANNON" class="31 32 33 34 35 36 37">CANNON</option>
+                                                <option value="NIKON" class="31 32 33 34 35 36 37">NIKON</option>
+                                                <option value="DELL" class="11 12 13 14 15 16 22">DELL</option>
+                                                <option value="FUJITSU" class="11 12 13 14 15 16 31 32 33 34 35 36 37">FUJITSU</option>
+                                                <option value="GATEWAY" class="12 13 31 32 33 34 35 36 37">GATEWAY</option>
+                                                <option value="GIGABITE" class="14 15">GIGABITE</option>
+                                                <option value="HP" class="11 12 13 14 15 16 22">HP</option>
+                                                <option value="KOHJINSHA" class="12 14 15">KOHJINSHA</option>
+                                                <option value="LENOVO" class="11 12 13 14 15 16 17 21 22 23">LENOVO</option>
+                                                <option value="MSI" class="11 12 13 14 15 16 17 22">MSI</option>
+                                                <option value="SUMSUNG" class="11 12 13 14 15 16 17 21 22 23 31 32 33 34 35 36 37">SUMSUNG</option>
+                                                <option value="SONY" class="11 12 13 14 15 16 21 22 23 31 32 33 34 35 36 37">SONY</option>
+                                                <option value="SVOA" class="12">SVOA</option>
+                                                <option value="TOSHIBA" class="11 12 13 14 15 16 21 22 23 31 35">TOSHIBA</option>
+                                                <option value="STEELSERIES" class="14">STEELSERIES</option>
+                                                <option value="ROCCAT" class="14">ROCCAT</option>
+                                                <option value="RAZER" class="14">RAZER</option>
+                                                <option value="TTESPORTS" class="14">TTESPORTS</option>
+                                                <option value="DUCKY" class="14">DUCKY</option>
+                                                <option value="CMSTORM" class="14">CMSTORM</option>
+                                                <option value="NEOLUTION ESPORT" class="14">NEOLUTION ESPORT</option>
+                                                <option value="ROSE" class="14">ROSE</option>
+                                                <option value="GOOGLE" class="21 22 23">GOOGLE</option>
+                                                <option value="i-MOBILE" class="21 22 23">i-MOBILE</option>
+                                                <option value="NEXUS" class="21 22 23">NEXUS</option>
+                                                <option value="XIAO MI" class="21 22 23">XIAO MI</option>
                                             </select>
                                         </div>
                                     </div>
