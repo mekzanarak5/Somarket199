@@ -62,7 +62,7 @@ public class Pay2 extends HttpServlet {
         order.addAddr(orderid, addr);
         //order.addPayment(orderid, );
 
-        getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("DetailOrder?orderid="+orderid).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
