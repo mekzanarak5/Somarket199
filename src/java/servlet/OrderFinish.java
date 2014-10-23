@@ -8,10 +8,15 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Accounts;
+import model.Address;
+import model.Bank;
+import model.Cart;
 import model.order;
 
 /**
@@ -31,11 +36,25 @@ public class OrderFinish extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(Integer.parseInt(request.getParameter("ems")) == 0){
+        String ems = request.getParameter("ems");
+        int orderid = Integer.parseInt(request.getParameter("orderid"));
+        order o = order.searchByID(orderid);
+        Cart cart = Cart.getDetailList(orderid);
+        Accounts seller = Accounts.getUser(o.getSeller());
+        Bank bpay = Bank.findBank(o.getBankacct());
+        if(Integer.parseInt(ems) == 0){
             order.update("status", "rejected");
-        }else
-            System.out.println("mother fucker");
-        
+            List<Bank> b = Bank.showBank(seller.getAccount_Id());
+            request.setAttribute("bank", b);
+        }else{
+            order.addEms(orderid, "shipping", ems);
+            request.setAttribute("add", Address.findAddress(o.getAddress()));
+            request.setAttribute("b2", bpay);
+            //System.out.println("mother fucker");
+        }
+        request.setAttribute("detail", cart);
+        request.setAttribute("order", o);
+        getServletContext().getRequestDispatcher("/OrderDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

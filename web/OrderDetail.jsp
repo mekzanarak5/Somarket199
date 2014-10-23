@@ -66,7 +66,7 @@
                                     <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
                                     <tr>
                                         <td><a href="#">${n.username}</a></td>
-                                        <td><a href=""><img src="img/ip1.jpeg" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
+                                        <td><a href="#"><img src="img/ip1.jpeg" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
                                         <td>
                                             <a href="#">
                                                 ${line.product.name}</a></td>

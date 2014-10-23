@@ -48,8 +48,8 @@
                         <div id="cbp-vm" class="cbp-vm-switcher">
                             <div class="btn-group btn-group-justified">
                                     <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Now Sell</button></a>
-                                    <a href="ongoing.html"><button type="button" class="btn btn-primary">Ongoing</button></a>
-                                    <a href="sold.html"><button type="button" class="btn btn-default">Sold List</button></a>
+                                    <a href="#"><button type="button" class="btn btn-primary">Ongoing</button></a>
+                                    <a href="#"><button type="button" class="btn btn-default">Sold List</button></a>
                             </div>
                             <hr>
                             <table class="table table-striped" style="text-align: center">
