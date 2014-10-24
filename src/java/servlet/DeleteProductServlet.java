@@ -37,15 +37,18 @@ public class DeleteProductServlet extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         String acctid = request.getParameter("acctid");
-//        if(order.checkProductOrder(Integer.parseInt(id))){
-        Product c = new Product();
-        c.deleteProduct(id);
-        ProductPic.deletePicPro(id);
-        request.setAttribute("product", c);
-//        }else{
-//            String msg = "Product have orders can not remove";
-//            request.setAttribute("msg", msg);
-//        }
+        String msg;
+        if(order.checkProductOrder(Integer.parseInt(id))){
+            msg = "Product have orders can not remove";
+            request.setAttribute("msg", msg);
+        }else{
+            Product c = new Product();
+            c.deleteProduct(id);
+            ProductPic.deletePicPro(id);
+            request.setAttribute("product", c);
+            msg = "Success";
+        }
+        request.setAttribute("msg", msg);
         
         getServletContext().getRequestDispatcher("/ShowSellServlet?id="+acctid).forward(request, response); 
     }
