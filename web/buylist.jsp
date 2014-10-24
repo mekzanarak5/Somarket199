@@ -62,7 +62,7 @@
                                         <td>${ord.orderId}</td>
                                         <td>${ord.seller}</td>
                                         <td>${ord.time}</td>
-                                        <td>${ord.total}</td>
+                                        <td>${ord.total}0</td>
                                         <td>${ord.status}</td>
                                         <td><a href="DetailOrder?orderid=${ord.orderId}"><button class="btn btn-default">More detail... </button></a></td>
                                     </tr>
