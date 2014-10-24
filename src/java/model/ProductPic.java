@@ -83,7 +83,7 @@ public class ProductPic {
             PreparedStatement ps2 = con.prepareStatement("SELECT MAX(productNO) AS LastMemberID FROM product");
             ResultSet rs1 = ps2.executeQuery();
             if (rs1.next()) {
-                newMemberID1 = rs1.getInt(1) + 1;
+                newMemberID1 = rs1.getInt(1);
             } else {
                 newMemberID1 = 0;
             }

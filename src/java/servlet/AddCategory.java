@@ -32,6 +32,8 @@ public class AddCategory extends HttpServlet {
             throws ServletException, IOException {
        String cateName = request.getParameter("cateName");
        String catethai = new String(cateName.getBytes("ISO8859_1"), "UTF-8");
+       String cateNameS = request.getParameter("cateNameS");
+       String cateSthai = new String(cateNameS.getBytes("ISO8859_1"), "UTF-8");
        String parentid = request.getParameter("parentid");
        String value = request.getParameter("value");
        String msg = "";
@@ -39,16 +41,7 @@ public class AddCategory extends HttpServlet {
        model.Category a = new model.Category();
 
         int row =  a.addCatBig(catethai, parentid, value);
-        if (row == 1) {
-            msg = "Congratulations, GoToTheSell!";
-            request.setAttribute("msg", msg);
-            complete = true;
-
-        } else {
-            msg = "Database is not updated, please contact administrator.";
-            request.setAttribute("msg", msg);
-            complete = false;
-        }
+        int row1 =  a.addCatSmallF(cateSthai, value);
 
         if (complete) {
             request.setAttribute("lastid", a.lastid());

@@ -154,11 +154,12 @@
                                             <c:choose>
                                                 <c:when test="${user.account_Id!=showName.account_Id || user==null}" >
                                                     <div align="center">
+                                                        
                                                         <%
                                                             Accounts user = (Accounts) session.getAttribute("user");
-                                                             Product p = (Product) request.getAttribute("showDetail");
-                                                             if(user!=null){
-                                                            if (Wishlist.findCountWish(user.getAccount_Id(), p.getProductNO()) == 0) {
+                                                            Product p = (Product) request.getAttribute("showDetail");
+                                                            if (user != null) {
+                                                                if (Wishlist.findCountWish(user.getAccount_Id(), p.getProductNO()) == 0) {
                                                         %>
                                                         <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
                                                         </a>
@@ -166,6 +167,9 @@
                                                         <a href="DeleteWishlistProductza?proid=${showDetail.productNO}&acctid=${user.account_Id}&acct=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">Delete Wishlist <span class="fui-cross"></button>
                                                         </a>
                                                         <%}%>
+                                                        <%}else{%>
+                                                        <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
+                                                        </a>
                                                         <%}%>
                                                         <a href="AdminGetProId?proid=${showDetail.productNO}"><button type="button" class="btn btn-xs btn-danger" style="margin-top: 15px">Report</button>
                                                         </a>

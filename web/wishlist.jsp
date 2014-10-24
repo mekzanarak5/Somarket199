@@ -50,7 +50,7 @@
                                     <td>Product Name</td>
                                     <td>Price</td>
                                     <td>Seller</td>
-                                    <td><button type="submit" class="btn btn-info" onclick="return confirm('Are you sure ?');"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
+                                    <td><button type="submit" class="btn btn-xs btn-info" onclick="return confirm('Are you sure ?');"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
                                     </tr>
                                     <c:forEach items="${wish}" var="a">
                                         <tr>

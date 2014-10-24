@@ -37,9 +37,7 @@ public class LoginAdmin extends HttpServlet {
         String msg = null;
         admin m1 = new admin();
         if (m1.login(username, password)) {
-                HttpSession s1 = request.getSession();
-                s1.setAttribute("username", username);
-                s1.setAttribute("user", m1.findById(username));
+                request.setAttribute("user", m1.findById(username));
                 request.setAttribute("username", username);
             } else {
                 msg = "Login Failed";
@@ -47,7 +45,6 @@ public class LoginAdmin extends HttpServlet {
                 getServletContext().getRequestDispatcher("/adminLogin.jsp").forward(request, response);
                 return;
             }
-
             getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
     }
 
