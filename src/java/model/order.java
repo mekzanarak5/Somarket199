@@ -76,6 +76,10 @@ public class order {
     public String getPayment() {
         return payment;
     }
+    
+    public String getPaymentHTML() {
+        return payment.replace("\n","<br>");
+    }
 
     public void setPayment(String payment) {
         this.payment = payment;
