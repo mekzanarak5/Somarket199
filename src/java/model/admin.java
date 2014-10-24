@@ -50,16 +50,16 @@ public class admin {
         return "admin{" + "admin_Name=" + admin_Name + ", admin_Pass=" + admin_Pass + '}';
     }
 
-    public static admin findById(String id) {
+    public static Accounts findById(String id) {
         String sqlCmd = "SELECT * FROM admin WHERE admin_Name = ?";
         Connection con = ConnectionAgent.getConnection();
-        admin a = null;
+        Accounts a = null;
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                a = new admin();
+                a = new Accounts();
                 rToO(a, rs);
             }
             con.close();
@@ -90,7 +90,7 @@ public class admin {
         }
     }
 
-    private static void rToO(admin a, ResultSet rs) {
+    private static void rToO(Accounts a, ResultSet rs) {
         try {
             a.setAdmin_Name(rs.getString("admin_Name"));
             a.setAdmin_Pass(rs.getString("admin_Pass"));

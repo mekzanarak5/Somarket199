@@ -89,22 +89,18 @@
                                             <div class="col-md-3">
                                                 <select id="mark" class="form-control">
                                                     <option value="">--</option>
-                                                    <c:forEach items="${cateID}" var="a">
-                                                        <option value="${a.cateID}">${a.cateName}</option>
+                                                    <c:forEach items="${cate}" var="entry">
+                                                        <option value="${entry.key.cateID}">${entry.key.cateName}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-md-3" >
                                                 <select id="series" class="form-control" name="cata">
                                                     <option value="">--</option>
-                                                    <c:forEach items="${childCateID1}" var="a">
-                                                        <option value="${a.cateID}" class="1">${a.cateName}</option>
-                                                    </c:forEach>
-                                                    <c:forEach items="${childCateID2}" var="a">
-                                                        <option value="${a.cateID}" class="2">${a.cateName}</option>
-                                                    </c:forEach>
-                                                    <c:forEach items="${childCateID3}" var="a">
-                                                        <option value="${a.cateID}" class="3">${a.cateName}</option>
+                                                    <c:forEach items="${cate}" var="entry">
+                                                        <c:forEach items="${entry.value}" var="sub_entry">
+                                                            <option value="${sub_entry.cateID}" class="${entry.key.cateID}">${sub_entry.cateName}</option>
+                                                        </c:forEach>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -148,10 +144,11 @@
                                                 <option value="XIAO MI" class="21 22 23">XIAO MI</option>
                                             </select>
                                         </div>
+                                        <input type="hidden" name="acctid" value="${user.account_Id}"/>
                                     </div>
                                     <div class="form-group col-md-12">            
                                         <input id="file-3" type="file" name="file" accept="image/*" multiple=true>
-                                        <input type="hidden" name="acctid" value="${user.account_Id}"/>
+                                        
                                     </div>
                                 </div>
                             </form>

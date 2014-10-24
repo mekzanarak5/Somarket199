@@ -55,7 +55,7 @@
                                         <td>Receiver</td>
                                         <td>Subject</td>
                                         <td>Time</td>
-                                        <td><button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure ?');"><span class="glyphicon glyphicon-trash"></span></button></td>
+                                        <td><button type="submit" class="btn btn-xs btn-primary" onclick="return confirm('Are you sure ?');"><span class="glyphicon glyphicon-trash"></span></button></td>
                                         </tr>
                                         <c:forEach items="${pm}" var="a">
                                             <tr>

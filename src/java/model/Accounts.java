@@ -28,6 +28,8 @@ public class Accounts {
     private String Phone;
     private String Created;
     private String Pic;
+    private String admin_Name;
+    private String admin_Pass;
 
     public Accounts() {
     }
@@ -116,6 +118,22 @@ public class Accounts {
         this.Pic = Pic;
     }
 
+    public String getAdmin_Name() {
+        return admin_Name;
+    }
+
+    public void setAdmin_Name(String admin_Name) {
+        this.admin_Name = admin_Name;
+    }
+
+    public String getAdmin_Pass() {
+        return admin_Pass;
+    }
+
+    public void setAdmin_Pass(String admin_Pass) {
+        this.admin_Pass = admin_Pass;
+    }
+    
     public static int addAccount(String Username, String Password, String Email, String FirstName, String LastName, String Phone) {
         int row = 0;
         int newMemberID = 0;

@@ -240,9 +240,8 @@ public class Category {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateID) AS LastMemberID FROM category where cateID=?");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateID) AS LastMemberID FROM category where ParentCateID=?");
             ps1.setString(1, ParentCateID);
-            row = ps1.executeUpdate();
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
@@ -254,6 +253,43 @@ public class Category {
             ps.setInt(1, newMemberID);
             ps.setString(2, cateName);
             ps.setString(3, ParentCateID);
+            ps.setString(4, Value);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+
+    public static int addCatSmallF(String cateName, String Value) {
+        int row = 0;
+        int newMemberID1 = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps2 = con.prepareStatement("SELECT MAX(cateID) AS LastMemberID FROM category where ParentCateID is null");
+            ResultSet rs1 = ps2.executeQuery();
+            if (rs1.next()) {
+                newMemberID1 = rs1.getInt(1);
+            } else {
+                newMemberID1 = 0;
+            }
+            int newMemberID = newMemberID1;
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(cateID) AS LastMemberID FROM category where cateID=?");
+            ps1.setInt(1, newMemberID1);
+            ResultSet rs = ps1.executeQuery();
+            if (rs.next()) {
+                newMemberID = rs.getInt(1) * 100;
+            } else {
+                newMemberID = 0;
+            }
+            
+            PreparedStatement ps = con.prepareStatement("INSERT INTO category VALUES (?,?,?,current_timestamp,?)");
+            ps.setInt(1, newMemberID);
+            ps.setString(2, cateName);
+            ps.setInt(3, newMemberID1);
+            ps.setString(4, Value);
             row = ps.executeUpdate();
             con.close();
         } catch (SQLException ex) {
