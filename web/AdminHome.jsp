@@ -12,6 +12,11 @@
 
         <!-- Loading Bootstrap -->
         <jsp:include page="cssup.jsp"/>
+        <script type="text/javascript" language="javascript" class="init">
+            $('#table').bootstrapTable({
+                url: 'data.json'
+            });
+        </script>
         <style type="text/css">
             body{
                 /*height: 10000px;*/
@@ -176,15 +181,15 @@
         </div>
         <div class="col-md-12" style="margin-top: 30px">
             <ul class="nav nav-tabs" style="text-align: center;" role="tablist">
-                <li class="active col-md-2"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
-                <li class="col-md-2"><a href="#product" role="tab" data-toggle="tab">Product</a></li>
+                <li class="active col-md-2"><a href="#product" role="tab" data-toggle="tab">Product</a></li>
+                <li class="col-md-2"><a href="#account" role="tab" data-toggle="tab">Account</a></li>
                 <li class="col-md-2"><a href="#order" role="tab" data-toggle="tab">Order</a></li>
                 <li class="col-md-2"><a href="#report" role="tab" data-toggle="tab">Report</a></li>
                 <li class="col-md-2"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
             </ul>
             <hr>
             <div class="tab-content">
-                <div class="tab-pane active" style="margin-top: 50px" id="account">
+                <div class="tab-pane" style="margin-top: 50px" id="account">
                     <h5 class="col-md-4">Account Information</h5>
                     <div class="col-md-12">
                         <table class="table table-striped" style="text-align: center">
@@ -246,11 +251,11 @@
                                             </script>
                                         </div>-->
                 </div>
-                <div class="tab-pane" id="product">
+                <div class="tab-pane active" id="product">
                     <div class="row">
                         <h5 class="col-md-2" style="margin-top: 50px">Product</h5>
                         <div class="col-md-12">
-                            <table class="table table-striped" style="text-align: center">
+                            <table class="table table-striped display" id="example" cellspacing="0" style="text-align: center">
                                 <tr bgColor="#ffffff">
                                     <td>Account ID</td>
                                     <td>Category</td>
@@ -263,7 +268,7 @@
                                 <c:forEach items="${pro}" var="a">
                                     <tr>
                                         <td>${a.acctID}</td>
-                                        <td>${a.category_ID}</td>
+                                        <td>${a.cateName}</td>
                                         <td>${a.name}</td>
                                         <td>${a.price}</td>
                                         <td>${a.createOn}</td>
@@ -278,6 +283,16 @@
                             </table>                           
                         </div>
                     </div>
+                    <table data-url="data1.json" data-height="299" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+                        <thead>
+                            <tr>
+                                <th data-field="state" data-radio="true">Item ID</th>
+                                <th data-field="id" data-align="right">Item ID</th>
+                                <th data-field="name" data-align="center">Item Name</th>
+                                <th data-field="price" data-align="left">Item Price</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
                 <div class="tab-pane" id="order">...</div>
                 <div class="tab-pane" id="report">
@@ -322,10 +337,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">First Small Category Name</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="Category Name" name="cateNameS" required>
-                            </div>
+                                <label for="inputEmail3" class="col-sm-3 control-label">First Small Category Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Category Name" name="cateNameS" required>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-10">
@@ -377,14 +392,15 @@
     <script src="http://vjs.zencdn.net/4.3/video.js"></script>
     <script src="js/application.js"></script>
     <script>
-        $(function() {
-            $('.demo.menu .item')
-                    .tab('deactivate all')
-                    .tab('activate tab', 'third')
-                    .tab('activate navigation', 'third')
-                    ;
-        });
+            $(function() {
+                $('.demo.menu .item')
+                        .tab('deactivate all')
+                        .tab('activate tab', 'third')
+                        .tab('activate navigation', 'third')
+                        ;
+            });
     </script>
+
     <script>
         $(function() {
             $("#series").chainedTo("#mark");

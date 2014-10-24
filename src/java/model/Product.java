@@ -246,7 +246,7 @@ public class Product implements Comparable {
     }
 
     public static List<Product> showProduct() {
-        String sqlCmd = "SELECT * FROM product";
+        String sqlCmd = "SELECT * FROM product p,category c WHERE c.cateID=p.Category_ID";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> pa = new ArrayList<Product>();
@@ -255,7 +255,7 @@ public class Product implements Comparable {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 p = new Product();
-                rToO(p, rs);
+                rToO1(p, rs);
                 pa.add(p);
             }
             con.close();
