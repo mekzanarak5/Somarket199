@@ -186,7 +186,31 @@
                                         <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
                                         <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
 
-                                        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                        
+
+                                    </div>
+                                    <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
+                                        <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
+                                            <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
+                                            <div class="col-md-12" align="center" style="margin-bottom: 20px">
+                                                <c:choose><c:when test="${order.ems==null}">
+                                                        <input type="text" class="form-control" placeholder="Enter EMS" name="ems" >
+                                                        <div align="center" style="margin-bottom: 20px">
+                                                            <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Reject</button>
+                                                        </div></c:when>
+                                                    <c:otherwise><input type="text" class="form-control" name="ems" value="${order.ems}" disabled></c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </div></form>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:otherwise>
+                        </c:choose>
+                </div>
+            </div>
+        </div>
+                        
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <form action="AddBank" method="get">
@@ -216,29 +240,7 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                    </div>
-                                    <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
-                                        <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
-                                            <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
-                                            <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                                <c:choose><c:when test="${order.ems==null}">
-                                                        <input type="text" class="form-control" placeholder="Enter EMS" name="ems" >
-                                                        <div align="center" style="margin-bottom: 20px">
-                                                            <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Reject</button>
-                                                        </div></c:when>
-                                                    <c:otherwise><input type="text" class="form-control" name="ems" value="${order.ems}" disabled></c:otherwise>
-                                                </c:choose>
-                                            </div>
-                                        </div></form>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:otherwise>
-                        </c:choose>
-                </div>
-            </div>
-        </div>
+                                        </div>                
         <!--</div>-->
 
         <script src="js/jquery-1.8.3.min.js"></script>
