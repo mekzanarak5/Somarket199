@@ -117,6 +117,7 @@
                                                 <option value="BENQ" class="11 12 13 14 15 16 21 31 32 33 35 36">BENQ</option>
                                                 <option value="COMPAQ" class="11 12 13 14 15 16 22">COMPAQ</option>
                                                 <option value="CANNON" class="31 32 33 34 35 36 37">CANNON</option>
+                                                <option value="LUMIX" class="31 32 33 34 35 36 37">LUMIX</option>
                                                 <option value="NIKON" class="31 32 33 34 35 36 37">NIKON</option>
                                                 <option value="DELL" class="11 12 13 14 15 16 22">DELL</option>
                                                 <option value="FUJITSU" class="11 12 13 14 15 16 31 32 33 34 35 36 37">FUJITSU</option>
