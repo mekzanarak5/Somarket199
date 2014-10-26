@@ -35,10 +35,7 @@ public class AdminShowCategory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int proid = Integer.parseInt(request.getParameter("proid"));
-        Product p = new Product();
-        p.showDetail(proid);
-        HttpSession s1 = request.getSession();
-        s1.setAttribute("pro", proid);
+        request.setAttribute("pro", Product.showDetail(proid));
         
         List<Category> c = Category.findBigAll();
         request.setAttribute("cateID", c);

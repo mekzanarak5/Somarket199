@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlet;
 
 import java.io.IOException;
@@ -39,10 +38,10 @@ public class AdminShowReport extends HttpServlet {
         request.setAttribute("pro", p);
         List<Accounts> a = Accounts.findAllAcct();
         request.setAttribute("acc", a);
-        
-//        List<Message> p1 = Message.findReceiver();
-//        request.setAttribute("pm", p1);
-        
+
+        List<Message> p1 = Message.findReceiverAd();
+        request.setAttribute("pm", p1);
+
         List<Category> c = Category.findBigAll();
         request.setAttribute("cateID", c);
         getServletContext().getRequestDispatcher("/AdminHome.jsp").forward(request, response);

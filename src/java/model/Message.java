@@ -259,6 +259,25 @@ public class Message {
         }
         return cs;
     }
+    public static List<Message> findReceiverAd() {
+        String sqlCmd = "SELECT * from Pm where ReceiverID = 0 ";
+        Connection con = ConnectionAgent.getConnection();
+        Message c = null;
+        List<Message> cs = new ArrayList<Message>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Message();
+                rToO(c, rs);
+                cs.add(c);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
 
     public static List<Message> findSender(int str) {
         String sqlCmd = "SELECT * from Pm where SenderID = ? ";
