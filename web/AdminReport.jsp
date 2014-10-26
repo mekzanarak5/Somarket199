@@ -197,7 +197,7 @@
                 <h5 class="col-md-2">Report</h5>
                 <form action="DeleteMessageServlet" method="get">
                     <div class="col-md-12">
-                        <table class="table table-striped" style="text-align: center">
+                        <table class="table table-striped" id="table6" style="text-align: center">
                             <tr bgColor="#ffffff">
                             <input type="hidden" name="acctid" value="${user.account_Id}">
                             <td>Sender</td>

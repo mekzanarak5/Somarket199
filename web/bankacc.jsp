@@ -18,7 +18,7 @@
 
         <jsp:include page="cssup.jsp"/>
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
@@ -48,7 +48,7 @@
                                 <div id="cbp-vm" class="cbp-vm-switcher">
                                     <div class="col-md-12">
                                         <div class="col-md-4">
-                                            <h4>My Bank Account</h4>
+                                            <h5>My Bank Account</h5>
                                         </div>
                                         <div class="col-md-2">
                                             <button class="btn btn-xs btn-primary" style="margin-left: -80px;margin-top: 20px" data-toggle="modal" data-target=".bs-example-modal-lg">+</button>
@@ -60,20 +60,43 @@
                                                                 <h4 class="col-md-12">Add New Bank Account</h4>
                                                                 <div class="form-group">
                                                                     <label for="inputPassword3" class="col-sm-3 control-label">Bank Name</label>
-                                                                    <div class="col-sm-3">
+                                                                    <div class="col-sm-4">
                                                                         <input type="hidden" name="acctid" value="${user.account_Id}">
-                                                                        <input type="text" class="form-control" placeholder="Bank name" name="bankname" required>
+                                                                        <select class="form-control" name="bankname">
+                                                                            <option value="" selected>--------- เลือกธนาคาร ---------</option>
+                                                                            <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+                                                                            <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
+                                                                            <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
+                                                                            <option value="ธนาคารเกียรตินาคิน">ธนาคารเกียรตินาคิน</option>
+                                                                            <option value="ธนาคารซีไอเอ็มบีไทย">ธนาคารซีไอเอ็มบีไทย</option>
+                                                                            <option value="ธนาคารทหารไทย">ธนาคารทหารไทย</option>
+                                                                            <option value="ธนาคารทิสโก้">ธนาคารทิสโก้</option>
+                                                                            <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+                                                                            <option value="ธนาคารไทยเครดิตเพื่อรายย่อย">ธนาคารไทยเครดิตเพื่อรายย่อย</option>
+                                                                            <option value="ธนาคารธนชาต">ธนาคารธนชาต</option>
+                                                                            <option value="ธนาคารยูโอบี">ธนาคารยูโอบี</option>
+                                                                            <option value="ธนาคารแลนด์ แอนด์ เฮาส์">ธนาคารแลนด์ แอนด์ เฮาส์</option>
+                                                                            <option value="ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย)">ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย)</option>
+                                                                            <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
+                                                                            <option value="ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย">ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย</option>
+                                                                            <option value="ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร">ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร</option>
+                                                                            <option value="ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย">ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย</option>
+                                                                            <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
+                                                                            <option value="ธนาคารอาคารสงเคราะห์">ธนาคารอาคารสงเคราะห์</option>
+                                                                            <option value="ธนาคารอิสลามแห่งประเทศไทย">ธนาคารอิสลามแห่งประเทศไทย</option>
+                                                                            <option value="ธนาคารไอซีบีซี (ไทย)">ธนาคารไอซีบีซี (ไทย)</option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="inputPassword3" class="col-sm-3 control-label">Bank Account No.</label>
-                                                                    <div class="col-sm-3">
+                                                                    <div class="col-sm-4">
                                                                         <input type="text" class="form-control" placeholder="Bank Account No." name="no" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="inputPassword3" class="col-sm-3 control-label">Bank Account Name</label>
-                                                                    <div class="col-sm-3">
+                                                                    <div class="col-sm-4">
                                                                         <input type="text" class="form-control" placeholder="Bank Account Name" name="name" required>
                                                                     </div>
                                                                 </div>
@@ -91,7 +114,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <table class="table table-striped" style="text-align: center">
+                                    <table class="table table-striped" id="table6" style="text-align: center">
                                         <tr bgColor="#ffffff">
                                             <td>Bank Name</td>
                                             <td>Bank Account No.</td>
@@ -104,7 +127,7 @@
                                                 <td>${a.bankAccNo}</td>
                                                 <td>${a.bankAccName}</td>
                                                 <td>
-                                                <div class="btn-group">
+                                                    <div class="btn-group">
                                                         <button class="btn btn-info" onclick="window.location.href = 'EditShowBank?bankid=${a.bank_Id}'">Edit</button>
                                                         <!--<button class="btn btn-danger" onclick="window.location.href = 'DeleteBankServlet?id=${a.bank_Id}&acctid=${user.account_Id}'">Delete</button>-->
                                                         <a href="DeleteBankServlet?id=${a.bank_Id}&acctid=${user.account_Id}" class="btn btn-danger" onclick="return confirm('Are you sure ?');">Delete</a>
@@ -119,7 +142,7 @@
                 </div>
             </div>
         </div>
-        <script src="js/jquery-1.8.3.min.js"></script>
+        <!--<script src="js/jquery-1.8.3.min.js"></script>-->
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -131,6 +154,17 @@
         <script src="js/jquery.placeholder.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <script language="javascript" type="text/javascript">
+                                                            //<![CDATA[  
+                                                            var table6_Props = {
+                                                                paging: true,
+                                                                paging_length: 10,
+                                                                rows_counter: true,
+                                                                rows_counter_text: "Rows:",
+                                                            };
+                                                            var tf6 = setFilterGrid("table6", table6_Props);
+                                                            //]]>  
+        </script>
         <jsp:include page="footer.jsp"/>
     </body>
 </html>
