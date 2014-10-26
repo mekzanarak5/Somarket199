@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Accounts;
 import model.Feedback;
-import model.order;
 
 /**
  *
- * @author Mekza
+ * @author S๐l2n
  */
-public class AddFeedback extends HttpServlet {
+public class ViewFeedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,41 +33,23 @@ public class AddFeedback extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int orderid = Integer.parseInt(request.getParameter("id"));
-        order o  = order.searchByID(orderid);
-        Accounts acct= (Accounts) request.getSession().getAttribute("user");
-        String comm = request.getParameter("comment");
-        int rates = Integer.parseInt(request.getParameter("rating"));
-        Feedback f = new Feedback();
-        String msg = "Sorry: place feedback failed";
-        int check = 0;
-        if (acct.getUsername().equals(o.getUsername())){
-            f.setAcct(o.getSeller());
-            f.setFrom(o.getUsername());
-            f.setOrder(orderid);
-            f.setComment(comm);
-            f.setType("Seller");
-            f.setRate(rates);
-            check += f.add(f);
-            if(check > 0)
-                msg = "Thank you for feedback to\t" +o.getSeller()+".";
-        }else{
-            f.setAcct(o.getUsername());
-            f.setFrom(o.getSeller());
-            f.setOrder(orderid);
-            f.setComment(comm);
-            f.setType("Buyer");
-            f.setRate(rates);
-            check += f.add(f);
-            if(check > 0)
-                msg = "Thank you for feedback to\t" +o.getUsername()+".";
+        Accounts acct = (Accounts) request.getSession().getAttribute("user");
+        if (request.getParameter("orderid")==null){
+            String fuser;
+            if (request.getParameter("acct") == null){
+                fuser = acct.getUsername();
+            
+            }else{
+                fuser = request.getParameter("facct");
             
         }
-        System.out.println(check);
-        request.setAttribute("feedo", f);
-        request.setAttribute("msg", msg);
-        
-        response.sendRedirect(request.getParameter("url") /*+ "&show=modal"*/);
+        }else{
+            int oid = Integer.parseInt(request.getParameter("orderid"));
+            Feedback fd = Feedback.checkSender(oid, acct.getUsername());
+            request.setAttribute("feedo", fd);
+            
+        }
+        response.sendRedirect(request.getParameter("url") + "&show=modal");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -171,7 +171,7 @@
             </div>
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
-                <div class="col-md-9">
+                <div class="col-md-offset-2 col-md-9">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">

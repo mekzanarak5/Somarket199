@@ -149,6 +149,10 @@
         <servlet-class>servlet.AddBank</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddFeedback</servlet-name>
+        <servlet-class>servlet.AddFeedback</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ShowBankServlet</servlet-name>
         <servlet-class>servlet.ShowBankServlet</servlet-class>
     </servlet>
@@ -284,6 +288,10 @@
         <servlet-name>LoginAdmin</servlet-name>
         <servlet-class>servlet.LoginAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewFeedback</servlet-name>
+        <servlet-class>servlet.ViewFeedback</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -315,6 +323,10 @@
     <servlet-mapping>
         <servlet-name>AddToCart</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFeedback</servlet-name>
+        <url-pattern>/AddFeedback</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConfirmCart</servlet-name>
@@ -567,6 +579,10 @@
     <servlet-mapping>
         <servlet-name>LoginAdmin</servlet-name>
         <url-pattern>/LoginAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFeedback</servlet-name>
+        <url-pattern>/ViewFeedback</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

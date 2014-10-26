@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static model.order.toO;
@@ -19,8 +21,10 @@ import static model.order.toO;
  * @author Mekza
  */
 public class Feedback {
-    private String acct;
+    
     private int fid;
+    private String acct;
+    private String from;
     private int order;
     private String comment;
     private String type;
@@ -30,9 +34,10 @@ public class Feedback {
     public Feedback() {
     }
 
-    public Feedback(String acct, int fid, int order, String comment, String type, Timestamp date, int rate) {
-        this.acct = acct;
+    public Feedback(int fid, String acct, String from, int order, String comment, String type, Timestamp date, int rate) {
         this.fid = fid;
+        this.acct = acct;
+        this.from = from;
         this.order = order;
         this.comment = comment;
         this.type = type;
@@ -55,6 +60,16 @@ public class Feedback {
     public void setFid(int fid) {
         this.fid = fid;
     }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+    
+    
 
     public String getComment() {
         return comment;
@@ -98,19 +113,22 @@ public class Feedback {
 
     @Override
     public String toString() {
-        return "Feedback{" + "acct=" + acct + ", fid=" + fid + ", order=" + order + ", comment=" + comment + ", type=" + type + ", date=" + date + ", rate=" + rate + '}';
+        return "Feedback{" + "fid=" + fid + ", acct=" + acct + ", from=" + from + ", order=" + order + ", comment=" + comment + ", type=" + type + ", date=" + date + ", rate=" + rate + '}';
     }
     
     public int add(Feedback f) {
         int value = 0;
-        String sql = "insert into feedback(Account_Id,OrderID,type,comment,Date,rate) values(?,?,?,?,CURRENT_TIMESTAMP,?)";
+        String sql = "insert into feedback(Account_Id,From_u,OrderID,type,comment,Date,rate) values(?,?,?,?,?,CURRENT_TIMESTAMP,?)";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, f.getAcct());
-            ps.setInt(2, f.getOrder());
-            ps.setString(3, f.getType());
-            ps.setString(4, f.getComment());
-            ps.setInt(5, f.getRate());
+            ps.setString(2, f.getFrom());
+            ps.setInt(3, f.getOrder());
+            ps.setString(4, f.getType());
+            ps.setString(5, f.getComment());
+            ps.setInt(6, f.getRate());
+            value = ps.executeUpdate();
+            ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(Feedback.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -190,17 +208,93 @@ public class Feedback {
         return f;
     }
     
+    public static Feedback checkFeedback(int ord, String user) {
+        String sqlCmd = "SELECT * from feedback f where f.OrderId = ? and f.Account_Id = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Feedback cs = new Feedback();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, ord);
+            ps.setString(2, user);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cs = toO(rs);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
+    
+    public static Feedback checkSender(int ord, String user) {
+        String sqlCmd = "SELECT * from feedback f where f.OrderId = ? and f.From_u = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Feedback cs = new Feedback();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, ord);
+            ps.setString(2, user);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cs = toO(rs);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
+    
+    public static List<Feedback> orderFeedback(int ord) {
+        String sqlCmd = "SELECT * from feedback f where f.OrderId = ? ";
+        Connection con = ConnectionAgent.getConnection();
+        List<Feedback> io = new ArrayList<Feedback>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, ord);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                io.add(toO(rs));
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return io;
+    }
+    
+    public static ArrayList<Feedback> getFeedList(String user) {
+        ArrayList<Feedback> arr = new ArrayList<Feedback>();
+        String sql = "select * from feedback where Account_Id like ? order by Feedback_Id";
+        PreparedStatement ps;
+        try {
+            ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, user);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Feedback o = toO(rs);
+                arr.add(o);
+            }
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Feedback.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return arr;
+    }
+    
     public static Feedback toO(ResultSet rs) {
         Feedback f = null;
         try {
             f = new Feedback();
             f.setFid(rs.getInt(1));
             f.setAcct(rs.getString(2));
-            f.setOrder(rs.getInt(3));
-            f.setType(rs.getString(4));
-            f.setComment(rs.getString(5));
-            f.setDate(rs.getTimestamp(6));
-            f.setRate(rs.getInt(7));
+            f.setFrom(rs.getNString(3));
+            f.setOrder(rs.getInt(4));
+            f.setType(rs.getString(5));
+            f.setComment(rs.getString(6));
+            f.setDate(rs.getTimestamp(7));
+            f.setRate(rs.getInt(8));
 
         } catch (SQLException ex) {
             Logger.getLogger(Feedback.class.getName()).log(Level.SEVERE, null, ex);
