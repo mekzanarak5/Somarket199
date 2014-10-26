@@ -5,6 +5,7 @@
 <!--<link href="bootstrap/css/style.css" rel="stylesheet">-->
 <link href="css/style_1.css" rel="stylesheet" />
 <link href="css/star.css" rel="stylesheet" />
+<link href="css/filtergrid.css" rel="stylesheet" />
 <!--<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />-->
 <!--<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:700" rel="stylesheet" />-->
 
@@ -21,3 +22,4 @@
 <!--<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>-->
 <script type="text/javascript" src="js/accordion.js"></script>
 <script type="text/javascript" src="js/bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" src="js/tablefilter_all.js"></script>

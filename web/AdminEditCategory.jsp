@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Home</title>
+        <title>Social Market | Admin</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
@@ -13,97 +13,44 @@
         <!-- Loading Bootstrap -->
         <jsp:include page="cssup.jsp"/>
     </head>
-    <jsp:include page="header1.jsp"/>
-    <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
-        <div style="margin-bottom: 70px">
+    <body style="background-color: gainsboro;max-width: 1280px;margin: auto;">
+        <div style="margin-bottom: 30px">
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-1" style="margin-top: 20px;margin-right: -70px">
+                <a href="home.jsp"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            </div>
+            <div class="col-md-3">
+                <h4>Administrator Page</h4>
+            </div>
+            <div class="col-md-1" style="margin-top: 20px;margin-left: -50px">
+                <a href="AdminShowReport"><span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
-                <jsp:include page="logo.jsp"/>
-                <div id='cssmenu'>
-                    <c:forEach items="${cateID}" var="a">
-                        <ul>
-                            <li class='active has-sub'><a href='#'><span>${a.cateName}</span></a>
-                                <ul>
-                                    <c:forEach items="${cateID1}" var="b">
-                                        <li class='has-sub'><a href='#'><span>${b.cateName}</span></a></li>
-                                                </c:forEach>
-                                </ul>
-                            </li>
-                        </ul>
-                    </c:forEach>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <jsp:include page="header.jsp"/>
-                <div class="col-md-12">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="pic/Pikachu.png" width="200px" alt="...">
-                                <div class="carousel-caption">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                </div>  
-            </div>
             <div class="col-md-12"> 
                 <form action="AdminEditCategory" method="get">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-12"><h4>Edit Category</h4></label>
+                        <label for="inputEmail3" class="col-sm-12"><h5>Edit Category#${pro.productNO}</h5><h6> (Seller: ${pro.username})</h6>
+                            <h6> (Product Name: ${pro.name})</h6></label>
+                        
                         <div class="row">
                             <div class="col-sm-offset-1 col-md-3">
                                 <select id="mark" class="form-control">
                                     <option value="">--</option>
-                                    <c:forEach items="${cateID}" var="a">
-                                        <option value="${a.cateID}">${a.cateName}</option>
+                                    <c:forEach items="${cate}" var="entry">
+                                        <option value="${entry.key.cateID}">${entry.key.cateName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="col-md-3" >
                                 <select id="series" class="form-control" name="cata">
                                     <option value="">--</option>
-                                    <c:forEach items="${childCateID1}" var="a">
-                                        <option value="${a.cateID}" class="1">${a.cateName}</option>
-                                    </c:forEach>
-                                    <c:forEach items="${childCateID2}" var="a">
-                                        <option value="${a.cateID}" class="2">${a.cateName}</option>
-                                    </c:forEach>
-                                    <c:forEach items="${childCateID3}" var="a">
-                                        <option value="${a.cateID}" class="3">${a.cateName}</option>
+                                    <c:forEach items="${cate}" var="entry">
+                                        <c:forEach items="${entry.value}" var="sub_entry">
+                                            <option value="${sub_entry.cateID}" class="${entry.key.cateID}">${sub_entry.cateName}</option>
+                                        </c:forEach>
                                     </c:forEach>
                                 </select>
                             </div>

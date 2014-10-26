@@ -25,10 +25,11 @@
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
+        <div class="row">
         <div class="col-md-2">
             <jsp:include page="logo_1.jsp"/>
         </div>
-        <div class="col-md-10" style="margin-bottom: 20px">
+        <div class="col-md-10">
             <jsp:include page="header.jsp"/>
             <div class="col-md-12">
                 <font size="2">
@@ -73,6 +74,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <script src="js/jquery-1.8.3.min.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>

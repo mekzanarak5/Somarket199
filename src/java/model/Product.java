@@ -37,11 +37,12 @@ public class Product implements Comparable {
     private String CreateOn;
     private int cateID;
     private String cateName;
+    private String username;
 
     public Product() {
     }
 
-    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, String brandID, int pNO, int Product_Id, String pathFile, String CreateOn, int cateID, String cateName) {
+    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, String brandID, int pNO, int Product_Id, String pathFile, String CreateOn, int cateID, String cateName,String username) {
         this.productNO = productNO;
         this.acctID = acctID;
         this.category_ID = category_ID;
@@ -59,6 +60,7 @@ public class Product implements Comparable {
         this.CreateOn = CreateOn;
         this.cateID = cateID;
         this.cateName = cateName;
+        this.username = username;
     }
 
     public int getProductNO() {
@@ -189,6 +191,14 @@ public class Product implements Comparable {
         this.cateName = cateName;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "Product{" + "productNO=" + productNO + ", acctID=" + acctID + ", category_ID=" + category_ID + ", name=" + name + ", price=" + price + ", offerStart=" + offerStart + ", offerEnd=" + offerEnd + ", createOn=" + createOn + ", description=" + description + ", available=" + available + ", brandID=" + brandID + ", pNO=" + pNO + ", Product_Id=" + Product_Id + ", pathFile=" + pathFile + ", CreateOn=" + CreateOn + ", cateID=" + cateID + ", cateName=" + cateName + '}';
@@ -246,7 +256,7 @@ public class Product implements Comparable {
     }
 
     public static List<Product> showProduct() {
-        String sqlCmd = "SELECT * FROM product p,category c WHERE c.cateID=p.Category_ID";
+        String sqlCmd = "SELECT * FROM product p,category c WHERE c.cateID=p.Category_ID ";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> pa = new ArrayList<Product>();
@@ -347,7 +357,7 @@ public class Product implements Comparable {
     }
 
     public static Product showDetail(int id) {
-        String sqlCmd = "SELECT * FROM product p,category c WHERE p.Category_ID = c.cateID and p.productNO = ?";
+        String sqlCmd = "SELECT * FROM product p,category c,account a WHERE p.Category_ID = c.cateID and p.AcctID=a.Account_Id and p.productNO = ?";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         try {
@@ -735,6 +745,7 @@ public class Product implements Comparable {
             p.setBrandID(rs.getString("BrandID"));
             p.setCateID(rs.getInt("cateID"));
             p.setCateName(rs.getString("cateName"));
+            p.setUsername(rs.getString("username"));
 
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);

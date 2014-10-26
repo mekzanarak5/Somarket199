@@ -5,18 +5,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Home</title>
+        <title>Social Market | Admin</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <!-- Loading Bootstrap -->
         <jsp:include page="cssup.jsp"/>
-        <script type="text/javascript" language="javascript" class="init">
-            $('#table').bootstrapTable({
-                url: 'data.json'
-            });
-        </script>
         <style type="text/css">
             body{
                 /*height: 10000px;*/
@@ -163,7 +158,14 @@
                 top:0px;
                 left: 0px;
             }
+            .dataTables_filter label {
+                float:right
+            }
 
+            .pagination {
+                margin-top:0;
+                float:right;
+            }
         </style>
     </head>
     <%--<jsp:include page="header1.jsp"/>--%>
@@ -192,25 +194,19 @@
                 <div class="tab-pane" style="margin-top: 50px" id="account">
                     <h5 class="col-md-4">Account Information</h5>
                     <div class="col-md-12">
-                        <table class="table table-striped" style="text-align: center">
+                        <table class="table table-striped" id="table6" style="text-align: center">
                             <tr bgColor="#ffffff">
                                 <td>Account ID</td>
-                                <td>Buy List</td>
-                                <td>Sell List</td>
-                                <td>Ongoing</td>
-                                <td>Waiting For Check</td>
-                                <td>Sold List</td>
+                                <td>Account Name</td>
+                                <td>Rate feedback</td>
+                                <td>Detail feedback</td>
                             </tr>
                             <c:forEach items="${acc}" var="a">
                                 <tr>
                                     <td>${a.account_Id}</td>
+                                    <td>${a.username}</td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td width="20%">
-
-                                    </td>
                                 </tr>
                             </c:forEach>
                         </table>                           
@@ -255,7 +251,8 @@
                     <div class="row">
                         <h5 class="col-md-2" style="margin-top: 50px">Product</h5>
                         <div class="col-md-12">
-                            <table class="table table-striped display" id="example" cellspacing="0" style="text-align: center">
+                            <!--<input type="text" id="search" placeholder="Type to search">-->
+                            <table class="table table-striped display" id="table6" cellspacing="0" style="text-align: center;">
                                 <tr bgColor="#ffffff">
                                     <td>Account ID</td>
                                     <td>Category</td>
@@ -264,7 +261,6 @@
                                     <td>CreateOn</td>
                                     <td>Manage Post</td>
                                 </tr>
-
                                 <c:forEach items="${pro}" var="a">
                                     <tr>
                                         <td>${a.acctID}</td>
@@ -274,8 +270,8 @@
                                         <td>${a.createOn}</td>
                                         <td width="20%">
                                             <div class="btn-group">                                              
-                                                <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-primary">Edit</button></a>
-                                                <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-danger">Delete</button></a>
+                                                <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-xs btn-primary">Edit</button></a>
+                                                <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-xs btn-danger">Delete</button></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -283,18 +279,37 @@
                             </table>                           
                         </div>
                     </div>
-                    <table data-url="data1.json" data-height="299" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
-                        <thead>
-                            <tr>
-                                <th data-field="state" data-radio="true">Item ID</th>
-                                <th data-field="id" data-align="right">Item ID</th>
-                                <th data-field="name" data-align="center">Item Name</th>
-                                <th data-field="price" data-align="left">Item Price</th>
-                            </tr>
-                        </thead>
-                    </table>
                 </div>
-                <div class="tab-pane" id="order">...</div>
+                <div class="tab-pane" id="order">
+                    <div class="row">
+                        <h5 class="col-md-2" style="margin-top: 50px">Order</h5>
+                        <div class="col-md-12">
+                            <!--<input type="text" id="search" placeholder="Type to search">-->
+                            <table class="table table-striped display" id="table6" cellspacing="0" style="text-align: center;">
+                                <tr bgColor="#ffffff">
+                                    <td>Order ID</td>
+                                    <td>Buyer</td>
+                                    <td>Seller</td>
+                                    <td>Status</td>
+                                    <td>Detail</td>
+                                </tr>
+                               <c:forEach items="${od}" var="ord">
+                                    <tr>
+                                        <td>${ord.orderId}</td>
+                                        <td>${ord.username}</td>
+                                        <td>${ord.seller}</td>
+                                        <td>${ord.status}</td>
+                                        <td width="20%">
+                                            <div class="btn-group">                                              
+                                                <a href="#"><button class="btn btn-xs btn-primary">Detail</button></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>                           
+                        </div>
+                    </div>
+                </div>
                 <div class="tab-pane" id="report">
                     <div class="row">
                         <h5 class="col-md-2" style="margin-top: 50px">Report</h5>
@@ -305,18 +320,19 @@
                                     <input type="hidden" name="acctid" value="${user.account_Id}">
                                     <td>Sender</td>
                                     <td>Subject</td>
+                                    <td>Reason</td>
                                     <td>Time</td>
                                     <td><button type="submit" class="btn btn-xs btn-primary"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
                                     </tr>
                                     <c:forEach items="${pm}" var="a">
                                         <tr>
-                                            <td><a href="#">${a.username}</a></td>
+                                            <td><a href="#">${a.senderID}</a></td>
                                             <td><a href="ReplayServlet?id=${a.msgID}">${a.subject}</a></td>
+                                            <td>${a.pm}</td>
                                             <td>${a.time}</td>
-                                            <td><botton  class="checkbox"  for="checkbox1">
-                                            <input type="checkbox" name="pmid" value="${a.msgID}" id="checkbox1" data-toggle="checkbox">
-                                        </botton>
-                                        </td>
+                                            <td>
+                                                <input type="checkbox" name="pmid" value="${a.msgID}" >
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </table>
@@ -376,22 +392,21 @@
                 </div>
             </div>
         </div>  
-    </div>
-    <!--<script src="js/jasny-bootstrap.min.js"></script>-->
-    <script src="js/dropdown.js"></script>
-    <script src="js/semantic.js"></script>
-    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/jquery.ui.touch-punch.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/flatui-checkbox.js"></script>
-    <script src="js/flatui-radio.js"></script>
-    <script src="js/jquery.tagsinput.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-    <script src="http://vjs.zencdn.net/4.3/video.js"></script>
-    <script src="js/application.js"></script>
-    <script>
+        <!--<script src="js/jasny-bootstrap.min.js"></script>-->
+        <script src="js/dropdown.js"></script>
+        <script src="js/semantic.js"></script>
+        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-select.js"></script>
+        <script src="js/bootstrap-switch.js"></script>
+        <script src="js/flatui-checkbox.js"></script>
+        <script src="js/flatui-radio.js"></script>
+        <script src="js/jquery.tagsinput.js"></script>
+        <script src="js/jquery.placeholder.js"></script>
+        <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+        <script src="js/application.js"></script>
+        <script>
             $(function() {
                 $('.demo.menu .item')
                         .tab('deactivate all')
@@ -399,12 +414,61 @@
                         .tab('activate navigation', 'third')
                         ;
             });
-    </script>
+        </script>
+        <script>
+            var $rows = $('#table tr');
+            $('#search').keyup(function() {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
-    <script>
-        $(function() {
-            $("#series").chainedTo("#mark");
-        });
-    </script>
-</body>
+                $rows.show().filter(function() {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+        </script>
+        <script language="javascript" type="text/javascript">
+            //<![CDATA[  
+            var table6_Props = {
+                paging: true,
+                paging_length: 5,
+                rows_counter: true,
+                rows_counter_text: "Rows:",
+            };
+            var tf6 = setFilterGrid("table6", table6_Props);
+            //]]>  
+        </script>  
+        <script language="javascript" type="text/javascript">
+//<![CDATA[  
+            var table10_Props = {
+                paging: true,
+                paging_length: 5,
+                col_2: 'select',
+                col_3: 'select',
+                sort_num_asc: [2],
+                sort_num_desc: [3],
+                refresh_filters: true
+            };
+            var tf10 = setFilterGrid("table10", table10_Props);
+//]]>  
+        </script>
+        <script language="javascript" type="text/javascript">  
+//<![CDATA[  
+    var table9_Props = {  
+        paging: true,  
+        paging_length: 2,  
+        results_per_page: ['# rows per page',[2,4,6]],  
+        rows_counter: true,  
+        rows_counter_text: "Rows:",  
+        btn_reset: true,  
+        btn_next_page_html: '<a href="javascript:;" style="margin:3px;">Next ></a>',  
+        btn_prev_page_html: '<a href="javascript:;" style="margin:3px;">< Previous</a>',  
+        btn_last_page_html: '<a href="javascript:;" style="margin:3px;"> Last >|</a>',  
+        btn_first_page_html: '<a href="javascript:;" style="margin:3px;"><| First</a>',  
+        loader: true,  
+        loader_html: '<h4 style="color:red;">Loading, please wait...</h4>'  
+    };  
+    var tf9 = setFilterGrid( "table9",table9_Props );  
+//]]>  
+</script> 
+    </body>
 </html>
