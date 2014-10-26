@@ -18,7 +18,7 @@
 
         <jsp:include page="cssup.jsp"/>
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
@@ -52,7 +52,7 @@
                                                     <option value="${ba.bank_Id}">${ba.bankName}&nbsp;&nbsp;${ba.bankAccNo}&nbsp;&nbsp;${ba.bankAccName}</option>
                                                 </c:forEach>
                                             </select>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -263,7 +263,7 @@
         <script src="js/jquery.placeholder.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
-        <script>
+        <script type="text/javascript">
                                                     $(function() {
                                                         //$('.ui.accordion').accordion();
                                                         $('input[name=url]').val((window.location.href.toString()));
