@@ -128,9 +128,9 @@
                                                 <td>${a.bankAccName}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button class="btn btn-info" onclick="window.location.href = 'EditShowBank?bankid=${a.bank_Id}'">Edit</button>
+                                                        <button class="btn btn-xs btn-info" onclick="window.location.href = 'EditShowBank?bankid=${a.bank_Id}'">Edit</button>
                                                         <!--<button class="btn btn-danger" onclick="window.location.href = 'DeleteBankServlet?id=${a.bank_Id}&acctid=${user.account_Id}'">Delete</button>-->
-                                                        <a href="DeleteBankServlet?id=${a.bank_Id}&acctid=${user.account_Id}" class="btn btn-danger" onclick="return confirm('Are you sure ?');">Delete</a>
+                                                        <a href="DeleteBankServlet?id=${a.bank_Id}&acctid=${user.account_Id}" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure ?');">Delete</a>
                                                     </div></td>
                                             </tr>
                                         </c:forEach>

@@ -193,8 +193,8 @@
                                                 <td>${a.post}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button class="btn btn-info" onclick="window.location.href = 'EditShowAddress?addid=${a.address_Id}'">Edit</button>
-                                                        <a href="DeleteAddressServlet?id=${a.address_Id}&acctid=${user.account_Id}" class="btn btn-danger" onclick="return confirm('Are you sure ?');">Delete</a>
+                                                        <button class="btn btn-xs btn-info" onclick="window.location.href = 'EditShowAddress?addid=${a.address_Id}'">Edit</button>
+                                                        <a href="DeleteAddressServlet?id=${a.address_Id}&acctid=${user.account_Id}" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure ?');">Delete</a>
                                                     </div>
                                                 </td>
                                             </tr>

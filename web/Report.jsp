@@ -53,7 +53,7 @@
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <input type="hidden" name="proid"  value="${pro.productNO}" />
-                                    <input type="hidden" name="accid"  value="${user.account_Id}" />
+                                    <input type="hidden" name="accid"  value="${pro.acctID}" />
                                     <input type="hidden" name="sender"  value="${user.account_Id}" />
                                     <input type="hidden" name="senderName"  value="${user.username}" />
                                     <input type="hidden" name="receiverName"  value="admin" />
