@@ -42,7 +42,7 @@ public class Pay2 extends HttpServlet {
             throws ServletException, IOException {
         File file;
 //        MultipartRequest m = new MultipartRequest(request, "/Users/Mekza/Documents/NetBeansProjects/Somarket199/web/pic/upload/");
-        MultipartRequest m = new MultipartRequest(request, "Users/Admin/NetBeansProjects/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/");
+        MultipartRequest m = new MultipartRequest(request, "/Users/Admin/NetBeansProjects/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/");
         String date = m.getParameter("paydate");
         String time = m.getParameter("paytime");
         String pic = m.getFilesystemName("pic");
@@ -60,11 +60,11 @@ public class Pay2 extends HttpServlet {
         order.addBank(orderid, bank);
         order.addPayment(orderid, sum);
 //        order.addSlip(orderid, "/Users/Mekza/Documents/NetBeansProjects/Somarket199/web/pic/upload/"+pic);
-        order.addSlip(orderid, "Users/Admin/NetBeansProjects/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/"+pic);
+        order.addSlip(orderid, "/Users/Admin/NetBeansProjects/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/Somarket-8da7c71cd5a93990ea83ebd3f555e2452c1aa271/web/pic/upload/"+pic);
         order.addAddr(orderid, addr);
         //order.addPayment(orderid, );
 
-        getServletContext().getRequestDispatcher("DetailOrder?orderid="+orderid).forward(request, response);
+        getServletContext().getRequestDispatcher("/DetailOrder?orderid="+orderid).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

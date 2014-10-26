@@ -280,7 +280,7 @@ public class Message {
     }
 
     public static List<Message> findSender(int str) {
-        String sqlCmd = "SELECT * from Pm where SenderID = ? and ReceiverID not in 0";
+        String sqlCmd = "SELECT * from Pm where SenderID = ? and ReceiverID != 0";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -362,7 +362,7 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Pm WHERE MsgID=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE pm SET ReceiverID=null WHERE MsgID=?");
             ps.setString(1, pmid);
             row = ps.executeUpdate();
             con.close();
