@@ -46,13 +46,14 @@ public class ViewFeedback extends HttpServlet {
             
         }
             request.setAttribute("flist", ma);
+            getServletContext().getRequestDispatcher("/feedback.jsp").forward(request, response);
         }else{
             int oid = Integer.parseInt(request.getParameter("orderid"));
             Feedback fd = Feedback.checkSender(oid, acct.getUsername());
             request.setAttribute("feedo", fd);
             
+            response.sendRedirect(request.getParameter("url") + "&show=modal");
         }
-        response.sendRedirect(request.getParameter("url") + "&show=modal");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

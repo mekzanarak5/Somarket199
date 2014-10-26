@@ -16,7 +16,7 @@
     <div class="panel-body">
         <ul class="nav nav-sidebar ">
             <li><a href="ShowWishlistServlet?id=${user.account_Id}">Wish List</a></li>
-            <li><a href="feedback.jsp">Feedback</a></li>
+            <li><a href="ViewFeedback">Feedback</a></li>
             <li><a href="editProfile.jsp">Edit Profile</a></li>
             <li><a href="ShowAddressServlet?id=${user.account_Id}">Address / Bank Account</a></li>
             <li><a href="changePassword.jsp">Change Password</a></li>
