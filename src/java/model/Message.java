@@ -280,7 +280,7 @@ public class Message {
     }
 
     public static List<Message> findSender(int str) {
-        String sqlCmd = "SELECT * from Pm where SenderID = ? ";
+        String sqlCmd = "SELECT * from Pm where SenderID = ? and ReceiverID not in 0";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();

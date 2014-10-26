@@ -207,9 +207,9 @@ body {
 }
 a {
   color: #16a085;
-  text-decoration: none;
+  /* text-decoration: none; */
   -webkit-transition: 0.25s;
-  transition: 0.25s;
+  transition: 0;
 }
 a:hover,
 a:focus {

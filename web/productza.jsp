@@ -15,11 +15,11 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
-        <script type="text/javascript">
+<!--        <script type="text/javascript">
             $(document).ready(function() {
                 $(".mCustomScrollbar").mCustomScrollbar({axis: "x"});
             });
-        </script>
+        </script>-->
 
         <style type="text/css">
             h4 {
@@ -218,7 +218,7 @@
         </script> 
 
         <script src="js/jasny-bootstrap.min.js"></script>
-        <script src="js/jquery-1.8.3.min.js"></script>
+        <!--<script src="js/jquery-1.8.3.min.js"></script>-->
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

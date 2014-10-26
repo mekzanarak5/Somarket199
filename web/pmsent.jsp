@@ -45,11 +45,11 @@
                                 <a href="ShowPmServlet?id=${user.account_Id}"><button class="btn btn-xs btn-default">Inbox</button></a>
                             </div>
                             <div class="col-md-3" style="margin-top: 14px;margin-left: -30px">
-                                <a href="ShowSentServlet?id=${user.username}"><button class="btn btn-xs btn-primary">Sent</button></a>
+                                <a href="ShowSentServlet?id=${user.account_Id}"><button class="btn btn-xs btn-primary">Sent</button></a>
                             </div>
                             <div class="col-md-12">
                                 <form action="DeleteSentServlet" method="get">
-                                    <table class="table table-striped" style="text-align: center">
+                                    <table class="table table-striped" id="table6" style="text-align: center">
                                         <tr bgColor="#ffffff">
                                         <input type="hidden" name="acctid" value="${user.account_Id}">
                                         <td>Receiver</td>
@@ -94,7 +94,7 @@
                 </div>
             </div>
         </div>
-        <script src="js/jquery-1.8.3.min.js"></script>
+        <!--<script src="js/jquery-1.8.3.min.js"></script>-->
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -106,6 +106,17 @@
         <script src="js/jquery.placeholder.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <script language="javascript" type="text/javascript">
+            //<![CDATA[  
+            var table6_Props = {
+                paging: true,
+                paging_length: 10,
+                rows_counter: true,
+                rows_counter_text: "Rows:",
+            };
+            var tf6 = setFilterGrid("table6", table6_Props);
+            //]]>  
+        </script>
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

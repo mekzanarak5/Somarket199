@@ -41,10 +41,10 @@
             <div class="col-xs-12" style="margin:auto;">
                 <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                     <div class="row">
-                        <h3 class="col-md-12">Wish List</h3>
+                        <h5 class="col-md-12">Wish List</h5>
                         <form action="DeleteWishlistServlet" method="get">
                             <div class="col-md-12">
-                                <table class="table table-striped" style="text-align: center">
+                                <table class="table table-striped" id="table6" style="text-align: center">
                                     <tr bgColor="#ffffff">
                                     <input type="hidden" name="acctid" value="${user.account_Id}">
                                     <td>Product Name</td>
@@ -70,7 +70,7 @@
             </div>
         </div>
         </div>
-        <script src="js/jquery-1.8.3.min.js"></script>
+        <!--<script src="js/jquery-1.8.3.min.js"></script>-->
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -82,6 +82,17 @@
         <script src="js/jquery.placeholder.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <script language="javascript" type="text/javascript">
+            //<![CDATA[  
+            var table6_Props = {
+                paging: true,
+                paging_length: 10,
+                rows_counter: true,
+                rows_counter_text: "Rows:",
+            };
+            var tf6 = setFilterGrid("table6", table6_Props);
+            //]]>  
+        </script>
         <jsp:include page="footer.jsp"/>
     </body>
 </html>

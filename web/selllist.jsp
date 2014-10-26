@@ -52,7 +52,7 @@
                                     <a href="#"><button type="button" class="btn btn-default">Sold List</button></a>
                                 </div>
                                 <hr>
-                                    <table class="table table-striped" style="text-align: center">
+                                    <table class="table table-striped" id="table6" style="text-align: center">
                                         <tr bgColor="#ffffff">
                                             <td>Date Created</td>
                                             <td>Pic</td>
@@ -71,7 +71,7 @@
                                                 </td>
                                                 <td>${a.price}</td>
                                                 <td width="20%"><div class="btn-group">
-                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
                                                             Manage Post <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <script src="js/jquery-1.8.3.min.js"></script>
+        <!--<script src="js/jquery-1.8.3.min.js"></script>-->
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -100,6 +100,17 @@
         <script src="js/jquery.placeholder.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <script language="javascript" type="text/javascript">
+            //<![CDATA[  
+            var table6_Props = {
+                paging: true,
+                paging_length: 10,
+                rows_counter: true,
+                rows_counter_text: "Rows:",
+            };
+            var tf6 = setFilterGrid("table6", table6_Props);
+            //]]>  
+        </script>
         <jsp:include page="footer.jsp"/>
     </body>
 </html>
