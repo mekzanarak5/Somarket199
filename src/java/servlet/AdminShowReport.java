@@ -7,15 +7,18 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Accounts;
 import model.Category;
 import model.Message;
 import model.Product;
+import model.order;
 
 /**
  *
@@ -34,17 +37,21 @@ public class AdminShowReport extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession s1 = request.getSession();
+        HttpSession s2 = request.getSession();
+        HttpSession s3 = request.getSession();
+        HttpSession s4 = request.getSession();
         List<Product> p = Product.showProduct();
-        request.setAttribute("pro", p);
+        s1.setAttribute("pro", p);
         List<Accounts> a = Accounts.findAllAcct();
-        request.setAttribute("acc", a);
-
+        s2.setAttribute("acc", a);
         List<Message> p1 = Message.findReceiverAd();
-        request.setAttribute("pm", p1);
-
+        s3.setAttribute("pm", p1);
+        ArrayList<order> o1 = order.showAll();
+        s4.setAttribute("od", o1);
         List<Category> c = Category.findBigAll();
         request.setAttribute("cateID", c);
-        getServletContext().getRequestDispatcher("/AdminHome.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/AdminProduct.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

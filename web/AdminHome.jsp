@@ -194,25 +194,19 @@
                 <div class="tab-pane" style="margin-top: 50px" id="account">
                     <h5 class="col-md-4">Account Information</h5>
                     <div class="col-md-12">
-                        <table class="table table-striped" style="text-align: center">
+                        <table class="table table-striped" id="table6" style="text-align: center">
                             <tr bgColor="#ffffff">
-                                <th>Account ID</th>
-                                <th>Buy List</th>
-                                <th>Sell List</th>
-                                <th>Ongoing</th>
-                                <th>Waiting For Check</th>
-                                <th>Sold List</th>
+                                <td>Account ID</td>
+                                <td>Account Name</td>
+                                <td>Rate feedback</td>
+                                <td>Detail feedback</td>
                             </tr>
                             <c:forEach items="${acc}" var="a">
                                 <tr>
                                     <td>${a.account_Id}</td>
+                                    <td>${a.username}</td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td width="20%">
-
-                                    </td>
                                 </tr>
                             </c:forEach>
                         </table>                           
@@ -276,8 +270,8 @@
                                         <td>${a.createOn}</td>
                                         <td width="20%">
                                             <div class="btn-group">                                              
-                                                <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-primary">Edit</button></a>
-                                                <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-danger">Delete</button></a>
+                                                <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-xs btn-primary">Edit</button></a>
+                                                <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-xs btn-danger">Delete</button></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -286,7 +280,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" id="order">...</div>
+                <div class="tab-pane" id="order">
+                    <div class="row">
+                        <h5 class="col-md-2" style="margin-top: 50px">Order</h5>
+                        <div class="col-md-12">
+                            <!--<input type="text" id="search" placeholder="Type to search">-->
+                            <table class="table table-striped display" id="table6" cellspacing="0" style="text-align: center;">
+                                <tr bgColor="#ffffff">
+                                    <td>Order ID</td>
+                                    <td>Buyer</td>
+                                    <td>Seller</td>
+                                    <td>Status</td>
+                                    <td>Detail</td>
+                                </tr>
+                               <c:forEach items="${od}" var="ord">
+                                    <tr>
+                                        <td>${ord.orderId}</td>
+                                        <td>${ord.username}</td>
+                                        <td>${ord.seller}</td>
+                                        <td>${ord.status}</td>
+                                        <td width="20%">
+                                            <div class="btn-group">                                              
+                                                <a href="#"><button class="btn btn-xs btn-primary">Detail</button></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>                           
+                        </div>
+                    </div>
+                </div>
                 <div class="tab-pane" id="report">
                     <div class="row">
                         <h5 class="col-md-2" style="margin-top: 50px">Report</h5>
@@ -297,6 +320,7 @@
                                     <input type="hidden" name="acctid" value="${user.account_Id}">
                                     <td>Sender</td>
                                     <td>Subject</td>
+                                    <td>Reason</td>
                                     <td>Time</td>
                                     <td><button type="submit" class="btn btn-xs btn-primary"><img src="pic/bin.png" width="18px" height="18px" ></button></td>
                                     </tr>
@@ -304,10 +328,11 @@
                                         <tr>
                                             <td><a href="#">${a.senderID}</a></td>
                                             <td><a href="ReplayServlet?id=${a.msgID}">${a.subject}</a></td>
+                                            <td>${a.pm}</td>
                                             <td>${a.time}</td>
                                             <td>
-                                            <input type="checkbox" name="pmid" value="${a.msgID}" >
-                                        </td>
+                                                <input type="checkbox" name="pmid" value="${a.msgID}" >
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </table>
@@ -412,5 +437,38 @@
             var tf6 = setFilterGrid("table6", table6_Props);
             //]]>  
         </script>  
+        <script language="javascript" type="text/javascript">
+//<![CDATA[  
+            var table10_Props = {
+                paging: true,
+                paging_length: 5,
+                col_2: 'select',
+                col_3: 'select',
+                sort_num_asc: [2],
+                sort_num_desc: [3],
+                refresh_filters: true
+            };
+            var tf10 = setFilterGrid("table10", table10_Props);
+//]]>  
+        </script>
+        <script language="javascript" type="text/javascript">  
+//<![CDATA[  
+    var table9_Props = {  
+        paging: true,  
+        paging_length: 2,  
+        results_per_page: ['# rows per page',[2,4,6]],  
+        rows_counter: true,  
+        rows_counter_text: "Rows:",  
+        btn_reset: true,  
+        btn_next_page_html: '<a href="javascript:;" style="margin:3px;">Next ></a>',  
+        btn_prev_page_html: '<a href="javascript:;" style="margin:3px;">< Previous</a>',  
+        btn_last_page_html: '<a href="javascript:;" style="margin:3px;"> Last >|</a>',  
+        btn_first_page_html: '<a href="javascript:;" style="margin:3px;"><| First</a>',  
+        loader: true,  
+        loader_html: '<h4 style="color:red;">Loading, please wait...</h4>'  
+    };  
+    var tf9 = setFilterGrid( "table9",table9_Props );  
+//]]>  
+</script> 
     </body>
 </html>

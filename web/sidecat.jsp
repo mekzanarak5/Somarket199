@@ -6,7 +6,22 @@
     Map<Category, List<Category>> c = (Map<Category, List<Category>>) session.getAttribute("cate");
 %>
 <a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
-    
+<div id='cssmenu'>
+    <ul>
+        <c:forEach items="${cate}" var="entry">
+            <li class='active has-sub'><a href='SearchProductServlet?id=&herolist=${entry.key.cateID}&x=0&y=6&s=a'><span>${entry.key.cateName}</span></a>
+                <ul>
+                    <c:forEach items="${entry.value}" var="sub_entry">
+                        <li>
+                            <a href='SearchProductServlet?id=&herolist=${sub_entry.cateID}&x=0&y=6&s=a'><span>${sub_entry.cateName}</span>
+                            </a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </li>
+        </c:forEach>
+    </ul>
+</div>    
 <form action="PriceServlet" method="get">
     <h6 class="col-md-12">Price Range</h6>
     <div class="col-xs-12">
@@ -23,7 +38,8 @@
         <br>
         <input type="submit" class="btn btn-info" value="Search">
     </div>
-</form><br><br><br><br><br><br>
+</form><br><br><br><br><br>
+<!--<br>
 
 <c:forEach items="${cate}" var="entry">
     <ul class="nav nav-pills nav-stacked btn-sm">
@@ -44,4 +60,4 @@
     </ul>
 </c:forEach>
 
-
+<br>-->

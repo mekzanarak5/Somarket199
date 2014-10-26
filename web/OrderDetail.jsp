@@ -136,7 +136,6 @@
                                     </div>
                                     <div class="col-md-3">
                                         <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                        <a href="" target="_blank">feedback</a>glyphicon glyphicon-heart
                                     </div>
                                     <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
@@ -185,9 +184,6 @@
                                     <div class="col-md-3">
                                         <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
                                         <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
-
-                                        
-
                                     </div>
                                     <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
                                         <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
@@ -209,38 +205,38 @@
                 </div>
             </div>
         </div>
-                        
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <form action="AddBank" method="get">
-                                                        <div class="form-horizontal" style="text-align: center">                               
-                                                            <h4 class="col-md-12">Feedback</h4>
-                                                            <div class="form-group">
-                                                                <label for="inputPassword3" class="col-sm-3 control-label">
-                                                                </label>
-                                                                <div class="col-sm-6">
-                                                                    <textarea class="form-control" name="address" rows="4" cols="50" required></textarea>
-                                                                <div class="rating">
-                                                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-                                                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-                                                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-                                                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-                                                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="col-sm-offset-2 col-sm-10">
 
-                                                                    <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>                
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form action="AddBank" method="get">
+                        <div class="form-horizontal" style="text-align: center">                               
+                            <h4 class="col-md-12">Feedback</h4>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">
+                                </label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" name="address" rows="4" cols="50" required></textarea>
+                                    <div class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+
+                                    <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>                
         <!--</div>-->
 
         <script src="js/jquery-1.8.3.min.js"></script>

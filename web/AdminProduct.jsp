@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Social Market | Home</title>
+        <title>Social Market | Admin</title>
         <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
 
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
@@ -158,99 +158,74 @@
                 top:0px;
                 left: 0px;
             }
+            .dataTables_filter label {
+                float:right
+            }
 
+            .pagination {
+                margin-top:0;
+                float:right;
+            }
         </style>
     </head>
-      <jsp:include page="header1.jsp"/>
+    <%--<jsp:include page="header1.jsp"/>--%>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;">
-        <div style="margin-bottom: 70px">
+        <div style="margin-bottom: 30px">
         </div>
-        <div class="row">
-            <div class="col-md-2">
-                <jsp:include page="logo.jsp"/>
+        <div class="row col-md-12">
+            <div class="col-md-1" style="margin-top: 5px;margin-right: -70px">
+                <a href="home.jsp"><span class="glyphicon glyphicon-chevron-left"></span></a>
             </div>
-            <div class="col-md-10">
-                <jsp:include page="header.jsp"/>
-                <div class="col-md-offset-2 col-md-9">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <form action="ShowCategoryServlet" method="get">
-                            <button type="submit">
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img src="pic/ip6.jpg" alt="...">
-                                        <div class="carousel-caption">
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <img src="pic/s5.jpg" alt="...">
-                                        <div class="carousel-caption">
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <img src="pic/mac.jpg" alt="...">
-                                        <div class="carousel-caption">
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <img src="pic/n7.jpg" alt="...">
-                                        <div class="carousel-caption">
-                                        </div>
-                                    </div>
-                                </div>
-                            </button>
-                        </form>
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                </div>  
+            <div class="col-md-3">
+                <h4>Administrator Page</h4>
             </div>
-            <div class="col-md-12" style="margin-top: 10px">   
-                <div class="col-xs-12" style="margin-:auto;">
-                    <div class="col-md-12" style=" border: 3px solid #efefef;border-radius: 15px;min-height: 230px;background: #efefef;">
-                        <h5 class="col-md-12" style="color: red">Hot Items <span class="glyphicon glyphicon-fire"></span></h5>
-                        <div class="col-md-3" style="margin-left: 50px">
-                            <div>
-                                <c:forEach items="${pro1}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;box-shadow: 0px 2px 5px black;"></a>
-                                    </c:forEach>
-                            </div>
-                            <h6 class="col-md-12">Computer</h6>
-                        </div>
-                        <div class="col-md-offset-1 col-md-3">
-                            <div>
-                                <c:forEach items="${pro2}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;box-shadow: 0px 2px 5px black;"></a>
-                                    </c:forEach>
-                            </div>
-                            <h6 class="col-md-12">Mobile&Tablet</h6>
-                        </div>
-                        <div class="col-md-offset-1 col-md-3">
-                            <div>
-                                <c:forEach items="${pro3}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;box-shadow: 0px 2px 5px black;"></a>
-                                    </c:forEach>
-                            </div>
-                            <h6 class="col-md-12">Camera</h6>
-                        </div>
-                    </div>
+            <div class="col-md-1" style="margin-top: 5px;margin-left: -50px">
+                <a href="AdminShowReport"><span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 30px">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li class="active"><a href="AdminProduct.jsp">Product</a></li>
+                <li><a href="AdminAccount.jsp">Account</a></li>
+                <li><a href="AdminOrder.jsp">Order</a></li>
+                <li><a href="AdminReport.jsp">Report</a></li>
+                <li><a href="AdminSetting.jsp">Setting</a></li>
+            </ul>
+            <hr>
+            <div class="row">
+                <h5 class="col-md-2">Product</h5>
+                <div class="col-md-12">
+                    <!--<input type="text" id="search" placeholder="Type to search">-->
+                    <table class="table table-striped display" id="table6" cellspacing="0" style="text-align: center;">
+                        <tr bgColor="#ffffff">
+                            <td>Account ID</td>
+                            <td>Category</td>
+                            <td>Name</td>
+                            <td>Price</td>
+                            <td>CreateOn</td>
+                            <td>Manage Post</td>
+                        </tr>
+                        <c:forEach items="${pro}" var="a">
+                            <tr>
+                                <td>${a.acctID}</td>
+                                <td>${a.cateName}</td>
+                                <td>${a.name}</td>
+                                <td>${a.price}</td>
+                                <td>${a.createOn}</td>
+                                <td width="20%">
+                                    <div class="btn-group">                                              
+                                        <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-xs btn-primary">Edit</button></a>
+                                        <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-xs btn-danger">Delete</button></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>                           
                 </div>
             </div>
-        </div>
-        <script src="js/jasny-bootstrap.min.js"></script>
+        </div>  
+        <!--<script src="js/jasny-bootstrap.min.js"></script>-->
         <script src="js/dropdown.js"></script>
         <script src="js/semantic.js"></script>
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -265,7 +240,7 @@
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script>
-            $(function () {
+            $(function() {
                 $('.demo.menu .item')
                         .tab('deactivate all')
                         .tab('activate tab', 'third')
@@ -273,6 +248,60 @@
                         ;
             });
         </script>
-        <jsp:include page="footer.jsp"/>
+        <script>
+            var $rows = $('#table tr');
+            $('#search').keyup(function() {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+                $rows.show().filter(function() {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+        </script>
+        <script language="javascript" type="text/javascript">
+            //<![CDATA[  
+            var table6_Props = {
+                paging: true,
+                paging_length: 10,
+                rows_counter: true,
+                rows_counter_text: "Rows:",
+            };
+            var tf6 = setFilterGrid("table6", table6_Props);
+            //]]>  
+        </script>  
+        <script language="javascript" type="text/javascript">
+//<![CDATA[  
+            var table10_Props = {
+                paging: true,
+                paging_length: 5,
+                col_2: 'select',
+                col_3: 'select',
+                sort_num_asc: [2],
+                sort_num_desc: [3],
+                refresh_filters: true
+            };
+            var tf10 = setFilterGrid("table10", table10_Props);
+//]]>  
+        </script>
+        <script language="javascript" type="text/javascript">
+//<![CDATA[  
+            var table9_Props = {
+                paging: true,
+                paging_length: 2,
+                results_per_page: ['# rows per page', [2, 4, 6]],
+                rows_counter: true,
+                rows_counter_text: "Rows:",
+                btn_reset: true,
+                btn_next_page_html: '<a href="javascript:;" style="margin:3px;">Next ></a>',
+                btn_prev_page_html: '<a href="javascript:;" style="margin:3px;">< Previous</a>',
+                btn_last_page_html: '<a href="javascript:;" style="margin:3px;"> Last >|</a>',
+                btn_first_page_html: '<a href="javascript:;" style="margin:3px;"><| First</a>',
+                loader: true,
+                loader_html: '<h4 style="color:red;">Loading, please wait...</h4>'
+            };
+            var tf9 = setFilterGrid("table9", table9_Props);
+//]]>  
+        </script> 
     </body>
 </html>

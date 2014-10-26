@@ -17,12 +17,14 @@
         <div style="margin-bottom: 30px">
         </div>
         <div class="row col-md-12">
+            <div class="col-md-1" style="margin-top: 20px;margin-right: -70px">
+                <a href="home.jsp"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            </div>
             <div class="col-md-3">
                 <h4>Administrator Page</h4>
             </div>
             <div class="col-md-1" style="margin-top: 20px;margin-left: -50px">
-                <a href="home.jsp"><span class="glyphicon glyphicon-home"></span>
-                <a href="AdminShowReport"><span class="glyphicon glyphicon-home">Admin</span>
+                <a href="AdminShowReport"><span class="glyphicon glyphicon-home"></span>
                 </a>
             </div>
         </div>
@@ -30,7 +32,9 @@
             <div class="col-md-12"> 
                 <form action="AdminEditCategory" method="get">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-12"><h4>Edit Category#${pro.productNO} (${pro.name})</h4></label>
+                        <label for="inputEmail3" class="col-sm-12"><h5>Edit Category#${pro.productNO}</h5><h6> (Seller: ${pro.username})</h6>
+                            <h6> (Product Name: ${pro.name})</h6></label>
+                        
                         <div class="row">
                             <div class="col-sm-offset-1 col-md-3">
                                 <select id="mark" class="form-control">

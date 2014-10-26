@@ -76,9 +76,9 @@ public class order {
     public String getPayment() {
         return payment;
     }
-    
+
     public String getPaymentHTML() {
-        return payment.replace("\n","<br>");
+        return payment.replace("\n", "<br>");
     }
 
     public void setPayment(String payment) {
@@ -293,8 +293,7 @@ public class order {
         }
         return o;
     }
-    
-    
+
     public static boolean checkProductOrder(int id) {
         String sqlCmd = "SELECT * FROM order_product WHERE Product_ID = ?";
         Connection con = ConnectionAgent.getConnection();
@@ -304,7 +303,7 @@ public class order {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                k=true;
+                k = true;
             }
             con.close();
         } catch (SQLException ex) {
@@ -348,6 +347,26 @@ public class order {
         }
     }
 
+    public static List<order> findAllOrder() {
+        String sqlCmd = "SELECT * FROM order_sum";
+        Connection con = ConnectionAgent.getConnection();
+        order a = null;
+        List<order> cs = new ArrayList<order>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                a = new order();
+                a = toO(rs);
+                cs.add(a);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
+
     public static void addSlip(int order_id, String slip) {
         String sql = "update order_sum set slip=? where OrderNo = ?";
         try {
@@ -360,7 +379,7 @@ public class order {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void addAddr(int order_id, int addr) {
         String sql = "update order_sum set Address=? where OrderNo = ?";
         try {
@@ -373,7 +392,7 @@ public class order {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void addPayment(int order_id, String pay) {
         String sql = "update order_sum set payment=?, detail=? where OrderNo = ?";
         try {
@@ -402,9 +421,9 @@ public class order {
         }
     }
 
-    public static List<order> showAll() {
+    public static ArrayList<order> showAll() {
         order o = null;
-        List<order> cs = new ArrayList<order>();
+        ArrayList<order> cs = new ArrayList<order>();
         String sql = "select * from order_sum order by Created desc";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
@@ -416,7 +435,7 @@ public class order {
             }
             ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {
-            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cs;
     }

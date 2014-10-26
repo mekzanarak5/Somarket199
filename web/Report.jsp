@@ -29,7 +29,7 @@
             <div class="col-md-12">
                 <font size="2">
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="home.jsp">Home</a></li>
                     <li class="active">Report</li>
                 </ol>
                 </font>
@@ -55,11 +55,14 @@
                                     <input type="hidden" name="proid"  value="${pro.productNO}" />
                                     <input type="hidden" name="accid"  value="${user.account_Id}" />
                                     <input type="hidden" name="sender"  value="${user.account_Id}" />
+                                    <input type="hidden" name="senderName"  value="${user.username}" />
+                                    <input type="hidden" name="receiverName"  value="admin" />
                                     <select name="herolist" class="select-block">
                                         <option value="" selected>Choose Reason</option>
-                                        <option value="kak">kak</option>
-                                        <option value="kak1">kak1</option>
-                                        <option value="kak2">kak2</option>
+                                        <option value="Defalcation">Defalcation</option>
+                                        <option value="Duplicate">Duplicate</option>
+                                        <option value="Wrong Category">Wrong Category</option>
+                                        <option value="Offensive">Offensive</option>
                                     </select>
                                 </div>          
                             </div>

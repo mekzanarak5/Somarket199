@@ -57,7 +57,7 @@
                                     <textarea class="form-control" name="pm" rows="3" required></textarea> 
                                 </div>          
                             </div>
-                            <div class="col-xs-5" style="margin: auto;float: none;margin-bottom: 50px" >
+                            <div class="col-xs-5" style="margin: auto;float: none;margin-bottom: 30px" >
                                 <input type="submit" class="btn btn-block btn-lg btn-info" value="Send !">
                             </div>
                         </div>
@@ -78,5 +78,6 @@
         <script src="js/jquery.placeholder.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>
