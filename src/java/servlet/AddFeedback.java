@@ -42,6 +42,7 @@ public class AddFeedback extends HttpServlet {
         int check = 0;
         if (acct.getUsername().equals(o.getUsername())){
             f.setAcct(o.getSeller());
+            f.setFrom(o.getUsername());
             f.setOrder(orderid);
             f.setComment(comm);
             f.setType("Seller");
@@ -51,6 +52,7 @@ public class AddFeedback extends HttpServlet {
                 msg = "Thank you for feedback to\t" +o.getSeller()+".";
         }else{
             f.setAcct(o.getUsername());
+            f.setFrom(o.getSeller());
             f.setOrder(orderid);
             f.setComment(comm);
             f.setType("Buyer");
@@ -60,10 +62,11 @@ public class AddFeedback extends HttpServlet {
                 msg = "Thank you for feedback to\t" +o.getUsername()+".";
             
         }
-        request.setAttribute("feed", f);
+        System.out.println(check);
+        request.setAttribute("feedo", f);
         request.setAttribute("msg", msg);
         
-        response.sendRedirect(request.getParameter("url"));
+        response.sendRedirect(request.getParameter("url") /*+ "&show=modal"*/);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
