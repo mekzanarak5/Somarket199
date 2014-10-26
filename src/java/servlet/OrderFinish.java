@@ -54,7 +54,7 @@ public class OrderFinish extends HttpServlet {
         }
         request.setAttribute("detail", cart);
         request.setAttribute("order", o);
-        getServletContext().getRequestDispatcher("/OrderDetail.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/DetailOrder?orderid="+orderid).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

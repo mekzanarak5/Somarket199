@@ -8,6 +8,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,14 +36,16 @@ public class ViewFeedback extends HttpServlet {
             throws ServletException, IOException {
         Accounts acct = (Accounts) request.getSession().getAttribute("user");
         if (request.getParameter("orderid")==null){
+            List<Feedback> ma = new ArrayList<Feedback>();
             String fuser;
-            if (request.getParameter("acct") == null){
+            if (request.getParameter("facct") == null){
                 fuser = acct.getUsername();
-            
+                ma = Feedback.getFeedList(fuser);
             }else{
                 fuser = request.getParameter("facct");
             
         }
+            request.setAttribute("flist", ma);
         }else{
             int oid = Integer.parseInt(request.getParameter("orderid"));
             Feedback fd = Feedback.checkSender(oid, acct.getUsername());
