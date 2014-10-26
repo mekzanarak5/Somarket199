@@ -134,10 +134,12 @@
                                             ${add.provice}, ${add.post}
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                            <c:choose>
+                                                <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
                                         <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                        <a href="" target="_blank">feedback</a>glyphicon glyphicon-heart
-                                    </div>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
+
+                                                    </div></c:when></c:choose>
                                     <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                         <div class="col-md-12" align="center" style="margin-bottom: 20px">
@@ -182,17 +184,14 @@
                                             ${add.provice}, ${add.post}
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                        <a href="" target="_blank">feedback</a>glyphicon glyphicon-heart
-                                    </div>
-                                    <div class="col-md-3">
+                                    <c:choose>
+                                        <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
                                         <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
                                         <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
 
                                         
 
-                                    </div>
+                                            </div></c:when></c:choose>
                                     <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
                                         <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                             <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
@@ -213,18 +212,18 @@
                 </div>
             </div>
         </div>
-                            <c:choose><c:when test="" >             
+                        
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
-                                                    <form action="AddFeedback" method="get">
+                                                    <c:choose><c:when test="${feedo==null}"><form action="AddFeedback" method="get">
                                                         <div class="form-horizontal" style="text-align: center">                               
                                                             <h4 class="col-md-12">Feedback</h4>
                                                             <div class="form-group">
                                                                 <label for="inputPassword3" class="col-sm-3 control-label">
                                                                 </label>
                                                                 <div class="col-sm-6">
-                                                                    <textarea class="form-control" name="address" rows="4" cols="50" required></textarea>
+                                                                    <textarea class="form-control" name="comment" rows="4" cols="50" required></textarea>
                                                                 <div class="rating">
                                                                         <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
                                                                         <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
@@ -241,10 +240,30 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </form></c:when>
+                                                        <c:otherwise>
+                                                            <div class="form-horizontal" style="text-align: center">                               
+                                                            <h4 class="col-md-12">Feedback</h4>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword3" class="col-sm-3 control-label">
+                                                                </label>
+                                                                <div class="col-sm-6">
+                                                                    <textarea class="form-control" name="comment" rows="4" cols="50" value="${feedo.comment}" disabled=""></textarea>
+                                                                <div class="rating">
+                                                                    <input type="radio" id="star${feedo.rate}" name="rating" value="${feedo.rate}" /><label for="star${feedo.rate}" title="">${feedo.rate} stars</label>
+                                                                </div>
+                                                            </div>
+                                                            <!--<div class="form-group">
+                                                                <div class="col-sm-offset-2 col-sm-10">
+
+                                                                    <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                                                </div>
+                                                            </div>-->
+                                                        </div>
+                                                        </c:otherwise></c:choose>
                                                 </div>
                                             </div>
-                                        </div></c:when></c:choose>                
+                                        </div>                
         <!--</div>-->
 
         <script src="js/jquery-1.8.3.min.js"></script>
