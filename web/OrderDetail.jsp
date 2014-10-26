@@ -145,7 +145,7 @@
                                                 <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                                 <div class="col-md-12" align="center" style="margin-bottom: 20px">
                                                     <input type="text" class="form-control" placeholder="Tranfer Time" name="ems" value="${order.ems}" disabled>
-                                        </div>
+                                    </div>
                                         <!--<div align="center" style="margin-bottom: 20px">
                                             <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
                                         </div>-->
@@ -237,10 +237,10 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
 
-                                            <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
-                                        </div>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
                                 </div>
+                            </div>
+                        </div>
                             </form></c:when>
                         <c:otherwise><div class="form-horizontal" style="text-align: center">                               
                                 <h4 class="col-md-12">Feedback</h4>
