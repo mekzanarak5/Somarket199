@@ -36,7 +36,7 @@ public class AddFeedback extends HttpServlet {
         order o  = order.searchByID(orderid);
         Accounts acct= (Accounts) request.getSession().getAttribute("user");
         String comm = request.getParameter("comment");
-        int rates = Integer.parseInt(request.getParameter("rate"));
+        int rates = Integer.parseInt(request.getParameter("rating"));
         Feedback f = new Feedback();
         String msg = "Sorry: place feedback failed";
         int check = 0;

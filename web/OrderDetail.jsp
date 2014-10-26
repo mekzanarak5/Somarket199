@@ -184,6 +184,10 @@
                                     </div>
                                     <div class="col-md-3">
                                         <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
+                                        <a href="" target="_blank">feedback</a>glyphicon glyphicon-heart
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
                                         <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
 
                                         
@@ -209,11 +213,11 @@
                 </div>
             </div>
         </div>
-                        
+                            <c:choose><c:when test="" >             
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
-                                                    <form action="AddBank" method="get">
+                                                    <form action="AddFeedback" method="get">
                                                         <div class="form-horizontal" style="text-align: center">                               
                                                             <h4 class="col-md-12">Feedback</h4>
                                                             <div class="form-group">
@@ -240,7 +244,7 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div>                
+                                        </div></c:when></c:choose>                
         <!--</div>-->
 
         <script src="js/jquery-1.8.3.min.js"></script>

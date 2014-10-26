@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -188,6 +189,25 @@ public class Feedback {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
         return f;
+    }
+    
+    public static Feedback checkFeedback(int ord, String user) {
+        String sqlCmd = "SELECT * from feedback f where f.OrderId = ? and f.Account_Id ";
+        Connection con = ConnectionAgent.getConnection();
+        Feedback cs = new Feedback();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, ord);
+            ps.setString(2, user);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cs = toO(rs);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
     }
     
     public static Feedback toO(ResultSet rs) {
