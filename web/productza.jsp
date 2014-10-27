@@ -131,7 +131,7 @@
                                 <div class="col-md-7">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h5><div style="color: red">฿ ${showDetail.price}</div></h5>
+                                            <h5><div style="color: red">฿ ${showDetail.price}0</div></h5>
                                         </div>
                                         <div class="panel-body">
 

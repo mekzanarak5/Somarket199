@@ -73,10 +73,10 @@
                                                                 ${line.product.name}
                                                             </a>
                                                         </td>
-                                                        <td>${line.product.price}</td>
+                                                        <td>${line.product.price}0</td>
                                                         <td><input type="hidden" value="${line.product.productNO}" name="productId" >
                                                             <input style="text-align:right" type="number" class="form-control" name="unit" size='4' value="${line.unit}" required></td>
-                                                        <td>${line.total}</td>
+                                                        <td>${line.total}0</td>
                                                         <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
                                                     </tr>
                                                 </c:when>
@@ -84,7 +84,7 @@
                                         </c:forEach>
                                         <tr>
                                             <td>TOTAL</td>
-                                            <td>${price[entry.key]}</td>
+                                            <td>${price[entry.key]}0</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

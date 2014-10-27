@@ -65,13 +65,7 @@
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
                                                 </div>
-                                                <script type="text/javascript">
-                                                    $(function() {
-                                                        $('#datetimepicker5').datetimepicker({
-                                                            pickTime: false
-                                                        });
-                                                    });
-                                                </script>
+                                                
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -251,7 +245,7 @@
                 </div>
             </div>
         </div>
-        <script src="js/jquery-1.8.3.min.js"></script>
+        <!--<script src="js/jquery-1.8.3.min.js"></script>-->
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

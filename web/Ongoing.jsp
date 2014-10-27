@@ -65,7 +65,7 @@
                                         <td>${no}</td>
                                         <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
                                         <td><a href="#"></a>${a.time}</td>
-                                        <td>${a.total}</td>
+                                        <td>${a.total}0</td>
                                         <td>${a.status}</td>
                                     </tr>
                                 <c:set value="${no+1}" var="no" />
