@@ -145,7 +145,7 @@
                                                 <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                                 <div class="col-md-12" align="center" style="margin-bottom: 20px">
                                                     <input type="text" class="form-control" placeholder="Tranfer Time" name="ems" value="${order.ems}" disabled>
-                                    </div>
+                                        </div>
                                         <!--<div align="center" style="margin-bottom: 20px">
                                             <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
                                         </div>-->
@@ -156,7 +156,12 @@
                         <c:otherwise>
                             <c:choose>
                                 <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
-                                    waiting for payment
+                                    <div class="panel panel-info col-md-5 " style="margin-left: 380px ">
+                                            <h6 class="col-md-12 panel-heading" align="center">Status</h6>
+                                            <div class="col-md-12" align="center" style="margin-bottom: 20px">
+                                                Waiting for payment
+                                            </div>
+                                        </div>
                                 </c:when><c:otherwise>
                                     <div class="panel panel-default col-md-4" style="margin-left: 45px ">
                                         <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
@@ -240,7 +245,9 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
 
-                                    <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                            <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -286,10 +293,10 @@
                 <script src="http://vjs.zencdn.net/4.3/video.js"></script>
                 <script src="js/application.js"></script>
                 <script>
-            $(function() {
-                //$('.ui.accordion').accordion();
-                $('input[name=url]').val((window.location.href.toString()));
-            });
+                    $(function() {
+                        //$('.ui.accordion').accordion();
+                        $('input[name=url]').val((window.location.href.toString()));
+                    });
 
         </script>
 <!--                <script type="text/javascript">

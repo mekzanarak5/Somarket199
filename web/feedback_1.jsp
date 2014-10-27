@@ -25,7 +25,7 @@
         </div>
         <div class="row">
         <div class="col-md-2">
-            <jsp:include page="logo_1.jsp"/>
+            <jsp:include page="logoOther.jsp"/>
         </div>
         <div class="col-xs-10">
             <jsp:include page="header.jsp"/>
