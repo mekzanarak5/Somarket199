@@ -292,6 +292,14 @@
         <servlet-name>ViewFeedback</servlet-name>
         <servlet-class>servlet.ViewFeedback</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminDetailOrder</servlet-name>
+        <servlet-class>servlet.AdminDetailOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowSoldList</servlet-name>
+        <servlet-class>servlet.ShowSoldList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -583,6 +591,14 @@
     <servlet-mapping>
         <servlet-name>ViewFeedback</servlet-name>
         <url-pattern>/ViewFeedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDetailOrder</servlet-name>
+        <url-pattern>/AdminDetailOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowSoldList</servlet-name>
+        <url-pattern>/ShowSoldList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

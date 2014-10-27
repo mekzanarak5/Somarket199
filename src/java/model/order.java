@@ -459,4 +459,20 @@ public class order {
         }
         return c;
     }
+    public static ArrayList<order> sold(String key) {
+        ArrayList<order> o = new ArrayList<order>();
+        String sql = "select * from order_sum where seller=? and Detail='shipping' order by Created";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, key);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                o.add(toO(rs));
+            }
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return o;
+    }
 }

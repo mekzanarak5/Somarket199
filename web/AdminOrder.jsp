@@ -188,7 +188,7 @@
             <ul class="nav nav-tabs nav-justified" role="tablist">
                 <li><a href="AdminProduct.jsp">Product</a></li>
                 <li><a href="AdminAccount.jsp">Account</a></li>
-                <li class="active"><a href="AdminOrder.jsp">Order</a></li>
+                <li  class="active"><a href="AdminOrder.jsp">Order</a></li>
                 <li><a href="AdminReport.jsp">Report</a></li>
                 <li><a href="AdminSetting.jsp">Setting</a></li>
             </ul>
@@ -213,7 +213,7 @@
                                 <td>${ord.status}</td>
                                 <td width="20%">
                                     <div class="btn-group">                                              
-                                        <a href="#"><button class="btn btn-xs btn-primary">Detail</button></a>
+                                        <a href="AdminDetailOrder?orderid=${ord.orderId}"><button class="btn btn-xs btn-primary">Detail</button></a>
                                     </div>
                                 </td>
                             </tr>

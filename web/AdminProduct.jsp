@@ -211,7 +211,7 @@
                                 <td>${a.acctID}</td>
                                 <td>${a.cateName}</td>
                                 <td>${a.name}</td>
-                                <td>${a.price}</td>
+                                <td>${a.price}0</td>
                                 <td>${a.createOn}</td>
                                 <td width="20%">
                                     <div class="btn-group">                                              

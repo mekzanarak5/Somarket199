@@ -49,7 +49,7 @@
                                 <div class="btn-group btn-group-justified" style="margin-bottom: 20px">
                                     <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-primary">Now Sell</button></a>
                                     <a href="SellerOrder"><button type="button" class="btn btn-default">Ongoing</button></a>
-                                    <a href="#"><button type="button" class="btn btn-default">Sold List</button></a>
+                                    <a href="ShowSoldList?username=${user.username}"><button type="button" class="btn btn-default">Sold List</button></a>
                                 </div>
                                     <table class="table table-striped" id="table6" style="text-align: center">
                                         <tr bgColor="#ffffff">

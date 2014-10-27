@@ -43,6 +43,10 @@ public class DetailOrder extends HttpServlet {
         Accounts a = Accounts.getUser(o.getSeller());
         List<Bank> b = Bank.showBank(a.getAccount_Id());
         Bank bpay = Bank.findBank(o.getBankacct());
+        if(o.getPayment()!=null){
+            String pm = o.getPaymentHTML();
+            request.setAttribute("payment", pm);
+        }
         request.setAttribute("order", o);
         request.setAttribute("add", Address.findAddress(o.getAddress()));
         request.setAttribute("total", o.getTotal());

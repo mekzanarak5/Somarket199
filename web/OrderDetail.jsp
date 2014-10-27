@@ -112,17 +112,10 @@
                                         <div class="col-md-12">
                                             <table class="table table-bordered" style="text-align: center">
                                                 <tr>
-                                                    <td style="background: #ededed">Transfer Date</td>
-                                                    <td>Date</td>
+                                                    <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
+                                                    <td>${payment}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td style="background: #ededed">Transfer Time</td>
-                                                    <td>Time</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="background: #ededed">Amount</td>
-                                                    <td>Amount</td>
-                                                </tr>
+
                                             </table>
                                         </div>
                                     </div>
@@ -157,28 +150,21 @@
                             <c:choose>
                                 <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
                                     <div class="panel panel-info col-md-5 " style="margin-left: 380px ">
-                                            <h6 class="col-md-12 panel-heading" align="center">Status</h6>
-                                            <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                                Waiting for payment
-                                            </div>
+                                        <h6 class="col-md-12 panel-heading" align="center">Status</h6>
+                                        <div class="col-md-12" align="center" style="margin-bottom: 20px">
+                                            Waiting for payment
                                         </div>
+                                    </div>
                                 </c:when><c:otherwise>
                                     <div class="panel panel-default col-md-4" style="margin-left: 45px ">
                                         <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
                                         <div class="col-md-12">
                                             <table class="table table-bordered" style="text-align: center">
                                                 <tr>
-                                                    <td style="background: #ededed">Transfer Date</td>
-                                                    <td>วน</td>
+                                                    <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
+                                                    <td>${payment}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td style="background: #ededed">Transfer Time</td>
-                                                    <td>วน</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="background: #ededed">Amount</td>
-                                                    <td>วน</td>
-                                                </tr>
+
                                             </table>
                                         </div>
                                     </div>
