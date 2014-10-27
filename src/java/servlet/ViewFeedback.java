@@ -35,24 +35,31 @@ public class ViewFeedback extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Accounts acct = (Accounts) request.getSession().getAttribute("user");
+        
+        /*String url = request.getParameter("url");
+        String url2 = url.substring(0, 33);*/
+        
         if (request.getParameter("orderid")==null){
             List<Feedback> ma = new ArrayList<Feedback>();
             String fuser;
+            String url;
             if (request.getParameter("facct") == null){
                 fuser = acct.getUsername();
-                ma = Feedback.getFeedList(fuser);
+                url = "/feedback.jsp";
             }else{
                 fuser = request.getParameter("facct");
+                url = "/feedback_1.jsp";
             
         }
+            ma = Feedback.getFeedList(fuser);
             request.setAttribute("flist", ma);
-            getServletContext().getRequestDispatcher("/feedback.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher(url).forward(request, response);
         }else{
             int oid = Integer.parseInt(request.getParameter("orderid"));
             Feedback fd = Feedback.checkSender(oid, acct.getUsername());
             request.setAttribute("feedo", fd);
             
-            response.sendRedirect(request.getParameter("url") + "&show=modal");
+            getServletContext().getRequestDispatcher("/feedback.jsp").forward(request, response);
         }
     }
 
