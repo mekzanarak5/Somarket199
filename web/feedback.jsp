@@ -67,6 +67,7 @@
                             <tr bgColor="#ececea">
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td><select class="form-control ">
                                         <option>1</option>
                                         <option>2</option>
@@ -77,14 +78,17 @@
                             </tr>
                             <tr bgColor="#ececea">
                                 <td width="65%">FeedBack</td>
-                                <td>From Buyer</td>
+                                <td>From</td>
                                 <td>Date</td>
+                                <td>order #</td>
                             </tr>
+                            <c:forEach items="${flist}" var="feed" >
                             <tr>
-                                <td>แจ่มจุงเบย</td>
-                                <td>boss451</td>
-                                <td>10/05/2014</td>
-                            </tr>
+                                <td>${feed.comment}</td>
+                                <td>${feed.type=="buyer"?"buyer":"seller"}: ${feed.from}</td>
+                                <td>${feed.date}</td>
+                                <td>${feed.order}</td>
+                            </tr></c:forEach>
                         </table>
                     </div>
                 </div>
