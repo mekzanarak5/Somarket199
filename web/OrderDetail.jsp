@@ -137,9 +137,9 @@
                                     <c:choose>
                                         <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
                                                 <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                                <form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
-                                                    <input type="hidden" name="url"/>
-                                                    <button class="btn btn-primary">Feedback</button></form>
+                                                <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
+                                                    <input type="hidden" name="url"/>-->
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button><!--</form>-->
                                             </div></c:when></c:choose>
                                             <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                                 <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
@@ -186,11 +186,12 @@
                                         </div>
                                     </div>
                                     <c:choose>
-                                        <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
+                                        <c:when test="${order.status=='shipping' || order.status=='completed'}">
+                                            <div class="col-md-3">
                                                 <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                                <form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
-                                                    <input type="hidden" name="url"/>
-                                                    <button class="btn btn-primary">Feedback</button></form>
+                                                <%--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
+                                                    <input type="hidden" name="url"/>--%>
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button></form>
                                             </div></c:when></c:choose>
                                     <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
                                         <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
@@ -216,7 +217,9 @@
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <c:choose><c:when test="${feedo==null}"><form action="AddFeedback" method="get"><input type="hidden" name="id" value="${order.orderId}" />
+                    <%--<c:choose>
+                        <c:when test="${feba==null}">--%>
+                            <form action="AddFeedback" method="get"><input type="hidden" name="id" value="${order.orderId}" />
                                 <input type="hidden" name="url" />
                                 <div class="form-horizontal" style="text-align: center">                               
                                     <h4 class="col-md-12">Feedback</h4>
@@ -241,16 +244,18 @@
                                 </div>
                             </div>
                         </div>
-                            </form></c:when>
-                        <c:otherwise><div class="form-horizontal" style="text-align: center">                               
+                            </form>
+                        <%--</c:when>
+                        <c:otherwise>
+                            <div class="form-horizontal" style="text-align: center">                               
                                 <h4 class="col-md-12">Feedback</h4>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-3 control-label">
                                     </label>
                                     <div class="col-sm-6">
-                                        <textarea class="form-control" name="comment" rows="4" cols="50" value="${feedo.comment}" disabled=""></textarea>
+                                        <textarea class="form-control" name="comment" rows="4" cols="50" value="${feba.comment}" disabled=""></textarea>
                                         <div class="rating">
-                                            <input type="radio" id="star${feedo.rate}" name="rating" value="${feedo.rate}" /><label for="star${feedo.rate}" title="">${feedo.rate} stars</label>
+                                            <input type="radio" id="star${feba.rate}" name="rating" value="${feba.rate}" /><label for="star${feba.rate}" title="">${feba.rate} stars</label>
                                         </div>
                                     </div>
                                 </div>
@@ -259,8 +264,10 @@
     
                                         <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
                                     </div>
-                                </div>-->
-                            </div></c:otherwise></c:choose>
+                                </div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>--%>
                         </div>
                     </div>
                 </div>                
@@ -285,7 +292,7 @@
             });
 
         </script>
-                <script type="text/javascript">
+<!--                <script type="text/javascript">
                     $(function() {
                         if (getParameterByName("show") == 'modal') {
                             $('.bs-example-modal-lg').modal();
@@ -298,7 +305,7 @@
                                 results = regex.exec(location.search);
                         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
                     }
-                </script>
+                </script>-->
 
         <jsp:include page="footer.jsp"/>
     </body>

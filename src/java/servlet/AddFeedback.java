@@ -40,6 +40,8 @@ public class AddFeedback extends HttpServlet {
         Feedback f = new Feedback();
         String msg = "Sorry: place feedback failed";
         int check = 0;
+        /*String url = request.getParameter("url");
+        String url2 = url.substring(0, 33);*/
         if (acct.getUsername().equals(o.getUsername())){
             f.setAcct(o.getSeller());
             f.setFrom(o.getUsername());
@@ -63,10 +65,11 @@ public class AddFeedback extends HttpServlet {
             
         }
         System.out.println(check);
-        request.setAttribute("feedo", f);
+        request.setAttribute("feba", f);
+        System.out.println(f);
         request.setAttribute("msg", msg);
         
-        response.sendRedirect(request.getParameter("url") /*+ "&show=modal"*/);
+        getServletContext().getRequestDispatcher("/ViewFeedback?facct="+f.getAcct()).forward(request, response); /*+ "&show=modal"*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
