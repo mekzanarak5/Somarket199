@@ -171,7 +171,7 @@
             </div>
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
@@ -184,9 +184,9 @@
                         <!-- Wrapper for slides -->
                         <form action="ShowCategoryServlet" method="get">
                             <button type="submit">
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img src="pic/ip6.jpg" alt="...">
+                                <div class="carousel-inner" style="margin-left: 107px">
+                                    <div class="item active" >
+                                        <img src="pic/ip6.jpg"  alt="...">
                                         <div class="carousel-caption">
                                         </div>
                                     </div>
@@ -218,33 +218,33 @@
                     </div>
                 </div>  
             </div>
-            <div class="col-md-12" style="margin-top: 10px">   
+            <div class="col-md-12" style="margin-top: 10px">  
+                <h5 class="col-md-12" style="color: #ff6666">Hot Items <span class="glyphicon glyphicon-fire"></span></h5>
                 <div class="col-xs-12" style="margin-:auto;">
                     <div class="col-md-12" style=" border: 3px solid #efefef;border-radius: 15px;min-height: 230px;background: #efefef;">
-                        <h5 class="col-md-12" style="color: #ff6666">Hot Items <span class="glyphicon glyphicon-fire"></span></h5>
-                        <div class="col-md-3" style="margin-left: 50px">
+                        <div class="col-md-3" style="margin-left: 50px;margin-top: 20px">
                             <div>
                                 <c:forEach items="${pro1}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;border: 10px #FFFFFF solid"></a>
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;border: 10px #FFFFFF double"></a>
                                     </c:forEach>
                             </div>
-                            <h6 class="col-md-12">Computer <span class="glyphicon glyphicon-headphones"></h6>
+                            <h6 class="col-md-12">Computer <span class="glyphicon glyphicon-list-alt"></h6>
                         </div>
-                        <div class="col-md-offset-1 col-md-3">
+                        <div class="col-md-offset-1 col-md-3" style="margin-top: 20px">
                             <div>
                                 <c:forEach items="${pro2}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;border: 10px #FFFFFF solid"></a>
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;border: 10px #FFFFFF double"></a>
                                     </c:forEach>
                             </div>
                             <h6 class="col-md-12">Mobile&Tablet <span class="glyphicon glyphicon-phone"></h6>
                         </div>
-                        <div class="col-md-offset-1 col-md-3">
+                        <div class="col-md-offset-1 col-md-3" style="margin-top: 20px">
                             <div>
                                 <c:forEach items="${pro3}" var="a">
-                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;border: 10px #FFFFFF solid"></a>
+                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" class="img-rounded" width="300px" height="225px" style="margin-bottom: 10px;border: 10px #FFFFFF double"></a>
                                     </c:forEach>
                             </div>
-                            <h6 class="col-md-12">Camera <span class="glyphicon glyphicon-camera"></h6>
+                            <h6 class="col-md-12">Camera <span class="fui-photo"></h6>
                         </div>
                     </div>
                 </div>

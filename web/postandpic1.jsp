@@ -109,7 +109,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-3">Brand</label>
                                         <div class="col-md-3">
-                                            <select id="brand" class="form-control" name="brand" >
+                                            <select id="brand" class="form-control" name="brand">
                                                 <option value="">--</option>
                                                 <option value="ACER" class="11 12 14 15 16 21 22 23">ACER</option>
                                                 <option value="APPLE" class="11 12 13 14 15 16 21 22 23">APPLE</option>

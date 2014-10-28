@@ -1,7 +1,4 @@
-<%@page import="model.order"%>
-<%@page import="model.Accounts"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -190,35 +187,38 @@
         <div class="col-md-12" style="margin-top: 30px">
             <ul class="nav nav-tabs nav-justified" role="tablist">
                 <li><a href="AdminProduct.jsp">Product</a></li>
-                <li class="active"><a href="AdminAccount.jsp">Account</a></li>
+                <li><a href="AdminAccount.jsp">Account</a></li>
                 <li><a href="AdminOrder.jsp">Order</a></li>
                 <li><a href="AdminReport.jsp">Report</a></li>
-                <li><a href="AdminSetting.jsp">Setting</a></li>
+                <li class="active"><a href="AdminSetting.jsp">Setting</a></li>
             </ul>
             <hr>
             <div class="row">
-                <h5 class="col-md-4">Account Information</h5>
-                    <div class="col-md-12">
-                        <table class="table table-striped" id="table6" style="text-align: center">
-                            <tr bgColor="#ffffff">
-                                <td>Account ID</td>
-                                <td>Account Name</td>
-                                <td>Sold Item</td>
-                                <td>Rate feedback</td>
-                                <td>Detail feedback</td>
-                            </tr>
-                            <c:forEach items="${acc}" var="a">
-                                <c:set value="${wtf:countsold(a.username)}" var="n" />
-                                <tr>
-                                    <td>${a.account_Id}</td>
-                                    <td>${a.username}</td>
-                                    <td>${n}</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </c:forEach>
-                        </table>                           
+                <h5 class="col-md-12">Change Category  #${cat1.cateName}</h5>
+                <form action="AdminChangeCate" method="get" class="form-horizontal" style="margin-top: 50px">
+                    <div class="col-md-12 form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-offset-2 col-sm-3">
+                                    <input type="hidden" name="cat" value="${cat1.cateID}"/>
+                                    ${cat1.cateName}
+                                </div>
+                                <div class="col-md-1">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select name="catid" class="form-control">
+                                        <option value="">--</option>
+                                        <c:forEach items="${cat2}" var="entry">
+                                            <option value="${entry.cateID}">${entry.cateName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="col-md-offset-5 col-md-2" style="margin-top: 10px;">
+                            <button type="submit" class="btn btn-danger">Change</button>
+                        </div>
                     </div>
+                </form>
             </div>
         </div>  
         <!--<script src="js/jasny-bootstrap.min.js"></script>-->
@@ -267,7 +267,7 @@
             //]]>  
         </script>  
         <script language="javascript" type="text/javascript">
-//<![CDATA[  
+            //<![CDATA[  
             var table10_Props = {
                 paging: true,
                 paging_length: 5,
@@ -278,10 +278,10 @@
                 refresh_filters: true
             };
             var tf10 = setFilterGrid("table10", table10_Props);
-//]]>  
+            //]]>  
         </script>
         <script language="javascript" type="text/javascript">
-//<![CDATA[  
+            //<![CDATA[  
             var table9_Props = {
                 paging: true,
                 paging_length: 2,
@@ -297,7 +297,7 @@
                 loader_html: '<h4 style="color:red;">Loading, please wait...</h4>'
             };
             var tf9 = setFilterGrid("table9", table9_Props);
-//]]>  
+            //]]>  
         </script> 
     </body>
 </html>

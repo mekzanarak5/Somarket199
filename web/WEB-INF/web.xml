@@ -300,6 +300,22 @@
         <servlet-name>ShowSoldList</servlet-name>
         <servlet-class>servlet.ShowSoldList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteCate</servlet-name>
+        <servlet-class>servlet.AdminDeleteCate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteSubCate</servlet-name>
+        <servlet-class>servlet.AdminDeleteSubCate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminChangeCate</servlet-name>
+        <servlet-class>servlet.AdminChangeCate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminEditCate</servlet-name>
+        <servlet-class>servlet.AdminEditCate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -599,6 +615,22 @@
     <servlet-mapping>
         <servlet-name>ShowSoldList</servlet-name>
         <url-pattern>/ShowSoldList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteCate</servlet-name>
+        <url-pattern>/AdminDeleteCate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteSubCate</servlet-name>
+        <url-pattern>/AdminDeleteSubCate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminChangeCate</servlet-name>
+        <url-pattern>/AdminChangeCate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditCate</servlet-name>
+        <url-pattern>/AdminEditCate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

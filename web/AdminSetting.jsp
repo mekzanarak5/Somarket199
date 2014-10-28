@@ -197,7 +197,7 @@
                 <h5 class="col-md-12">Add Category</h5>
                 <form action="AddCategory" method="get" class="form-horizontal" >
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">Big Category Name</label>
+                        <label for="inputEmail3" class="col-sm-3 control-label">Category Name</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" placeholder="Category Name" name="cateName" required>
                             <input type="hidden" name="parentid" value="NULL">
@@ -205,7 +205,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">First Small Category Name</label>
+                        <label for="inputEmail3" class="col-sm-3 control-label">First Sub Category Name</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" placeholder="Category Name" name="cateNameS" required>
                         </div>
@@ -218,12 +218,12 @@
                 </form>
                 <form action="AdminAddCategorySmall" method="get" class="form-horizontal" style="margin-top: 50px">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">Small Category Name</label>
+                        <label for="inputEmail3" class="col-sm-3 control-label">Sub Category Name</label>
                         <div class="col-sm-4">
                             <select name="parentid" class="form-control">
                                 <option value="">--</option>
-                                <c:forEach items="${cateID}" var="a">
-                                    <option value="${a.cateID}">${a.cateName}</option>
+                                <c:forEach items="${cate}" var="entry">
+                                    <option value="${entry.key.cateID}">${entry.key.cateName}</option>
                                 </c:forEach>
                             </select>
                             <input type="hidden" name="value" value="NULL">
@@ -237,6 +237,69 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-10">
                             <button type="submit" class="btn btn-info">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <h5 class="col-md-12">Edit Category</h5>
+                <form action="AdminEditCate" method="get" class="form-horizontal" style="margin-top: 50px">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Category Name</label>
+                        <div class="col-sm-4">
+                            <select name="parentid" class="form-control">
+                                <option value="">--</option>
+                                <c:forEach items="${cateID}" var="entry">
+                                    <option value="${entry.cateID}">${entry.cateName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-4">
+                            <input type="text" class="form-control" placeholder="Category Name" name="cateName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="submit" class="btn btn-info">Edit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <h5 class="col-md-12">Delete Category</h5>
+                <form action="AdminDeleteCate" method="get" class="form-horizontal" style="margin-top: 50px">
+                    <div class="col-md-12 form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Category Name</label>
+                        <div class="col-sm-4">
+                            <select name="parentid" class="form-control">
+                                <option value="">--</option>
+                                <c:forEach items="${cate}" var="entry">
+                                    <option value="${entry.key.cateID}">${entry.key.cateName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="AdminDeleteSubCate" method="get" class="form-horizontal" style="margin-top: 50px">
+                    <div class="col-md-12 form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Sub Category Name</label>
+                        <div class="col-sm-4">
+                            <select name="subid" class="form-control">
+                                <option value="">--</option>
+                                <c:forEach items="${cate}" var="entry">
+                                    <c:forEach items="${entry.value}" var="sub_entry">
+                                        <option value="${sub_entry.cateID}" class="${entry.key.cateID}">${sub_entry.cateName}</option>
+                                    </c:forEach>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </form>

@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="usernae" value="" />
 <c:set var="loginAndOut" value="" />
-<footer>
+<footer style=" border: 3px solid #efefef;border-radius: 15px;background: #efefef;width: 1260px;margin-left: 10px;margin-top: 20px;font-size: 10px">
     <ul style="margin-top: 20px">
         <li>
-            <p class="clients">Home</p>
+            <p class="clients" style="font-size: 12px">Home</p>
             <a  href="#">Company Name <i>&copy; 2013</i></a>
         </li>
         <li>
-            <p class="clients">Category</p>
+            <p class="clients" style="font-size: 12px">Category</p>
 
             <ul>
                 <li><a href="#">Computer</a></li>
@@ -19,7 +19,7 @@
             </ul>
         </li>
         <li>
-            <p class="clients">Reach us</p>
+            <p class="clients" style="font-size: 12px">Reach us</p>
 
             <ul>
                 <li><a href="https://mail.google.com/">Gmail</a></li>
@@ -28,7 +28,7 @@
             </ul>
         </li>
         <li>
-            <p class="clients">Contact</p>
+            <p class="clients" style="font-size: 12px">Contact</p>
 
             <ul>
                 <li><a href="adminLogin.jsp">Admin</a></li>

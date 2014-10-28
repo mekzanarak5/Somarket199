@@ -42,7 +42,7 @@ public class Product implements Comparable {
     public Product() {
     }
 
-    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, String brandID, int pNO, int Product_Id, String pathFile, String CreateOn, int cateID, String cateName,String username) {
+    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, String brandID, int pNO, int Product_Id, String pathFile, String CreateOn, int cateID, String cateName, String username) {
         this.productNO = productNO;
         this.acctID = acctID;
         this.category_ID = category_ID;
@@ -376,7 +376,7 @@ public class Product implements Comparable {
         return null;
     }
 
-    public static Product countCateP(int id) {
+    public static int countCateP(int id) {
 
         String sqlCmd = "SELECT count(*) FROM product p,category c WHERE p.Category_ID = c.cateID and c.ParentCateID = ?";
         Connection con = ConnectionAgent.getConnection();
@@ -386,17 +386,16 @@ public class Product implements Comparable {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                c = new Product();
-                rToO(c, rs);
+                return rs.getInt(1);
             }
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return c;
+        return 0;
     }
 
-    public static Product countCateS(int id) {
+    public static int countCateS(int id) {
 
         String sqlCmd = "SELECT count(*) FROM product where Category_ID = ?";
         Connection con = ConnectionAgent.getConnection();
@@ -406,14 +405,13 @@ public class Product implements Comparable {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                c = new Product();
-                rToO(c, rs);
+                return rs.getInt(1);
             }
             con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return c;
+        return 0;
     }
 
     public static int lastid() {
@@ -675,6 +673,22 @@ public class Product implements Comparable {
 
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE product SET Category_ID=? WHERE productNO=?");
+            ps.setInt(1, cat);
+            ps.setInt(2, proid);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
+    public static int editCate(int proid, int cat) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE product SET Category_ID=? WHERE Category_ID=?");
             ps.setInt(1, cat);
             ps.setInt(2, proid);
             row = ps.executeUpdate();

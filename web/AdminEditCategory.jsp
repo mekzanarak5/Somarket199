@@ -55,7 +55,7 @@
                                 </select>
                             </div>
                             <div class="col-md-3" >
-                                <input type="hidden" name="proid" value="${pro}">
+                                <input type="hidden" name="proid" value="${pro.productNO}">
                                 <button type="submit" class="btn btn-primary">Change</button>
                             </div>
                         </div>

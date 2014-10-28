@@ -475,4 +475,19 @@ public class order {
         }
         return o;
     }
+    public static int countsold(String key) {
+        String sql = "select count(*) from order_sum where seller=? and Detail='shipping'";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, key);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 }

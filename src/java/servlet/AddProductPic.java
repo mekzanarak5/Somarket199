@@ -90,7 +90,7 @@ public class AddProductPic extends HttpServlet {
                         FileItem fi = (FileItem) i.next();
                         if (!fi.isFormField()) {
                             System.out.println(fi);
-                            if (fi.getSize()==0) {
+                            if (fi.getSize() == 0) {
                                 st1.add("pic/upload/" + "no_image.png");
                             } else {
 
@@ -120,33 +120,61 @@ public class AddProductPic extends HttpServlet {
             } else {
             }
             System.out.println(st);
-            for (int i = 0; i < st.size(); i++) {
-                if (i == 0) {
-                    name = st.get(0);
-                } else {
+            if (st.size() == 6) {
+                for (int i = 0; i < st.size(); i++) {
+                    if (i == 0) {
+                        name = st.get(0);
+                    } else {
+                    }
+                    if (i == 1) {
+                        price = Double.parseDouble(st.get(1));
+                    } else {
+                    }
+                    if (i == 2) {
+                        des = st.get(2);
+                    } else {
+                    }
+                    if (i == 3) {
+                        available = st.get(3);
+                    } else {
+                    }
+                    if (i == 4) {
+                        cata = Integer.parseInt(st.get(4));
+                    } else {
+                    }
+                    if (i == 5) {
+                        acctid = st.get(5);
+                    }
                 }
-                if (i == 1) {
-                    price = Double.parseDouble(st.get(1));
-                } else {
-                }
-                if (i == 2) {
-                    des = st.get(2);
-                } else {
-                }
-                if (i == 3) {
-                    available = st.get(3);
-                } else {
-                }
-                if (i == 4) {
-                    cata = Integer.parseInt(st.get(4));
-                } else {
-                }
-                if (i == 5) {
-                    brand = st.get(5);
-                } else {
-                }
-                if (i == 6) {
-                    acctid = st.get(6);
+            } else {
+                for (int i = 0; i < st.size(); i++) {
+                    if (i == 0) {
+                        name = st.get(0);
+                    } else {
+                    }
+                    if (i == 1) {
+                        price = Double.parseDouble(st.get(1));
+                    } else {
+                    }
+                    if (i == 2) {
+                        des = st.get(2);
+                    } else {
+                    }
+                    if (i == 3) {
+                        available = st.get(3);
+                    } else {
+                    }
+                    if (i == 4) {
+                        cata = Integer.parseInt(st.get(4));
+                    } else {
+                    }
+                    if (i == 5) {
+                        brand = st.get(5);
+                    } else {
+                    }
+                    if (i == 6) {
+                        acctid = st.get(6);
+                    }
                 }
             }
             Boolean complete = false;
@@ -154,7 +182,7 @@ public class AddProductPic extends HttpServlet {
             String namethai = new String(name.getBytes("ISO8859_1"), "UTF-8");
             String desthai = new String(des.getBytes("ISO8859_1"), "UTF-8");
             int row = 0;
-            if (brand == null) {
+            if (brand.equalsIgnoreCase("")) {
                 brand = null;
                 row = p.addProducts(acctid, cata, namethai, price, CreateOn, desthai, available, brand);
             } else {

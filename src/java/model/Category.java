@@ -93,6 +93,26 @@ public class Category {
         return ca;
     }
 
+    public static List<Category> findAll() {
+        String sqlCmd = "SELECT * FROM category";
+        Connection con = ConnectionAgent.getConnection();
+        Category c = null;
+        List<Category> ca = new ArrayList<Category>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Category();
+                rToO(c, rs);
+                ca.add(c);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ca;
+    }
+
     public static List<Category> findBigP(int cateID) {
         String sqlCmd = "SELECT * FROM category where ParentCateID = ?";
         Connection con = ConnectionAgent.getConnection();
@@ -262,6 +282,23 @@ public class Category {
         return row;
     }
 
+    public static int editCate(int proid, String cat) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE category SET cateName=? WHERE cateID=?");
+            ps.setString(1, cat);
+            ps.setInt(2, proid);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
+
     public static int addCatSmallF(String cateName, String Value) {
         int row = 0;
         int newMemberID1 = 0;
@@ -284,7 +321,7 @@ public class Category {
             } else {
                 newMemberID = 0;
             }
-            
+
             PreparedStatement ps = con.prepareStatement("INSERT INTO category VALUES (?,?,?,current_timestamp,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, cateName);
@@ -296,6 +333,99 @@ public class Category {
             Logger.getLogger(Address.class.getName()).log(Level.SEVERE, null, ex);
         }
         return row;
+    }
+
+    public static int deleteCate(int parentid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM category WHERE cateID=?");
+            ps.setInt(1, parentid);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+
+    public static int deleteSubCate(int parentid) {
+        int row = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM category WHERE ParentCateID=?");
+            ps.setInt(1, parentid);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return row;
+    }
+
+    public static List<Category> findSub(int id) {
+        String sqlCmd = "SELECT * FROM category WHERE ParentCateID = ?";
+        Connection con = ConnectionAgent.getConnection();
+        Category a = null;
+        List<Category> cs = new ArrayList<Category>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                a = new Category();
+                rToO(a, rs);
+                cs.add(a);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
+
+    public static List<Category> findSubnot(int id) {
+        String sqlCmd = "SELECT * FROM category WHERE ParentCateID != ?";
+        Connection con = ConnectionAgent.getConnection();
+        Category a = null;
+        List<Category> cs = new ArrayList<Category>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                a = new Category();
+                rToO(a, rs);
+                cs.add(a);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
+    }
+
+    public static List<Category> findSubnot1(int id) {
+        String sqlCmd = "SELECT * FROM category WHERE cateID != ?";
+        Connection con = ConnectionAgent.getConnection();
+        Category a = null;
+        List<Category> cs = new ArrayList<Category>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                a = new Category();
+                rToO(a, rs);
+                cs.add(a);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cs;
     }
 
     public static int lastid() {
