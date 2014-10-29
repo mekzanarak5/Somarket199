@@ -192,7 +192,7 @@
                                                 <c:choose><c:when test="${s==null}">We need your feedback to buyer: ${order.username}. Please tell us what do you think?<br>
                                                     <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
                                                     </c:when><c:otherwise>
-                                                        <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.userName}" />
+                                                        <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.username}" />
                                                             Thank you for your support (buyer: ${order.username}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
                                                 </c:choose><!--</form>-->
                                             </div></c:when></c:choose>
