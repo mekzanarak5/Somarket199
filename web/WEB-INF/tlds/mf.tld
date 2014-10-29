@@ -31,8 +31,13 @@
       <function-signature>Integer countsold(java.lang.String)</function-signature>
   </function>
   <function>
-      <name>countsoldq</name>
+      <name>checkSender</name>
+      <function-class>model.Feedback</function-class>
+      <function-signature>model.Feedback checkSender(int, java.lang.String)</function-signature>
+  </function>
+  <function>
+  <name>countsoldq</name>
       <function-class>model.order</function-class>
       <function-signature>Integer countsoldq(java.lang.String)</function-signature>
-  </function>
+      </function>
 </taglib>

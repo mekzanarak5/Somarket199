@@ -132,7 +132,12 @@
                                                 <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
                                                 <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
                                                     <input type="hidden" name="url"/>-->
-                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button><!--</form>-->
+                                                <c:choose><c:when test="${chs==null}">We need your feedback to seller: ${order.seller}. Please tell us what do you think?<br>
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
+                                                    </c:when><c:otherwise>
+                                                        <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.seller}" />
+                                                            Thank you for your support (seller: ${order.seller}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
+                                                </c:choose><!--</form>-->
                                             </div></c:when></c:choose>
                                             <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                                 <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
@@ -180,9 +185,14 @@
                                         <c:when test="${order.status=='shipping' || order.status=='completed'}">
                                             <div class="col-md-3">
                                                 <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                                <%--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
-                                                    <input type="hidden" name="url"/>--%>
-                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button></form>
+                                                <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
+                                                    <input type="hidden" name="url"/>-->
+                                                <c:choose><c:when test="${chs==null}">We need your feedback to buyer: ${order.username}. Please tell us what do you think?<br>
+                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
+                                                    </c:when><c:otherwise>
+                                                        <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.username}" />
+                                                            Thank you for your support (buyer: ${order.username}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
+                                                </c:choose><!--</form>-->
                                             </div></c:when></c:choose>
                                     <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
                                         <div class="panel panel-info col-md-8 " style="margin-left: 170px ">

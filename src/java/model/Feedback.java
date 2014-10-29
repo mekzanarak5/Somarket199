@@ -228,16 +228,16 @@ public class Feedback {
     }
     
     public static Feedback checkSender(int ord, String user) {
-        String sqlCmd = "SELECT * from feedback f where f.OrderId = ? and f.From_u = ?";
+        String sqlCmd = "SELECT * from feedback f where f.OrderID = ? and f.From_u like ?";
         Connection con = ConnectionAgent.getConnection();
-        Feedback cs = new Feedback();
+        Feedback cs = null;
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
             ps.setInt(1, ord);
             ps.setString(2, user);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                cs = toO(rs);
+               cs = toO(rs);
             }
             con.close();
         } catch (SQLException ex) {
