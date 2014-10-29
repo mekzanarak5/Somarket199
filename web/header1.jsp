@@ -1,3 +1,4 @@
+<%@page import="model.order"%>
 <%@page import="model.Accounts"%>
 <%@page import="model.Message"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -47,8 +48,22 @@
                                 <li><a href="seachcata">Post Product</a></li>
                                 </c:otherwise>
                             </c:choose>
-                        <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
-                        <li><a href="ShowOrder">Buy List</a></li>
+                        <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List
+                            <%
+                                    if (order.findCountSell(user.getUsername()) != 0) {
+                                %>
+                                <span class="badge btn-danger"><%=order.findCountSell(user.getUsername())%> </span>
+                                <%}%>
+                            </a>
+                        </li>
+                        <li><a href="ShowOrder">Buy List 
+                            <%
+                                    if (order.findCountBuy(user.getUsername()) != 0) {
+                                %>
+                                <span class="badge btn-danger"><%=order.findCountBuy(user.getUsername())%> </span>
+                                <%}%>
+                            </a>
+                        </li>
                         <li><a href="ShowPmServlet?id=${user.account_Id}">Inbox 
                                 <%
                                     if (Message.findCount(user.getAccount_Id()) != 0) {

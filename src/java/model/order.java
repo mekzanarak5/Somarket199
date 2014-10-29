@@ -459,6 +459,7 @@ public class order {
         }
         return c;
     }
+
     public static ArrayList<order> sold(String key) {
         ArrayList<order> o = new ArrayList<order>();
         String sql = "select * from order_sum where seller=? and Detail='shipping' order by Created";
@@ -475,6 +476,7 @@ public class order {
         }
         return o;
     }
+
     public static int countsold(String key) {
         String sql = "select count(*) from order_sum where seller=? and Detail='shipping'";
         try {
@@ -489,5 +491,82 @@ public class order {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
+    }
+
+    public static int countsoldQ(String key) {
+        String sql = "select sum(od.quantity) from order_sum os,order_product op where op.Order_ID=os.OrderNo and op.seller=? and op.Detail='shipping'";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, key);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public static int findCountBuy(String str) {
+        String sqlCmd = "SELECT count(*) FROM order_sum WHERE user = ? and isread = 1 and Detail='shipping'";
+        Connection con = ConnectionAgent.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, str);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public static int updateRead(int msg) {
+        int row = 0;
+        try {
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE order_sum SET isread=0  WHERE OrderNo=?");
+            ps.setInt(1, msg);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
+    public static int findCountSell(String str) {
+        String sqlCmd = "SELECT count(*) FROM order_sum WHERE seller = ? and isreadOn = 1 and Detail='Verifying...'";
+        Connection con = ConnectionAgent.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, str);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public static int updateReadSell(int msg) {
+        int row = 0;
+        try {
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE order_sum SET isreadOn=0  WHERE OrderNo=?");
+            ps.setInt(1, msg);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
     }
 }

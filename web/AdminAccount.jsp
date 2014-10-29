@@ -198,29 +198,37 @@
             <hr>
             <div class="row">
                 <h5 class="col-md-4">Account Information</h5>
-                    <div class="col-md-12">
-                        <table class="table table-striped" id="table6" style="text-align: center">
-                            <tr bgColor="#ffffff">
-                                <td>Account ID</td>
-                                <td>Account Name</td>
-                                <td>Sold Item</td>
-                                <td>Rate feedback</td>
-                                <td>Detail feedback</td>
+                <div class="col-md-12">
+                    <table class="table table-striped" id="table6" style="text-align: center">
+                        <tr bgColor="#ffffff">
+                            <td>Account ID</td>
+                            <td>Account Name</td>
+                            <td>Sold Item</td>
+                            <td>Rate feedback</td>
+                            <td>Detail feedback</td>
+                        </tr>
+                        <c:forEach items="${acc}" var="a">
+                            <c:set value="${wtf:countsold(a.username)}" var="n" />
+                            <tr>
+                                <td>${a.account_Id}</td>
+                                <td>${a.username}</td>
+                                <td><button class="btn btn-xs btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Detail</button></td>
+                                <td></td>
+                                <td></td>
                             </tr>
-                            <c:forEach items="${acc}" var="a">
-                                <c:set value="${wtf:countsold(a.username)}" var="n" />
-                                <tr>
-                                    <td>${a.account_Id}</td>
-                                    <td>${a.username}</td>
-                                    <td>${n}</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </c:forEach>
-                        </table>                           
+                        </c:forEach>
+                    </table>                           
+                </div>
+            </div>
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        
                     </div>
+                </div>
             </div>
         </div>  
+        
         <!--<script src="js/jasny-bootstrap.min.js"></script>-->
         <script src="js/dropdown.js"></script>
         <script src="js/semantic.js"></script>
@@ -236,13 +244,13 @@
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script>
-            $(function() {
-                $('.demo.menu .item')
-                        .tab('deactivate all')
-                        .tab('activate tab', 'third')
-                        .tab('activate navigation', 'third')
-                        ;
-            });
+                            $(function() {
+                                $('.demo.menu .item')
+                                        .tab('deactivate all')
+                                        .tab('activate tab', 'third')
+                                        .tab('activate navigation', 'third')
+                                        ;
+                            });
         </script>
         <script>
             var $rows = $('#table tr');

@@ -161,7 +161,7 @@
 
         </style>
     </head>
-      <jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;">
         <div style="margin-bottom: 70px">
         </div>
@@ -171,10 +171,10 @@
             </div>
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
-                <div class="col-md-12">
+                <div class="col-md-12" style="margin-top: 10px">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
-                        <ol class="carousel-indicators">
+                        <ol class="carousel-indicators" >
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="2"></li>
@@ -182,11 +182,11 @@
                         </ol>
 
                         <!-- Wrapper for slides -->
-                        <form action="ShowCategoryServlet" method="get">
+                        <form action="ShowCategoryServlet" method="get" style="margin-left: 107px">
                             <button type="submit">
-                                <div class="carousel-inner" style="margin-left: 107px">
-                                    <div class="item active" >
-                                        <img src="pic/ip6.jpg"  alt="...">
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img src="pic/ip6.jpg" alt="...">
                                         <div class="carousel-caption">
                                         </div>
                                     </div>
@@ -218,7 +218,7 @@
                     </div>
                 </div>  
             </div>
-            <div class="col-md-12" style="margin-top: 10px">  
+            <div class="col-md-12" style="margin-top: -40px">  
                 <h5 class="col-md-12" style="color: #ff6666">Hot Items <span class="glyphicon glyphicon-fire"></span></h5>
                 <div class="col-xs-12" style="margin-:auto;">
                     <div class="col-md-12" style=" border: 3px solid #efefef;border-radius: 15px;min-height: 230px;background: #efefef;">
@@ -262,10 +262,10 @@
         <script src="js/flatui-radio.js"></script>
         <script src="js/jquery.tagsinput.js"></script>
         <script src="js/jquery.placeholder.js"></script>
-        <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+        <!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
         <script src="js/application.js"></script>
         <script>
-            $(function () {
+            $(function() {
                 $('.demo.menu .item')
                         .tab('deactivate all')
                         .tab('activate tab', 'third')

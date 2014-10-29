@@ -4,6 +4,8 @@
     Author     : Admin
 --%>
 
+<%@page import="model.order"%>
+<%@page import="model.Accounts"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Product"%>
 <%@page import="model.ProductPic"%>
@@ -48,7 +50,16 @@
                         <div id="cbp-vm" class="cbp-vm-switcher">
                             <div class="btn-group btn-group-justified" style="margin-bottom: 20px">
                                     <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Now Sell</button></a>
-                                    <a href="SellerOrder"><button type="button" class="btn btn-primary">Ongoing</button></a>
+                                    <a href="SellerOrder"><button type="button" class="btn btn-primary">
+                                            Ongoing
+                                            <%
+                                                Accounts user = (Accounts) session.getAttribute("user");
+                                                if (order.findCountSell(user.getUsername()) != 0) {
+                                            %>
+                                            <span class="badge btn-danger"><%=order.findCountSell(user.getUsername())%> </span>
+                                            <%}%>
+                                        </button>
+                                    </a>
                                     <a href="ShowSoldList?username=${user.username}"><button type="button" class="btn btn-default">Sold List</button></a>
                             </div>
                             <table class="table table-striped" id="table6" style="text-align: center">
@@ -66,7 +77,14 @@
                                         <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
                                         <td><a href="#"></a>${a.time}</td>
                                         <td>${a.total}0</td>
-                                        <td><a href="DetailOrder?orderid=${a.orderId}">${a.status}</a></td>
+                                        <c:choose>
+                                            <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
+                                                <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <td><a href="DetailOrder?orderid=${a.orderId}">${a.status}</a></td>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </tr>
                                 <c:set value="${no+1}" var="no" />
                                 </c:forEach>

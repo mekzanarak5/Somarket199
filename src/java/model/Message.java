@@ -415,7 +415,7 @@ public class Message {
             row = ps.executeUpdate();
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
             row = -1;
         }
         return row;

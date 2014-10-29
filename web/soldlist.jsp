@@ -4,6 +4,8 @@
     Author     : Admin
 --%>
 
+<%@page import="model.order"%>
+<%@page import="model.Accounts"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Product"%>
 <%@page import="model.ProductPic"%>
@@ -49,7 +51,15 @@
                             <div id="cbp-vm" class="cbp-vm-switcher">
                                 <div class="btn-group btn-group-justified" style="margin-bottom: 20px">
                                     <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Now Sell</button></a>
-                                    <a href="SellerOrder"><button type="button" class="btn btn-default">Ongoing</button></a>
+                                    <a href="SellerOrder"><button type="button" class="btn btn-default">Ongoing
+                                        <%
+                                                Accounts user = (Accounts) session.getAttribute("user");
+                                                if (order.findCountSell(user.getUsername()) != 0) {
+                                            %>
+                                            <span class="badge btn-danger"><%=order.findCountSell(user.getUsername())%> </span>
+                                            <%}%>
+                                        </button>
+                                    </a>
                                     <a href="ShowSoldList?username=${user.username}"><button type="button" class="btn btn-primary">Sold List</button></a>
                                 </div>
                                     <table class="table table-striped" id="table6" style="text-align: center">
