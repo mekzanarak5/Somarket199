@@ -36,6 +36,7 @@ public class AddFeedback extends HttpServlet {
         order o  = order.searchByID(orderid);
         Accounts acct= (Accounts) request.getSession().getAttribute("user");
         String comm = request.getParameter("comment");
+        String commth = new String(comm.getBytes("ISO8859_1"),"UTF-8");
         int rates = Integer.parseInt(request.getParameter("rating"));
         Feedback f = new Feedback();
         String msg = "Sorry: place feedback failed";
@@ -46,7 +47,7 @@ public class AddFeedback extends HttpServlet {
             f.setAcct(o.getSeller());
             f.setFrom(o.getUsername());
             f.setOrder(orderid);
-            f.setComment(comm);
+            f.setComment(commth);
             f.setType("Seller");
             f.setRate(rates);
             check += f.add(f);
@@ -56,7 +57,7 @@ public class AddFeedback extends HttpServlet {
             f.setAcct(o.getUsername());
             f.setFrom(o.getSeller());
             f.setOrder(orderid);
-            f.setComment(comm);
+            f.setComment(commth);
             f.setType("Buyer");
             f.setRate(rates);
             check += f.add(f);
