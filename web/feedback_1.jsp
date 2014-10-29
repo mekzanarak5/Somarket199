@@ -62,6 +62,7 @@
                         <table class="table" >
                             <tr bgColor="#ececea">
                                 <td width="55%">FeedBack</td>
+                                <td></td>
                                 <td>From</td>
                                 <td>Date</td>
                                 <td>order #</td>
@@ -69,7 +70,10 @@
                             <c:forEach items="${flist}" var="feed" >
                             <tr>
                                 <td>${feed.comment}</td>
-                                <td>${feed.type=="buyer"?"buyer":"seller"}: ${feed.from}</td>
+                                <td><div class="rating">
+                                        <input type="radio" id="star${feed.rate}" name="rating" value="${feed.rate}" disabled=""/><label for="star${feed.rate}" title="">${feed.rate} stars</label>
+                                            </div></td>
+                                <td><c:choose><c:when test="${feed.type=='buyer'}">seller:</c:when><c:otherwise>buyer:</c:otherwise></c:choose>  ${feed.from}</td>
                                 <td>${feed.date}</td>
                                 <td align="center">${feed.order}</td>
                             </tr></c:forEach>
