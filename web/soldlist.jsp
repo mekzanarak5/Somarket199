@@ -52,7 +52,6 @@
                                     <a href="SellerOrder"><button type="button" class="btn btn-default">Ongoing</button></a>
                                     <a href="ShowSoldList?username=${user.username}"><button type="button" class="btn btn-primary">Sold List</button></a>
                                 </div>
-                                <table class="table table-striped" id="table6" style="text-align: center">
                                     <table class="table table-striped" id="table6" style="text-align: center">
                                         <tr bgColor="#ffffff">
                                             <td width="15%">No.</td>

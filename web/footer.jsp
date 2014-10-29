@@ -3,7 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="usernae" value="" />
 <c:set var="loginAndOut" value="" />
-<footer style=" border: 3px solid #efefef;border-radius: 15px;background: #efefef;width: 1260px;margin-left: 10px;margin-top: 20px;font-size: 10px">
+<!--<footer style=" border: 3px solid #efefef;border-radius: 15px;background: #efefef;width: 1260px;margin-left: 10px;margin-top: 20px;font-size: 10px">-->
+<br>
+<style>
+    hr { display: block; height: 1px;
+         border: 0; border-top: 2px #ffcc66 solid;
+         margin: 1em 0; padding: 0; }
+    </style>
+    <footer style="font-size: 10px;">
+    <hr>
     <ul style="margin-top: 20px">
         <li>
             <p class="clients" style="font-size: 12px">Home</p>

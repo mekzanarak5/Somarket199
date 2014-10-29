@@ -4,6 +4,11 @@
 <%
     Accounts user = (Accounts) session.getAttribute("user");
 %>
+<script>
+    function myFunction() {
+        alert("${msg1}");
+    }
+</script>
 <c:set var="usernae" value="" />
 <c:set var="loginAndOut" value="" />
 <nav class="navbar navbar-fixed-top" role="navigation">
@@ -34,7 +39,14 @@
                 <!-- Split button -->
                 <div class="btn-group navbar-header" style="margin-left: 50px">
                     <ul class="nav navbar-nav">           
-                        <li><a href="seachcata">Post Product</a></li>
+                        <c:choose>
+                            <c:when test="${msg1 != null}">
+                                <li><a href="seachcata" onclick="myFunction()">Post Product</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                <li><a href="seachcata">Post Product</a></li>
+                                </c:otherwise>
+                            </c:choose>
                         <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
                         <li><a href="ShowOrder">Buy List</a></li>
                         <li><a href="ShowPmServlet?id=${user.account_Id}">Inbox 
@@ -57,7 +69,14 @@
                         <li><button class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="background-color: white;margin-top: 5px"><a href="profile.jsp"> ${user.username}</a> <span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="profile.jsp">View Profile</a></li>
-                                <li style="color: #FFB70A"><a href="seachcata" style="color: #FFB70A">Post Product</a></li>
+                                    <c:choose>
+                                        <c:when test="${msg1 != null}">
+                                        <li style="color: #FFB70A"><a href="seachcata" style="color: #FFB70A" onclick="myFunction()">Post Product</a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                        <li style="color: #FFB70A"><a href="seachcata" style="color: #FFB70A">Post Product</a></li>
+                                        </c:otherwise>
+                                    </c:choose>
                                 <li><a href="ShowPmServlet?id=${user.account_Id}">Inbox 
                                         <%
                                             if (Message.findCount(user.getAccount_Id()) != 0) {

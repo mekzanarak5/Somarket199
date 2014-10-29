@@ -177,7 +177,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <table class="table table-striped" id="table6" style="text-align: center">
+                                    <table class="table table-striped" style="text-align: center">
                                         <tr bgColor="#ffffff">
                                             <td>Address</td>
                                             <td>District</td>

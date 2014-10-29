@@ -44,7 +44,7 @@
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
                             <h6 class="col-md-6">My Order</h6>
-                            <div id="cbp-vm" class="cbp-vm-switcher"><hr>
+                            <div id="cbp-vm" class="cbp-vm-switcher">
                                 <table class="table table-striped" id="table6" style="text-align: center">
                                     <tr bgColor="#ffffff">
                                         <td>No.</td>

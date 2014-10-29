@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Accounts;
+import model.Address;
+import model.Bank;
 import model.Category;
 
 /**
@@ -34,20 +36,15 @@ public class SeachCategoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        List<Category> c = Category.findBigAll();
-        request.setAttribute("cateID", c);
-        
-        List<Category> c1 = Category.findByParent(1);
-        request.setAttribute("childCateID1", c1);
-        
-        List<Category> c2 = Category.findByParent(2);
-        request.setAttribute("childCateID2", c2);
-        
-        List<Category> c3 = Category.findByParent(3);
-        request.setAttribute("childCateID3", c3);
-        
-        
-        getServletContext().getRequestDispatcher("/postandpic1.jsp").forward(request, response);
+       Accounts acc = (Accounts) request.getSession().getAttribute("user");
+        int acct = acc.getAccount_Id();
+        if (Address.checkAddr(acct) & Bank.checkBank(acct)) {
+            getServletContext().getRequestDispatcher("/postandpic1.jsp").forward(request, response);
+        }else{
+             String msg = "Please complete your account information (add your Address/Bank Accounts)";
+            request.setAttribute("msg", msg);
+            getServletContext().getRequestDispatcher("/ShowAddressServlet?id=" + acct).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
