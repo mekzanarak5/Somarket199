@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="form-group col-md-12">            
                                         <input id="file-3" type="file" name="file" accept="image/*" multiple=true>
-                                        
+
                                     </div>
                                 </div>
                             </form>

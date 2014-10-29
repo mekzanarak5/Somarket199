@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <table class="table table-striped" id="table6" style="text-align: center">
+                                    <table class="table table-striped" style="text-align: center">
                                         <tr bgColor="#ffffff">
                                             <td>Bank Name</td>
                                             <td>Bank Account No.</td>

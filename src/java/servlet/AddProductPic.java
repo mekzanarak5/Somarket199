@@ -193,16 +193,7 @@ public class AddProductPic extends HttpServlet {
                 a.insertPic(st1);
             }
 
-            if (row == 1) {
-                msg = "Congratulations, GoToTheSell!";
-                request.setAttribute("msg", msg);
-                complete = true;
-
-            } else {
-                msg = "Database is not updated, please contact administrator.";
-                request.setAttribute("msg", msg);
-                complete = false;
-            }
+           
 
             if (complete) {
                 request.setAttribute("lastid", p.lastid());
@@ -211,7 +202,7 @@ public class AddProductPic extends HttpServlet {
                 getServletContext().getRequestDispatcher("/postandpic1.jsp").forward(request, response);
             }
         } else {
-            String msg = "Please complete your account information (Add your address/ bank account)";
+            String msg = "Please complete your account information";
             request.setAttribute("msg", msg);
             getServletContext().getRequestDispatcher("/ShowAddressServlet?id=" + acct).forward(request, response);
         }
