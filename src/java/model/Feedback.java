@@ -283,7 +283,7 @@ public class Feedback {
         return arr;
     }
     public static double feedAVG(String str) {
-        String sqlCmd = "SELECT avg(rate) FROM feedback WHERE From_u = ?";
+        String sqlCmd = "SELECT avg(rate) FROM feedback WHERE Account_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
@@ -298,7 +298,7 @@ public class Feedback {
         return 0;
     }
     public static int feedcount(String str) {
-        String sqlCmd = "SELECT count(*) FROM feedback WHERE From_u = ?";
+        String sqlCmd = "SELECT count(*) FROM feedback WHERE Account_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
