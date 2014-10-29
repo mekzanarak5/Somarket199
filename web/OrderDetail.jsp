@@ -130,7 +130,7 @@
                                     <c:choose>
                                         <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
                                                 <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                                <c:set value="${wtf:checkSender(order.orderId, user.userName)}" var="s" />
+                                                <c:set value="${wtf:checkSender(order.orderId, user.username)}" var="s" />
                                                 <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
                                                     <input type="hidden" name="url"/>-->
                                                 <c:choose><c:when test="${s==null}">We need your feedback to seller: ${order.seller}. Please tell us what do you think?<br>
@@ -186,14 +186,14 @@
                                         <c:when test="${order.status=='shipping' || order.status=='completed'}">
                                             <div class="col-md-3">
                                                 <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                                <c:set value="${wtf:checkSender(order.orderId, user.userName)}" var="s" />
+                                                <c:set value="${wtf:checkSender(order.orderId, user.username)}" var="s" />
                                                 <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
                                                     <input type="hidden" name="url"/>-->
-                                                <c:choose><c:when test="${s==null}">We need your feedback to buyer: ${order.userName}. Please tell us what do you think?<br>
+                                                <c:choose><c:when test="${s==null}">We need your feedback to buyer: ${order.username}. Please tell us what do you think?<br>
                                                     <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
                                                     </c:when><c:otherwise>
                                                         <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.userName}" />
-                                                            Thank you for your support (buyer: ${order.userName}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
+                                                            Thank you for your support (buyer: ${order.username}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
                                                 </c:choose><!--</form>-->
                                             </div></c:when></c:choose>
                                     <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
