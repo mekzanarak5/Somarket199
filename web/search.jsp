@@ -6,6 +6,7 @@
 
 <%@page import="model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -32,34 +33,34 @@
                 <%-- String url = request.getRequestURI();--%>
                 <jsp:include page="header.jsp"/>
                 <div class="col-md-12">
-                        <font size="2">
-                        <ol class="breadcrumb col-md-9" style="margin-right: 20px">
-                            <li><a href="home.jsp">Home</a></li>
-                            <li class="active">Search</li>
-                        </ol>
-                        </font>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                                Sort By <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=a">New Arrival</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=h">High Price</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=l">Low Price</a></li>
-                            </ul>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                                Choose Size <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=3&s=${s}">3</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=6&s=${s}">6</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=12&s=${s}">12</a></li>
-                                <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=18&s=${s}">18</a></li>
-                            </ul>
-                        </div>
+                    <font size="2">
+                    <ol class="breadcrumb col-md-9" style="margin-right: 20px">
+                        <li><a href="home.jsp">Home</a></li>
+                        <li class="active">Search</li>
+                    </ol>
+                    </font>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                            Sort By <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=12&s=a">New Arrival</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=12&s=h">High Price</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=12&s=l">Low Price</a></li>
+                        </ul>
                     </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                            Choose Size <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=12&s=${s}">12</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=24&s=${s}">24</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=36&s=${s}">36</a></li>
+                            <li><a href="SearchProductServlet?id=${pro}&herolist=${cat}&x=0&y=48&s=${s}">48</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <center>
                     <div class="col-md-12" style="margin-left: 15px;border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF;" >
                         <div class="col-md-12" style="margin-left: 10px;border: 1px solid #ffffff ;border-radius: 15px;height: auto;width: 1010px;background: #FFFFFF">
@@ -68,21 +69,63 @@
                                 <div class="row">
                                     <c:forEach items="${products}" var="a">
                                         <form action="AddToCart" method="get">
-                                            <div class="col-md-4" style="height: 350px" >
+                                            <div class="col-md-3" style="height: 300px;font-size: 13px" >
                                                 <div class="thumbnail">
-                                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 190; height: 140px;" class="img-rounded"></a>                                               
+                                                    <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 170; height: 130px;" class="img-rounded"></a>                                               
                                                     <div class="caption" >
-                                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"<p>${a.name}</p><p>${a.price}0 ฿</p></a>                                      
+                                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">${a.name}<br>${a.price}0 ฿</a><br>                                    
                                                         <input type="hidden" name="url" />
                                                         <input type="hidden" name="productId" value="${a.productNO}" />
                                                         <input type="hidden" name="acctid" value="${a.acctID}" />
-                                                        <p><c:choose>
+                                                        <c:choose>
                                                             <c:when test="${user.account_Id!=a.acctID || user.account_Id==null}">
-                                                                <button class="btn btn-primary" role="button ">Add to cart</button> 
+                                                                <button class="btn btn-sm btn-primary" role="button ">Add to cart</button> 
                                                             </c:when>
                                                         </c:choose>
-                                                                <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-default" role="button">Detail</a>
-                                                    </p></div>
+                                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-sm btn-default" role="button">Detail</a>
+                                                        <c:set value="${wtf:feedcount(a.username)}" var="m" />
+                                                        <c:set value="${wtf:feedAVG(a.username)}" var="n" />
+                                                        <br><c:choose>
+                                                            <c:when test="${n>=5}">
+                                                                <c:forEach begin="1" end="5">
+                                                                    <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>(${m})
+                                                                </c:forEach>    
+                                                            </c:when>
+                                                            <c:when test="${n>=4}">
+                                                                <c:forEach begin="1" end="4">
+                                                                    <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                                                </c:forEach>
+                                                                <c:forEach begin="1" end="1">
+                                                                    <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>(${m})
+                                                                </c:forEach>    
+                                                            </c:when>
+                                                            <c:when test="${n>=3}">
+                                                                <c:forEach begin="1" end="3">
+                                                                    <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                                                </c:forEach>
+                                                                <c:forEach begin="1" end="2">
+                                                                    <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>(${m})
+                                                                </c:forEach>
+                                                            </c:when>
+                                                            <c:when test="${n>=2}">
+                                                                <c:forEach begin="1" end="2">
+                                                                    <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                                                </c:forEach>
+                                                                <c:forEach begin="1" end="3">
+                                                                    <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>(${m})
+                                                                </c:forEach>
+                                                            </c:when>
+                                                            <c:when test="${n>=1}">
+                                                                <c:forEach begin="1" end="1">
+                                                                    <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                                                </c:forEach>
+                                                                <c:forEach begin="1" end="4">
+                                                                    <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>(${m})
+                                                                </c:forEach>
+                                                            </c:when>
+                                                        </c:choose>
+                                                        <br><a href="ShowAccount?acctid=${a.acctID}" style="font-size: 13px">by ${a.username}</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
@@ -137,29 +180,29 @@
                     </div>
                 </center>
             </div>
-            </div>
-            <script src="js/accordion.js"></script>
-            <script src="js/semantic.js"></script>
-            <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-            <script src="js/jquery.ui.touch-punch.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/bootstrap-select.js"></script>
-            <script src="js/bootstrap-switch.js"></script>
-            <script src="js/flatui-checkbox.js"></script>
-            <script src="js/flatui-radio.js"></script>
-            <script src="js/jquery.tagsinput.js"></script>
-            <script src="js/jquery.placeholder.js"></script>
-            <!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
-            <script src="js/application.js"></script>
-            <jsp:include page="footer.jsp"/>
-            <script>
-                $(function() {
-                    $('.ui.accordion').accordion();
-                });
-                $(document).ready(function() {
-                    $('input[name=url]').val((window.location.href.toString()));
-                });
-            </script>
+        </div>
+        <script src="js/accordion.js"></script>
+        <script src="js/semantic.js"></script>
+        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-select.js"></script>
+        <script src="js/bootstrap-switch.js"></script>
+        <script src="js/flatui-checkbox.js"></script>
+        <script src="js/flatui-radio.js"></script>
+        <script src="js/jquery.tagsinput.js"></script>
+        <script src="js/jquery.placeholder.js"></script>
+        <!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
+        <script src="js/application.js"></script>
+        <jsp:include page="footer.jsp"/>
+        <script>
+            $(function() {
+                $('.ui.accordion').accordion();
+            });
+            $(document).ready(function() {
+                $('input[name=url]').val((window.location.href.toString()));
+            });
+        </script>
 
     </body>
 </html>

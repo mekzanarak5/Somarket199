@@ -3,6 +3,7 @@
 <%@page import="model.Accounts"%>
 <%@page import="model.Wishlist"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -15,11 +16,11 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
-<!--        <script type="text/javascript">
-            $(document).ready(function() {
-                $(".mCustomScrollbar").mCustomScrollbar({axis: "x"});
-            });
-        </script>-->
+        <!--        <script type="text/javascript">
+                    $(document).ready(function() {
+                        $(".mCustomScrollbar").mCustomScrollbar({axis: "x"});
+                    });
+                </script>-->
 
         <style type="text/css">
             h4 {
@@ -154,7 +155,7 @@
                                             <c:choose>
                                                 <c:when test="${user.account_Id!=showName.account_Id || user==null}" >
                                                     <div align="center">
-                                                        
+
                                                         <%
                                                             Accounts user = (Accounts) session.getAttribute("user");
                                                             Product p = (Product) request.getAttribute("showDetail");
@@ -167,7 +168,7 @@
                                                         <a href="DeleteWishlistProductza?proid=${showDetail.productNO}&acctid=${user.account_Id}&acct=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">Delete Wishlist <span class="fui-cross"></button>
                                                         </a>
                                                         <%}%>
-                                                        <%}else{%>
+                                                        <%} else {%>
                                                         <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
                                                         </a>
                                                         <%}%>
@@ -187,7 +188,51 @@
                                             Seller Information
                                         </div>
                                         <div class="panel-body">
-                                            <a href="ShowAccount?acctid=${showName.account_Id}" >${showName.username} ( 999<span class="glyphicon glyphicon-star"></span> )</a>
+                                            <a href="ShowAccount?acctid=${showName.account_Id}" >${showName.username} </a><br>
+                                            <c:set value="${wtf:feedAVG(showName.username)}" var="n" />
+                                            <c:set value="${wtf:feedcount(showName.username)}" var="m" />
+                                            
+                                            <c:choose>
+                                                <c:when test="${n>=5}">
+                                                    <c:forEach begin="1" end="5">
+                                                        <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>(${m})
+                                                    </c:forEach>    
+                                                </c:when>
+                                                <c:when test="${n>=4}">
+                                                    <c:forEach begin="1" end="4">
+                                                        <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                                    </c:forEach>
+                                                    <c:forEach begin="1" end="1">
+                                                        <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>(${m})
+                                                    </c:forEach>    
+                                                </c:when>
+                                                <c:when test="${n>=3}">
+                                                    <c:forEach begin="1" end="3">
+                                                        <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                                    </c:forEach>
+                                                    <c:forEach begin="1" end="2">
+                                                        <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>(${m})
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:when test="${n>=2}">
+                                                    <c:forEach begin="1" end="2">
+                                                        <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                                    </c:forEach>
+                                                    <c:forEach begin="1" end="3">
+                                                        <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>(${m})
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:when test="${n>=1}">
+                                                    <c:forEach begin="1" end="1">
+                                                        <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                                    </c:forEach>
+                                                    <c:forEach begin="1" end="4">
+                                                        <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>(${m})
+                                                    </c:forEach>
+                                                </c:when>
+                                            </c:choose><br>
+                                            <font size="2">${n} out of 5 stars
+                                            </font>
                                             <font size="2">
                                             <br>Phone No. ${showName.phone}
                                             <a href="GetReceiverServlet?acctid=${showName.account_Id}" class="list-group-item">Send Private Message</a>

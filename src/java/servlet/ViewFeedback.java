@@ -35,7 +35,8 @@ public class ViewFeedback extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Accounts acct = (Accounts) request.getSession().getAttribute("user");
-        
+        Accounts acc = Accounts.findById(request.getParameter("facct"));
+        request.setAttribute("showName", acc);
         /*String url = request.getParameter("url");
         String url2 = url.substring(0, 33);*/
         

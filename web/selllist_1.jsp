@@ -46,10 +46,9 @@
                         <div class="row">
                             <h6 class="col-md-3">Sell List</h6>
                             <div id="cbp-vm" class="cbp-vm-switcher">
-                                <div class="btn-group btn-group-justified">
+                                <div class="btn-group btn-group-justified" style="margin-bottom: 20px">
                                     <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-primary">Now Sell</button></a>
                                 </div>
-                                <hr>
                                 <table class="table table-striped" style="text-align: center">
                                     <tr bgColor="#ffffff">
                                         <td>Date Created</td>

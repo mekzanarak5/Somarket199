@@ -49,6 +49,7 @@ public class DetailOrder extends HttpServlet {
         Feedback chsend = Feedback.checkSender(orderid, user2);
         int up = order.updateRead(orderid);
         int up1 = order.updateReadSell(orderid);
+        
         if(o.getPayment()!=null){
             String pm = o.getPaymentHTML();
             request.setAttribute("payment", pm);
@@ -60,6 +61,7 @@ public class DetailOrder extends HttpServlet {
         request.setAttribute("bank", b);
         request.setAttribute("b2", bpay);
         request.setAttribute("chs", chsend);
+        
         getServletContext().getRequestDispatcher("/OrderDetail.jsp").forward(request, response);
 
     }

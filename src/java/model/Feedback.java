@@ -282,7 +282,36 @@ public class Feedback {
         }
         return arr;
     }
-    
+    public static double feedAVG(String str) {
+        String sqlCmd = "SELECT avg(rate) FROM feedback WHERE From_u = ?";
+        Connection con = ConnectionAgent.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, str);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getDouble(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    public static int feedcount(String str) {
+        String sqlCmd = "SELECT count(*) FROM feedback WHERE From_u = ?";
+        Connection con = ConnectionAgent.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, str);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
     public static Feedback toO(ResultSet rs) {
         Feedback f = null;
         try {
