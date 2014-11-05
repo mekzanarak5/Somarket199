@@ -141,7 +141,7 @@
                                                         <font size="2">
                                                         <div class="input-group input-group-sm" style="margin-bottom: 15px">
                                                             <span class="input-group-addon">Quatity</span>
-                                                            <input type="number" class="form-control" placeholder="Quatity" value="1" required>
+                                                            <input type="number" class="form-control" placeholder="Quatity" value="1" name="units">
                                                         </div>
                                                         </font>
                                                         <input type="hidden" name="url" />
