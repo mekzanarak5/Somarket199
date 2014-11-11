@@ -65,7 +65,7 @@ public class Pay2 extends HttpServlet {
         order.addSlip(orderid, path+"pic/upload/" + pic);
         order.addAddr(orderid, addr);
         //order.addPayment(orderid, );
-
+        int up = order.updateReadSell1(orderid);
         getServletContext().getRequestDispatcher("/DetailOrder?orderid=" + orderid).forward(request, response);
     }
 

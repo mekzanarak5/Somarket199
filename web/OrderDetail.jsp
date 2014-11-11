@@ -50,6 +50,7 @@
                             <h5 style="display: inline ">Order Detail</h5>
                             <p style="display: inline;margin-left: 15px; font-size: 22px">#</p>
                             <p style="display: inline; font-size: 22px; color: #666666">${order.orderId}</p>
+                            <p style="font-size: 16px; ">${order.status}</p>
                         </div>
                         <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                             <h6 class="panel-heading">Item Detail</h6>
@@ -129,11 +130,11 @@
                                     </div>
                                     <c:choose>
                                         <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
-                                                <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
+                                                <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a><br>
                                                 <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
                                                     <input type="hidden" name="url"/>-->
                                                 <c:choose><c:when test="${chs==null}">We need your feedback to seller: ${order.seller}. Please tell us what do you think?<br>
-                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
                                                     </c:when><c:otherwise>
                                                         <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.seller}" />
                                                             Thank you for your support (seller: ${order.seller}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
@@ -142,7 +143,7 @@
                                             <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                                 <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                                 <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                                    <input type="text" class="form-control" placeholder="Tranfer Time" name="ems" value="${order.ems}" disabled>
+                                                    <p class="form-control" >${order.ems}</p>
                                         </div>
                                         <!--<div align="center" style="margin-bottom: 20px">
                                             <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
@@ -184,11 +185,11 @@
                                     <c:choose>
                                         <c:when test="${order.status=='shipping' || order.status=='completed'}">
                                             <div class="col-md-3">
-                                                <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
+                                                <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a><br>
                                                 <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
                                                     <input type="hidden" name="url"/>-->
                                                 <c:choose><c:when test="${chs==null}">We need your feedback to buyer: ${order.username}. Please tell us what do you think?<br>
-                                                    <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
                                                     </c:when><c:otherwise>
                                                         <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.username}" />
                                                             Thank you for your support (buyer: ${order.username}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
@@ -203,7 +204,7 @@
                                                         <div align="center" style="margin-bottom: 20px">
                                                             <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Reject</button>
                                                         </div></c:when>
-                                                    <c:otherwise><input type="text" class="form-control" name="ems" value="${order.ems}" disabled></c:otherwise>
+                                                    <c:otherwise><p class="form-control" >${order.ems}</p></c:otherwise>
                                                 </c:choose>
                                             </div>
                                         </div></form>
@@ -220,81 +221,81 @@
                 <div class="modal-content">
                     <%--<c:choose>
                         <c:when test="${feba==null}">--%>
-                            <form action="AddFeedback" method="get"><input type="hidden" name="id" value="${order.orderId}" />
-                                <input type="hidden" name="url" />
-                                <div class="form-horizontal" style="text-align: center">                               
-                                    <h4 class="col-md-12">Feedback</h4>
-                                    <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-3 control-label">
-                                        </label>
-                                        <div class="col-sm-6">
-                                            <textarea class="form-control" name="comment" rows="4" cols="50" required></textarea>
-                                            <div class="rating">
-                                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-                                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-                                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-                                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-                                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-                                            </div>
-                                        </div>
+                    <form action="AddFeedback" method="get"><input type="hidden" name="id" value="${order.orderId}" />
+                        <input type="hidden" name="url" />
+                        <div class="form-horizontal" style="text-align: center">                               
+                            <h4 class="col-md-12">Feedback</h4>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">
+                                </label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" name="comment" rows="4" cols="50" required></textarea>
+                                    <div class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" required/><label for="star5" title="Rocks!">5 stars</label>
+                                        <input type="radio" id="star4" name="rating" value="4" required/><label for="star4" title="Pretty good">4 stars</label>
+                                        <input type="radio" id="star3" name="rating" value="3" required/><label for="star3" title="Meh">3 stars</label>
+                                        <input type="radio" id="star2" name="rating" value="2" required/><label for="star2" title="Kinda bad">2 stars</label>
+                                        <input type="radio" id="star1" name="rating" value="1" required/><label for="star1" title="Sucks big time">1 star</label>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
 
-                                            <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
-                                        </div>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
                                 </div>
                             </div>
                         </div>
-                            </form>
-                        <%--</c:when>
-                        <c:otherwise>
-                            <div class="form-horizontal" style="text-align: center">                               
-                                <h4 class="col-md-12">Feedback</h4>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-3 control-label">
-                                    </label>
-                                    <div class="col-sm-6">
-                                        <textarea class="form-control" name="comment" rows="4" cols="50" value="${feba.comment}" disabled=""></textarea>
-                                        <div class="rating">
-                                            <input type="radio" id="star${feba.rate}" name="rating" value="${feba.rate}" /><label for="star${feba.rate}" title="">${feba.rate} stars</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--<div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-    
-                                        <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:otherwise>
-                    </c:choose>--%>
+                </div>
+            </div>
+        </form>
+        <%--</c:when>
+        <c:otherwise>
+            <div class="form-horizontal" style="text-align: center">                               
+                <h4 class="col-md-12">Feedback</h4>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-3 control-label">
+                    </label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" name="comment" rows="4" cols="50" value="${feba.comment}" disabled=""></textarea>
+                        <div class="rating">
+                            <input type="radio" id="star${feba.rate}" name="rating" value="${feba.rate}" /><label for="star${feba.rate}" title="">${feba.rate} stars</label>
                         </div>
                     </div>
-                </div>                
-                <!--</div>-->
+                </div>
+                <!--<div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
 
-                <!--<script src="js/jquery-1.8.3.min.js"></script>-->
-                <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-                <script src="js/jquery.ui.touch-punch.min.js"></script>
-                <script src="js/bootstrap.min.js"></script>
-                <script src="js/bootstrap-select.js"></script>
-                <script src="js/bootstrap-switch.js"></script>
-                <script src="js/flatui-checkbox.js"></script>
-                <script src="js/flatui-radio.js"></script>
-                <script src="js/jquery.tagsinput.js"></script>
-                <script src="js/jquery.placeholder.js"></script>
-                <!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
-                <script src="js/application.js"></script>
-                <script>
-                    $(function() {
-                        //$('.ui.accordion').accordion();
-                        $('input[name=url]').val((window.location.href.toString()));
-                    });
+                        <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </c:otherwise>
+    </c:choose>--%>
+    </div>
+</div>
+</div>                
+<!--</div>-->
 
-        </script>
+<!--<script src="js/jquery-1.8.3.min.js"></script>-->
+<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/bootstrap-switch.js"></script>
+<script src="js/flatui-checkbox.js"></script>
+<script src="js/flatui-radio.js"></script>
+<script src="js/jquery.tagsinput.js"></script>
+<script src="js/jquery.placeholder.js"></script>
+<!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
+<script src="js/application.js"></script>
+<script>
+    $(function() {
+        //$('.ui.accordion').accordion();
+        $('input[name=url]').val((window.location.href.toString()));
+    });
+
+</script>
 <!--                <script type="text/javascript">
                     $(function() {
                         if (getParameterByName("show") == 'modal') {
@@ -310,6 +311,6 @@
                     }
                 </script>-->
 
-        <jsp:include page="footer.jsp"/>
-    </body>
+<jsp:include page="footer.jsp"/>
+</body>
 </html>

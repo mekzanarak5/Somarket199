@@ -539,8 +539,22 @@ public class order {
         }
         return row;
     }
+public static int updateRead1(int msg) {
+        int row = 0;
+        try {
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE order_sum SET isread=1  WHERE OrderNo=?");
+            ps.setInt(1, msg);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
     public static int findCountSell(String str) {
-        String sqlCmd = "SELECT count(*) FROM order_sum WHERE seller = ? and isreadOn = 1 and Detail='Verifying...'";
+        String sqlCmd = "SELECT count(*) FROM order_sum WHERE seller = ? and isreadOn = 1 and Detail in ('Verifying...','Waiting for payment.')";
         Connection con = ConnectionAgent.getConnection();
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
@@ -560,6 +574,20 @@ public class order {
         try {
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE order_sum SET isreadOn=0  WHERE OrderNo=?");
+            ps.setInt(1, msg);
+            row = ps.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+            row = -1;
+        }
+        return row;
+    }
+    public static int updateReadSell1(int msg) {
+        int row = 0;
+        try {
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE order_sum SET isreadOn=1  WHERE OrderNo=?");
             ps.setInt(1, msg);
             row = ps.executeUpdate();
             con.close();

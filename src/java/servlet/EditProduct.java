@@ -35,16 +35,14 @@ public class EditProduct extends HttpServlet {
         int proid = Integer.parseInt(request.getParameter("proid"));
         int acctid = Integer.parseInt(request.getParameter("acctid"));
         String Name = request.getParameter("name");
-        String namethai = new String(Name.getBytes("ISO8859_1"), "UTF-8");
         String Description = request.getParameter("des");
-        String desthai = new String(Description.getBytes("ISO8859_1"), "UTF-8");
         String Available = request.getParameter("available");
         int Category_ID = Integer.parseInt(request.getParameter("cata"));
         Double Price = Double.parseDouble(request.getParameter("price"));
         String Brand = request.getParameter("brand");
         
         Product c = new Product();
-        c.editProduct(namethai, Price, desthai, Available, Category_ID, Brand, proid);
+        c.editProduct(Name, Price, Description, Available, Category_ID, Brand, proid);
         request.setAttribute("edit", c);
         getServletContext().getRequestDispatcher("/ShowSellServlet?id="+acctid).forward(request, response);
     }

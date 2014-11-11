@@ -54,6 +54,7 @@ public class OrderFinish extends HttpServlet {
         }
         request.setAttribute("detail", cart);
         request.setAttribute("order", o);
+        int up = order.updateRead1(orderid);
         getServletContext().getRequestDispatcher("/DetailOrder?orderid="+orderid).forward(request, response);
     }
 

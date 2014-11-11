@@ -202,9 +202,6 @@
         <script src="js/application.js"></script>
         <jsp:include page="footer.jsp"/>
         <script>
-            $(function() {
-                $('.ui.accordion').accordion();
-            });
             $(document).ready(function() {
                 $('input[name=url]').val((window.location.href.toString()));
             });

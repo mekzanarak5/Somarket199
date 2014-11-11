@@ -47,9 +47,12 @@ public class DetailOrder extends HttpServlet {
         List<Bank> b = Bank.showBank(a.getAccount_Id());
         Bank bpay = Bank.findBank(o.getBankacct());
         Feedback chsend = Feedback.checkSender(orderid, user2);
+        if(o.getUsername().equalsIgnoreCase(user2)){
         int up = order.updateRead(orderid);
+        }
+        if(o.getSeller().equalsIgnoreCase(user2)){
         int up1 = order.updateReadSell(orderid);
-        
+        }
         if(o.getPayment()!=null){
             String pm = o.getPaymentHTML();
             request.setAttribute("payment", pm);

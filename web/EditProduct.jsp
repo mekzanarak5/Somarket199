@@ -97,22 +97,18 @@
                                             <div class="col-md-3">
                                                 <select id="mark" class="form-control">
                                                     <option value="">--</option>
-                                                    <c:forEach items="${cateID}" var="a">
-                                                        <option value="${a.cateID}">${a.cateName}</option>
+                                                    <c:forEach items="${cate}" var="entry">
+                                                        <option value="${entry.key.cateID}">${entry.key.cateName}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="col-md-3" >
                                                 <select id="series" class="form-control" name="cata">
                                                     <option value="<%=Category.findBySmall(c.getCategory_ID()).getCateID()%>"><%=Category.findBySmall(c.getCategory_ID()).getCateName()%></option>
-                                                    <c:forEach items="${childCateID1}" var="a">
-                                                        <option value="${a.cateID}" class="1">${a.cateName}</option>
-                                                    </c:forEach>
-                                                    <c:forEach items="${childCateID2}" var="a">
-                                                        <option value="${a.cateID}" class="2">${a.cateName}</option>
-                                                    </c:forEach>
-                                                    <c:forEach items="${childCateID3}" var="a">
-                                                        <option value="${a.cateID}" class="3">${a.cateName}</option>
+                                                    <c:forEach items="${cate}" var="entry">
+                                                        <c:forEach items="${entry.value}" var="sub_entry">
+                                                            <option value="${sub_entry.cateID}" class="${entry.key.cateID}">${sub_entry.cateName}</option>
+                                                        </c:forEach>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -122,7 +118,7 @@
                                         <label for="inputPassword3" class="col-sm-3">Brand</label>
                                         <div class="col-sm-3">
                                             <select id="brand" class="form-control" name="brand" >
-                                                <option value="">--</option>
+                                                <option value="">${pro.brandID}</option>
                                                 <option value="ACER" class="11 12 14 15 16 21 22 23">ACER</option>
                                                 <option value="APPLE" class="11 12 13 14 15 16 21 22 23">APPLE</option>
                                                 <option value="ASUS" class="11 12 14 15 16 21 22 23">ASUS</option>

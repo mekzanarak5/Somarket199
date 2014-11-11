@@ -24,76 +24,84 @@
 
         <jsp:include page="cssup.jsp"/>
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
         <div class="row">
-        <div class="col-md-2">
-            <jsp:include page="logo_1.jsp"/>
-        </div>
-        <div class="col-md-10">
-            <jsp:include page="header.jsp"/>
-            <div class="col-md-12">
-                <font size="2">
-                <ol class="breadcrumb">
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="profile.jsp">Profile</a></li>
-                    <li class="active">Ongoing</li>
-                </ol>
-                </font>
+            <div class="col-md-2">
+                <jsp:include page="logo_1.jsp"/>
             </div>
-            <div class="col-xs-12" style="margin:auto;">
-                <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
-                    <div class="row">
-                        <h6 class="col-md-3"  >Ongoing</h6>
-                        <div id="cbp-vm" class="cbp-vm-switcher">
-                            <div class="btn-group btn-group-justified" style="margin-bottom: 20px">
-                                    <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Now Sell</button></a>
-                                    <a href="SellerOrder"><button type="button" class="btn btn-primary">
-                                            Ongoing
+            <div class="col-md-10">
+                <jsp:include page="header.jsp"/>
+                <div class="col-md-12">
+                    <font size="2">
+                    <ol class="breadcrumb">
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="profile.jsp">Profile</a></li>
+                        <li class="active">Awaiting Payment</li>
+                    </ol>
+                    </font>
+                </div>
+                <div class="col-xs-12" style="margin:auto;">
+                    <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
+                        <div class="row">
+                            <div id="cbp-vm" class="cbp-vm-switcher">
+                                <ul class="nav nav-tabs nav-justified" role="tablist">
+                                    <li role="presentation" style="font-size: 16px; "><a href="ShowSellServlet?id=${user.account_Id}#">Item</a>
+                                    </li>
+                                    <li role="presentation" class="active" style="text-align: center; font-size: 18.5px ; font-style: oblique;font-weight: bold;">
+                                        <a href="SellerOrder">
+                                            <!--<button type="button" class="btn btn-default" style="font-size: 13.5px ;">
+                                                <span style="color: #293a4a">Ongoing</span>-->Order
                                             <%
                                                 Accounts user = (Accounts) session.getAttribute("user");
                                                 if (order.findCountSell(user.getUsername()) != 0) {
                                             %>
                                             <span class="badge btn-danger"><%=order.findCountSell(user.getUsername())%> </span>
                                             <%}%>
-                                        </button>
-                                    </a>
-                                    <a href="ShowSoldList?username=${user.username}"><button type="button" class="btn btn-default">Sold List</button></a>
-                            </div>
-                            <table class="table table-striped" id="table6" style="text-align: center">
-                                <tr bgColor="#ffffff">
-                                    <td width="15%">No.</td>
-                                    <td width="20%">Order ID</td>
-                                    <td width="20%">Order Date</td>
-                                    <td>Total Price</td>
-                                    <td>Status</td>
-                                </tr>
-                                <c:set value="1" var="no" />
-                                <c:forEach items="${oldorders}" var="a">
-                                    <tr>
-                                        <td>${no}</td>
-                                        <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
-                                        <td><a href="#"></a>${a.time}</td>
-                                        <td>${a.total}0</td>
-                                        <c:choose>
-                                            <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
-                                                <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
-                                            </c:when>
-                                            <c:otherwise>
-                                            <td><a href="DetailOrder?orderid=${a.orderId}">${a.status}</a></td>
-                                            </c:otherwise>
-                                        </c:choose>
+                                            <!--</button>-->
+                                        </a><ul class="nav nav-pills" role="tablist">
+                                            <li role="presentation" class="active" style="font-size: 12px; font-weight: normal;" ><a href="#" >Awaiting Payment</a></li>
+                                            <li role="presentation" style="font-size: 13px; font-weight: normal"><a href="#">Waiting for Approval</a></li>
+                                            <li role="presentation" style="font-size: 13px; font-weight: normal"><a href="#">Purchased</a></li>
+                                            <li role="presentation" style="font-size: 13px; font-weight: normal"><a href="#">Delivered</a></li>
+                                            <li role="presentation" style="font-size: 13px; font-weight: normal"><a href="#">Complete</a></li>
+                                        </ul></li>
+                                    <!--<li role="presentation" style="font-size: 16px ;"><a href="ShowSoldList?username=${user.username}">Sold List</a></li>-->
+                                </ul>
+                                <table class="table table-striped" id="table6" style="text-align: center">
+                                    <tr bgColor="#ffffff">
+                                        <td width="15%">No.</td>
+                                        <td width="20%">Order ID</td>
+                                        <td width="20%">Order Date</td>
+                                        <td>Total Price</td>
+                                        <td>Status</td>
                                     </tr>
-                                <c:set value="${no+1}" var="no" />
-                                </c:forEach>
-                            </table>
+                                    <c:set value="1" var="no" />
+                                    <c:forEach items="${oldorders}" var="a">
+                                        <tr>
+                                            <td>${no}</td>
+                                            <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
+                                            <td><a href="#"></a>${a.time}</td>
+                                            <td>${a.total}0</td>
+                                            <c:choose>
+                                                <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
+                                                    <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                    <td><a href="DetailOrder?orderid=${a.orderId}">${a.status}</a></td>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                        </tr>
+                                        <c:set value="${no+1}" var="no" />
+                                    </c:forEach>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <!--<script src="js/jquery-1.8.3.min.js"></script>-->
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>

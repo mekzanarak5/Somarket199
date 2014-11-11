@@ -39,7 +39,6 @@
                     <ol class="breadcrumb">
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
-                        <li>Sell List</li>
                         <li class="active">Sold List</li>
                     </ol>
                     </font>
@@ -47,21 +46,26 @@
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
-                            <h6 class="col-md-3">Sell List</h6>
                             <div id="cbp-vm" class="cbp-vm-switcher">
-                                <div class="btn-group btn-group-justified" style="margin-bottom: 20px">
-                                    <a href="ShowSellServlet?id=${user.account_Id}"><button type="button" class="btn btn-default">Now Sell</button></a>
-                                    <a href="SellerOrder"><button type="button" class="btn btn-default">Ongoing
-                                        <%
+                                <ul class="nav nav-tabs nav-justified" role="tablist">
+                                    <li role="presentation" class="active" style="text-align: center; font-size: 18.5px; font-style: oblique;font-weight: bold; "><a href="ShowSellServlet?id=${user.account_Id}#">Item</a>
+                                        <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li role="presentation" style="font-size: 12px; font-weight: normal;" ><a href="ShowSellServlet?id=${user.account_Id}" >On sale</a></li>
+                                            <li role="presentation" class="active" style="font-size: 12px; font-weight: normal"><a href="ShowSoldList?username=${user.username}">Sold Out</a></li>
+                                        </ul></li>
+                                    <li role="presentation" style="font-size: 16px ;"><a href="SellerOrder">
+                                            <!--<button type="button" class="btn btn-default" style="font-size: 13.5px ;">
+                                                <span style="color: #293a4a">Ongoing</span>-->Order
+                                            <%
                                                 Accounts user = (Accounts) session.getAttribute("user");
                                                 if (order.findCountSell(user.getUsername()) != 0) {
                                             %>
                                             <span class="badge btn-danger"><%=order.findCountSell(user.getUsername())%> </span>
                                             <%}%>
-                                        </button>
-                                    </a>
-                                    <a href="ShowSoldList?username=${user.username}"><button type="button" class="btn btn-primary">Sold List</button></a>
-                                </div>
+                                            <!--</button>-->
+                                        </a></li>
+                                        <!--<li role="presentation" style="font-size: 16px ;"><a href="ShowSoldList?username=${user.username}">Sold List</a></li>-->
+                                </ul>
                                     <table class="table table-striped" id="table6" style="text-align: center">
                                         <tr bgColor="#ffffff">
                                             <td width="15%">No.</td>

@@ -121,7 +121,7 @@
                                                         </td>
                                                         <td>${line.product.price}0</td>
                                                         <td><input type="hidden" value="${line.product.productNO}" name="productId" >
-                                                            <input style="text-align:right" id="unit" type="text" class="form-control" name="unit" size='4' value="${line.unit}" required></td>
+                                                            <input style="text-align:right" id="unit" type="text" maxlength="4" class="form-control" name="unit" size='4' value="${line.unit}" required></td>
                                                         <td>${line.total}0</td>
                                                         <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
                                                     </tr>
