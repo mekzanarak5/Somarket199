@@ -34,20 +34,28 @@ public class AddWishList extends HttpServlet {
             throws ServletException, IOException {
         HttpSession s = request.getSession(false);
         Accounts a = (Accounts) s.getAttribute("user");
-
+        int sid = Integer.parseInt(request.getParameter("id"));
+        String cat = request.getParameter("accid");
+        int AcctID = Integer.parseInt(request.getParameter("acctid"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String seller = request.getParameter("seller");
+        int acct = Integer.parseInt(request.getParameter("acct"));
+        Wishlist wish = Wishlist.searchByID(AcctID, sid);
         if (a == null) {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         } else {
-            int sid = Integer.parseInt(request.getParameter("id"));
-            String cat = request.getParameter("accid");
-            int AcctID = Integer.parseInt(request.getParameter("acctid"));
-            String name = request.getParameter("name");
-            String namethai = new String(name.getBytes("ISO8859_1"), "UTF-8");
-            double price = Double.parseDouble(request.getParameter("price"));
-            String seller = request.getParameter("seller");
-            int acct = Integer.parseInt(request.getParameter("acct"));
-            int w = Wishlist.addWishlist(AcctID, namethai, price, seller, sid,acct);
-            getServletContext().getRequestDispatcher("/ShowDetailServlet?productId=" + sid + "&acctid=" + cat).forward(request, response);
+            if (wish != null) {
+                if (wish.getProductId() != sid) {
+                    int w = Wishlist.addWishlist(AcctID, name, price, seller, sid, acct);
+                    getServletContext().getRequestDispatcher("/ShowDetailServlet?productId=" + sid + "&acctid=" + cat).forward(request, response);
+                } else {
+                    getServletContext().getRequestDispatcher("/ShowDetailServlet?productId=" + sid + "&acctid=" + cat).forward(request, response);
+                }
+            } else {
+                int w = Wishlist.addWishlist(AcctID, name, price, seller, sid, acct);
+                getServletContext().getRequestDispatcher("/ShowDetailServlet?productId=" + sid + "&acctid=" + cat).forward(request, response);
+            }
         }
     }
 

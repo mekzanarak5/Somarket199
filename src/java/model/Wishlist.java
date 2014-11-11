@@ -153,6 +153,25 @@ public class Wishlist {
         return pa;
     }
 
+    public static Wishlist searchByID(int id,int pid) {
+        Wishlist a = null;
+        String sql = "select * from wishlist where acct_Id = ? and productId = ?";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setInt(2, pid);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                a = new Wishlist();
+                rToO(a, rs);
+            }
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Wishlist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
+
     public static int findCountWish(int str, int id) {
         String sqlCmd = "SELECT count(productId) as total FROM wishlist WHERE acct_id = ? and productId = ? GROUP BY productId";
         Connection con = ConnectionAgent.getConnection();

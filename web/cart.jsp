@@ -41,7 +41,7 @@
                             required: true,
                             minlength: 1,
                             maxlength: 4,
-                            min:1
+                            min: 1
                         }
                     }
                 });
@@ -65,8 +65,9 @@
             });
 
         </script>
+
     </head>
-<jsp:include page="header1.jsp"/>
+    <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
         <div style="margin-bottom: 70px">
         </div>
@@ -168,7 +169,7 @@
             <hr />
         </c:forEach> --%>
 
-        <script src="js/jquery-1.8.3.min.js"></script>
+        <!--<script src="js/jquery-1.8.3.min.js"></script>-->
         <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/jquery.ui.touch-punch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
