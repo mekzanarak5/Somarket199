@@ -21,6 +21,11 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script>
+            jQuery(function($) {
+                $("#ems").mask("aa999999999aa");
+            });
+        </script>
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -196,12 +201,14 @@
                                                 </c:choose><!--</form>-->
                                             </div></c:when></c:choose>
                                     <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
-                                        <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
+                                        <div class="panel panel-info col-md-6 " style="margin-left: 320px ">
                                             <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
-                                            <div class="col-md-12" align="center" style="margin-bottom: 20px">
+                                            <div class="col-md-12" align="center" style="margin-bottom: 10px">
                                                 <c:choose><c:when test="${order.ems==null}">
-                                                        <input type="text" class="form-control" placeholder="Enter EMS" name="ems" >
-                                                        <div align="center" style="margin-bottom: 20px">
+                                                        <div style="margin-bottom: 10px">
+                                                            <input type="text" style="text-align: center" id="ems" class="form-control" placeholder="Enter EMS" name="ems" >
+                                                        </div>
+                                                        <div align="center">
                                                             <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Reject</button>
                                                         </div></c:when>
                                                     <c:otherwise><p class="form-control" >${order.ems}</p></c:otherwise>
