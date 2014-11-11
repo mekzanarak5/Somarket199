@@ -41,6 +41,7 @@ public class AddToCart extends HttpServlet {
             request.setAttribute("msg", "Please Sign-In before add product !");
         } else {*/
             products = request.getParameter("productId");
+            int unit = Integer.parseInt(request.getParameter("units"));
             String url = request.getParameter("url");
             HttpSession s = request.getSession(true);
             if (s.getAttribute("cart") == null) {
@@ -52,6 +53,7 @@ public class AddToCart extends HttpServlet {
             //for(String pidStr : products){
             tmp = Product.findById(Integer.parseInt(products));
             li = new LineItem(tmp);
+            li.setUnit((unit));
             cart.add(li);
             //}
             System.out.println("SSSSS"+url);
