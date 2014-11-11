@@ -70,7 +70,52 @@
                 position: relative;
             }
         </style>
+ <script>
 
+            function function3() {
+                type = $("#type").val();
+
+                if (type === "default") {
+                    alert("Please Select Type");
+                    $("#type").focus().freeze();
+                }
+
+                $("#form").submit();
+            }
+
+
+            $(document).ready(function() {
+
+                $("#form").validate({
+                    rules: {
+                        units: {
+                            required: true,
+                            minlength: 1,
+                            maxlength: 4,
+                            min:1
+                        }
+                    }
+                });
+            });
+            jQuery(function($) {
+                $("#units").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#units').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+
+        </script>
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -82,7 +127,7 @@
             </div>
             <div class="col-md-10">
                 <jsp:include page="header.jsp"/>
-                <form action="AddToCart" class="form-horizontal" role="form">
+                <form id="form" action="AddToCart" class="form-horizontal" role="form">
                     <div class="col-md-12">
                         <font size="2">
                         <ol class="breadcrumb">
@@ -141,7 +186,7 @@
                                                         <font size="2">
                                                         <div class="input-group input-group-sm" style="margin-bottom: 15px">
                                                             <span class="input-group-addon">Quatity</span>
-                                                            <input type="number" class="form-control" placeholder="Quatity" value="1" name="units">
+                                                            <input type="text" id="units" class="form-control" maxlength="4" placeholder="Quatity" value="1" name="units"/>
                                                         </div>
                                                         </font>
                                                         <input type="hidden" name="url" />

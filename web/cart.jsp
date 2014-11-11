@@ -19,6 +19,52 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script>
+
+            function function3() {
+                type = $("#type").val();
+
+                if (type === "default") {
+                    alert("Please Select Type");
+                    $("#type").focus().freeze();
+                }
+
+                $("#form").submit();
+            }
+
+
+            $(document).ready(function() {
+
+                $("#form").validate({
+                    rules: {
+                        unit: {
+                            required: true,
+                            minlength: 1,
+                            maxlength: 4,
+                            min:1
+                        }
+                    }
+                });
+            });
+            jQuery(function($) {
+                $("#unit").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#unit').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+
+        </script>
     </head>
 <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -42,14 +88,14 @@
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
                             <h5 class="col-md-12">Cart</h5>
-                            <form action="UpdateCart" method="get">
+                            <form id="form" action="UpdateCart" method="get">
                                 <table class="table table-striped" style="text-align: center">
                                     <tr bgColor="#ffffff">
                                         <td>Seller</td>
                                         <td>Pic</td>
                                         <td>Name</td>
                                         <td>Unit Price</td>
-                                        <td>Quantity</td>
+                                        <td width="15%">Quantity</td>
                                         <td>Total</td>
                                         <td></td>
                                     </tr>
@@ -75,7 +121,7 @@
                                                         </td>
                                                         <td>${line.product.price}0</td>
                                                         <td><input type="hidden" value="${line.product.productNO}" name="productId" >
-                                                            <input style="text-align:right" type="number" class="form-control" name="unit" size='4' value="${line.unit}" required></td>
+                                                            <input style="text-align:right" id="unit" type="text" class="form-control" name="unit" size='4' value="${line.unit}" required></td>
                                                         <td>${line.total}0</td>
                                                         <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
                                                     </tr>
