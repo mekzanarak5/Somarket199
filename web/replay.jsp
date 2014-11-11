@@ -32,7 +32,7 @@
                 <div class="col-xs-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li class="active">PM</li>
                     </ol>
                     </font>
@@ -40,16 +40,15 @@
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
-                            <h3 class="col-md-2">PM</h3>
+                            <h5 class="col-md-2">PM</h5>
                             <form action="SendReplyServlet" method="get">
-
                                 <div class="col-md-12">
                                     <hr>
                                     <div class="col-md-4">
                                         <ul class="media-list">
                                             <li class="media">
-                                                <a class="pull-left" href="#">
-                                                    <img class="media-object" src="${pm.pic}" alt="..." width="80px" height="100px">
+                                                <a class="pull-left" href="ShowAccount?acctid=${pm.senderID}">
+                                                    <img class="media-object" src="${pm.pic}" alt="..." width="150px" height="100px">
                                                 </a>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">Sender</h4>

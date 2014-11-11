@@ -28,14 +28,14 @@
                 <div class="col-xs-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li class="active">Profile</li>
                     </ol>
                     </font>
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-4" align="center">   
-                        <img src="${showName.pic}" alt="..." class="img-thumbnail" width="250px" height="250px">
+                        <img src="${showName.pic}" alt="..." class="img-thumbnail" width="200px" height="200px">
                         <br><a href="GetReceiverServlet?acctid=${showName.account_Id}"><button type="button" class="btn btn-danger btn-xs">Send PM</button></a>
                     </div>
                     <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">

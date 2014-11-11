@@ -62,7 +62,7 @@ public class ProductServlet extends HttpServlet {
 
         if (complete) {
             request.setAttribute("lastid", p.lastid());
-            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/post.jsp").forward(request, response);
         }

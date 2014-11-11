@@ -5,7 +5,7 @@
 <%
     Map<Category, List<Category>> c = (Map<Category, List<Category>>) session.getAttribute("cate");
 %>
-<a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
+<a href="index.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
 <div id='cssmenu'>
     <ul>
         <c:forEach items="${cate}" var="entry">

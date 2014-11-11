@@ -37,7 +37,7 @@
             <div class="col-md-12">
                 <font size="2">
                 <ol class="breadcrumb">
-                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="index.jsp">Home</a></li>
                     <li><a href="profile.jsp">Profile</a></li>
                     <li class="active">Ongoing</li>
                 </ol>
@@ -70,7 +70,7 @@
                                     <td>Total Price</td>
                                     <td>Status</td>
                                 </tr>
-                                <c:set value="${no=1}" var="no" />
+                                <c:set value="1" var="no" />
                                 <c:forEach items="${oldorders}" var="a">
                                     <tr>
                                         <td>${no}</td>

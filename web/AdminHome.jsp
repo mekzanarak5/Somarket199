@@ -177,7 +177,7 @@
                 <h4>Administrator Page</h4>
             </div>
             <div class="col-md-1" style="margin-top: 5px;margin-left: -50px">
-                <a href="home.jsp"><span class="glyphicon glyphicon-home"></span>
+                <a href="index.jsp"><span class="glyphicon glyphicon-home"></span>
                 </a>
             </div>
         </div>

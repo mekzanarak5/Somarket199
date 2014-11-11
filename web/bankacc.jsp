@@ -17,6 +17,68 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script>
+
+            function function3() {
+                type = $("#type").val();
+
+                if (type === "default") {
+                    alert("Please Select Type");
+                    $("#type").focus().freeze();
+                }
+
+                $("#form").submit();
+            }
+
+
+            $(document).ready(function() {
+
+                $("#form").validate({
+                    rules: {
+                        post: {
+                            required: true,
+                            minlength: 5,
+                            maxlength: 5   
+                        }
+                    }
+                });
+            });
+            jQuery(function($) {
+                $("#no").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#no').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            jQuery(function($) {
+                $("#name").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-zก-ฮ ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#name').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+
+        </script>
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -31,7 +93,7 @@
                 <div class="col-xs-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
                         <li class="active">My Bank Account</li>
                     </ol>
@@ -55,7 +117,7 @@
                                             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
-                                                        <form action="AddBank" method="get">
+                                                        <form id="form" action="AddBank" method="get">
                                                             <div class="form-horizontal" style="text-align: center">                               
                                                                 <h4 class="col-md-12">Add New Bank Account</h4>
                                                                 <div class="form-group">
@@ -91,13 +153,13 @@
                                                                 <div class="form-group">
                                                                     <label for="inputPassword3" class="col-sm-3 control-label">Bank Account No.</label>
                                                                     <div class="col-sm-4">
-                                                                        <input type="text" class="form-control" placeholder="Bank Account No." name="no" required>
+                                                                        <input id="no" type="text" class="form-control" placeholder="Bank Account No." name="no" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="inputPassword3" class="col-sm-3 control-label">Bank Account Name</label>
                                                                     <div class="col-sm-4">
-                                                                        <input type="text" class="form-control" placeholder="Bank Account Name" name="name" required>
+                                                                        <input id="name" type="text" class="form-control" placeholder="Bank Account Name" name="name" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">

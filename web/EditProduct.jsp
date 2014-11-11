@@ -49,7 +49,7 @@
                 <div class="col-xs-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="ShowSellServlet?id=${user.account_Id}">Sell List</a></li>
                         <li class="active">Edit Product</li>
                     </ol>

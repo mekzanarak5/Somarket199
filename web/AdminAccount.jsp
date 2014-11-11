@@ -177,7 +177,7 @@
         </div>
         <div class="row col-md-12">
             <div class="col-md-1" style="margin-top: 5px;margin-right: -70px">
-                <a href="home.jsp"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <a href="index.jsp"><span class="glyphicon glyphicon-chevron-left"></span></a>
             </div>
             <div class="col-md-3">
                 <h4>Administrator Page</h4>

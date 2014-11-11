@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
                         <li>Sell List</li>
                         <li class="active">Sold List</li>
@@ -71,7 +71,7 @@
                                             <td>Status</td>
                                             <td>EMS</td>
                                         </tr>
-                                        <c:set value="${no=1}" var="no" />
+                                        <c:set value="1" var="no" />
                                         <c:forEach items="${sold}" var="a">
                                             <tr>
                                                 <td>${no}</td>

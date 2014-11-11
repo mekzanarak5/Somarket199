@@ -163,7 +163,7 @@ public class Message {
         return "Message{" + "MsgID=" + MsgID + ", Subject=" + Subject + ", SenderID=" + SenderID + ", ReceiverID=" + ReceiverID + ", pm=" + pm + ", time=" + time + ", username=" + username + ", Read=" + Read + ", pic=" + pic + ", relate=" + relate + ", SenderName=" + SenderName + ", ReceiverName=" + ReceiverName + ", count=" + count + '}';
     }
      
-    public static int insertPM(String subject, int senderID, int receiverID,String senderName,String receiverName, String pm, String time) {
+    public static int insertPM(String subject, int senderID, int receiverID,String senderName,String receiverName, String pm) {
         int row = 0;
         int newMemberID = 0;
         int read = 1;
@@ -171,14 +171,14 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MsgID) AS LastMemberID FROM Pm");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MsgID) AS LastMemberID FROM pm");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
             } else {
                 newMemberID = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,?,?,current_timestamp,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO pm (MsgID,Subject,SenderID,ReceiverID,SenderName,ReceiverName,PM,isread,relateID,count) VALUES (?,?,?,?,?,?,?,?,?,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, subject);
             ps.setInt(3, senderID);
@@ -205,21 +205,21 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MsgID) AS LastMemberID FROM Pm");
+            PreparedStatement ps1 = con.prepareStatement("SELECT MAX(MsgID) AS LastMemberID FROM pm");
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 newMemberID = rs.getInt(1) + 1;
             } else {
                 newMemberID = 0;
             }
-            PreparedStatement ps2 = con.prepareStatement("SELECT MAX(count) AS LastMember FROM Pm");
+            PreparedStatement ps2 = con.prepareStatement("SELECT MAX(count) AS LastMember FROM pm");
             ResultSet rs1 = ps2.executeQuery();
             if (rs1.next()) {
                 newMemberID1 = rs1.getDouble(1) + 1;
             } else {
                 newMemberID1 = 0;
             }
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Pm VALUES (?,?,?,?,?,?,?,current_timestamp,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO pm VALUES (?,?,?,?,?,?,?,current_timestamp,?,?,?)");
             ps.setInt(1, newMemberID);
             ps.setString(2, subject);
             ps.setInt(3, senderID);
@@ -240,7 +240,7 @@ public class Message {
     }
 
     public static List<Message> findReceiver(String str) {
-        String sqlCmd = "SELECT * from Pm where ReceiverID = ? ";
+        String sqlCmd = "SELECT * from pm where ReceiverID = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -260,7 +260,7 @@ public class Message {
         return cs;
     }
     public static List<Message> findReceiverAd() {
-        String sqlCmd = "SELECT * from Pm where ReceiverID = 0 ";
+        String sqlCmd = "SELECT * from pm where ReceiverID = 0 ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -280,7 +280,7 @@ public class Message {
     }
 
     public static List<Message> findSender(int str) {
-        String sqlCmd = "SELECT * from Pm where SenderID = ? and ReceiverID != 0";
+        String sqlCmd = "SELECT * from pm where SenderID = ? and ReceiverID != 0";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -301,7 +301,7 @@ public class Message {
     }
 
     public static Message findSender2(int str) {
-        String sqlCmd = "SELECT * from Pm where MsgID = ? ";
+        String sqlCmd = "SELECT * from pm p,account a where p.senderName=a.Username and MsgID = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         try {
@@ -319,7 +319,7 @@ public class Message {
         return c;
     }
     public static Message findCountMessage(int str) {
-        String sqlCmd = "SELECT * from Pm where MsgID = ? ";
+        String sqlCmd = "SELECT * from pm where MsgID = ? ";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         try {
@@ -337,7 +337,7 @@ public class Message {
         return c;
     }
     public static List<Message> findReply(int str) {
-        String sqlCmd = "SELECT * from Pm where relateID = ? ORDER BY Time ASC";
+        String sqlCmd = "SELECT * from pm where relateID = ? ORDER BY Time ASC";
         Connection con = ConnectionAgent.getConnection();
         Message c = null;
         List<Message> cs = new ArrayList<Message>();
@@ -377,7 +377,7 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE Pm SET SenderID=null  WHERE MsgID=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE pm SET SenderID=null  WHERE MsgID=?");
             ps.setString(1, pmid);
             row = ps.executeUpdate();
             con.close();
@@ -388,7 +388,7 @@ public class Message {
     }
 
     public static int findCount(int str) {
-        String sqlCmd = "SELECT count(*) FROM Pm WHERE ReceiverID = ? and isread = 1";
+        String sqlCmd = "SELECT count(*) FROM pm WHERE ReceiverID = ? and isread = 1";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Message> cs = new ArrayList<Message>();
@@ -410,7 +410,7 @@ public class Message {
         try {
 
             Connection con = ConnectionAgent.getConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE Pm SET isread=0  WHERE MsgID=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE pm SET isread=0  WHERE MsgID=?");
             ps.setInt(1, msg);
             row = ps.executeUpdate();
             con.close();
@@ -434,6 +434,7 @@ public class Message {
             m.setRead(rs.getInt("isread"));
             m.setRelate(rs.getInt("relateID"));
             m.setCount(rs.getInt("count"));
+            m.setPic(rs.getString("Pic"));
         } catch (SQLException ex) {
             Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -23,3 +23,5 @@
 <script type="text/javascript" src="js/accordion.js"></script>
 <script type="text/javascript" src="js/bootstrap-hover-dropdown.min.js"></script>
 <script type="text/javascript" src="js/tablefilter_all.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/jquery.maskedinput.js"></script>

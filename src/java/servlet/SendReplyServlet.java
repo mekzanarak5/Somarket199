@@ -58,7 +58,7 @@ public class SendReplyServlet extends HttpServlet {
             request.setAttribute("u", sender);
         }
         
-        getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         
     }
 

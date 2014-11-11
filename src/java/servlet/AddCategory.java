@@ -47,7 +47,7 @@ public class AddCategory extends HttpServlet {
             request.setAttribute("lastid", a.lastid());
             getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
         } else {
-            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }
 

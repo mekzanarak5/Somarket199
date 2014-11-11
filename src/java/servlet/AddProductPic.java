@@ -192,15 +192,7 @@ public class AddProductPic extends HttpServlet {
                 ProductPic a = new ProductPic();
                 a.insertPic(st1);
             }
-
-           
-
-            if (complete) {
-                request.setAttribute("lastid", p.lastid());
-                getServletContext().getRequestDispatcher("/ShowSellServlet?id=" + acctid).forward(request, response);
-            } else {
-                getServletContext().getRequestDispatcher("/postandpic1.jsp").forward(request, response);
-            }
+            getServletContext().getRequestDispatcher("/ShowSellServlet?id=" + acctid).forward(request, response);
         } else {
             String msg = "Please complete your account information";
             request.setAttribute("msg", msg);

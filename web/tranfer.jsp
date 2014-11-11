@@ -30,7 +30,7 @@
                 <jsp:include page="header.jsp"/>
                 <div class="col-md-12">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="ShowOrder">Buy List</a></li>
                         <li class="active">Transfer</li>
                     </ol>

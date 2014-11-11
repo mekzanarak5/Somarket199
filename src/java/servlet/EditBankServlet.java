@@ -35,13 +35,11 @@ public class EditBankServlet extends HttpServlet {
         int AcctID = Integer.parseInt(request.getParameter("acctid"));
         int bankID = Integer.parseInt(request.getParameter("bankid"));
         String bankname = request.getParameter("bankname");
-        String banknamethai = new String(bankname.getBytes("ISO8859_1"), "UTF-8");
         String no = request.getParameter("no");
         String name = request.getParameter("name");
-        String namethai = new String(name.getBytes("ISO8859_1"), "UTF-8");
         
          Bank c = new Bank();
-        c.editBank(banknamethai, no, namethai, bankID);
+        c.editBank(bankname, no, name, bankID);
         request.setAttribute("edit", c);
         getServletContext().getRequestDispatcher("/ShowBankServlet?id="+AcctID).forward(request, response);
     }

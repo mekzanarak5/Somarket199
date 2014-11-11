@@ -32,7 +32,7 @@
                 <div class="col-xs-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li class="active">PM (Inbox)</li>
                     </ol>
                     </font>
@@ -59,7 +59,7 @@
                                         </tr>
                                         <c:forEach items="${pm}" var="a">
                                             <tr>
-                                                <td><a href="#">${a.senderName}</a></td>
+                                                <td><a href="ShowAccount?acctid=${a.senderID}">${a.senderName}</a></td>
                                                 <td><a href="ReplayServlet?id=${a.msgID}&relate=${a.relate}">${a.subject}</a></td>
                                                 <td>${a.time}</td>
                                                 <td><input type="checkbox" name="pmid" value="${a.msgID}"></td>

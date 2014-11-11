@@ -32,7 +32,7 @@
             <div class="col-xs-12">
                 <font size="2">
                 <ol class="breadcrumb">
-                    <li><a href="home.jsp">Home</a></li>
+                    <li><a href="index.jsp">Home</a></li>
                     <li><a href="profile.jsp">Profile</a></li>
                     <li class="active">Wish List</li>
                 </ol>
@@ -54,8 +54,8 @@
                                     </tr>
                                     <c:forEach items="${wish}" var="a">
                                         <tr>
-                                            <td><a href="#">${a.name}</a></td>
-                                            <td><a href="#">${a.price}</a></td>
+                                            <td><a href="ShowDetailServlet?productId=${a.productId}&acctid=${a.acct}">${a.name}</a></td>
+                                            <td>${a.price}</td>
                                             <td>${a.seller}</td>
                                             <td>
                                             <input type="checkbox" name="wishid" value="${a.wish_Id}">

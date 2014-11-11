@@ -15,6 +15,54 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script>
+
+            function function3() {
+                type = $("#type").val();
+
+                if (type === "default") {
+                    alert("Please Select Type");
+                    $("#type").focus().freeze();
+                }
+
+                $("#form").submit();
+            }
+
+
+            $(document).ready(function() {
+
+                $("#form").validate({
+                    rules: {
+                        post: {
+                            required: true,
+                            minlength: 5,
+                            maxlength: 5   
+                        }
+                    }
+                });
+            });
+            jQuery(function($) {
+                $("#post").mask("99999");
+            });
+            jQuery(function($) {
+                $("#post").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#post').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+
+        </script>
     </head>
 <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -29,7 +77,7 @@
                 <div class="col-md-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
                         <li><a href="ShowAddressServlet?id=${user.account_Id}">My Address</a></li>
                         <li>Edit Address</li>
@@ -40,7 +88,7 @@
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 450px;background: #FFFFFF">
                         <div class="row">
                             <h3 class="col-md-12">Edit Address</h3>
-                            <form action="EditAddressServlet" method="get">
+                            <form id="form" action="EditAddressServlet" method="get">
                                 <div class="form-horizontal" style="text-align: center">                               
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
@@ -145,7 +193,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-2 control-label">Post</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" value="${find.post}" name="post" required>
+                                            <input type="text" id="post" class="form-control" value="${find.post}" name="post" required>
                                         </div>
                                     </div>
                                     <div class="form-group">

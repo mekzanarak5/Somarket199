@@ -45,7 +45,8 @@ public class AddWishList extends HttpServlet {
             String namethai = new String(name.getBytes("ISO8859_1"), "UTF-8");
             double price = Double.parseDouble(request.getParameter("price"));
             String seller = request.getParameter("seller");
-            int w = Wishlist.addWishlist(AcctID, namethai, price, seller, sid);
+            int acct = Integer.parseInt(request.getParameter("acct"));
+            int w = Wishlist.addWishlist(AcctID, namethai, price, seller, sid,acct);
             getServletContext().getRequestDispatcher("/ShowDetailServlet?productId=" + sid + "&acctid=" + cat).forward(request, response);
         }
     }

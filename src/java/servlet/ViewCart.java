@@ -40,7 +40,7 @@ public class ViewCart extends HttpServlet {
         HttpSession s = request.getSession(false);
         if (s == null || s.getAttribute("cart") == null || ((Cart) s.getAttribute("cart")).getUnitItem() == 0) {
             request.setAttribute("msg", "Empty Cart ... Please add product to cart !!!");
-            getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } else {
             //TreeMap<Integer, LineItem> items = request.getParameterValues("productId"); // สินค้าทั้งหมดที่เลือกมา
             Cart cart = (Cart) s.getAttribute("cart");

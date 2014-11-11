@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
+<a href="index.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
 
 <div id='cssmenu'>
     <ul>

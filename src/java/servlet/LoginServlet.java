@@ -94,7 +94,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession s2 = request.getSession();
             s2.setAttribute("msg1", msg);
         }
-        getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

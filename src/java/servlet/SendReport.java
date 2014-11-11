@@ -44,12 +44,11 @@ public class SendReport extends HttpServlet {
             String subject = request.getParameter("subject");
             String subthai = new String(subject.getBytes("ISO8859_1"), "UTF-8");
             int receiver = Integer.parseInt(request.getParameter("receiver"));
-            String time = request.getParameter("time");
             int sender = a.getAccount_Id();
             String senderName = request.getParameter("senderName");
             String receiverName = request.getParameter("receiverName");
             Message c = new Message();
-            c.insertPM(subthai, sender, receiver,senderName,receiverName, pmthai, time);
+            c.insertPM(subthai, sender, receiver,senderName,receiverName, pmthai);
             request.setAttribute("pm", c);
             request.setAttribute("u", sender);
         }

@@ -17,6 +17,97 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script>
+
+            function function3() {
+                type = $("#type").val();
+
+                if (type === "default") {
+                    alert("Please Select Type");
+                    $("#type").focus().freeze();
+                }
+
+                $("#form").submit();
+            }
+
+
+            $(document).ready(function() {
+
+                $("#form").validate({
+                    rules: {
+                        username: {
+                            required: true,
+                            minlength: 6,
+                            maxlength: 15
+                        }
+                    }
+                });
+            });
+            jQuery(function($) {
+                $("#username").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-z0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#username').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            $(document).ready(function() {
+                $('#demo2').click(function() {
+                    $.blockUI({css: {
+                            border: 'none',
+                            padding: '15px',
+                            backgroundColor: '#000',
+                            '-webkit-border-radius': '10px',
+                            '-moz-border-radius': '10px',
+                            opacity: .5,
+                            color: '#fff'
+                        }});
+
+                    setTimeout($.unblockUI, 20000);
+                });
+            });
+
+        </script>
+        <style>
+            .spinner {
+                width: 40px;
+                height: 40px;
+                margin: 100px auto;
+                background-color: #333;
+
+                border-radius: 100%;
+                -webkit-animation: scaleout 1.0s infinite ease-in-out;
+                animation: scaleout 1.0s infinite ease-in-out;
+            }
+
+            @-webkit-keyframes scaleout {
+                0% { -webkit-transform: scale(0.0) }
+                100% {
+                    -webkit-transform: scale(1.0);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes scaleout {
+                0% {
+                    transform: scale(0.0);
+                    -webkit-transform: scale(0.0);
+                } 100% {
+                    transform: scale(1.0);
+                    -webkit-transform: scale(1.0);
+                    opacity: 0;
+                }
+            }
+        </style>
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -31,7 +122,7 @@
                 <div class="col-md-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li class="active">Login</li>
                     </ol>
                     </font>
@@ -43,23 +134,33 @@
                                 <c:choose>
                                     <c:when test="${msg != null}">
                                         <div class="col-md-12" style="margin-bottom: -20px;margin-top: 10px">
-                                        <div class="alert alert-danger fade in" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            <strong>${msg}</strong>
+                                            <div class="alert alert-danger fade in" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                <strong>${msg}</strong>
+                                            </div>
                                         </div>
+                                    </c:when>
+                                </c:choose>
+                                <c:choose>
+                                    <c:when test="${msg1 != null}">
+                                        <div class="col-md-12" style="margin-bottom: -20px;margin-top: 10px">
+                                            <div class="alert alert-success fade in" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                <strong>${msg1}</strong>
+                                            </div>
                                         </div>
                                     </c:when>
                                 </c:choose>
                                 <h5 class="col-md-5">Login</h5>
                                 <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <input type="text" name="username"  placeholder="username" class="form-control" required=""/>
-                                    </div>          
-                                </div>
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <input type="password" name="password" placeholder="password" class="form-control" required=""/>
-                                    </div>          
+                                    <div class="input-group input-group-lg" style="margin-bottom: 15px">
+                                        <input type="text" id="username" class="form-control" placeholder="username" maxlength="15" name="username" required>
+                                        <span class="input-group-addon"><span class="fui-user"></span></span>
+                                    </div>
+                                    <div class="input-group input-group-lg" style="margin-bottom: 15px">
+                                        <input type="password" class="form-control" placeholder="password" maxlength="15" name="password" required>
+                                        <span class="input-group-addon"><span class="fui-lock"></span></span>
+                                    </div>
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="col-xs-3">
@@ -69,8 +170,9 @@
                                         </label>
                                     </div> <!-- /checkboxes col-xs-3 -->
                                 </div>
-                                <div class="col-xs-12" style="margin-bottom: 10px">
-                                    <input type="submit" class="btn btn-block btn-lg btn-info" value="Login">
+
+                                <div class="col-xs-12" style="margin-bottom: 15px">
+                                    <input type="submit" class="btn btn-block btn-lg btn-info" value="Login" >
                                     <a class="login-link" href="#">Lost your password?</a>
                                 </div>
                             </div>
@@ -83,6 +185,7 @@
                             <a href="Register.jsp" class="btn btn-lg btn-default">Register</a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -58,7 +58,7 @@ public class ShowCategoryServlet extends HttpServlet {
         s4.setAttribute("pro3", a2);
         
         System.out.println();
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("index1.jsp");
 //        HttpSession s1 = request.getSession();
 //        List<Category> c = Category.findBigAll();
 //        s1.setAttribute("cateID", c);

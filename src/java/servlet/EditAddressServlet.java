@@ -35,15 +35,12 @@ public class EditAddressServlet extends HttpServlet {
         int AcctID = Integer.parseInt(request.getParameter("acctid"));
         int AddID = Integer.parseInt(request.getParameter("addid"));
         String Address = request.getParameter("address");
-        String addressthai = new String(Address.getBytes("ISO8859_1"), "UTF-8");
         String Provice = request.getParameter("provice");
-        String provicethai = new String(Provice.getBytes("ISO8859_1"), "UTF-8");
         int Post = Integer.parseInt(request.getParameter("post"));
         String Canton = request.getParameter("canton");
-        String cantonthai = new String(Canton.getBytes("ISO8859_1"), "UTF-8");
         
         Address c = new Address();
-        c.editAddress(addressthai, provicethai, cantonthai, Post, AddID);
+        c.editAddress(Address, Provice, Canton, Post, AddID);
         request.setAttribute("edit", c);
         getServletContext().getRequestDispatcher("/ShowAddressServlet?id="+AcctID).forward(request, response);
     }

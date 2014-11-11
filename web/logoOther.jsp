@@ -8,7 +8,7 @@
     Accounts user = (Accounts) session.getAttribute("user");
 %>
 
-<a href="home.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
+<a href="index.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title ">${showName.username}</h3>

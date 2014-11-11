@@ -86,7 +86,7 @@
                     <div class="col-md-12">
                         <font size="2">
                         <ol class="breadcrumb">
-                            <li><a href="home.jsp">Home</a></li>
+                            <li><a href="index.jsp">Home</a></li>
                             <li><a href="SearchProductServlet?id=&herolist=&x=0&y=6&s=a">Product</a></li>
                             <li><a href="SearchProductServlet?id=&herolist=${showDetail.cateID}&x=0&y=6&s=a">${showDetail.cateName}</a></li>
                             <li class="active">${showDetail.name}</li>
@@ -162,7 +162,7 @@
                                                             if (user != null) {
                                                                 if (Wishlist.findCountWish(user.getAccount_Id(), p.getProductNO()) == 0) {
                                                         %>
-                                                        <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
+                                                        <a href="AddWishList?acctid=${user.account_Id}&name=${showDetail.name}&price=${showDetail.price}&seller=${showName.username}&id=${showDetail.productNO}&accid=${showName.account_Id}&acct=${showDetail.acctID}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">WishList<span class="fui-heart"></button>
                                                         </a>
                                                         <%} else {%>
                                                         <a href="DeleteWishlistProductza?proid=${showDetail.productNO}&acctid=${user.account_Id}&acct=${showName.account_Id}"><button type="button" class="btn btn-xs btn-warning" style="margin-top: 15px">Delete Wishlist <span class="fui-cross"></button>
@@ -177,7 +177,7 @@
                                                     </div>
                                                 </c:when>
                                             </c:choose>
-                                            <div class="fb-share-button" data-href="<%=request.getRequestURI()%>"></div> 
+                                            <div class="fb-share-button" data-href="ShowDetailServlet?productId=${showDetail.productNO}&acctid=${showDetail.acctID}"></div> 
                                         </div>
                                     </div>
                                     <br />

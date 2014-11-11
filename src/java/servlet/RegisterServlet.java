@@ -35,9 +35,7 @@ public class RegisterServlet extends HttpServlet {
         String confirmpassword = request.getParameter("confirmpassword");
         String Email = request.getParameter("email");
         String FirstName = request.getParameter("firstname");
-        String fthai = new String(FirstName.getBytes("ISO8859_1"),"UTF-8");
         String LastName = request.getParameter("lastname");
-        String lthai = new String(LastName.getBytes("ISO8859_1"),"UTF-8");
         String Phone = request.getParameter("phone");
 //String Created = request.getParameter("created");
         String msg = "kuy";
@@ -49,10 +47,10 @@ public class RegisterServlet extends HttpServlet {
             if (Password.length() >= 6) {
                 if (Password.equals(confirmpassword)) {
                     if (Accounts.checkEmail(Email)) {
-                            int row = Accounts.addAccount(Username,Password,Email,fthai,lthai,Phone);
+                            int row = Accounts.addAccount(Username,Password,Email,FirstName,LastName,Phone);
                             if (row == 1) {
-                                msg = "Congratulations, you are now a member of GoToTheSell!";
-                                request.setAttribute("msg", msg);
+                                msg = "Congratulations, you are now a member of Somarket!!";
+                                request.setAttribute("msg1", msg);
                                 complete = true;
                                  System.out.println("1");
                             } else {
@@ -90,7 +88,6 @@ public class RegisterServlet extends HttpServlet {
         if (complete) {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         } else {
-            System.out.println("hhhhh");
             getServletContext().getRequestDispatcher("/Register.jsp").forward(request, response);
         } 
     }

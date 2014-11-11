@@ -33,17 +33,14 @@ public class AddAddress extends HttpServlet {
             throws ServletException, IOException {
         int AcctID = ((Accounts) request.getSession().getAttribute("user")).getAccount_Id();
         String Address = request.getParameter("address");
-        String addressthai = new String(Address.getBytes("ISO8859_1"), "UTF-8");
         String Provice = request.getParameter("provice");
-        String provicethai = new String(Provice.getBytes("ISO8859_1"), "UTF-8");
         int Post = Integer.parseInt(request.getParameter("post"));
         String Canton = request.getParameter("canton");
-        String cantonthai = new String(Canton.getBytes("ISO8859_1"), "UTF-8");
         String msg = "";
         Boolean complete = false;
         model.Address a = new model.Address();
 
-        int row =  a.addAdress(AcctID, addressthai, provicethai, Post, cantonthai);
+        int row =  a.addAdress(AcctID, Address, Provice, Post, Canton);
         if (row == 1) {
             msg = "Congratulations, GoToTheSell!";
             request.setAttribute("msg", msg);

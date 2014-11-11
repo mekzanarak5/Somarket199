@@ -49,17 +49,17 @@ public class SearchProductServlet extends HttpServlet {
         request.setAttribute("id", sid);
 //        request.setAttribute("totalPage", totalPage);
         if (sort.equalsIgnoreCase("a")) {
-            int totalPage = (int) Math.ceil((pp.countRow(cat) * 1.0) / y);
+            int totalPage = (int) Math.ceil((pp.countRow(cat,sid) * 1.0) / y);
             request.setAttribute("totalPage", totalPage);
             request.setAttribute("products", pp.page(sid, cat, x, y));
         }
         if (sort.equalsIgnoreCase("h")) {
-            int totalPage = (int) Math.ceil((pp.countRow(cat) * 1.0) / y);
+            int totalPage = (int) Math.ceil((pp.countRow(cat,sid) * 1.0) / y);
             request.setAttribute("totalPage", totalPage);
             request.setAttribute("products", pp.highPrice(sid, cat, x, y));
         }
         if (sort.equalsIgnoreCase("l")) {
-            int totalPage = (int) Math.ceil((pp.countRow(cat) * 1.0) / y);
+            int totalPage = (int) Math.ceil((pp.countRow(cat,sid) * 1.0) / y);
             request.setAttribute("totalPage", totalPage);
             request.setAttribute("products", pp.LowPrice(sid, cat, x, y));
         }

@@ -1,1 +1,0 @@
-<img src="pic/logooo.png" class="img-responsive"/>

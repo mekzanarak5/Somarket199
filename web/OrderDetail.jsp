@@ -35,7 +35,7 @@
                 <div class="col-md-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
                         <li><a href="ShowOrder">Buy List</a></li>
                         <li class="active">Order Detail</li>

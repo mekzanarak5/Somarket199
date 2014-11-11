@@ -17,6 +17,71 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script>
+
+            function function3() {
+                type = $("#type").val();
+
+                if (type === "default") {
+                    alert("Please Select Type");
+                    $("#type").focus().freeze();
+                }
+
+                $("#form").submit();
+            }
+
+
+            $(document).ready(function() {
+
+                $("#form").validate({
+                    rules: {
+                        post: {
+                            required: true,
+                            minlength: 5,
+                            maxlength: 5   
+                        }
+                    }
+                });
+            });
+            jQuery(function($) {
+                $("#post").mask("99999");
+            });
+            jQuery(function($) {
+                $("#post").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#post').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            jQuery(function($) {
+                $("#payamount").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#payamount').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+
+        </script>
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -31,7 +96,7 @@
                 <div class="col-md-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="home.jsp">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="ShowOrder">Buy List</a></li>
                         <li class="active">Transfer</li>
                     </ol>
@@ -39,7 +104,7 @@
                 </div>
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
-                        <form action="Pay2" class="form-horizontal" method="post" enctype="multipart/form-data" >
+                        <form id="form" action="Pay2" class="form-horizontal" method="post" enctype="multipart/form-data" >
                             <div class="row">
                                 <h3 class="col-md-12">Transfer</h3>
                                 <div class="col-md-12">
@@ -71,13 +136,23 @@
                                         <div class="form-group">
                                             <label for="inputPassword3" class="col-sm-3 control-label">Transfer Time</label>
                                             <div class="col-sm-4">
+                                                <div class='input-group date' id='datetimepicker5'>
                                                 <input type="time" class="form-control" placeholder="Tranfer Time" name="paytime" required>
+                                                <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-time"></span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword3" class="col-sm-3 control-label">Amount</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" placeholder="Amount" name="payamount" required>
+                                                <div class='input-group date' id='datetimepicker5'>
+                                                    <input id="payamount" type="text" class="form-control" maxlength="10" placeholder="Amount" name="payamount" required>
+                                            <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-bold"></span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +200,7 @@
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <form action="AddAddress" method="get">
+                    <form id="form" action="AddAddress" method="get">
                         <div class="form-horizontal" style="text-align: center">                               
                             <h4 class="col-md-12">Add New Address</h4>
                             <div class="form-group">
@@ -230,7 +305,7 @@
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">Post</label>
                                 <div class="col-sm-3">
-                                    <input type="number" class="form-control" placeholder="Post" name="post" required>
+                                    <input type="text" id="post" class="form-control" placeholder="Post" name="post" required>
                                 </div>
                             </div>
                             <div class="form-group">
