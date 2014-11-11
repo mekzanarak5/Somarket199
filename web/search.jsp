@@ -75,6 +75,7 @@
                                                     <div class="caption" >
                                                         <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">${a.name}<br>${a.price}0 ฿</a><br>                                    
                                                         <input type="hidden" name="url" />
+                                                        <input type="hidden" name="units" value="1"/>
                                                         <input type="hidden" name="productId" value="${a.productNO}" />
                                                         <input type="hidden" name="acctid" value="${a.acctID}" />
                                                         <c:choose>
