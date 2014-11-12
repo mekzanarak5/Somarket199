@@ -30,6 +30,27 @@
         <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <jsp:include page="cssup.jsp"/>
         <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+        <script>
+
+            jQuery(function($) {
+                $("#price").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#price').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+
+        </script>
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -65,7 +86,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-3">Price</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" placeholder="Price" name="price" maxlength="7" required>
+                                            <input type="text" id="price" class="form-control" placeholder="Price" name="price" maxlength="7" required>
                                         </div>
                                     </div>
                                     <div class="form-group">

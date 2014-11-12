@@ -69,7 +69,8 @@
   float: none;
 }
 #cssmenu ul {
-  background: #fff;
+  /* background: #fff; */
+  border: 1px solid #3dbd99;
 }
 #cssmenu > ul > li {
   border-left: 3px solid #d7d8da;

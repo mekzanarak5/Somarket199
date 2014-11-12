@@ -19,7 +19,7 @@
                 <c:forEach begin="1" end="5">
                     <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
                 </c:forEach>    
-                    (${m})
+                (${m})
             </c:when>
             <c:when test="${n>=4}">
                 <c:forEach begin="1" end="4">
@@ -28,7 +28,7 @@
                 <c:forEach begin="1" end="1">
                     <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
                 </c:forEach>    
-                    (${m})
+                (${m})
             </c:when>
             <c:when test="${n>=3}">
                 <c:forEach begin="1" end="3">
@@ -37,7 +37,7 @@
                 <c:forEach begin="1" end="2">
                     <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
                 </c:forEach>
-                    (${m})
+                (${m})
             </c:when>
             <c:when test="${n>=2}">
                 <c:forEach begin="1" end="2">
@@ -46,7 +46,7 @@
                 <c:forEach begin="1" end="3">
                     <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
                 </c:forEach>
-                    (${m})
+                (${m})
             </c:when>
             <c:when test="${n>=1}">
                 <c:forEach begin="1" end="1">
@@ -55,7 +55,13 @@
                 <c:forEach begin="1" end="4">
                     <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
                 </c:forEach>
-                    (${m})
+                (${m})
+            </c:when>
+            <c:when test="${n==0}">
+                <c:forEach begin="1" end="5">
+                    <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
+                </c:forEach>
+                (${m})
             </c:when>
         </c:choose><br>
         <font size="2">${n} out of 5 stars</font>

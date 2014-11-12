@@ -70,7 +70,7 @@
                 position: relative;
             }
         </style>
- <script>
+        <script>
 
             function function3() {
                 type = $("#type").val();
@@ -92,7 +92,7 @@
                             required: true,
                             minlength: 1,
                             maxlength: 4,
-                            min:1
+                            min: 1
                         }
                     }
                 });
@@ -276,6 +276,12 @@
                                                         <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
                                                     </c:forEach>
                                                     <c:forEach begin="1" end="4">
+                                                        <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
+                                                    </c:forEach>
+                                                    (${m})
+                                                </c:when>
+                                                <c:when test="${n==0}">
+                                                    <c:forEach begin="1" end="5">
                                                         <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
                                                     </c:forEach>
                                                     (${m})
