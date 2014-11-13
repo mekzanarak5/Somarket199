@@ -147,17 +147,14 @@
                                     <c:when test="${views==4}">
                                         <table class="table table-striped" id="table6" style="text-align: center">
                                             <tr bgColor="#ffffff">
-                                                <td width="15%">No.</td>
                                                 <td width="20%">Order ID</td>
                                                 <td width="20%">Order Date</td>
                                                 <td>Total Price</td>
                                                 <td>Status</td>
                                             </tr>
-                                            <c:set value="${no=1}" var="no" />
                                             <c:forEach items="${oldorders}" var="a">
                                                 <c:choose><c:when test="${a.status=='cancels' || a.status=='returns'}">
                                                         <tr>
-                                                            <td>${no}</td>
                                                             <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
                                                             <td><a href="#"></a>${a.time}</td>
                                                             <td>${a.total}0</td>
@@ -170,7 +167,6 @@
                                                                     </c:otherwise>
                                                                 </c:choose>
                                                         </tr>
-                                                        <c:set value="${no+1}" var="no" />
                                                     </c:when></c:choose>
                                             </c:forEach>
                                         </table></c:when>
@@ -178,16 +174,13 @@
                                     <c:otherwise>
                                         <table class="table table-striped" id="table6" style="text-align: center">
                                             <tr bgColor="#ffffff">
-                                                <td width="15%">No.</td>
                                                 <td width="20%">Order ID</td>
                                                 <td width="20%">Order Date</td>
                                                 <td>Total Price</td>
                                                 <td>Status</td>
                                             </tr>
-                                            <c:set value="${no=1}" var="no" />
                                             <c:forEach items="${oldorders}" var="a">
                                                 <tr>
-                                                    <td>${no}</td>
                                                     <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
                                                     <td><a href="#"></a>${a.time}</td>
                                                     <td>${a.total}0</td>
@@ -200,7 +193,6 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                 </tr>
-                                                <c:set value="${no+1}" var="no" />
                                             </c:forEach>
                                         </table></c:otherwise>
                                 </c:choose>

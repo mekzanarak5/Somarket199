@@ -16,6 +16,92 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script>
+
+            function function3() {
+                type = $("#type").val();
+
+                if (type === "default") {
+                    alert("Please Select Type");
+                    $("#type").focus().freeze();
+                }
+
+                $("#form").submit();
+            }
+
+
+            $(document).ready(function() {
+
+                $("#form").validate({
+                    rules: {
+                        firstname: {
+                            required: true,
+                            minlength: 4,
+                            maxlength: 256
+                        },
+                        lastname: {
+                            required: true,
+                            minlength: 4,
+                            maxlength: 256
+                        }
+                    }
+                });
+            });
+            jQuery(function($) {
+                $("#phone").mask("999-999-9999");
+            });
+            jQuery(function($) {
+                $("#username").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[a-z0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#username').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            jQuery(function($) {
+                $("#firstname").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-zก-ฮ ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#firstname').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            jQuery(function($) {
+                $("#lastname").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-zก-ฮ ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#lastname').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+        </script>
     </head>
 <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -36,7 +122,7 @@
                     </ol>
                     </font>
                 </div>
-                <form action="EditProfileServlet" method="get">
+                <form id="form" action="EditProfileServlet" method="get">
                     <div class="col-xs-12" style="margin:auto;">
                         <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                             <div class="form-horizontal">
@@ -44,19 +130,19 @@
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-3 control-label">First Name</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" value="${user.firstName}" name="firstname" required>
+                                        <input type="text" id="firstname" class="form-control" value="${user.firstName}" name="firstname" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-3 control-label">Last Name</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" value="${user.lastName}" name="lastname" required>
+                                        <input type="text" id="lastname" class="form-control" value="${user.lastName}" name="lastname" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-3 control-label">Phone</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" value="${user.phone}" name="phone" required>
+                                        <input type="text" id="phone" class="form-control" value="${user.phone}" name="phone" required>
                                     </div>
                                 </div>
 

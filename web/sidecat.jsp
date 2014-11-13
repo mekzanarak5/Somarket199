@@ -5,6 +5,42 @@
 <%
     Map<Category, List<Category>> c = (Map<Category, List<Category>>) session.getAttribute("cate");
 %>
+<script>
+    jQuery(function($) {
+        $("#price1").on("keypress", function(event) {
+
+
+            var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+            var key = String.fromCharCode(event.which);
+            if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                return true;
+            }
+            return false;
+        });
+
+        $('#price1').on("paste", function(e)
+        {
+            e.preventDefault();
+        });
+    });
+    jQuery(function($) {
+        $("#price2").on("keypress", function(event) {
+
+
+            var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+            var key = String.fromCharCode(event.which);
+            if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                return true;
+            }
+            return false;
+        });
+
+        $('#price2').on("paste", function(e)
+        {
+            e.preventDefault();
+        });
+    });
+</script>
 <a href="index.jsp"><img src="pic/logooo.png" class="img-responsive"/></a>
 <div id='cssmenu'>
     <ul>
@@ -24,23 +60,23 @@
 </div> 
 
 <form action="PriceServlet" method="get" >
-        <h6 class="col-md-12">Price Range</h6>
-        <div class="col-xs-12">
-            <div class="row">
-                <input type="hidden" name="id" value="${pro}">
-                <input type="hidden" name="herolist" value="${cat}">
-                <input type="hidden" name="x" value="${x}">
-                <input type="hidden" name="y" value="${y}">
-                <div class="col-md-offset-1 col-md-10"><input class="form-control col-xs-5 pull-left" type="number" name="price1" size="7"></div>
-                <div class="col-md-12" align="center">
-                    to
-                </div>
-                <div class="col-md-offset-1 col-md-10"><input class="form-control col-xs-5 pull-right" type="number" name="price2" size="7"></div>
+    <h6 class="col-md-12">Price Range</h6>
+    <div class="col-xs-12">
+        <div class="row">
+            <input type="hidden" name="id" value="${pro}">
+            <input type="hidden" name="herolist" value="${cat}">
+            <input type="hidden" name="x" value="${x}">
+            <input type="hidden" name="y" value="${y}">
+            <div class="col-md-offset-1 col-md-10"><input class="form-control col-xs-5 pull-left" id="price1" type="text" name="price1" maxlength="7" required></div>
+            <div class="col-md-12" align="center">
+                to
             </div>
+            <div class="col-md-offset-1 col-md-10"><input class="form-control col-xs-5 pull-right" id="price" type="text" name="price2" maxlength="7" required></div>
         </div>
-        <div class="col-xs-12" align="center">
-            <input type="submit" class="btn btn-xs btn-info" value="Search">
-        </div>
+    </div>
+    <div class="col-xs-12" align="center">
+        <input type="submit" class="btn btn-xs btn-info" value="Search">
+    </div>
 </form>
 <!--<br>
 

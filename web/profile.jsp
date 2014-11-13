@@ -38,7 +38,7 @@
                               enctype="multipart/form-data">
                             <img src="${user.pic}" alt="..." width="200px" height="200px" class="img-thumbnail" >
                             <div class="fileinput fileinput-new" data-provides="fileinput" style="margin-top: 5px">
-                                <span class="btn btn-default btn-file"><span class="fileinput-new">Edit Profile Picture</span><span class="fileinput-exists">Change</span><input type="file" name="file" onchange="this.form.submit();" accept="image/*" ></span>
+                                <span class="btn btn-default btn-file"><span class="fileinput-new">Edit Profile Picture</span><span class="fileinput-exists">Change</span><input type="file" name="file" accept="image/*" onchange="this.form.submit();" accept="image/*" ></span>
 
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
                             </div>

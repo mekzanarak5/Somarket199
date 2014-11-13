@@ -16,6 +16,68 @@
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
         <jsp:include page="cssup.jsp"/>
+        <script>
+
+            function function3() {
+                type = $("#type").val();
+
+                if (type === "default") {
+                    alert("Please Select Type");
+                    $("#type").focus().freeze();
+                }
+
+                $("#form").submit();
+            }
+
+
+            $(document).ready(function() {
+
+                $("#form").validate({
+                    rules: {
+                        post: {
+                            required: true,
+                            minlength: 5,
+                            maxlength: 5   
+                        }
+                    }
+                });
+            });
+            jQuery(function($) {
+                $("#no").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#no').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            jQuery(function($) {
+                $("#name").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-zก-ฮ ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#name').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+
+        </script>
     </head>
     <jsp:include page="header1.jsp"/>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;padding-bottom: 70px;">
@@ -49,7 +111,7 @@
                                             <input type="hidden" name="acctid" value="${user.account_Id}">
                                             <input type="hidden" name="bankid" value="${find.bank_Id}">
                                             <input type="hidden" name="acctid" value="${user.account_Id}">
-                                            <select value="${find.bankName}" class="form-control" name="bankname">
+                                            <select value="${find.bankName}" class="form-control" name="bankname" required>
                                                 <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
                                                 <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
                                                 <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
@@ -77,13 +139,13 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-3 control-label">Bank Account No.</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" value="${find.bankAccNo}" name="no" required>
+                                            <input type="text" id="no" class="form-control" value="${find.bankAccNo}" name="no" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-3 control-label">Bank Account Name</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" value="${find.bankAccName}" name="name" required>
+                                            <input type="text" id="name" class="form-control" value="${find.bankAccName}" name="name" required>
                                         </div>
                                     </div>
                                     <div class="form-group">

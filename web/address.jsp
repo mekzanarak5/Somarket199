@@ -122,7 +122,7 @@
                                                                 <div class="form-group">
                                                                     <label for="inputPassword3" class="col-sm-2 control-label">Province</label>
                                                                     <div class="col-sm-4">
-                                                                        <select class="form-control" name="provice">
+                                                                        <select class="form-control" name="provice" required>
                                                                             <option value="" selected>--------- เลือกจังหวัด ---------</option>
                                                                             <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                                                             <option value="กระบี่">กระบี่ </option>

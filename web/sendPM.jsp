@@ -49,7 +49,7 @@
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <input type="hidden" name="senderName"  value="${user.username}" />
-                                    <input type="text" name="subject"  placeholder="subject" class="form-control" />
+                                    <input type="text" name="subject"  placeholder="subject" class="form-control" required/>
                                 </div>          
                             </div>
                             <div class="col-xs-12">

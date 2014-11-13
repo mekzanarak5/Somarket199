@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                 <div>
-                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Slips</span><span class="fileinput-exists">Change</span><input type="file" name="pic"></span>
+                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Slips</span><span class="fileinput-exists">Change</span><input type="file" accept="image/*" name="pic"></span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                 </div>
                             </div>
@@ -218,7 +218,7 @@
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">Province</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control" name="provice">
+                                    <select class="form-control" name="provice" required>
                                         <option value="" selected>--------- เลือกจังหวัด ---------</option>
                                         <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                         <option value="กระบี่">กระบี่ </option>

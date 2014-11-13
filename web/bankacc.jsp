@@ -124,7 +124,7 @@
                                                                     <label for="inputPassword3" class="col-sm-3 control-label">Bank Name</label>
                                                                     <div class="col-sm-4">
                                                                         <input type="hidden" name="acctid" value="${user.account_Id}">
-                                                                        <select class="form-control" name="bankname">
+                                                                        <select class="form-control" name="bankname" required>
                                                                             <option value="" selected>--------- เลือกธนาคาร ---------</option>
                                                                             <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
                                                                             <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>

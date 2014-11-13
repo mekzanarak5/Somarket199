@@ -41,7 +41,8 @@
                         confirmpassword: {
                             required: true,
                             minlength: 6,
-                            maxlength: 15
+                            maxlength: 15,
+                            equalTo: "#password"
                         },
                         firstname: {
                             required: true,
@@ -71,7 +72,7 @@
                 $("#username").on("keypress", function(event) {
 
 
-                    var englishAlphabetAndWhiteSpace = /[A-Za-z0-9 ]/g;
+                    var englishAlphabetAndWhiteSpace = /[a-z0-9 ]/g;
                     var key = String.fromCharCode(event.which);
                     if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
                         return true;
@@ -84,7 +85,74 @@
                     e.preventDefault();
                 });
             });
+            jQuery(function($) {
+                $("#firstname").on("keypress", function(event) {
 
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-zก-ฮ ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#firstname').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            jQuery(function($) {
+                $("#lastname").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-zก-ฮ ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#lastname').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            jQuery(function($) {
+                $("#password").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-z0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#password').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
+            jQuery(function($) {
+                $("#confirmpassword").on("keypress", function(event) {
+
+
+                    var englishAlphabetAndWhiteSpace = /[A-Za-z0-9 ]/g;
+                    var key = String.fromCharCode(event.which);
+                    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                $('#confirmpassword').on("paste", function(e)
+                {
+                    e.preventDefault();
+                });
+            });
         </script>
     </head>
     <jsp:include page="header1.jsp"/>
@@ -121,43 +189,43 @@
                             <h5 class="col-md-12">Register</h5>
                             <form id="form" action="register" method="get">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">E-mail</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label">E-mail<font style="color: red">*</font></label>
                                     <div class="col-sm-6">
                                         <input id="email" type="email" placeholder="somarket@example.com" name="email" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Username</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Username<font style="color: red">*</font></label>
                                     <div class="col-sm-6">
                                         <input id="username" type="text" class="form-control" placeholder="6-15 character" maxlength="15" name="username" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Password</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Password<font style="color: red">*</font></label>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control" placeholder="6-15 character" maxlength="15" name="password" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Confirmed Password</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Confirmed Password<font style="color: red">*</font></label>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control" placeholder="6-15 character" maxlength="15" name="confirmpassword" required>
+                                        <input type="password" id="confirmpassword" class="form-control" placeholder="6-15 character" maxlength="15" name="confirmpassword" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">First Name</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label">First Name<font style="color: red">*</font></label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="First Name" maxlength="50" name="firstname" required>
+                                        <input type="text" class="form-control" id="firstname" placeholder="First Name" maxlength="50" name="firstname" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Last Name</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Last Name<font style="color: red">*</font></label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Last Name" maxlength="50" name="lastname" required>
+                                        <input type="text" class="form-control" id="lastname" placeholder="Last Name" maxlength="50" name="lastname" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-3 control-label">Phone</label>
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Phone<font style="color: red">*</font></label>
                                     <div class="col-sm-6">
                                         <input type="text" id="phone" class="form-control" placeholder="Phone" name="phone" required>
                                     </div>
