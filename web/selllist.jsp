@@ -39,7 +39,7 @@
                     <ol class="breadcrumb">
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
-                        <li class="active">On Sale</li>
+                        <li class="active" style="font-size: 19px; font-weight: initial; ">Sell</li>
                     </ol>
                     </font>
                 </div>
@@ -53,7 +53,7 @@
                                             <li role="presentation" class="active" style="font-size: 12px; font-weight: normal;" ><a href="ShowSellServlet?id=${user.account_Id}" >On sale</a></li>
                                             <li role="presentation" style="font-size: 12px; font-weight: normal"><a href="ShowSoldList?username=${user.username}">Sold Out</a></li>
                                         </ul></li>
-                                    <li role="presentation" style="font-size: 16px ;"><a href="SellerOrder">
+                                    <li role="presentation" style="font-size: 16px ;"><a href="SellerOrder?vi=1">
                                             <!--<button type="button" class="btn btn-default" style="font-size: 13.5px ;">
                                                 <span style="color: #293a4a">Ongoing</span>-->Order
                                             <%

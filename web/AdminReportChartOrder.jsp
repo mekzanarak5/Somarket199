@@ -203,13 +203,13 @@
                 <li class="active"><a href="AdminChartOrder?year=2014">Order</a></li>
             </ul>
             <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                            Choose year <span class="caret"></span>
-                        </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="AdminChartOrder?year=2014">2014</a></li>
-                <li><a href="AdminChartOrder?year=2015">2015</a></li>
-            </ul>
+                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                    Choose year <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="AdminChartOrder?year=2014">2014</a></li>
+                    <li><a href="AdminChartOrder?year=2015">2015</a></li>
+                </ul>
             </div>
             ${year}
             <div style="width:95%">
@@ -230,13 +230,13 @@
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
                             pointHighlightStroke: "rgba(151,187,205,1)",
-                            data: [<%=order.findCountOrder(a+"-01", "")%>,
-                <%=order.findCountOrder(a+"-02", "")%>, <%=order.findCountOrder(a+"-03", "")%>,
-                <%=order.findCountOrder(a+"-04", "")%>, <%=order.findCountOrder(a+"-05", "")%>,
-                <%=order.findCountOrder(a+"-06", "")%>, <%=order.findCountOrder(a+"-07", "")%>,
-                <%=order.findCountOrder(a+"-08", "")%>, <%=order.findCountOrder(a+"-09", "")%>,
-                <%=order.findCountOrder(a+"-10", "")%>, <%=order.findCountOrder(a+"-11", "")%>,
-                <%=order.findCountOrder(a+"-12", "")%>]
+                            data: [<%=order.findCountOrder(a + "-01", "")%>,
+                <%=order.findCountOrder(a + "-02", "")%>, <%=order.findCountOrder(a + "-03", "")%>,
+                <%=order.findCountOrder(a + "-04", "")%>, <%=order.findCountOrder(a + "-05", "")%>,
+                <%=order.findCountOrder(a + "-06", "")%>, <%=order.findCountOrder(a + "-07", "")%>,
+                <%=order.findCountOrder(a + "-08", "")%>, <%=order.findCountOrder(a + "-09", "")%>,
+                <%=order.findCountOrder(a + "-10", "")%>, <%=order.findCountOrder(a + "-11", "")%>,
+                <%=order.findCountOrder(a + "-12", "")%>]
                         },
                         {
                             label: "Shipping",
@@ -246,13 +246,45 @@
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
                             pointHighlightStroke: "rgba(250,100,100,1)",
-                            data: [<%=order.findCountOrder(a+"-01", "")%>,
-                <%=order.findCountOrder(a+"-02", "shipping")%>, <%=order.findCountOrder(a+"-03", "shipping")%>,
-                <%=order.findCountOrder(a+"-04", "shipping")%>, <%=order.findCountOrder(a+"-05", "shipping")%>,
-                <%=order.findCountOrder(a+"-06", "shipping")%>, <%=order.findCountOrder(a+"-07", "shipping")%>,
-                <%=order.findCountOrder(a+"-08", "shipping")%>, <%=order.findCountOrder(a+"-09", "shipping")%>,
-                <%=order.findCountOrder(a+"-10", "shipping")%>, <%=order.findCountOrder(a+"-11", "shipping")%>,
-                <%=order.findCountOrder(a+"-12", "shipping")%>]
+                            data: [<%=order.findCountOrder(a + "-01", "shipping")%>,
+                <%=order.findCountOrder(a + "-02", "shipping")%>, <%=order.findCountOrder(a + "-03", "shipping")%>,
+                <%=order.findCountOrder(a + "-04", "shipping")%>, <%=order.findCountOrder(a + "-05", "shipping")%>,
+                <%=order.findCountOrder(a + "-06", "shipping")%>, <%=order.findCountOrder(a + "-07", "shipping")%>,
+                <%=order.findCountOrder(a + "-08", "shipping")%>, <%=order.findCountOrder(a + "-09", "shipping")%>,
+                <%=order.findCountOrder(a + "-10", "shipping")%>, <%=order.findCountOrder(a + "-11", "shipping")%>,
+                <%=order.findCountOrder(a + "-12", "shipping")%>]
+                        },
+                        {
+                            label: "Waiting for payment.",
+                            fillColor: "rgba(249, 253, 124,0.2)",
+                            strokeColor: "rgba(249, 253, 124,1)",
+                            pointColor: "rgba(249, 253, 124,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(249, 253, 124,1)",
+                            data: [<%=order.findCountOrder(a + "-01", "Waiting for payment.")%>,
+                <%=order.findCountOrder(a + "-02", "Waiting for payment.")%>, <%=order.findCountOrder(a + "-03", "Waiting for payment.")%>,
+                <%=order.findCountOrder(a + "-04", "Waiting for payment.")%>, <%=order.findCountOrder(a + "-05", "Waiting for payment.")%>,
+                <%=order.findCountOrder(a + "-06", "Waiting for payment.")%>, <%=order.findCountOrder(a + "-07", "Waiting for payment.")%>,
+                <%=order.findCountOrder(a + "-08", "Waiting for payment.")%>, <%=order.findCountOrder(a + "-09", "Waiting for payment.")%>,
+                <%=order.findCountOrder(a + "-10", "Waiting for payment.")%>, <%=order.findCountOrder(a + "-11", "Waiting for payment.")%>,
+                <%=order.findCountOrder(a + "-12", "Waiting for payment.")%>]
+                        },
+                        {
+                            label: "Verifying...",
+                            fillColor: "rgba(185, 253, 124,0.2)",
+                            strokeColor: "rgba(185, 253, 124,1)",
+                            pointColor: "rgba(185, 253, 124,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(185, 253, 124,1)",
+                            data: [<%=order.findCountOrder(a + "-01", "Verifying...")%>,
+                <%=order.findCountOrder(a + "-02", "Verifying...")%>, <%=order.findCountOrder(a + "-03", "Verifying...")%>,
+                <%=order.findCountOrder(a + "-04", "Verifying...")%>, <%=order.findCountOrder(a + "-05", "Verifying...")%>,
+                <%=order.findCountOrder(a + "-06", "Verifying...")%>, <%=order.findCountOrder(a + "-07", "Verifying...")%>,
+                <%=order.findCountOrder(a + "-08", "Verifying...")%>, <%=order.findCountOrder(a + "-09", "Verifying...")%>,
+                <%=order.findCountOrder(a + "-10", "Verifying...")%>, <%=order.findCountOrder(a + "-11", "Verifying...")%>,
+                <%=order.findCountOrder(a + "-12", "Verifying...")%>]
                         }
                     ]
 
@@ -266,8 +298,6 @@
                         scaleShowLabels: true,
                     });
                 }
-
-
             </script>
         </div>  
         <!--<script src="js/jasny-bootstrap.min.js"></script>-->

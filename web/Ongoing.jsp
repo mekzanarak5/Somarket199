@@ -37,9 +37,9 @@
                 <div class="col-md-12">
                     <font size="2">
                     <ol class="breadcrumb">
-                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="home.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
-                        <li class="active">Awaiting Payment</li>
+                        <li class="active">Sell</li>
                     </ol>
                     </font>
                 </div>
@@ -47,56 +47,163 @@
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <div class="row">
                             <div id="cbp-vm" class="cbp-vm-switcher">
+                                <!--<div class="btn-group btn-group-justified" style="margin-bottom: 20px">-->
                                 <ul class="nav nav-tabs nav-justified" role="tablist">
                                     <li role="presentation" style="font-size: 16px; "><a href="ShowSellServlet?id=${user.account_Id}#">Item</a>
                                     </li>
                                     <li role="presentation" class="active" style="text-align: center; font-size: 18.5px ; font-style: oblique;font-weight: bold;">
-                                        <a href="SellerOrder">
+                                        <a href="SellerOrder?vi=1#">
                                             <!--<button type="button" class="btn btn-default" style="font-size: 13.5px ;">
                                                 <span style="color: #293a4a">Ongoing</span>-->Order
                                             <%
                                                 Accounts user = (Accounts) session.getAttribute("user");
-                                                if (order.findCountSell(user.getUsername()) != 0) {
                                             %>
-                                            <span class="badge btn-danger"><%=order.findCountSell(user.getUsername())%> </span>
-                                            <%}%>
                                             <!--</button>-->
-                                        </a><ul class="nav nav-pills" role="tablist">
-                                            <li role="presentation" class="active" style="font-size: 12px; font-weight: normal;" ><a href="#" >Awaiting Payment</a></li>
-                                            <li role="presentation" style="font-size: 13px; font-weight: normal"><a href="#">Waiting for Approval</a></li>
-                                            <li role="presentation" style="font-size: 13px; font-weight: normal"><a href="#">Purchased</a></li>
-                                            <li role="presentation" style="font-size: 13px; font-weight: normal"><a href="#">Delivered</a></li>
-                                            <li role="presentation" style="font-size: 13px; font-weight: normal"><a href="#">Complete</a></li>
+                                        </a><ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li role="presentation" class="${views==1?'active':''}"  style="font-size: 13px; font-weight: normal;" ><a href="SellerOrder?vi=1" >All Selling</a></li>
+                                            <li role="presentation" class="${views==2?'active':''}" style="font-size: 13px; font-weight: normal"><a href="SellerOrder?vi=2">Purchased
+                                                    <% if (order.findCountSell(user.getUsername()) != 0) {%>
+                                                    <span class="badge btn-danger"><%=order.findCountSell(user.getUsername())%> </span>
+                                                    <%}%></a></li>
+                                            <li role="presentation" class="${views==3?'active':''}" style="font-size: 13px; font-weight: normal"><a href="SellerOrder?vi=3">Shipping labels</a></li>
+                                            <li role="presentation" class="${views==4?'active':''}" style="font-size: 13px; font-weight: normal"><a href="SellerOrder?vi=4">Cancels/ Returns</a></li>
                                         </ul></li>
                                     <!--<li role="presentation" style="font-size: 16px ;"><a href="ShowSoldList?username=${user.username}">Sold List</a></li>-->
                                 </ul>
-                                <table class="table table-striped" id="table6" style="text-align: center">
-                                    <tr bgColor="#ffffff">
-                                        <td width="15%">No.</td>
-                                        <td width="20%">Order ID</td>
-                                        <td width="20%">Order Date</td>
-                                        <td>Total Price</td>
-                                        <td>Status</td>
-                                    </tr>
-                                    <c:set value="1" var="no" />
-                                    <c:forEach items="${oldorders}" var="a">
-                                        <tr>
-                                            <td>${no}</td>
-                                            <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
-                                            <td><a href="#"></a>${a.time}</td>
-                                            <td>${a.total}0</td>
-                                            <c:choose>
-                                                <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
-                                                    <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                    <td><a href="DetailOrder?orderid=${a.orderId}">${a.status}</a></td>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                        </tr>
-                                        <c:set value="${no+1}" var="no" />
-                                    </c:forEach>
-                                </table>
+                                <!--/div>-->
+                                <c:choose><c:when test="${views==2}">
+                                        <table class="table table-striped" id="table6" style="text-align: center">
+                                            <tr bgColor="#ffffff">
+                                                <td width="20%">Order ID
+                                                    <!--                                                    <br>
+                                                                                                        <input type="submit" class="btn btn-xs btn-default" style="background-color: #16A085" value="Paid"/>
+                                                                                                        <input type="submit" class="btn btn-xs btn-danger" value="Invalid"/>
+                                                                                                        <input type="submit" class="btn btn-xs btn-default" value="Return"/>-->
+                                                </td>
+                                                <td width="20%">Order Date</td>
+                                                <td>Total Price</td>
+                                                <td>Status</td>
+                                                <td width="7%"></td>
+                                            </tr>
+                                            <c:forEach items="${oldorders}" var="a">
+                                                <c:choose><c:when test="${a.status=='Verifying... ' || a.status=='Paid'}">
+                                                        <tr>
+                                                            <td><input type="checkbox" name="pmid" value="">&nbsp;&nbsp;${a.orderId}</td>
+                                                            <td><a href="#"></a>${a.time}</td>
+                                                            <td>${a.total}0</td>
+                                                            <c:choose>
+                                                                <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
+                                                                    <td><div style="color: red">${a.status}</div>${a.payment}</td>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                    <td>${a.status}</td>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            <td><a href="DetailOrder?orderid=${a.orderId}" target="_blank"><input type="button" class="btn btn-xs btn-warning" value="Detail" name="detail" /></a></td>
+                                                        </tr>
+                                                    </c:when></c:choose>
+                                            </c:forEach>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <input type="submit" class="btn btn-default" style="background-color: #16A085" value="Paid"/>
+                                                    </td>
+                                                    <td><input type="submit" class="btn btn-danger" value="Invalid"/></td>
+                                                    <td><input type="submit" class="btn btn-default" value="Return"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </table></c:when>
+
+                                    <c:when test="${views==3}">
+                                        <table class="table table-striped" id="table6" style="text-align: center">
+                                            <tr bgColor="#ffffff">
+                                                <td width="20%">Order ID</td>
+                                                <td width="20%">Order Date</td>
+                                                <td>Total Price</td>
+                                                <td>Status</td>
+                                                <td width="7%"></td>
+                                            </tr>
+                                            <c:forEach items="${oldorders}" var="a">
+                                                <c:choose><c:when test="${a.status=='shipping' || a.status=='complete'}">
+                                                        <tr>
+                                                            <td>${a.orderId}</td>
+                                                            <td><a href="#"></a>${a.time}</td>
+                                                            <td>${a.total}0</td>
+                                                            <c:choose>
+                                                                <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
+                                                                    <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                    <td>${a.status}<div style="color: red">${a.ems}</div></td>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                            <td><a href="DetailOrder?orderid=${a.orderId}" target="_blank"><input type="button" class="btn btn-xs btn-warning" value="Detail" name="detail" /></a></td>
+                                                        </tr>
+                                                    </c:when></c:choose>
+                                            </c:forEach>
+                                        </table></c:when>
+
+                                    <c:when test="${views==4}">
+                                        <table class="table table-striped" id="table6" style="text-align: center">
+                                            <tr bgColor="#ffffff">
+                                                <td width="15%">No.</td>
+                                                <td width="20%">Order ID</td>
+                                                <td width="20%">Order Date</td>
+                                                <td>Total Price</td>
+                                                <td>Status</td>
+                                            </tr>
+                                            <c:set value="${no=1}" var="no" />
+                                            <c:forEach items="${oldorders}" var="a">
+                                                <c:choose><c:when test="${a.status=='cancels' || a.status=='returns'}">
+                                                        <tr>
+                                                            <td>${no}</td>
+                                                            <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
+                                                            <td><a href="#"></a>${a.time}</td>
+                                                            <td>${a.total}0</td>
+                                                            <c:choose>
+                                                                <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
+                                                                    <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                    <td><a href="DetailOrder?orderid=${a.orderId}">${a.status}</a></td>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                        </tr>
+                                                        <c:set value="${no+1}" var="no" />
+                                                    </c:when></c:choose>
+                                            </c:forEach>
+                                        </table></c:when>
+
+                                    <c:otherwise>
+                                        <table class="table table-striped" id="table6" style="text-align: center">
+                                            <tr bgColor="#ffffff">
+                                                <td width="15%">No.</td>
+                                                <td width="20%">Order ID</td>
+                                                <td width="20%">Order Date</td>
+                                                <td>Total Price</td>
+                                                <td>Status</td>
+                                            </tr>
+                                            <c:set value="${no=1}" var="no" />
+                                            <c:forEach items="${oldorders}" var="a">
+                                                <tr>
+                                                    <td>${no}</td>
+                                                    <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
+                                                    <td><a href="#"></a>${a.time}</td>
+                                                    <td>${a.total}0</td>
+                                                    <c:choose>
+                                                        <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
+                                                            <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                            <td><a href="DetailOrder?orderid=${a.orderId}">${a.status}</a></td>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                </tr>
+                                                <c:set value="${no+1}" var="no" />
+                                            </c:forEach>
+                                        </table></c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>

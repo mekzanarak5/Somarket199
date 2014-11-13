@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Accounts;
+import model.Bank;
 import model.order;
 
 /**
@@ -36,6 +37,7 @@ public class SellerOrder extends HttpServlet {
         Accounts user = (Accounts) request.getSession().getAttribute("user");
         List<order> orders = order.search(user.getUsername(), "seller");
         request.setAttribute("oldorders", orders);
+        request.setAttribute("views", Integer.parseInt(request.getParameter("vi")));
         getServletContext().getRequestDispatcher("/Ongoing.jsp").forward(request, response);
     }
 

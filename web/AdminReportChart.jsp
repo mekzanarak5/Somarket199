@@ -204,13 +204,13 @@
                 <li><a href="AdminChartOrder?year=2014">Order</a></li>
             </ul>
             <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                            Choose year <span class="caret"></span>
-                        </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="AdminChartRegis?year=2014">2014</a></li>
-                <li><a href="AdminChartRegis?year=2015">2015</a></li>
-            </ul>
+                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                    Choose year <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="AdminChartRegis?year=2014">2014</a></li>
+                    <li><a href="AdminChartRegis?year=2015">2015</a></li>
+                </ul>
             </div>
             ${year}
             <div style="width:95%">
@@ -231,13 +231,13 @@
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
                             pointHighlightStroke: "rgba(151,187,205,1)",
-                            data: [<%=Accounts.countRegis("2014-01")%>,
-                <%=Accounts.countRegis("2014-02")%>, <%=Accounts.countRegis("2014-03")%>,
-                <%=Accounts.countRegis("2014-04")%>, <%=Accounts.countRegis("2014-05")%>,
-                <%=Accounts.countRegis("2014-06")%>, <%=Accounts.countRegis("2014-07")%>,
-                <%=Accounts.countRegis("2014-08")%>, <%=Accounts.countRegis("2014-09")%>,
-                <%=Accounts.countRegis("2014-10")%>, <%=Accounts.countRegis("2014-11")%>,
-                <%=Accounts.countRegis("2014-12")%>]
+                            data: [<%=Accounts.countRegis(a + "-01")%>,
+                <%=Accounts.countRegis(a + "-02")%>, <%=Accounts.countRegis(a + "-03")%>,
+                <%=Accounts.countRegis(a + "-04")%>, <%=Accounts.countRegis(a + "-05")%>,
+                <%=Accounts.countRegis(a + "-06")%>, <%=Accounts.countRegis(a + "-07")%>,
+                <%=Accounts.countRegis(a + "-08")%>, <%=Accounts.countRegis(a + "-09")%>,
+                <%=Accounts.countRegis(a + "-10")%>, <%=Accounts.countRegis(a + "-11")%>,
+                <%=Accounts.countRegis(a + "-12")%>]
                         }
                     ]
 
@@ -246,7 +246,8 @@
                 window.onload = function() {
                     var ctx1 = document.getElementById("canvas1").getContext("2d");
                     window.myLine = new Chart(ctx1).Line(lineChartData1, {
-                        responsive: true
+                        responsive: true,
+                        bezierCurve: false
                     });
                 }
 

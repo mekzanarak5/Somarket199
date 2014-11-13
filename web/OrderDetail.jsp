@@ -114,7 +114,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div class="panel panel-default col-md-4" style="margin-left: 45px ">
-                                        <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
+                                        <h6 class="col-md-12 panel-heading">Tranfer Information <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Slip</button></h6>
                                         <div class="col-md-12">
                                             <table class="table table-bordered" style="text-align: center">
                                                 <tr>
@@ -123,6 +123,13 @@
                                                 </tr>
 
                                             </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <img src="${order.slip}" width="500px" height="500px"/>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="panel panel-default col-md-4" style="margin-left: 25px ">
@@ -168,15 +175,21 @@
                                     </div>
                                 </c:when><c:otherwise>
                                     <div class="panel panel-default col-md-4" style="margin-left: 45px ">
-                                        <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
+                                        <h6 class="col-md-12 panel-heading">Tranfer Information <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Slip</button></h6>
                                         <div class="col-md-12">
                                             <table class="table table-bordered" style="text-align: center">
                                                 <tr>
                                                     <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
                                                     <td>${payment}</td>
                                                 </tr>
-
                                             </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <img src="${order.slip}" width="500px" height="500px"/>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="panel panel-default col-md-4" style="margin-left: 25px ">
@@ -248,7 +261,6 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-
                                     <button type="submit" class="btn btn-primary">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
                                 </div>
                             </div>
@@ -297,10 +309,10 @@
 <!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
 <script src="js/application.js"></script>
 <script>
-    $(function() {
-        //$('.ui.accordion').accordion();
-        $('input[name=url]').val((window.location.href.toString()));
-    });
+            $(function() {
+                //$('.ui.accordion').accordion();
+                $('input[name=url]').val((window.location.href.toString()));
+            });
 
 </script>
 <!--                <script type="text/javascript">
