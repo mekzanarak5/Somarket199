@@ -324,6 +324,14 @@
         <servlet-name>UTF8filter</servlet-name>
         <servlet-class>servlet.UTF8filter</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminChartOrder</servlet-name>
+        <servlet-class>servlet.AdminChartOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminChartRegis</servlet-name>
+        <servlet-class>servlet.AdminChartRegis</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -639,6 +647,14 @@
     <servlet-mapping>
         <servlet-name>UTF8filter</servlet-name>
         <url-pattern>/UTF8filter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminChartOrder</servlet-name>
+        <url-pattern>/AdminChartOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminChartRegis</servlet-name>
+        <url-pattern>/AdminChartRegis</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

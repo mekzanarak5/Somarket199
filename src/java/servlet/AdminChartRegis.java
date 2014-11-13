@@ -12,15 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Accounts;
-import model.Message;
 
 /**
  *
  * @author Admin
  */
-public class SendReplyServlet extends HttpServlet {
+public class AdminChartRegis extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,30 +30,9 @@ public class SendReplyServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession s = request.getSession(false);
-        Accounts a = (Accounts) s.getAttribute("user");
-        if (a== null){
-            request.setAttribute("msg", "Go To Login !");
-        }
-        
-        else{
-            String pm = request.getParameter("pm");
-            String pm1 = "<br>"+pm+"<br>";
-            String subject = request.getParameter("subject");
-            int receiver  = Integer.parseInt(request.getParameter("receiverID"));
-            String receiverName  = request.getParameter("receiverName");
-            String senderName  = request.getParameter("senderName");
-            int relate  = Integer.parseInt(request.getParameter("relate"));
-            String time = request.getParameter("time");
-            int sender = a.getAccount_Id();
-            Message c = new Message();
-            c.insertReply(subject,sender, receiver,senderName,receiverName, pm1,time,relate);
-            request.setAttribute("pm", c);
-            request.setAttribute("u", sender);
-        }
-        
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-        
+        String cat = request.getParameter("year");
+         request.setAttribute("year", cat);
+        getServletContext().getRequestDispatcher("/AdminReportChart.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -597,4 +597,20 @@ public static int updateRead1(int msg) {
         }
         return row;
     }
+    public static int findCountOrder(String str1,String str2) {
+        String sqlCmd = "SELECT count(*) FROM order_sum WHERE Created like ? and Detail like ?";
+        Connection con = ConnectionAgent.getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setString(1, str1+"%");
+            ps.setString(2, str2+"%");
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 }

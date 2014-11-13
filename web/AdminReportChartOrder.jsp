@@ -1,7 +1,5 @@
 <%@page import="model.order"%>
-<%@page import="model.Accounts"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -172,6 +170,9 @@
         </style>
     </head>
     <%--<jsp:include page="header1.jsp"/>--%>
+    <%
+        String a = request.getParameter("year");
+    %>
     <body style="background-color: gainsboro;max-width: 1280px;margin: auto;">
         <div style="margin-bottom: 30px">
         </div>
@@ -190,46 +191,85 @@
         <div class="col-md-12" style="margin-top: 30px">
             <ul class="nav nav-tabs nav-justified" role="tablist">
                 <li><a href="AdminProduct.jsp">Product</a></li>
-                <li class="active"><a href="AdminAccount.jsp">Account</a></li>
+                <li><a href="AdminAccount.jsp">Account</a></li>
                 <li><a href="AdminOrder.jsp">Order</a></li>
                 <li><a href="AdminReport.jsp">Lawless Report</a></li>
-                <li><a href="AdminChartRegis?year=2014">Report Chart</a></li>
+                <li class="active"><a href="AdminChartRegis?year=2014">Report Chart</a></li>
                 <li><a href="AdminSetting.jsp">Setting</a></li>
             </ul>
             <hr>
-            <div class="row">
-                <h5 class="col-md-4">Account Information</h5>
-                <div class="col-md-12">
-                    <table class="table table-striped" id="table6" style="text-align: center">
-                        <tr bgColor="#ffffff">
-                            <td>Account ID</td>
-                            <td>Account Name</td>
-                            <td>Sold Item</td>
-                            <td>Rate feedback</td>
-                            <td>Detail feedback</td>
-                        </tr>
-                        <c:forEach items="${acc}" var="a">
-                            <c:set value="${wtf:countsold(a.username)}" var="n" />
-                            <tr>
-                                <td>${a.account_Id}</td>
-                                <td>${a.username}</td>
-                                <td><button class="btn btn-xs btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Detail</button></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </c:forEach>
-                    </table>                           
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li><a href="AdminChartRegis?year=2014">Register</a></li>
+                <li class="active"><a href="AdminChartOrder?year=2014">Order</a></li>
+            </ul>
+            <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                            Choose year <span class="caret"></span>
+                        </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="AdminChartOrder?year=2014">2014</a></li>
+                <li><a href="AdminChartOrder?year=2015">2015</a></li>
+            </ul>
+            </div>
+            ${year}
+            <div style="width:95%">
+                <div>
+                    <canvas id="canvas" height="450" width="1300"></canvas>
                 </div>
             </div>
-            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        
-                    </div>
-                </div>
-            </div>
+
+            <script>
+                var lineChartData = {
+                    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                    datasets: [
+                        {
+                            label: "All",
+                            fillColor: "rgba(151,187,205,0.2)",
+                            strokeColor: "rgba(151,187,205,1)",
+                            pointColor: "rgba(151,187,205,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(151,187,205,1)",
+                            data: [<%=order.findCountOrder(a+"-01", "")%>,
+                <%=order.findCountOrder(a+"-02", "")%>, <%=order.findCountOrder(a+"-03", "")%>,
+                <%=order.findCountOrder(a+"-04", "")%>, <%=order.findCountOrder(a+"-05", "")%>,
+                <%=order.findCountOrder(a+"-06", "")%>, <%=order.findCountOrder(a+"-07", "")%>,
+                <%=order.findCountOrder(a+"-08", "")%>, <%=order.findCountOrder(a+"-09", "")%>,
+                <%=order.findCountOrder(a+"-10", "")%>, <%=order.findCountOrder(a+"-11", "")%>,
+                <%=order.findCountOrder(a+"-12", "")%>]
+                        },
+                        {
+                            label: "Shipping",
+                            fillColor: "rgba(250,100,100,0.2)",
+                            strokeColor: "rgba(250,100,100,1)",
+                            pointColor: "rgba(250,100,100,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(250,100,100,1)",
+                            data: [<%=order.findCountOrder(a+"-01", "")%>,
+                <%=order.findCountOrder(a+"-02", "shipping")%>, <%=order.findCountOrder(a+"-03", "shipping")%>,
+                <%=order.findCountOrder(a+"-04", "shipping")%>, <%=order.findCountOrder(a+"-05", "shipping")%>,
+                <%=order.findCountOrder(a+"-06", "shipping")%>, <%=order.findCountOrder(a+"-07", "shipping")%>,
+                <%=order.findCountOrder(a+"-08", "shipping")%>, <%=order.findCountOrder(a+"-09", "shipping")%>,
+                <%=order.findCountOrder(a+"-10", "shipping")%>, <%=order.findCountOrder(a+"-11", "shipping")%>,
+                <%=order.findCountOrder(a+"-12", "shipping")%>]
+                        }
+                    ]
+
+                }
+
+                window.onload = function() {
+                    var ctx = document.getElementById("canvas").getContext("2d");
+                    window.myLine = new Chart(ctx).Line(lineChartData, {
+                        responsive: true,
+                        bezierCurve: false,
+                        scaleShowLabels: true,
+                    });
+                }
+
+
+            </script>
         </div>  
-        
         <!--<script src="js/jasny-bootstrap.min.js"></script>-->
         <script src="js/dropdown.js"></script>
         <script src="js/semantic.js"></script>
@@ -242,16 +282,16 @@
         <script src="js/flatui-radio.js"></script>
         <script src="js/jquery.tagsinput.js"></script>
         <script src="js/jquery.placeholder.js"></script>
-        <!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
+        <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
         <script>
-                            $(function() {
-                                $('.demo.menu .item')
-                                        .tab('deactivate all')
-                                        .tab('activate tab', 'third')
-                                        .tab('activate navigation', 'third')
-                                        ;
-                            });
+                $(function() {
+                    $('.demo.menu .item')
+                            .tab('deactivate all')
+                            .tab('activate tab', 'third')
+                            .tab('activate navigation', 'third')
+                            ;
+                });
         </script>
         <script>
             var $rows = $('#table tr');

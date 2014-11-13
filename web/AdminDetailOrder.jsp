@@ -190,7 +190,8 @@
                 <li><a href="AdminProduct.jsp">Product</a></li>
                 <li><a href="AdminAccount.jsp">Account</a></li>
                 <li class="active"><a href="AdminOrder.jsp">Order</a></li>
-                <li><a href="AdminReport.jsp">Report</a></li>
+                <li><a href="AdminReport.jsp">Lawless Report</a></li>
+                <li><a href="AdminChartRegis?year=2014">Report Chart</a></li>
                 <li><a href="AdminSetting.jsp">Setting</a></li>
             </ul>
             <hr>

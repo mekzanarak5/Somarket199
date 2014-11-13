@@ -105,6 +105,22 @@
                 <div class="col-xs-12" style="margin:auto;">
                     <div class="col-md-12" style=" border: 1px solid #ffffff ;border-radius: 15px;height: auto;background: #FFFFFF">
                         <form id="form" action="Pay2" class="form-horizontal" method="post" enctype="multipart/form-data" >
+                            <div class="row" style="margin-bottom: 20px">
+                                <h3 class="col-md-12">Shiping Address</h3>
+                                <div class="col-md-10">
+                                    <select name="shipaddr" class="select-block">
+                                        <option value="" selected>Choose Address</option>
+                                        <c:forEach items="${addr}" var="a" >
+                                            <%--<input type="hidden" name="shipaddr" value="${a.address_Id}" />--%>
+                                            <option value="${a.address_Id}">${a.address}&nbsp;&nbsp;${a.provice}&nbsp;&nbsp;${a.post}&nbsp;&nbsp;${a.canton}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <font size="2">
+                                    <a data-toggle="modal" data-target=".bs-example-modal-lg">&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                                    </font>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <h3 class="col-md-12">Transfer</h3>
                                 <div class="col-md-12">
@@ -168,22 +184,7 @@
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 20px">
-                                <h3 class="col-md-12">Shiping Address</h3>
-                                <div class="col-md-10">
-                                    <select name="shipaddr" class="select-block">
-                                        <option value="" selected>Choose Address</option>
-                                        <c:forEach items="${addr}" var="a" >
-                                            <%--<input type="hidden" name="shipaddr" value="${a.address_Id}" />--%>
-                                            <option value="${a.address_Id}">${a.address}&nbsp;&nbsp;${a.provice}&nbsp;&nbsp;${a.post}&nbsp;&nbsp;${a.canton}</option>
-                                        </c:forEach>
-                                    </select>
-                                    <font size="2">
-                                    <a data-toggle="modal" data-target=".bs-example-modal-lg">&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
-                                    </font>
-                                </div>
-                            </div>
-
+                            
                             <div class="form-group">
                                 <div class="col-md-10">
                                     <input type="hidden" value="${order}" name="id" />
@@ -191,10 +192,8 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

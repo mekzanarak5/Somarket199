@@ -133,7 +133,7 @@ public class Accounts {
     public void setAdmin_Pass(String admin_Pass) {
         this.admin_Pass = admin_Pass;
     }
-    
+
     public static int addAccount(String Username, String Password, String Email, String FirstName, String LastName, String Phone) {
         int row = 0;
         int newMemberID = 0;
@@ -210,6 +210,7 @@ public class Accounts {
         }
         return cs;
     }
+
     public static List<Accounts> findAllAcct() {
         String sqlCmd = "SELECT * FROM account";
         Connection con = ConnectionAgent.getConnection();
@@ -267,7 +268,7 @@ public class Accounts {
         }
         return a;
     }
-    
+
     public static Accounts getUser(String user) {
         String sql = "select * from account where username= ?";
         PreparedStatement ps;
@@ -366,6 +367,26 @@ public class Accounts {
             Connection con = ConnectionAgent.getConnection();
             PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) AS Count FROM account WHERE Username = ?");
             ps.setString(1, Username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            } else {
+                count = 0;
+            }
+            con.close();
+        } catch (SQLException ex) {
+            return 999;
+        }
+        return count;
+    }
+
+    public static int countRegis(String day) {
+        int count = 0;
+        try {
+
+            Connection con = ConnectionAgent.getConnection();
+            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) AS Count FROM account WHERE Created like ?");
+            ps.setString(1, "%"+day+"%");
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 count = rs.getInt(1);
