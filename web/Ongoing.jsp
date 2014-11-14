@@ -10,7 +10,7 @@
 <%@page import="model.Product"%>
 <%@page import="model.ProductPic"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -90,7 +90,7 @@
                                                         <tr>
                                                             <td><input type="checkbox" name="pmid" value="">&nbsp;&nbsp;${a.orderId}</td>
                                                             <td><a href="#"></a>${a.time}</td>
-                                                            <td>${a.total}0</td>
+                                                            <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${a.total}" /></td>
                                                             <c:choose>
                                                                 <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
                                                                     <td><div style="color: red">${a.status}</div>${a.payment}</td>
@@ -129,7 +129,7 @@
                                                         <tr>
                                                             <td>${a.orderId}</td>
                                                             <td><a href="#"></a>${a.time}</td>
-                                                            <td>${a.total}0</td>
+                                                            <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${a.total}" /></td>
                                                             <c:choose>
                                                                 <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
                                                                     <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
@@ -157,7 +157,7 @@
                                                         <tr>
                                                             <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
                                                             <td><a href="#"></a>${a.time}</td>
-                                                            <td>${a.total}0</td>
+                                                            <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${a.total}" /></td>
                                                             <c:choose>
                                                                 <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
                                                                     <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
@@ -183,7 +183,7 @@
                                                 <tr>
                                                     <td><a href="DetailOrder?orderid=${a.orderId}">${a.orderId}</a></td>
                                                     <td><a href="#"></a>${a.time}</td>
-                                                    <td>${a.total}0</td>
+                                                    <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${a.total}" /></td>
                                                     <c:choose>
                                                         <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
                                                             <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>

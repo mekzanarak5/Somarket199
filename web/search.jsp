@@ -6,6 +6,7 @@
 
 <%@page import="model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -73,7 +74,7 @@
                                                 <div class="thumbnail">
                                                     <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}"><img src="${a.pathFile}" style="width: 170; height: 130px;" class="img-rounded"></a>                                               
                                                     <div class="caption" >
-                                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">${a.name}<br>${a.price}0 ฿</a><br>                                    
+                                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}">${a.name}<br><fmt:formatNumber pattern ="#,###.##" value="${a.price}" /> ฿</a><br>                                    
                                                         <input type="hidden" name="url" />
                                                         <input type="hidden" name="units" value="1"/>
                                                         <input type="hidden" name="productId" value="${a.productNO}" />

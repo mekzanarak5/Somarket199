@@ -3,6 +3,7 @@
 <%@page import="model.Accounts"%>
 <%@page import="model.Wishlist"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -177,7 +178,7 @@
                                 <div class="col-md-7">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h5><div style="color: red">฿ ${showDetail.price}0</div></h5>
+                                            <h5><div style="color: red">฿ <fmt:formatNumber pattern ="#,###.##" value="${showDetail.price}" /></div></h5>
                                         </div>
                                         <div class="panel-body">
 

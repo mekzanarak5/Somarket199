@@ -8,6 +8,7 @@
 <%@page import="model.Product"%>
 <%@page import="model.ProductPic"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -62,7 +63,7 @@
                                             <td>${ord.orderId}</td>
                                             <td>${ord.seller}</td>
                                             <td>${ord.time}</td>
-                                            <td>${ord.total}0</td>
+                                            <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${ord.total}" /></td>
                                             <td>${ord.status}</td>
                                             <td><a href="DetailOrder?orderid=${ord.orderId}"><button class="btn btn-xs btn-default">More detail... </button></a></td>
                                         </tr>

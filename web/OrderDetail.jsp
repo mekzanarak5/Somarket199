@@ -8,6 +8,7 @@
 <%@page import="model.Product"%>
 <%@page import="model.ProductPic"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -74,11 +75,19 @@
                                         <td><a href="#">${n.username}</a></td>
                                         <td><a href="#"><img src="${line.product.pathFile}" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
                                         <td><a href="#">${line.product.name}</a></td>
-                                        <td>${line.product.price}0</td>
+                                        <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${line.product.price}" /></td>
                                         <td>${line.unit}</td>
-                                        <td>${line.total}0</td>
+                                        <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${line.total}" /></td>
                                     </tr>
                                 </c:forEach>
+                                    <tr>
+                                        <td>cost:</td>
+                                        <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${order.total}" /></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
                             </table>
                         </div>
                         <c:choose>

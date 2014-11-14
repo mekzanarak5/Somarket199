@@ -10,7 +10,7 @@
 <%@page import="model.Product"%>
 <%@page import="model.ProductPic"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -83,7 +83,7 @@
                                                     ${a.name}
                                                 </a>
                                             </td>
-                                            <td>${a.price}0</td>
+                                            <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${a.price}" /></td>
                                             <td width="20%"><div class="btn-group">
                                                     <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
                                                         Manage Post <span class="caret"></span>

@@ -120,10 +120,10 @@
                                                                 ${line.product.name}
                                                             </a>
                                                         </td>
-                                                        <td>${line.product.price}0</td>
+                                                        <td><fmt:formatNumber pattern ="#,###.##" value="${line.product.price}" /> ฿</td>
                                                         <td><input type="hidden" value="${line.product.productNO}" name="productId" >
                                                             <input style="text-align:right" id="unit" type="text" maxlength="4" class="form-control" name="unit" size='4' value="${line.unit}" required></td>
-                                                        <td>${line.total}0</td>
+                                                        <td><fmt:formatNumber pattern ="#,###.##" value="${line.total}" /> ฿</td>
                                                         <td><a href="RemoveLineItem?productId=${line.product.productNO}"> <div class="btn btn-warning">Remove</div></a></td>
                                                     </tr>
                                                 </c:when>
@@ -131,23 +131,18 @@
                                         </c:forEach>
                                         <tr>
                                             <td>TOTAL</td>
-                                            <td>${price[entry.key]}0</td>
+                                            <td><fmt:formatNumber pattern ="#,###.##" value="${price[entry.key]}" /> ฿</td>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td><button type="submit" class="btn btn-primary" >Update</button></td>
-                                            <td></td>
                                         </tr>
                                     </c:forEach>
                                 </table>
                             </form>
-                            <div><h5 class="col-md-12"  >Payment Methond</h5><hr></div>
-                            <div class="radio" style="margin-left:100px">
-                                <label>
-                                    Bank Tranfer
-                                </label>
-                            </div>
-                            <div style="margin-left:450px;margin-bottom: 20px">
+                                    <div class="col-md-4"><h5>Payment Method:</h5></div><div class="col-md-3" style="margin-left: -10%"><p style="margin-top: 17px">Bank Transfer</p></div>
+                            <div style="float: right; margin-right: 20px">
                                 <a href="ConfirmCart"><input type="button" class="btn btn-danger" value="Check out"></a> 
                             </div>
                         </div>
