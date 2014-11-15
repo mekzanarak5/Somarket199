@@ -26,7 +26,9 @@ public class order {
     private int address;
     private Timestamp time;
     private int bankacct;
-    private String payment;
+    private String paydate;
+    private String paytime;
+    private Double payamount;
     private String slip;
     private String status;
     private String ems;
@@ -35,20 +37,22 @@ public class order {
     public order() {
     }
 
-    public order(int orderId, String username, double total, int address, Timestamp time, int bankacct, String payment, String slip, String status, String ems, String seller) {
+    public order(int orderId, String username, double total, int address, Timestamp time, int bankacct, String paydate, String paytime, Double payamount, String slip, String status, String ems, String seller) {
         this.orderId = orderId;
         this.username = username;
         this.total = total;
         this.address = address;
         this.time = time;
         this.bankacct = bankacct;
-        this.payment = payment;
+        this.paydate = paydate;
+        this.paytime = paytime;
+        this.payamount = payamount;
         this.slip = slip;
         this.status = status;
         this.ems = ems;
         this.seller = seller;
     }
-
+    
     public int getBankacct() {
         return bankacct;
     }
@@ -73,18 +77,30 @@ public class order {
         this.time = time;
     }
 
-    public String getPayment() {
-        return payment;
+    public String getPaydate() {
+        return paydate;
     }
 
-    public String getPaymentHTML() {
-        return payment.replace("\n", "<br>");
+    public void setPaydate(String paydate) {
+        this.paydate = paydate;
     }
 
-    public void setPayment(String payment) {
-        this.payment = payment;
+    public String getPaytime() {
+        return paytime;
     }
 
+    public void setPaytime(String paytime) {
+        this.paytime = paytime;
+    }
+
+    public Double getPayamount() {
+        return payamount;
+    }
+
+    public void setPayamount(Double payamount) {
+        this.payamount = payamount;
+    }
+    
     public int getAddress() {
         return address;
     }
@@ -141,14 +157,11 @@ public class order {
         this.ems = ems;
     }
 
-    @Override
-    public String toString() {
-        return "order{" + "orderId=" + orderId + ", username=" + username + ", total=" + total + ", address=" + address + ", time=" + time + ", bankacct=" + bankacct + ", payment=" + payment + ", slip=" + slip + ", status=" + status + ", ems=" + ems + ", seller=" + seller + '}';
-    }
+    
 
     public int add(order o) {
         int value = 0;
-        String sql = "insert into order_sum(OrderNo,user,seller,TotalPrice,Created,Detail,payment,slip,TrackingNo) values(?,?,?,?,CURRENT_TIMESTAMP,?,?,?,?)";
+        String sql = "insert into order_sum(OrderNo,user,seller,TotalPrice,Created,Detail,slip,TrackingNo) values(?,?,?,?,CURRENT_TIMESTAMP,?,?,?)";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setInt(1, o.getOrderId());
@@ -157,20 +170,15 @@ public class order {
             //ps.setString(3, o.getAddress());
             ps.setDouble(4, o.getTotal());
             ps.setString(5, "Waiting for payment.");
-            if (payment == null) {
+            if (slip == null) {
                 ps.setNull(6, java.sql.Types.VARCHAR);
             } else {
-                ps.setString(6, payment);
-            }
-            if (slip == null) {
-                ps.setNull(7, java.sql.Types.VARCHAR);
-            } else {
-                ps.setString(7, slip);
+                ps.setString(6, slip);
             }
             if (ems == null) {
-                ps.setNull(8, java.sql.Types.VARCHAR);
+                ps.setNull(7, java.sql.Types.VARCHAR);
             } else {
-                ps.setString(8, ems);
+                ps.setString(7, ems);
             }
             value = ps.executeUpdate();
             ConnectionAgent.getConnection().close();
@@ -324,9 +332,11 @@ public class order {
             o.setStatus(rs.getString(6));
             o.setAddress(rs.getInt(7));
             o.setBankacct(rs.getInt(8));
-            o.setPayment(rs.getString(9));
-            o.setSlip(rs.getString(10));
-            o.setEms(rs.getString(11));
+            o.setPaydate(rs.getString(9));
+            o.setPaytime(rs.getString(10));
+            o.setPayamount(rs.getDouble(11));
+            o.setSlip(rs.getString(12));
+            o.setEms(rs.getString(13));
 
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
@@ -393,13 +403,15 @@ public class order {
         }
     }
 
-    public static void addPayment(int order_id, String pay) {
-        String sql = "update order_sum set payment=?, detail=? where OrderNo = ?";
+    public static void addPayment(int order_id, String pd, String pt, double pa) {
+        String sql = "update order_sum set paydate=?, paytime=?, payamount=?, detail=? where OrderNo = ?";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
-            ps.setString(1, pay);
-            ps.setString(2, "Verifying... ");
-            ps.setInt(3, order_id);
+            ps.setString(1, pd);
+            ps.setString(2, pt);
+            ps.setDouble(3, pa);
+            ps.setString(4, "Verifying... ");
+            ps.setInt(5, order_id);
             ps.executeUpdate();
             ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {

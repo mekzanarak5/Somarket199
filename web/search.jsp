@@ -79,12 +79,12 @@
                                                         <input type="hidden" name="units" value="1"/>
                                                         <input type="hidden" name="productId" value="${a.productNO}" />
                                                         <input type="hidden" name="acctid" value="${a.acctID}" />
-                                                        <c:choose>
+                                                        <%--<c:choose>
                                                             <c:when test="${user.account_Id!=a.acctID || user.account_Id==null}">
                                                                 <button class="btn btn-sm btn-primary" role="button ">Add to cart</button> 
                                                             </c:when>
-                                                        </c:choose>
-                                                        <a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-sm btn-default" role="button">Detail</a>
+                                                        </c:choose>--%>
+                                                        <!--<a href="ShowDetailServlet?productId=${a.productNO}&acctid=${a.acctID}" class="btn btn-sm btn-default" role="button">Detail</a>-->
                                                         <c:set value="${wtf:feedcount(a.username)}" var="m" />
                                                         <c:set value="${wtf:feedAVG(a.username)}" var="n" />
                                                         <br><c:choose>

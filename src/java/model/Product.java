@@ -29,7 +29,7 @@ public class Product implements Comparable {
     private Date offerEnd;
     private Date createOn;
     private String description;
-    private String available;
+    private int available;
     private String brandID;
     private int pNO;
     private int Product_Id;
@@ -42,7 +42,7 @@ public class Product implements Comparable {
     public Product() {
     }
 
-    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, String available, String brandID, int pNO, int Product_Id, String pathFile, String CreateOn, int cateID, String cateName, String username) {
+    public Product(int productNO, int acctID, int category_ID, String name, Double price, Date offerStart, Date offerEnd, Date createOn, String description, int available, String brandID, int pNO, int Product_Id, String pathFile, String CreateOn, int cateID, String cateName, String username) {
         this.productNO = productNO;
         this.acctID = acctID;
         this.category_ID = category_ID;
@@ -135,11 +135,11 @@ public class Product implements Comparable {
         this.description = description;
     }
 
-    public String getAvailable() {
+    public int getAvailable() {
         return available;
     }
 
-    public void setAvailable(String available) {
+    public void setAvailable(int available) {
         this.available = available;
     }
 
@@ -702,7 +702,7 @@ public class Product implements Comparable {
         return row;
     }
 
-    public static int editProduct(String name, double price, String des, String available, int cate, String brand, int productid) {
+    public static int editProduct(String name, double price, String des, int available, int cate, String brand, int productid) {
         int row = 0;
         try {
 
@@ -711,7 +711,7 @@ public class Product implements Comparable {
             ps.setString(1, name);
             ps.setDouble(2, price);
             ps.setString(3, des);
-            ps.setString(4, available);
+            ps.setInt(4, available);
             ps.setInt(5, cate);
             ps.setString(6, brand);
             ps.setInt(7, productid);
@@ -736,7 +736,7 @@ public class Product implements Comparable {
             p.setOfferEnd(rs.getDate("OfferEnd"));
             p.setCreateOn(rs.getDate("CreateOn"));
             p.setDescription(rs.getString("Description"));
-            p.setAvailable(rs.getString("Available"));
+            p.setAvailable(rs.getInt("Available"));
             p.setBrandID(rs.getString("BrandID"));
             p.setpNO(rs.getInt("pNO"));
             p.setProduct_Id(rs.getInt("Product_Id"));
@@ -758,7 +758,7 @@ public class Product implements Comparable {
             p.setOfferEnd(rs.getDate("OfferEnd"));
             p.setCreateOn(rs.getDate("CreateOn"));
             p.setDescription(rs.getString("Description"));
-            p.setAvailable(rs.getString("Available"));
+            p.setAvailable(rs.getInt("Available"));
             p.setBrandID(rs.getString("BrandID"));
             p.setCateID(rs.getInt("cateID"));
             p.setCateName(rs.getString("cateName"));
@@ -780,7 +780,7 @@ public class Product implements Comparable {
             p.setOfferEnd(rs.getDate("OfferEnd"));
             p.setCreateOn(rs.getDate("CreateOn"));
             p.setDescription(rs.getString("Description"));
-            p.setAvailable(rs.getString("Available"));
+            p.setAvailable(rs.getInt("Available"));
             p.setBrandID(rs.getString("BrandID"));
             /*p.setpNO(rs.getInt("pNO"));
              p.setProduct_Id(rs.getInt("Product_Id"));

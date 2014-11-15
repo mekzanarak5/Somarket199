@@ -93,7 +93,8 @@
                             required: true,
                             minlength: 1,
                             maxlength: 4,
-                            min: 1
+                            min: 1,
+                            max: ${showDetail.available}
                         }
                     }
                 });
@@ -186,7 +187,7 @@
                                                 <c:choose><c:when test="${user.account_Id!=showName.account_Id || user==null}" >
                                                         <font size="2">
                                                         <div class="input-group input-group-sm" style="margin-bottom: 15px">
-                                                            <span class="input-group-addon">Quatity</span>
+                                                            <span class="input-group-addon">Quantity</span>
                                                             <input type="text" id="units" class="form-control" maxlength="4" placeholder="Quatity" value="1" name="units"/>
                                                         </div>
                                                         </font>

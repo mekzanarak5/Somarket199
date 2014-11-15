@@ -36,7 +36,7 @@ public class EditProduct extends HttpServlet {
         int acctid = Integer.parseInt(request.getParameter("acctid"));
         String Name = request.getParameter("name");
         String Description = request.getParameter("des");
-        String Available = request.getParameter("available");
+        int Available = Integer.parseInt(request.getParameter("available"));
         int Category_ID = Integer.parseInt(request.getParameter("cata"));
         Double Price = Double.parseDouble(request.getParameter("price"));
         String Brand = request.getParameter("brand");

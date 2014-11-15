@@ -80,20 +80,20 @@
                                         <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${line.total}" /></td>
                                     </tr>
                                 </c:forEach>
-                                    <tr>
-                                        <td>cost:</td>
-                                        <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${order.total}" /></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                <tr>
+                                    <td>cost:</td>
+                                    <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${order.total}" /></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
                             </table>
                         </div>
                         <c:choose>
                             <c:when test="${user.username == order.username}" >
                                 <c:choose>
-                                    <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
+                                    <c:when test="${order.status == 'invalid' || order.paydate == null}" >
                                         <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                                             <h6 class="col-md-12 panel-heading">Payment Information</h6>
 
@@ -128,7 +128,7 @@
                                             <table class="table table-bordered" style="text-align: center">
                                                 <tr>
                                                     <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
-                                                    <td>${payment}</td>
+                                                    <td>${order.paydate}<br>${order.paytime}<br>${order.payamount}</td>
                                                 </tr>
 
                                             </table>
@@ -161,21 +161,22 @@
                                                             Thank you for your support (seller: ${order.seller}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
                                                 </c:choose><!--</form>-->
                                             </div></c:when></c:choose>
-                                            <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
+                                    <c:choose><c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                                 <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                                 <div class="col-md-12" align="center" style="margin-bottom: 20px">
                                                     <p class="form-control" >${order.ems}</p>
-                                        </div>
-                                        <!--<div align="center" style="margin-bottom: 20px">
-                                            <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
-                                        </div>-->
-                                    </div>
+                                                </div>
+                                                <!--<div align="center" style="margin-bottom: 20px">
+                                                    <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
+                                                </div>-->
+                                            </div></c:when></c:choose>
+
                                 </c:otherwise>
                             </c:choose>
                         </c:when>
                         <c:otherwise>
                             <c:choose>
-                                <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
+                                <c:when test="${order.status == 'invalid' || order.payment == null}" >
                                     <div class="panel panel-info col-md-5 " style="margin-left: 380px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status</h6>
                                         <div class="col-md-12" align="center" style="margin-bottom: 20px">
@@ -222,25 +223,34 @@
                                                             Thank you for your support (buyer: ${order.username}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
                                                 </c:choose><!--</form>-->
                                             </div></c:when></c:choose>
-                                    <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
-                                        <div class="panel panel-info col-md-6 " style="margin-left: 320px ">
-                                            <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
-                                            <div class="col-md-12" align="center" style="margin-bottom: 10px">
-                                                <c:choose><c:when test="${order.ems==null}">
+                                    <c:choose><c:when test="${order.status=='Paid'}">
+                                            <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
+                                                <div class="panel panel-info col-md-6 " style="margin-left: 320px ">
+                                                    <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
+                                                    <div class="col-md-12" align="center" style="margin-bottom: 10px">
                                                         <div style="margin-bottom: 10px">
                                                             <input type="text" style="text-align: center" id="ems" class="form-control" placeholder="Enter EMS" name="ems" >
                                                         </div>
                                                         <div align="center">
                                                             <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Reject</button>
-                                                        </div></c:when>
-                                                    <c:otherwise><p class="form-control" >${order.ems}</p></c:otherwise>
-                                                </c:choose>
-                                            </div>
-                                        </div></form>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:otherwise>
-                        </c:choose>
+                                                        </div>
+                                                    </div>
+                                                </div></form></c:when>
+                                            <c:when test="${order.status=='shipping'}">
+                                            <div class="panel panel-info col-md-6 " style="margin-left: 320px ">
+                                                <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
+                                                <div class="col-md-12" align="center" style="margin-bottom: 10px">
+                                                    <div style="margin-bottom: 10px">
+                                                        <p class="form-control" >${order.ems}</p>
+                                                    </div>
+                                                </div>
+                                            </div></c:when><c:otherwise><div class="panel panel-info col-md-6 " style="margin-left: 320px ">
+                                                <div class="col-md-12" align="center" style="margin-bottom: 10px"></div>    
+                                                </div></c:otherwise></c:choose>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>

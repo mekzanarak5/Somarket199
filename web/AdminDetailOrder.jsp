@@ -228,7 +228,7 @@
                 <c:choose>
                     <c:when test="${user.username == order.username}" >
                         <c:choose>
-                            <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
+                            <c:when test="${order.status == 'invalid' || order.paydate == null}" >
                                 <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                                     <h6 class="col-md-12 panel-heading">Payment Information</h6>
 
@@ -262,16 +262,8 @@
                                 <div class="col-md-12">
                                     <table class="table table-bordered" style="text-align: center">
                                         <tr>
-                                            <td style="background: #ededed">Transfer Date</td>
-                                            <td>Date</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="background: #ededed">Transfer Time</td>
-                                            <td>Time</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="background: #ededed">Amount</td>
-                                            <td>Amount</td>
+                                            <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
+                                            <td>${order.paydate}<br>${order.paytime}<br>${order.payamount}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -294,7 +286,7 @@
                                     <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                         <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                            <input type="text" class="form-control" placeholder="Tranfer Time" name="ems" value="${order.ems}" disabled>
+                                            <input type="text" class="form-control" name="ems" value="${order.ems}" disabled>
                                 </div>
                                 <!--<div align="center" style="margin-bottom: 20px">
                                     <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
@@ -305,7 +297,7 @@
                 </c:when>
                 <c:otherwise>
                     <c:choose>
-                        <c:when test="${order.status == 'rejected' || (order.payment == null && order.slip == null)}" >
+                        <c:when test="${order.status == 'invalid' || order.paydate == null}" >
                             <div class="panel panel-info col-md-5 " style="margin-left: 380px ">
                                 <h6 class="col-md-12 panel-heading" align="center">Status</h6>
                                 <div class="col-md-12" align="center" style="margin-bottom: 20px">
@@ -319,7 +311,7 @@
                                     <table class="table table-bordered" style="text-align: center">
                                         <tr>
                                             <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
-                                            <td>${payment}</td>
+                                            <td>${order.paydate}<br>${order.paytime}<br>${order.payamount}</td>
                                         </tr>
                                        
                                     </table>

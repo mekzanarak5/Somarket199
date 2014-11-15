@@ -59,9 +59,9 @@ public class Pay2 extends HttpServlet {
 //        String desthai = new String(des.getBytes("ISO8859_1"), "UTF-8");
         String acctid = "";
         String msg = "";
-        String sum = date + "\n" + time + "\n" + amount + "\n" + refid;
+        //String sum = date + "\n" + time + "\n" + amount + "\n" + refid;
         order.addBank(orderid, bank);
-        order.addPayment(orderid, sum);
+        order.addPayment(orderid, date, time, amount);
 //        order.addSlip(orderid, "/Users/Mekza/Documents/NetBeansProjects/Somarket199/web/pic/upload/"+pic);
         Calendar calendar = Calendar.getInstance();
         java.util.Date now = calendar.getTime();

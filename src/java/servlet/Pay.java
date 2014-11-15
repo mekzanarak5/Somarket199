@@ -143,7 +143,7 @@ public class Pay extends HttpServlet {
         }
         String sum = date + "\n" + time + "\n" + amount + "\n" + refid;
         order.addBank(orderid, bank);
-        order.addPayment(orderid, sum);
+        order.addPayment(orderid, date, time, amount);
         order.addSlip(orderid, pic);
         //order.addPayment(orderid, );
         getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);

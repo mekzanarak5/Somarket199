@@ -85,10 +85,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-3">Available</label>
                                         <div class="col-sm-3">
-                                            <select value="${pro.available}" class="form-control" name="available" >
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
-                                            </select>
+                                            <input type="number" value="${pro.available}" class="form-control" name="available" >
                                         </div>
                                     </div>
                                     <div class="form-group">

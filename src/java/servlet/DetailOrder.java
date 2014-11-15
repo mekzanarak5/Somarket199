@@ -53,10 +53,10 @@ public class DetailOrder extends HttpServlet {
         if(o.getSeller().equalsIgnoreCase(user2)){
         int up1 = order.updateReadSell(orderid);
         }
-        if(o.getPayment()!=null){
+        /*if(o.getPayment()!=null){
             String pm = o.getPaymentHTML();
             request.setAttribute("payment", pm);
-        }
+        }*/
         //System.out.println(chsend);
         request.setAttribute("order", o);
         request.setAttribute("add", Address.findAddress(o.getAddress()));
