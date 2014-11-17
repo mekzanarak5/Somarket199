@@ -72,6 +72,7 @@
                                 </ul>
                                 <!--/div>-->
                                 <c:choose><c:when test="${views==2}">
+                                        <form action="UpdateOrder" method="post"><input type="hidden" name="url" />
                                         <table class="table table-striped" id="table6" style="text-align: center">
                                             <tr bgColor="#ffffff">
                                                 <td width="20%">Order ID
@@ -83,37 +84,47 @@
                                                 <td width="20%">Order Date</td>
                                                 <td>Total Price</td>
                                                 <td>Status</td>
-                                                <td width="7%"></td>
+                                                <td width="23%"></td>
                                             </tr>
                                             <c:forEach items="${oldorders}" var="a">
-                                                <c:choose><c:when test="${a.status=='Verifying... ' || a.status=='Paid'}">
+                                                <c:choose><c:when test="${a.status=='Verifying... ' || a.status=='Paid' || a.status=='invalid'}">
                                                         <tr>
-                                                            <td><input type="checkbox" name="pmid" value="">&nbsp;&nbsp;${a.orderId}</td>
+                                                            <td><input type="checkbox" name="oId" value="${a.orderId}">&nbsp;&nbsp;${a.orderId}</td>
                                                             <td><a href="#"></a>${a.time}</td>
                                                             <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${a.total}" /></td>
                                                             <c:choose>
-                                                                <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
-                                                                    <td><div style="color: red">${a.status}</div>${a.payment}</td>
-                                                                    </c:when>
+                                                                <c:when test="${a.status == 'Paid'}" >
+                                                                    <td><div style="color: green">${a.status}</div>${a.paydate}&nbsp;${a.paytime}&nbsp;${a.payamount}</td>
+                                                                </c:when>
+                                                                <c:when test="${a.status == 'invalid'}">
+                                                                    <td><div style="color: red">${a.status}</div>${a.paydate}&nbsp;${a.paytime}&nbsp;${a.payamount}</td>
+                                                                </c:when>
                                                                     <c:otherwise>
-                                                                    <td>${a.status}</td>
+                                                                        <td><span style="color: yellow">${a.status}</span><br>${a.paydate}&nbsp;${a.paytime}&nbsp;${a.payamount}</td>
                                                                 </c:otherwise>
                                                             </c:choose>
-                                                            <td><a href="DetailOrder?orderid=${a.orderId}" target="_blank"><input type="button" class="btn btn-xs btn-warning" value="Detail" name="detail" /></a></td>
+                                                                    <td><a href="DetailOrder?orderid=${a.orderId}" target="_blank"><input type="button" class="btn btn-xs btn-warning" value="Detail" name="detail" /></a>
+                                                            /&nbsp;&nbsp;<input type="hidden" name="oId" value="${a.orderId}">
+                                                            <input type="submit" class="btn btn-xs btn-default" style="background-color: #16A085" name="updates" value="Paid" title="Paid" />
+                                                            <input type="submit" class="btn btn-xs btn-danger" name="updates" value="Invalid" title="Invalid" />
+                                                            <a href="CancelReturn?id=${a.orderId}#" ><input type="button" class="btn btn-xs btn-default" value="Cancel" name="CancelReturn" /></a>
+                                                            </td>
                                                         </tr>
                                                     </c:when></c:choose>
                                             </c:forEach>
+                                            <tr>
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        <input type="submit" class="btn btn-default" style="background-color: #16A085" value="Paid"/>
+                                                        <input type="submit" class="btn btn-default" style="background-color: #16A085" name="updates" value="Paid" title="Paid"/>
                                                     </td>
-                                                    <td><input type="submit" class="btn btn-danger" value="Invalid"/></td>
-                                                    <td><input type="submit" class="btn btn-default" value="Return"/>
+                                                    <td>
+                                                        <input type="submit" class="btn btn-danger" name="updates" value="Invalid" title="Invalid"/>
                                                     </td>
                                                 </tr>
                                             </table>
-                                        </table></c:when>
+                                        </tr>
+                                        </table></form></c:when>
 
                                     <c:when test="${views==3}">
                                         <table class="table table-striped" id="table6" style="text-align: center">
@@ -125,20 +136,25 @@
                                                 <td width="7%"></td>
                                             </tr>
                                             <c:forEach items="${oldorders}" var="a">
-                                                <c:choose><c:when test="${a.status=='shipping' || a.status=='complete'}">
+                                                <c:choose><c:when test="${a.status=='Paid' || a.status=='shipping'|| a.status=='complete'}">
                                                         <tr>
                                                             <td>${a.orderId}</td>
                                                             <td><a href="#"></a>${a.time}</td>
                                                             <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${a.total}" /></td>
-                                                            <c:choose>
-                                                                <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
-                                                                    <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
+                                                            <td><c:choose>
+                                                                <c:when test="${a.status != 'shipping' && a.status != 'complete'}">
+                                                                    <div style="color: red">${a.status=='shipping'||a.status=='complete'?a.status:'Awaiting trackingNo'}</div>
+                                                                    </c:when>
+                                                                    <c:when test="${a.status=='complete'}">
+                                                                    <div style="color: green">${a.status}</div><div style="color: red">${a.ems}</div>
                                                                     </c:when>
                                                                     <c:otherwise>
-                                                                    <td>${a.status}<div style="color: red">${a.ems}</div></td>
+                                                                    ${a.status=='shipping'||a.status=='complete'?a.status:'Awaiting trackingNo'}<div style="color: red">${a.ems}</div>
                                                                 </c:otherwise>
-                                                            </c:choose>
-                                                            <td><a href="DetailOrder?orderid=${a.orderId}" target="_blank"><input type="button" class="btn btn-xs btn-warning" value="Detail" name="detail" /></a></td>
+                                                                </c:choose></td>
+                                                            <td><a href="DetailOrder?orderid=${a.orderId}" target="_blank"><input type="button" class="btn btn-xs btn-warning" value="Detail" name="detail" /></a>
+                                                                <c:choose><c:when test="${a.status=='Paid'}"><a href="CancelReturn?id=${a.orderId}#" ><input type="button" class="btn btn-xs btn-default" value="Cancel" name="CancelReturn" /></a></c:when></c:choose>
+                                                            </td>
                                                         </tr>
                                                     </c:when></c:choose>
                                             </c:forEach>
@@ -186,10 +202,10 @@
                                                     <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${a.total}" /></td>
                                                     <c:choose>
                                                         <c:when test="${a.status != 'shipping' && a.status != 'Waiting for payment.'}">
-                                                            <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status}</a></td>
+                                                            <td><a href="DetailOrder?orderid=${a.orderId}" style="color: red">${a.status=='invalid'?'Invalid':a.status}</a></td>
                                                             </c:when>
                                                             <c:otherwise>
-                                                            <td><a href="DetailOrder?orderid=${a.orderId}">${a.status}</a></td>
+                                                            <td><a href="DetailOrder?orderid=${a.orderId}">${a.status=='invalid'?'Invalid':a.status}</a></td>
                                                             </c:otherwise>
                                                         </c:choose>
                                                 </tr>
@@ -214,6 +230,13 @@
         <script src="js/jquery.placeholder.js"></script>
         <script src="http://vjs.zencdn.net/4.3/video.js"></script>
         <script src="js/application.js"></script>
+        <script language="javascript" type="text/javascript">
+            $(function() {
+                //$('.ui.accordion').accordion();
+                $('input[name=url]').val((window.location.href.toString()));
+            });
+
+        </script>
         <script language="javascript" type="text/javascript">
             //<![CDATA[  
             var table6_Props = {

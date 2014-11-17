@@ -56,7 +56,10 @@
                             <h5 style="display: inline ">Order Detail</h5>
                             <p style="display: inline;margin-left: 15px; font-size: 22px">#</p>
                             <p style="display: inline; font-size: 22px; color: #666666">${order.orderId}</p>
-                            <p style="font-size: 16px; ">${order.status}</p>
+                            <p style="font-size: 16px; ">${order.status}</p><c:choose>&nbsp;&nbsp;
+                                <c:when test="${order.status != 'shipping' || order.status != 'complete'}">
+                                    <a href="CancelReturn?id=${a.orderId}#" ><input type="button" class="btn btn-default" value="Cancel" name="CancelReturn" /></a>
+                                </c:when></c:choose>
                         </div>
                         <div class="panel panel-default col-md-11" style="margin-left: 45px ">
                             <h6 class="panel-heading">Item Detail</h6>
@@ -75,14 +78,14 @@
                                         <td><a href="#">${n.username}</a></td>
                                         <td><a href="#"><img src="${line.product.pathFile}" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
                                         <td><a href="#">${line.product.name}</a></td>
-                                        <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${line.product.price}" /></td>
+                                        <td><fmt:formatNumber pattern ="#,###.##" value="${line.product.price}" /> ฿</td>
                                         <td>${line.unit}</td>
-                                        <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${line.total}" /></td>
+                                        <td><fmt:formatNumber pattern ="#,###.##" value="${line.total}" /> ฿</td>
                                     </tr>
                                 </c:forEach>
                                 <tr>
                                     <td>cost:</td>
-                                    <td>฿ <fmt:formatNumber pattern ="#,###.##" value="${order.total}" /></td>
+                                    <td><fmt:formatNumber pattern ="#,###.##" value="${order.total}" /> ฿</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -128,7 +131,7 @@
                                             <table class="table table-bordered" style="text-align: center">
                                                 <tr>
                                                     <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
-                                                    <td>${order.paydate}<br>${order.paytime}<br>${order.payamount}</td>
+                                                    <td>${order.paydate}<br>${order.paytime}<br><fmt:formatNumber pattern ="#,###.##" value="${order.payamount}" /> ฿</td>
                                                 </tr>
 
                                             </table>
@@ -150,7 +153,7 @@
                                         </div>
                                     </div>
                                     <c:choose>
-                                        <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
+                                        <c:when test="${order.status=='shipping' || order.status=='complete'}"><div class="col-md-3">
                                                 <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a><br>
                                                 <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
                                                     <input type="hidden" name="url"/>-->
@@ -160,8 +163,7 @@
                                                         <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.seller}" />
                                                             Thank you for your support (seller: ${order.seller}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
                                                 </c:choose><!--</form>-->
-                                            </div></c:when></c:choose>
-                                    <c:choose><c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="panel panel-info col-md-8 " style="margin-left: 170px ">
+                                            </div><div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                                 <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                                 <div class="col-md-12" align="center" style="margin-bottom: 20px">
                                                     <p class="form-control" >${order.ems}</p>
@@ -190,7 +192,7 @@
                                             <table class="table table-bordered" style="text-align: center">
                                                 <tr>
                                                     <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
-                                                    <td>${payment}</td>
+                                                    <td>${order.paydate}<br>${order.paytime}<br><fmt:formatNumber pattern ="#,###.##" value="${order.payamount}" /> ฿</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -211,7 +213,7 @@
                                         </div>
                                     </div>
                                     <c:choose>
-                                        <c:when test="${order.status=='shipping' || order.status=='completed'}">
+                                        <c:when test="${order.status=='shipping' || order.status=='complete'}">
                                             <div class="col-md-3">
                                                 <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a><br>
                                                 <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
@@ -232,7 +234,7 @@
                                                             <input type="text" style="text-align: center" id="ems" class="form-control" placeholder="Enter EMS" name="ems" >
                                                         </div>
                                                         <div align="center">
-                                                            <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Reject</button>
+                                                            <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Cancel</button>
                                                         </div>
                                                     </div>
                                                 </div></form></c:when>
