@@ -336,6 +336,10 @@
         <servlet-name>UpdateOrder</servlet-name>
         <servlet-class>servlet.UpdateOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CancelReturn</servlet-name>
+        <servlet-class>servlet.CancelReturn</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -663,6 +667,10 @@
     <servlet-mapping>
         <servlet-name>UpdateOrder</servlet-name>
         <url-pattern>/UpdateOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelReturn</servlet-name>
+        <url-pattern>/CancelReturn</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

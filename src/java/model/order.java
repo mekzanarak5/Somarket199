@@ -389,6 +389,19 @@ public class order {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void upStat(int order_id, String stat) {
+        String sql = "update order_sum set Detail = ? where OrderNo = ?";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, stat);
+            ps.setInt(2, order_id);
+            ps.executeUpdate();
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static void addAddr(int order_id, int addr) {
         String sql = "update order_sum set Address=? where OrderNo = ?";
