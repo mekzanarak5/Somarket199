@@ -39,7 +39,7 @@
                     <ol class="breadcrumb">
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="profile.jsp">Profile</a></li>
-                        <li class="active" style="font-size: 19px; font-weight: initial; ">Sell</li>
+                        <li class="active" >Sell</li>
                     </ol>
                     </font>
                 </div>
