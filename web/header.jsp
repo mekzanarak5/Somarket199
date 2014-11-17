@@ -1,15 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form class="navbar-form navbar-right" action="SearchProductServlet" role="search" >
+<script>
+    $('#ddlDemo').keyup(function(event) {
+if(event.which==13)
+{
+  var text = $(this).val();
+  alert(text);
+}
+
+});
+</script>
+<form class="navbar-form navbar-right"  action="SearchProductServlet" role="search" method="post">
     <div class="row" >
         <div class="col-md-2">
-            <select name="herolist" class="select-block">
-                <option value="" selected>Choose Category</option>
+            <select name="herolist" id="ddlDemo" class="select-block">
+                <option value="" >Choose Category</option>
                 <c:forEach items="${cate}" var="entry">
                     <option value="${entry.key.cateID}">${entry.key.cateName}</option>
                 </c:forEach>
             </select>
         </div>
+        <!--<input name="herolist" type="hidden" value="">-->
         <div class="col-md-10">
             <div class="form-group">
                 <div class="input-group">

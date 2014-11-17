@@ -473,8 +473,8 @@ public class Product implements Comparable {
     }
 
     public static List<Product> findPrice(String key, String id, int x, int y, double str, double st) {
-        String sqlCmd = "SELECT * FROM product WHERE Description like ? and Name like ? and Category_ID like ? and Price between ? and ? ORDER BY CreateOn DESC limit ?,?";
-        String sqlCmd1 = "select * from product p,product_img pi where p.productNO = pi.Product_Id and (p.Description like ? or p.Name like ?) and p.Category_ID like ? and Price between ? and ? GROUP BY pi.Product_Id ORDER BY p.CreateON DESC limit ?,?";
+        String sqlCmd = "select * from product p,product_img pi,account a where p.productNO = pi.Product_Id and a.Account_Id=p.AcctID and (p.Description like ? or p.Name like ?) and p.Category_ID like ? GROUP BY pi.Product_Id ORDER BY p.CreateON DESC limit ?,?";
+        String sqlCmd1 = "select * from product p,product_img pi,account a where p.productNO = pi.Product_Id and a.Account_Id=p.AcctID and (p.Description like ? or p.Name like ?) and p.Category_ID like ? and Price between ? and ? GROUP BY pi.Product_Id ORDER BY p.CreateON DESC limit ?,?";
         Connection con = ConnectionAgent.getConnection();
         Product p = null;
         List<Product> cs = new ArrayList<Product>();

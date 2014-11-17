@@ -107,15 +107,15 @@
                         <form id="form" action="Pay2" class="form-horizontal" method="post" enctype="multipart/form-data" >
                             <div class="row" style="margin-bottom: 20px">
                                 <h3 class="col-md-12">Shiping Address</h3>
-                                <div class="col-md-10">
-                                    <select name="shipaddr" class="select-block">
+                                <div class="col-md-5">
+                                    <select name="shipaddr" class="select">
                                         <option value="" selected>Choose Address</option>
                                         <c:forEach items="${addr}" var="a" >
                                             <%--<input type="hidden" name="shipaddr" value="${a.address_Id}" />--%>
-                                            <option value="${a.address_Id}">${a.address}&nbsp;&nbsp;${a.provice}&nbsp;&nbsp;${a.post}&nbsp;&nbsp;${a.canton}</option>
+                                            <option value="${a.address_Id}">${a.address}&nbsp;&nbsp;${a.canton}&nbsp;&nbsp;${a.provice}&nbsp;&nbsp;${a.post}</option>
                                         </c:forEach>
                                     </select>
-                                    <font size="2">
+                                    <font size="4">
                                     <a data-toggle="modal" data-target=".bs-example-modal-lg">&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
                                     </font>
                                 </div>
@@ -124,9 +124,9 @@
                             <div class="row">
                                 <h3 class="col-md-12">Transfer</h3>
                                 <div class="col-md-12">
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <select name="bankid" class="select-block">
+                                            <select name="bankid">
                                                 <option value="" selected>Choose Bank Your Transfer</option>
                                                 <c:forEach items="${bank}" var="ba" >
                                                     <%--<input type="hidden" name="bankid" value="${ba.bank_Id}" />--%>
