@@ -108,7 +108,7 @@
                             <div class="row" style="margin-bottom: 20px">
                                 <h3 class="col-md-12">Shiping Address</h3>
                                 <div class="col-md-5">
-                                    <select name="shipaddr" class="select">
+                                    <select name="shipaddr" class="select" required>
                                         <option value="" selected>Choose Address</option>
                                         <c:forEach items="${addr}" var="a" >
                                             <%--<input type="hidden" name="shipaddr" value="${a.address_Id}" />--%>
@@ -126,7 +126,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <select name="bankid">
+                                            <select name="bankid" required>
                                                 <option value="" selected>Choose Bank Your Transfer</option>
                                                 <c:forEach items="${bank}" var="ba" >
                                                     <%--<input type="hidden" name="bankid" value="${ba.bank_Id}" />--%>

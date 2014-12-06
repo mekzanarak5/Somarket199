@@ -104,9 +104,7 @@
                                                                 </c:otherwise>
                                                             </c:choose>
                                                                     <td><a href="DetailOrder?orderid=${a.orderId}" target="_blank"><input type="button" class="btn btn-xs btn-warning" value="Detail" name="detail" /></a>
-                                                            /&nbsp;&nbsp;<input type="hidden" name="oId" value="${a.orderId}">
-                                                            <input type="submit" class="btn btn-xs btn-default" style="background-color: #16A085" name="updates" value="Paid" title="Paid" />
-                                                            <input type="submit" class="btn btn-xs btn-danger" name="updates" value="Invalid" title="Invalid" />
+                                                            /&nbsp;&nbsp;
                                                             <a href="CancelReturn?id=${a.orderId}#" ><input type="button" class="btn btn-xs btn-default" value="Cancel" name="CancelReturn" /></a>
                                                             </td>
                                                         </tr>

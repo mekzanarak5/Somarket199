@@ -536,6 +536,28 @@ public class Product implements Comparable {
         }
         return row;
     }
+    
+    public static void update(String kind, String key) {
+        String sql = "update Product set" + kind + " = ?";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, key);
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void upUnit(String kind, int key) {
+        String sql = "update Product set" + kind + " = ?";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setInt(1, key);
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static ArrayList<Product> page(String key, String id, int x, int y) {
         ArrayList<Product> ar = new ArrayList<Product>();

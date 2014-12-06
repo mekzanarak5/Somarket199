@@ -45,6 +45,7 @@ public class UpdateOrder extends HttpServlet {
         }else {
             for (int i = 0; i < oid.length; i++){
                 order.upStat(Integer.parseInt(oid[i]), "invalid");
+                order.update("Comment", "The payment is wrong, please complete it again.");
             }
         }/*if(pid.length==unit.length){
            for (int i = 0; i < pid.length; i++) {

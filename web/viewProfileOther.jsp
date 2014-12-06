@@ -46,7 +46,7 @@
                                     E-mail
                                 </td>
                                 <td class="col-md-6">
-                                    ${showName.email}
+                                    <a href="mailto:${showName.email}">${showName.email}</a>
                                 </td>
                             </tr>
 

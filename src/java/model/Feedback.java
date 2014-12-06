@@ -266,7 +266,7 @@ public class Feedback {
     
     public static ArrayList<Feedback> getFeedList(String user) {
         ArrayList<Feedback> arr = new ArrayList<Feedback>();
-        String sql = "select * from feedback where Account_Id like ? order by Feedback_Id";
+        String sql = "select * from feedback where Account_Id like ? order by Feedback_Id DESC";
         PreparedStatement ps;
         try {
             ps = ConnectionAgent.getConnection().prepareStatement(sql);

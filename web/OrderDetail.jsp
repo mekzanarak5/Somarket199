@@ -56,22 +56,23 @@
                             <h5 style="display: inline ">Order Detail</h5>
                             <p style="display: inline;margin-left: 15px; font-size: 22px">#</p>
                             <p style="display: inline; font-size: 22px; color: #666666">${order.orderId}</p>
-                            <p style="font-size: 16px; ">${order.status}</p><c:choose>&nbsp;&nbsp;
+                            <p style="font-size: 16px; ">${order.status}</p>&nbsp;&nbsp;<c:choose>
+                                <c:when test="${order.status == 'cancels'}" >:${order.comment}</c:when>
                                 <c:when test="${order.status != 'shipping' || order.status != 'complete'}">
-                                    <a href="CancelReturn?id=${a.orderId}#" ><input type="button" class="btn btn-default" value="Cancel" name="CancelReturn" /></a>
+                                    <!--<a href="CancelReturn?id=${a.orderId}#" >--><input type="button" class="btn btn-default" value="Cancel" name="CancelReturn" data-toggle="modal" data-target=".cancelmodal"/><!--</a>-->
                                 </c:when></c:choose>
-                        </div>
-                        <div class="panel panel-default col-md-11" style="margin-left: 45px ">
-                            <h6 class="panel-heading">Item Detail</h6>
-                            <table class="table table-striped" style="text-align: center">
-                                <tr>
-                                    <td>Seller</td>
-                                    <td>Pic</td>
-                                    <td>Name</td>
-                                    <td>Unit Price</td>
-                                    <td>Quantity</td>
-                                    <td>Total</td>
-                                </tr>
+                            </div>
+                            <div class="panel panel-default col-md-11" style="margin-left: 45px ">
+                                <h6 class="panel-heading">Item Detail</h6>
+                                <table class="table table-striped" style="text-align: center">
+                                    <tr>
+                                        <td>Seller</td>
+                                        <td>Pic</td>
+                                        <td>Name</td>
+                                        <td>Unit Price</td>
+                                        <td>Quantity</td>
+                                        <td>Total</td>
+                                    </tr>
                                 <c:forEach items="${detail.lineItems}" var="line">
                                     <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
                                     <tr>
@@ -166,7 +167,7 @@
                                             </div><div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                                 <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                                 <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                                    <p class="form-control" >${order.ems}</p>
+                                                    <p class="form-control" ><a href="https://www.emsbot.com/#/?s=${order.ems}" target="_blank"> ${order.ems}</a></p>
                                                 </div>
                                                 <!--<div align="center" style="margin-bottom: 20px">
                                                     <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
@@ -178,7 +179,7 @@
                         </c:when>
                         <c:otherwise>
                             <c:choose>
-                                <c:when test="${order.status == 'invalid' || order.payment == null}" >
+                                <c:when test="${order.status == 'invalid' || order.paydate == null}" >
                                     <div class="panel panel-info col-md-5 " style="margin-left: 380px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status</h6>
                                         <div class="col-md-12" align="center" style="margin-bottom: 20px">
@@ -234,7 +235,7 @@
                                                             <input type="text" style="text-align: center" id="ems" class="form-control" placeholder="Enter EMS" name="ems" >
                                                         </div>
                                                         <div align="center">
-                                                            <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Cancel</button>
+                                                            <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn btn-default" value="Clear" name="clear" title="Clear"/>
                                                         </div>
                                                     </div>
                                                 </div></form></c:when>
@@ -256,7 +257,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -316,7 +316,31 @@
 </div>
 </div>                
 <!--</div>-->
-
+<div class="modal fade cancelmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="CancelReturn" method="get"><input type="hidden" name="orderid" value="${order.orderId}" />
+                <div class="form-horizontal" style="text-align: center">                               
+                    <h4 class="col-md-12">Cancel</h4>&nbsp;Order:&nbsp;${order.orderId}
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                        </label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" name="comm" rows="4" cols="50" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Submit</button>&nbsp;&nbsp;<button type="reset" class="btn btn-primary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+</div>
 <!--<script src="js/jquery-1.8.3.min.js"></script>-->
 <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 <script src="js/jquery.ui.touch-punch.min.js"></script>

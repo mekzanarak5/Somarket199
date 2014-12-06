@@ -33,6 +33,7 @@ public class order {
     private String status;
     private String ems;
     private String seller;
+    private String comment;
 
     public order() {
     }
@@ -157,7 +158,13 @@ public class order {
         this.ems = ems;
     }
 
-    
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public int add(order o) {
         int value = 0;
@@ -270,7 +277,7 @@ public class order {
 
     public static ArrayList<order> search(String key, String kind) {
         ArrayList<order> o = new ArrayList<order>();
-        String sql = "select * from order_sum where " + kind + "=? order by Created";
+        String sql = "select * from order_sum where " + kind + "=? order by Created DESC";
         try {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, key);
@@ -337,6 +344,7 @@ public class order {
             o.setPayamount(rs.getDouble(11));
             o.setSlip(rs.getString(12));
             o.setEms(rs.getString(13));
+            o.setComment(rs.getString(14));
 
         } catch (SQLException ex) {
             Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
@@ -396,6 +404,20 @@ public class order {
             PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
             ps.setString(1, stat);
             ps.setInt(2, order_id);
+            ps.executeUpdate();
+            ConnectionAgent.getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(order.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void cancel(int order_id, String stat, String reas) {
+        String sql = "update order_sum set Detail = ?, Comment = ? where OrderNo = ?";
+        try {
+            PreparedStatement ps = ConnectionAgent.getConnection().prepareStatement(sql);
+            ps.setString(1, stat);
+            ps.setString(2, reas);
+            ps.setInt(3, order_id);
             ps.executeUpdate();
             ConnectionAgent.getConnection().close();
         } catch (SQLException ex) {

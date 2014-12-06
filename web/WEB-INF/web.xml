@@ -340,6 +340,18 @@
         <servlet-name>CancelReturn</servlet-name>
         <servlet-class>servlet.CancelReturn</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminViewFeedback</servlet-name>
+        <servlet-class>servlet.AdminViewFeedback</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminViewProfile</servlet-name>
+        <servlet-class>servlet.AdminViewProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminViewProduct</servlet-name>
+        <servlet-class>servlet.AdminViewProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -671,6 +683,18 @@
     <servlet-mapping>
         <servlet-name>CancelReturn</servlet-name>
         <url-pattern>/CancelReturn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminViewFeedback</servlet-name>
+        <url-pattern>/AdminViewFeedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminViewProfile</servlet-name>
+        <url-pattern>/AdminViewProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminViewProduct</servlet-name>
+        <url-pattern>/AdminViewProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

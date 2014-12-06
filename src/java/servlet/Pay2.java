@@ -17,6 +17,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cart;
+import model.LineItem;
+import model.Product;
 import model.ProductPic;
 import model.Test;
 import model.order;
@@ -63,13 +66,29 @@ public class Pay2 extends HttpServlet {
         order.addBank(orderid, bank);
         order.addPayment(orderid, date, time, amount);
 //        order.addSlip(orderid, "/Users/Mekza/Documents/NetBeansProjects/Somarket199/web/pic/upload/"+pic);
-        Calendar calendar = Calendar.getInstance();
-        java.util.Date now = calendar.getTime();
-        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
-        order.addSlip(orderid, "pic/upload/" +currentTimestamp+pic);
+//        Calendar calendar = Calendar.getInstance();
+//        java.util.Date now = calendar.getTime();
+//        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+        order.addSlip(orderid, "pic/upload/"+pic);
         order.addAddr(orderid, addr);
         //order.addPayment(orderid, );
         int up = order.updateReadSell1(orderid);
+        Cart cc = Cart.getDetailList(orderid);
+        ArrayList<LineItem> lines = (ArrayList<LineItem>) cc.getLineItems();
+        
+        for (LineItem test : lines){
+            int its = 0;
+            its= test.getProduct().getAvailable() - test.getUnit();
+            if (its <= 0){
+               order.upStat(orderid, "cancels");
+               order.update("Comment", "Item was sold out.");
+            }else{
+                Product.upUnit("Available", its);
+            }
+            
+        }
+       
+        
         getServletContext().getRequestDispatcher("/DetailOrder?orderid=" + orderid).forward(request, response);
     }
 

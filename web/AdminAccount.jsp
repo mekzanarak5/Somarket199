@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 
 <html>
@@ -204,32 +205,76 @@
                         <tr bgColor="#ffffff">
                             <td>Account ID</td>
                             <td>Account Name</td>
-                            <td>Sold Item</td>
                             <td>Rate feedback</td>
                             <td>Detail feedback</td>
                         </tr>
                         <c:forEach items="${acc}" var="a">
-                            <c:set value="${wtf:countsold(a.username)}" var="n" />
+                            <c:set value="${wtf:feedAVG(a.username)}" var="n" />
+                            <c:set value="${wtf:feedcount(a.username)}" var="m" />
+                            <%--<c:set value="${wtf:countsold(a.username)}" var="n" />--%>
                             <tr>
-                                <td>${a.account_Id}</td>
-                                <td>${a.username}</td>
-                                <td><button class="btn btn-xs btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Detail</button></td>
-                                <td></td>
-                                <td></td>
+                                <td><a href="AdminViewProfile?acct=${a.username}">${a.account_Id}</a></td>
+                                <td><a href="AdminViewProfile?acct=${a.username}">${a.username}</a></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${n==5.0}">
+                                            <c:forEach begin="1" end="5">
+                                                <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                            </c:forEach>    
+                                            (${m})
+                                        </c:when>
+                                        <c:when test="${n>=4}">
+                                            <c:forEach begin="1" end="4">
+                                                <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                            </c:forEach>
+                                            <c:forEach begin="1" end="1">
+                                                <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
+                                            </c:forEach>    
+                                            (${m})
+                                        </c:when>
+                                        <c:when test="${n>=3}">
+                                            <c:forEach begin="1" end="3">
+                                                <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                            </c:forEach>
+                                            <c:forEach begin="1" end="2">
+                                                <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
+                                            </c:forEach>
+                                            (${m})
+                                        </c:when>
+                                        <c:when test="${n>=2}">
+                                            <c:forEach begin="1" end="2">
+                                                <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                            </c:forEach>
+                                            <c:forEach begin="1" end="3">
+                                                <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
+                                            </c:forEach>
+                                            (${m})
+                                        </c:when>
+                                        <c:when test="${n>=1}">
+                                            <c:forEach begin="1" end="1">
+                                                <span class="glyphicon glyphicon-star" style="color: #ffcc66"></span>
+                                            </c:forEach>
+                                            <c:forEach begin="1" end="4">
+                                                <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
+                                            </c:forEach>
+                                            (${m})
+                                        </c:when>
+                                        <c:when test="${n==0}">
+                                            <c:forEach begin="1" end="5">
+                                                <span class="glyphicon glyphicon-star-empty" style="color: #ffcc66"></span>
+                                            </c:forEach>
+                                            (${m})
+                                        </c:when>
+                                    </c:choose>
+                                </td>
+                                <td> <a href="AdminViewFeedback?acct=${a.username}"><button class="btn btn-xs btn-primary">View</button></a></td>
                             </tr>
+                            
                         </c:forEach>
                     </table>                           
                 </div>
             </div>
-            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        
-                    </div>
-                </div>
-            </div>
         </div>  
-        
         <!--<script src="js/jasny-bootstrap.min.js"></script>-->
         <script src="js/dropdown.js"></script>
         <script src="js/semantic.js"></script>
@@ -245,13 +290,13 @@
         <!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
         <script src="js/application.js"></script>
         <script>
-                            $(function() {
-                                $('.demo.menu .item')
-                                        .tab('deactivate all')
-                                        .tab('activate tab', 'third')
-                                        .tab('activate navigation', 'third')
-                                        ;
-                            });
+            $(function() {
+                $('.demo.menu .item')
+                        .tab('deactivate all')
+                        .tab('activate tab', 'third')
+                        .tab('activate navigation', 'third')
+                        ;
+            });
         </script>
         <script>
             var $rows = $('#table tr');

@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 
 <html>
@@ -186,123 +188,136 @@
         </div>
         <div class="col-md-12" style="margin-top: 30px">
             <ul class="nav nav-tabs nav-justified" role="tablist">
-                <li class="active"><a href="AdminProduct.jsp">Product</a></li>
-                <li><a href="AdminAccount.jsp">Account</a></li>
+                <li><a href="AdminProduct.jsp">Product</a></li>
+                <li class="active"><a href="AdminAccount.jsp">Account</a></li>
                 <li><a href="AdminOrder.jsp">Order</a></li>
                 <li><a href="AdminReport.jsp">Lawless Report</a></li>
                 <li><a href="AdminChartRegis?year=2014">Report Chart</a></li>
                 <li><a href="AdminSetting.jsp">Setting</a></li>
             </ul>
             <hr>
-            <div class="row">
-                <h5 class="col-md-2">Product</h5>
-                <div class="col-md-12">
-                    <!--<input type="text" id="search" placeholder="Type to search">-->
-                    <table class="table table-striped display" id="table6" cellspacing="0" style="text-align: center;">
-                        <tr bgColor="#ffffff">
-                            <td>Account ID</td>
-                            <td>Category</td>
-                            <td>Name</td>
-                            <td>Price</td>
-                            <td>CreateOn</td>
-                            <td>Manage Post</td>
-                        </tr>
-                        <c:forEach items="${pro}" var="a">
-                            <tr>
-                                <td><a href="AdminViewProfile?acct=${a.acctID}">${a.acctID}</a></td>
-                                <td>${a.cateName}</td>
-                                <td><a href="AdminViewProduct?productId=${a.productNO}&acctid=${a.acctID}">${a.name}</td>
-                                <td>${a.price}0</td>
-                                <td>${a.createOn}</td>
-                                <td width="20%">
-                                    <div class="btn-group">                                              
-                                        <a href="AdminShowCategory?proid=${a.productNO}"><button class="btn btn-xs btn-primary">Edit</button></a>
-                                        <a href="AdminDeleteProduct?id=${a.productNO}"><button class="btn btn-xs btn-danger">Delete</button></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </table>                           
+            <div class="col-md-12">
+                <div class="col-md-4" align="center">
+                        <img src="${name.pic}" alt="..." width="200px" height="200px" class="img-thumbnail" >
                 </div>
-            </div>
-        </div>  
-        <!--<script src="js/jasny-bootstrap.min.js"></script>-->
-        <script src="js/dropdown.js"></script>
-        <script src="js/semantic.js"></script>
-        <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script src="js/jquery.ui.touch-punch.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-select.js"></script>
-        <script src="js/bootstrap-switch.js"></script>
-        <script src="js/flatui-checkbox.js"></script>
-        <script src="js/flatui-radio.js"></script>
-        <script src="js/jquery.tagsinput.js"></script>
-        <script src="js/jquery.placeholder.js"></script>
-<!--        <script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
-        <script src="js/application.js"></script>
-        <script>
-            $(function() {
-                $('.demo.menu .item')
-                        .tab('deactivate all')
-                        .tab('activate tab', 'third')
-                        .tab('activate navigation', 'third')
-                        ;
-            });
-        </script>
-        <script>
-            var $rows = $('#table tr');
-            $('#search').keyup(function() {
-                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                <form class="form-horizontal col-md-6" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
+                    <h5>Personal Info</h5>
+                    <table>
+                        <tr>
+                            <td class="col-md-2" style="color: #2980b9">
+                                E-mail
+                            </td>
+                            <td class="col-md-6">
+                                ${name.email}
+                            </td>
+                        </tr>
 
-                $rows.show().filter(function() {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    return !~text.indexOf(val);
-                }).hide();
-            });
-        </script>
-        <script language="javascript" type="text/javascript">
-            //<![CDATA[  
-            var table6_Props = {
-                paging: true,
-                paging_length: 10,
-                rows_counter: true,
-                rows_counter_text: "Rows:",
-            };
-            var tf6 = setFilterGrid("table6", table6_Props);
-            //]]>  
-        </script>  
-        <script language="javascript" type="text/javascript">
-//<![CDATA[  
-            var table10_Props = {
-                paging: true,
-                paging_length: 5,
-                col_2: 'select',
-                col_3: 'select',
-                sort_num_asc: [2],
-                sort_num_desc: [3],
-                refresh_filters: true
-            };
-            var tf10 = setFilterGrid("table10", table10_Props);
-//]]>  
-        </script>
-        <script language="javascript" type="text/javascript">
-//<![CDATA[  
-            var table9_Props = {
-                paging: true,
-                paging_length: 2,
-                results_per_page: ['# rows per page', [2, 4, 6]],
-                rows_counter: true,
-                rows_counter_text: "Rows:",
-                btn_reset: true,
-                btn_next_page_html: '<a href="javascript:;" style="margin:3px;">Next ></a>',
-                btn_prev_page_html: '<a href="javascript:;" style="margin:3px;">< Previous</a>',
-                btn_last_page_html: '<a href="javascript:;" style="margin:3px;"> Last >|</a>',
-                btn_first_page_html: '<a href="javascript:;" style="margin:3px;"><| First</a>',
-                loader: true,
-                loader_html: '<h4 style="color:red;">Loading, please wait...</h4>'
-            };
-            var tf9 = setFilterGrid("table9", table9_Props);
-//]]>  
-        </script> 
-    </body>
+                        <tr>
+                            <td class="col-md-3" style="color: #2980b9">
+                                First name
+                            </td>
+                            <td class="col-md-6">
+                                ${name.firstName}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-2" style="color: #2980b9">
+                                Last name
+                            </td>
+                            <td class="col-md-6">
+                                ${name.lastName}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-2" style="color: #2980b9">
+                                Phone
+                            </td>
+                            <td class="col-md-6">
+                                ${name.phone}
+                            </td>
+                        </tr>
+                    </table> 
+                </form>
+            </div> 
+        </div>
+    </div> 
+    <!--<script src="js/jasny-bootstrap.min.js"></script>-->
+    <script src="js/dropdown.js"></script>
+    <script src="js/semantic.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <!--<script src="http://vjs.zencdn.net/4.3/video.js"></script>-->
+    <script src="js/application.js"></script>
+    <script>
+                                $(function() {
+                                    $('.demo.menu .item')
+                                            .tab('deactivate all')
+                                            .tab('activate tab', 'third')
+                                            .tab('activate navigation', 'third')
+                                            ;
+                                });
+    </script>
+    <script>
+        var $rows = $('#table tr');
+        $('#search').keyup(function() {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function() {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+    <script language="javascript" type="text/javascript">
+        //<![CDATA[  
+        var table6_Props = {
+            paging: true,
+            paging_length: 10,
+            rows_counter: true,
+            rows_counter_text: "Rows:",
+        };
+        var tf6 = setFilterGrid("table6", table6_Props);
+        //]]>  
+    </script>  
+    <script language="javascript" type="text/javascript">
+        //<![CDATA[  
+        var table10_Props = {
+            paging: true,
+            paging_length: 5,
+            col_2: 'select',
+            col_3: 'select',
+            sort_num_asc: [2],
+            sort_num_desc: [3],
+            refresh_filters: true
+        };
+        var tf10 = setFilterGrid("table10", table10_Props);
+        //]]>  
+    </script>
+    <script language="javascript" type="text/javascript">
+        //<![CDATA[  
+        var table9_Props = {
+            paging: true,
+            paging_length: 2,
+            results_per_page: ['# rows per page', [2, 4, 6]],
+            rows_counter: true,
+            rows_counter_text: "Rows:",
+            btn_reset: true,
+            btn_next_page_html: '<a href="javascript:;" style="margin:3px;">Next ></a>',
+            btn_prev_page_html: '<a href="javascript:;" style="margin:3px;">< Previous</a>',
+            btn_last_page_html: '<a href="javascript:;" style="margin:3px;"> Last >|</a>',
+            btn_first_page_html: '<a href="javascript:;" style="margin:3px;"><| First</a>',
+            loader: true,
+            loader_html: '<h4 style="color:red;">Loading, please wait...</h4>'
+        };
+        var tf9 = setFilterGrid("table9", table9_Props);
+        //]]>  
+    </script> 
+</body>
 </html>

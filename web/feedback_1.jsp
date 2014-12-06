@@ -105,7 +105,7 @@
                                                 </c:when>
                                             </c:choose>
                                         </td>
-                                        <td><c:choose><c:when test="${feed.type=='buyer'}">seller:</c:when><c:otherwise>buyer:</c:otherwise></c:choose>  ${feed.from}</td>
+                                        <td><c:choose><c:when test="${feed.type=='Buyer'}">seller:</c:when><c:otherwise>buyer:</c:otherwise></c:choose>  ${feed.from}</td>
                                         <td>${feed.date}</td>
                                         <td align="center">${feed.order}</td>
                                     </tr></c:forEach>

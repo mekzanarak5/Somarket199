@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/WEB-INF/tlds/mf.tld" prefix="wtf" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 
 <html>
@@ -200,29 +201,42 @@
                     <h5 style="display: inline ">Order Detail</h5>
                     <p style="display: inline;margin-left: 15px; font-size: 22px">#</p>
                     <p style="display: inline; font-size: 22px; color: #666666">${order.orderId}</p>
-                </div>
-                <div class="panel panel-default col-md-11" style="margin-left: 45px ">
-                    <h6 class="panel-heading">Item Detail</h6>
-                    <table class="table table-striped" style="text-align: center">
-                        <tr>
-                            <td>Seller</td>
-                            <td>Pic</td>
-                            <td>Name</td>
-                            <td>Unit Price</td>
-                            <td>Quantity</td>
-                            <td>Total</td>
-                        </tr>
+                    <p style="font-size: 16px; ">${order.status}</p>&nbsp;&nbsp;<c:choose>
+                        <c:when test="${order.status == 'cancels'}" >:${order.comment}</c:when>
+                        <c:when test="${order.status != 'shipping' || order.status != 'complete'}">
+                            <!--<a href="CancelReturn?id=${a.orderId}#" >--><input type="button" class="btn btn-default" value="Cancel" name="CancelReturn" data-toggle="modal" data-target=".cancelmodal"/><!--</a>-->
+                        </c:when></c:choose>
+                    </div>
+                    <div class="panel panel-default col-md-11" style="margin-left: 45px ">
+                        <h6 class="panel-heading">Item Detail</h6>
+                        <table class="table table-striped" style="text-align: center">
+                            <tr>
+                                <td>Seller</td>
+                                <td>Pic</td>
+                                <td>Name</td>
+                                <td>Unit Price</td>
+                                <td>Quantity</td>
+                                <td>Total</td>
+                            </tr>
                         <c:forEach items="${detail.lineItems}" var="line">
                             <c:set value="${wtf:getAccountById(line.product.acctID)}" var="n" />
                             <tr>
                                 <td><a href="#">${n.username}</a></td>
                                 <td><a href="#"><img src="${line.product.pathFile}" style="width: 70px; height: 70px;" class="img-rounded"/></a></td>
                                 <td><a href="#">${line.product.name}</a></td>
-                                <td>${line.product.price}0</td>
-                                <td>${line.unit}</td>
-                                <td>${line.total}0</td>
+                                <td><fmt:formatNumber pattern ="#,###.##" value="${line.product.price}" /> ฿</td>
+                            <td>${line.unit}</td>
+                            <td><fmt:formatNumber pattern ="#,###.##" value="${line.total}" /> ฿</td>
                             </tr>
                         </c:forEach>
+                        <tr>
+                            <td>cost:</td>
+                            <td><fmt:formatNumber pattern ="#,###.##" value="${order.total}" /> ฿</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
                     </table>
                 </div>
                 <c:choose>
@@ -258,14 +272,22 @@
                         </c:when>
                         <c:otherwise>
                             <div class="panel panel-default col-md-4" style="margin-left: 45px ">
-                                <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
+                                <h6 class="col-md-12 panel-heading">Tranfer Information <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Slip</button></h6>
                                 <div class="col-md-12">
                                     <table class="table table-bordered" style="text-align: center">
                                         <tr>
                                             <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
-                                            <td>${order.paydate}<br>${order.paytime}<br>${order.payamount}</td>
+                                            <td>${order.paydate}<br>${order.paytime}<br><fmt:formatNumber pattern ="#,###.##" value="${order.payamount}" /> ฿</td>
                                         </tr>
+
                                     </table>
+                                </div>
+                            </div>
+                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <img src="${order.slip}" width="500px" height="500px"/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel panel-default col-md-4" style="margin-left: 25px ">
@@ -277,21 +299,26 @@
                                 </div>
                             </div>
                             <c:choose>
-                                <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
-                                        <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                        <form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
-                                            <input type="hidden" name="url"/>
-                                            <button class="btn btn-primary">Feedback</button></form>
-                                    </div></c:when></c:choose>
-                                    <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
+                                <c:when test="${order.status=='shipping' || order.status=='complete'}"><div class="col-md-3">
+                                        <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a><br>
+                                        <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
+                                            <input type="hidden" name="url"/>-->
+                                        <c:choose><c:when test="${chs==null}">We need your feedback to seller: ${order.seller}. Please tell us what do you think?<br>
+                                                <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
+                                            </c:when><c:otherwise>
+                                                <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.seller}" />
+                                                    Thank you for your support (seller: ${order.seller}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
+                                        </c:choose><!--</form>-->
+                                    </div><div class="panel panel-info col-md-8 " style="margin-left: 170px ">
                                         <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
                                         <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                            <input type="text" class="form-control" name="ems" value="${order.ems}" disabled>
-                                </div>
-                                <!--<div align="center" style="margin-bottom: 20px">
-                                    <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
-                                </div>-->
-                            </div>
+                                            <p class="form-control" >${order.ems}</p>
+                                        </div>
+                                        <!--<div align="center" style="margin-bottom: 20px">
+                                            <a href="showems.html" class="btn btn-info">Submit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="btn btn-default">Reset</a>
+                                        </div>-->
+                                    </div></c:when></c:choose>
+
                         </c:otherwise>
                     </c:choose>
                 </c:when>
@@ -306,15 +333,21 @@
                             </div>
                         </c:when><c:otherwise>
                             <div class="panel panel-default col-md-4" style="margin-left: 45px ">
-                                <h6 class="col-md-12 panel-heading">Tranfer Information</h6>
+                                <h6 class="col-md-12 panel-heading">Tranfer Information <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Slip</button></h6>
                                 <div class="col-md-12">
                                     <table class="table table-bordered" style="text-align: center">
                                         <tr>
                                             <td style="background: #ededed">Transfer Date<br>Transfer Time<br>Amount</td>
-                                            <td>${order.paydate}<br>${order.paytime}<br>${order.payamount}</td>
+                                            <td>${order.paydate}<br>${order.paytime}<br><fmt:formatNumber pattern ="#,###.##" value="${order.payamount}" /> ฿</td>
                                         </tr>
-                                       
                                     </table>
+                                </div>
+                            </div>
+                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <img src="${order.slip}" width="500px" height="500px"/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel panel-default col-md-4" style="margin-left: 25px ">
@@ -326,110 +359,125 @@
                                 </div>
                             </div>
                             <c:choose>
-                                <c:when test="${order.status=='shipping' || order.status=='completed'}"><div class="col-md-3">
-                                        <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a>
-                                        <form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
-                                            <input type="hidden" name="url"/>
-                                            <button class="btn btn-primary">Feedback</button></form>
+                                <c:when test="${order.status=='shipping' || order.status=='complete'}">
+                                    <div class="col-md-3">
+                                        <a href="printnaja.jsp" target="_blank"><span class="glyphicon glyphicon-print"></span></a><br>
+                                        <!--<form action="ViewFeedback" method="get"><input type="hidden" name="orderid" value="${order.orderId}"/>
+                                            <input type="hidden" name="url"/>-->
+                                        <c:choose><c:when test="${chs==null}">We need your feedback to buyer: ${order.username}. Please tell us what do you think?<br>
+                                                <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Feedback</button>
+                                            </c:when><c:otherwise>
+                                                <form action="ViewFeedback" method="get" ><input type="hidden" name="facct" value="${order.username}" />
+                                                    Thank you for your support (buyer: ${order.username}).<br><button class="btn btn-primary" data-toggle="modal">Feedback</button></form></c:otherwise>
+                                        </c:choose><!--</form>-->
                                     </div></c:when></c:choose>
-                            <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
-                                <div class="panel panel-info col-md-8 " style="margin-left: 170px ">
-                                    <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
-                                    <div class="col-md-12" align="center" style="margin-bottom: 20px">
-                                        <c:choose><c:when test="${order.ems==null}">
-                                                <input type="text" class="form-control" placeholder="Enter EMS" name="ems" >
-                                                <div align="center" style="margin-bottom: 20px">
-                                                    <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default">Reject</button>
-                                                </div></c:when>
-                                            <c:otherwise><input type="text" class="form-control" name="ems" value="${order.ems}" disabled></c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                </div></form>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:otherwise>
-                </c:choose>
+                            <c:choose><c:when test="${order.status=='Paid'}">
+                                    <form action="OrderFinish" method="get" ><input type="hidden" name="orderid" value="${order.orderId}" />
+                                        <div class="panel panel-info col-md-6 " style="margin-left: 320px ">
+                                            <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
+                                            <div class="col-md-12" align="center" style="margin-bottom: 10px">
+                                                <div style="margin-bottom: 10px">
+                                                    <input type="text" style="text-align: center" id="ems" class="form-control" placeholder="Enter EMS" name="ems" >
+                                                </div>
+                                                <div align="center">
+                                                    <button class="btn btn-info">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="btn btn-default" value="Clear" name="clear" title="Clear"/>
+                                                </div>
+                                            </div>
+                                        </div></form></c:when>
+                                    <c:when test="${order.status=='shipping'}">
+                                    <div class="panel panel-info col-md-6 " style="margin-left: 320px ">
+                                        <h6 class="col-md-12 panel-heading" align="center">Status Enter EMS</h6>
+                                        <div class="col-md-12" align="center" style="margin-bottom: 10px">
+                                            <div style="margin-bottom: 10px">
+                                                <p class="form-control" >${order.ems}</p>
+                                            </div>
+                                        </div>
+                                    </div></c:when><c:otherwise><div class="panel panel-info col-md-6 " style="margin-left: 320px ">
+                                        <div class="col-md-12" align="center" style="margin-bottom: 10px"></div>    
+                                        </div></c:otherwise></c:choose>
+                        </c:otherwise>
+                    </c:choose>
+                </c:otherwise>
+            </c:choose>
         </div>
-    </div>
-</div>
-</div>  
-<!--<script src="js/jasny-bootstrap.min.js"></script>-->
-<script src="js/dropdown.js"></script>
-<script src="js/semantic.js"></script>
-<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="js/jquery.ui.touch-punch.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-select.js"></script>
-<script src="js/bootstrap-switch.js"></script>
-<script src="js/flatui-checkbox.js"></script>
-<script src="js/flatui-radio.js"></script>
-<script src="js/jquery.tagsinput.js"></script>
-<script src="js/jquery.placeholder.js"></script>
-<script src="http://vjs.zencdn.net/4.3/video.js"></script>
-<script src="js/application.js"></script>
-<script>
-    $(function() {
-        $('.demo.menu .item')
-                .tab('deactivate all')
-                .tab('activate tab', 'third')
-                .tab('activate navigation', 'third')
-                ;
-    });
-</script>
-<script>
-    var $rows = $('#table tr');
-    $('#search').keyup(function() {
-        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    </div> 
+    <!--<script src="js/jasny-bootstrap.min.js"></script>-->
+    <script src="js/dropdown.js"></script>
+    <script src="js/semantic.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+    <script src="js/application.js"></script>
+    <script>
+        $(function() {
+            $('.demo.menu .item')
+                    .tab('deactivate all')
+                    .tab('activate tab', 'third')
+                    .tab('activate navigation', 'third')
+                    ;
+        });
+    </script>
+    <script>
+        var $rows = $('#table tr');
+        $('#search').keyup(function() {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
-        $rows.show().filter(function() {
-            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-            return !~text.indexOf(val);
-        }).hide();
-    });
-</script>
-<script language="javascript" type="text/javascript">
-    //<![CDATA[  
-    var table6_Props = {
-        paging: true,
-        paging_length: 10,
-        rows_counter: true,
-        rows_counter_text: "Rows:",
-    };
-    var tf6 = setFilterGrid("table6", table6_Props);
-    //]]>  
-</script>  
-<script language="javascript" type="text/javascript">
-//<![CDATA[  
-    var table10_Props = {
-        paging: true,
-        paging_length: 5,
-        col_2: 'select',
-        col_3: 'select',
-        sort_num_asc: [2],
-        sort_num_desc: [3],
-        refresh_filters: true
-    };
-    var tf10 = setFilterGrid("table10", table10_Props);
-//]]>  
-</script>
-<script language="javascript" type="text/javascript">
-//<![CDATA[  
-    var table9_Props = {
-        paging: true,
-        paging_length: 2,
-        results_per_page: ['# rows per page', [2, 4, 6]],
-        rows_counter: true,
-        rows_counter_text: "Rows:",
-        btn_reset: true,
-        btn_next_page_html: '<a href="javascript:;" style="margin:3px;">Next ></a>',
-        btn_prev_page_html: '<a href="javascript:;" style="margin:3px;">< Previous</a>',
-        btn_last_page_html: '<a href="javascript:;" style="margin:3px;"> Last >|</a>',
-        btn_first_page_html: '<a href="javascript:;" style="margin:3px;"><| First</a>',
-        loader: true,
-        loader_html: '<h4 style="color:red;">Loading, please wait...</h4>'
-    };
-    var tf9 = setFilterGrid("table9", table9_Props);
-//]]>  
-</script> 
+            $rows.show().filter(function() {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
+    <script language="javascript" type="text/javascript">
+        //<![CDATA[  
+        var table6_Props = {
+            paging: true,
+            paging_length: 10,
+            rows_counter: true,
+            rows_counter_text: "Rows:",
+        };
+        var tf6 = setFilterGrid("table6", table6_Props);
+        //]]>  
+    </script>  
+    <script language="javascript" type="text/javascript">
+        //<![CDATA[  
+        var table10_Props = {
+            paging: true,
+            paging_length: 5,
+            col_2: 'select',
+            col_3: 'select',
+            sort_num_asc: [2],
+            sort_num_desc: [3],
+            refresh_filters: true
+        };
+        var tf10 = setFilterGrid("table10", table10_Props);
+        //]]>  
+    </script>
+    <script language="javascript" type="text/javascript">
+        //<![CDATA[  
+        var table9_Props = {
+            paging: true,
+            paging_length: 2,
+            results_per_page: ['# rows per page', [2, 4, 6]],
+            rows_counter: true,
+            rows_counter_text: "Rows:",
+            btn_reset: true,
+            btn_next_page_html: '<a href="javascript:;" style="margin:3px;">Next ></a>',
+            btn_prev_page_html: '<a href="javascript:;" style="margin:3px;">< Previous</a>',
+            btn_last_page_html: '<a href="javascript:;" style="margin:3px;"> Last >|</a>',
+            btn_first_page_html: '<a href="javascript:;" style="margin:3px;"><| First</a>',
+            loader: true,
+            loader_html: '<h4 style="color:red;">Loading, please wait...</h4>'
+        };
+        var tf9 = setFilterGrid("table9", table9_Props);
+        //]]>  
+    </script> 
 </body>
 </html>

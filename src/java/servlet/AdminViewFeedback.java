@@ -3,28 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Accounts;
-import model.Address;
-import model.Bank;
-import model.Cart;
 import model.Feedback;
-import model.order;
 
 /**
  *
  * @author Admin
  */
-public class AdminDetailOrder extends HttpServlet {
+public class AdminViewFeedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,33 +32,13 @@ public class AdminDetailOrder extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         int orderid = Integer.parseInt(request.getParameter("orderid"));
-        Cart cart = new Cart();
-        cart = Cart.getDetailList(orderid);
-        request.setAttribute("detail", cart);
-        order o = order.searchByID(orderid);
-        Accounts a = Accounts.getUser(o.getSeller());
-        List<Bank> b = Bank.showBank(a.getAccount_Id());
-        Bank bpay = Bank.findBank(o.getBankacct());
-        Feedback chsend = Feedback.checkSender(orderid, null);
-        if(o.getUsername().equalsIgnoreCase(null)){
-        int up = order.updateRead(orderid);
-        }
-        if(o.getSeller().equalsIgnoreCase(null)){
-        int up1 = order.updateReadSell(orderid);
-        }
-        /*if(o.getPayment()!=null){
-            String pm = o.getPaymentHTML();
-            request.setAttribute("payment", pm);
-        }*/
-        //System.out.println(chsend);
-        request.setAttribute("order", o);
-        request.setAttribute("add", Address.findAddress(o.getAddress()));
-        request.setAttribute("total", o.getTotal());
-        request.setAttribute("bank", b);
-        request.setAttribute("b2", bpay);
-        request.setAttribute("chs", chsend);
-        getServletContext().getRequestDispatcher("/AdminDetailOrder.jsp").forward(request, response);
+        List<Feedback> ma = new ArrayList<Feedback>();
+        String a = request.getParameter("acct");
+        ma = Feedback.getFeedList(a);
+        request.setAttribute("flist", ma);
+        request.setAttribute("name", a);
+        System.out.println(ma);
+        getServletContext().getRequestDispatcher("/AdminViewFeedback.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

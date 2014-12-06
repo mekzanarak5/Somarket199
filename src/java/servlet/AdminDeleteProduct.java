@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Address;
 import model.Product;
+import model.ProductPic;
 
 /**
  *
@@ -36,6 +37,7 @@ public class AdminDeleteProduct extends HttpServlet {
         String acctid = request.getParameter("acctid");
         Product c = new Product();
         c.deleteProduct(id);
+        ProductPic.deletePicPro(id);
         request.setAttribute("add", c);
         getServletContext().getRequestDispatcher("/AdminShowReport").forward(request, response);
     }

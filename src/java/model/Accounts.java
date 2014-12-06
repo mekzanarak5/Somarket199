@@ -172,12 +172,13 @@ public class Accounts {
     }
 
     public static Accounts findById(String id) {
-        String sqlCmd = "SELECT * FROM account WHERE Username = ?";
+        String sqlCmd = "SELECT * FROM account WHERE Username = ? or Account_Id = ?";
         Connection con = ConnectionAgent.getConnection();
         Accounts a = null;
         try {
             PreparedStatement ps = con.prepareStatement(sqlCmd);
             ps.setString(1, id);
+            ps.setString(2, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 a = new Accounts();
