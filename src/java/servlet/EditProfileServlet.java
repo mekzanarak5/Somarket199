@@ -34,13 +34,11 @@ public class EditProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         int acctid = Integer.parseInt(request.getParameter("acctid"));
         String firstname = request.getParameter("firstname");
-        String fthai = new String(firstname.getBytes("ISO8859_1"),"UTF-8");
         String lastname = request.getParameter("lastname");
-        String lthai = new String(lastname.getBytes("ISO8859_1"),"UTF-8");
         String Phone = request.getParameter("phone");
         
         Accounts c = new Accounts();
-        c.editProfile(fthai, lthai, Phone, acctid);
+        c.editProfile(firstname, lastname, Phone, acctid);
         request.setAttribute("edit", c);
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response);
     }

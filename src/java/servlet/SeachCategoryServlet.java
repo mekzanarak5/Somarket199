@@ -41,7 +41,7 @@ public class SeachCategoryServlet extends HttpServlet {
         if (Address.checkAddr(acct) & Bank.checkBank(acct)) {
             getServletContext().getRequestDispatcher("/postandpic1.jsp").forward(request, response);
         }else{
-             String msg = "Please complete your account information (add your Address/Bank Accounts)";
+            String msg = "Please complete your account information (add your Address/Bank Accounts)";
             request.setAttribute("msg", msg);
             getServletContext().getRequestDispatcher("/ShowAddressServlet?id=" + acct).forward(request, response);
         }

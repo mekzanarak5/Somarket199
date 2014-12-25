@@ -36,7 +36,7 @@
                 <div class="col-md-12">
                     <div class="col-md-4" align="center">   
                         <img src="${showName.pic}" alt="..." class="img-thumbnail" width="200px" height="200px">
-                        <br><a href="GetReceiverServlet?acctid=${showName.account_Id}"><button type="button" class="btn btn-danger btn-xs">Send PM</button></a>
+                        <br><a href="GetReceiverServlet?acctid=${showName.account_Id}"><button type="button" class="btn btn-danger btn-xs">Send Private Message</button></a>
                     </div>
                     <form class="form-horizontal col-md-8" role="form" style=" border: 1px solid #ffffff ;border-radius: 15px;height: 230px;background: #FFFFFF">
                         <h5>Personal Info</h5>
